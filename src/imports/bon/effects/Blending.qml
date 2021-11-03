@@ -7,7 +7,7 @@ Item {
 
     ShaderEffectSource {
         id: windowSource
-        sourceItem: __window__
+        sourceItem: __app__
         anchors.fill: parent
         visible: false
         hideSource: false
@@ -19,7 +19,7 @@ Item {
         property variant source: windowSource
         property variant foregroundSource: blendEffectSource
         anchors.fill: blend
-        property color background: __window__.color;
+        property color background: __app__.color;
         property vector4d objectDimensions: Qt.vector4d(blend.parent.mapToItem(__window__,blend.x,blend.y).x, blend.parent.mapToItem(__window__,blend.x,blend.y).y, width, height);
         property vector2d viewportDimensions: Qt.vector2d(__window__.width, __window__.height);
         visible: false;

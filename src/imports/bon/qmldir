@@ -3,6 +3,7 @@ module bon
 App 1.0 core/App.qml
 
 Switch 1.0 controls/Switch.qml
+RadioButton 1.0 controls/RadioButton.qml
 
 Blending 1.0 effects/Blending.qml
 BlendingRectangularGlow 1.0 effects/BlendingRectangularGlow.qml

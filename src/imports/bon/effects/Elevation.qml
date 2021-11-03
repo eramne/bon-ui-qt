@@ -6,8 +6,8 @@ Item {
     property real elevation: 1
     property real radius: 0
 
-    property real _easing: Easing.OutQuad
-    property real _duration: 100
+    property real _easing: __app__.style.animations.basic.type
+    property real _duration: __app__.style.animations.basic.duration
 
     RectangularGlow {
         width: parent.width
@@ -19,6 +19,7 @@ Item {
         opacity: 0.1
         glowRadius: elevation*1/5
         cornerRadius: root.radius + glowRadius
+        visible: elevation > 0
 
         Behavior on glowRadius {
             NumberAnimation {
@@ -38,6 +39,7 @@ Item {
         opacity: (-1/(elevation/100 + 1)+1)
         glowRadius: elevation*2/3
         cornerRadius: root.radius + glowRadius
+        visible: elevation > 0
 
         Behavior on glowRadius {
             NumberAnimation {
@@ -71,6 +73,7 @@ Item {
         opacity: 0.05
         glowRadius: elevation*6/5
         cornerRadius: root.radius + glowRadius
+        visible: elevation > 0
 
         Behavior on y {
             NumberAnimation {

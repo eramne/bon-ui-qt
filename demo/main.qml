@@ -9,14 +9,41 @@ Window {
     title: qsTr("Hello World")
 
     Bon.App {
-        Quick.Row {
+        id: __app__
+        Quick.Column {
             padding: 20
             anchors.fill: parent
             spacing: 20
 
-            Bon.Switch {
+            // @disable-check M300
+            Bon.Switch {}
 
-            }
+            // @disable-check M300
+            Bon.Switch {checked: true}
+
+            // @disable-check M300
+            Bon.Switch {enabled: false}
+
+            // @disable-check M300
+            Bon.Switch {checked:true; enabled: false}
+
+            // @disable-check M300
+            Bon.RadioButton {}
+
+            // @disable-check M300
+            Bon.RadioButton {checked: true}
+
+            // @disable-check M300
+            Bon.RadioButton {mixed: true}
+
+            // @disable-check M300
+            Bon.RadioButton {enabled: false}
+
+            // @disable-check M300
+            Bon.RadioButton {checked:true; enabled: false}
+
+            // @disable-check M300
+            Bon.RadioButton {mixed:true; enabled: false}
         }
 
         /*Flow {

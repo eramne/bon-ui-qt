@@ -12,25 +12,27 @@ T.Switch {
     property real _height: 20
     property real _radius: Math.max(_width, _height)
     property color _backgroundColor: !control.checked ? (
-                                         control.pressed ? "#D1B4B4" : "#E0CDCA"
+                                         control.pressed ? __app__.style.palette.controls.background_1 : __app__.style.palette.controls.background
                                      ) : (
-                                         control.pressed ? "#23607A" : "#0A2E45"
+                                         control.pressed ? __app__.style.palette.controls.accent_1 : __app__.style.palette.controls.accent
                                      )
-    property real _opacity: control.disabled ? 0.3 : 1
+    property real _opacity: !control.enabled ? __app__.style.misc_values.disabled_opacity : 1
     property color _borderColor: "#000000"
     property real _borderWidth: 0
     property real _thumbWidth: 16 + (control.pressed ? (_pressedThumbWidthAdjust) : 0)
     property real _thumbHeight: 16
     property real _pressedThumbWidthAdjust: 8
-    property color _thumbColor: !control.disabled && !control.hovered && !control.pressed ? "#ffffff" : Qt.rgba(1,1,1,0.8)
+    property color _thumbColor: control.enabled && !control.hovered && !control.pressed ? __app__.style.palette.controls.highlight : __app__.style.palette.controls.highlight_1
     property real _thumbRadius: Math.max(_thumbWidth, _thumbHeight)
     property real _padding: 0
     property real _elevation: !control.pressed && control.checked ? 1 : 0
     property real _thumbElevation: control.pressed ? 1 : 2
-    property real _easing: Easing.OutQuad
-    property real _duration: 100
+    property real _easing: __app__.style.animations.basic.type
+    property real _duration: __app__.style.animations.basic.duration
 
     padding: _padding+Math.max(Math.max(0,thumb.width-indicator.width),Math.max(0,thumb.height-indicator.height))
+
+    hoverEnabled: enabled
 
     Elevation {
         anchors.fill: indicator
@@ -53,6 +55,13 @@ T.Switch {
         border.width: _borderWidth
         border.color: _borderColor
 
+        Behavior on color {
+            ColorAnimation {
+                duration: _duration;
+                easing.type: _easing
+            }
+        }
+
         property int thumbPadding: (height - thumb.height)/2
 
         Elevation {
@@ -73,7 +82,6 @@ T.Switch {
             property real tmpWidth: _thumbWidth
 
             Behavior on color {
-                enabled: control.focus
                 ColorAnimation {
                     duration: _duration;
                     easing.type: _easing
