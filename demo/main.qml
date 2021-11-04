@@ -1,4 +1,4 @@
-import QtQuick as Quick
+import QtQuick
 import QtQuick.Window
 import bon as Bon
 
@@ -10,40 +10,42 @@ Window {
 
     Bon.App {
         id: __app__
-        Quick.Column {
+        Flow {
             padding: 20
             anchors.fill: parent
             spacing: 20
 
-            // @disable-check M300
             Bon.Switch {}
 
-            // @disable-check M300
             Bon.Switch {checked: true}
 
-            // @disable-check M300
             Bon.Switch {enabled: false}
 
-            // @disable-check M300
             Bon.Switch {checked:true; enabled: false}
 
-            // @disable-check M300
             Bon.RadioButton {}
 
-            // @disable-check M300
             Bon.RadioButton {checked: true}
 
-            // @disable-check M300
             Bon.RadioButton {mixed: true}
 
-            // @disable-check M300
             Bon.RadioButton {enabled: false}
 
-            // @disable-check M300
             Bon.RadioButton {checked:true; enabled: false}
 
-            // @disable-check M300
             Bon.RadioButton {mixed:true; enabled: false}
+
+            Bon.CheckBox {}
+
+            Bon.CheckBox {checked: true}
+
+            Bon.CheckBox {mixed: true}
+
+            Bon.CheckBox {enabled: false}
+
+            Bon.CheckBox {checked:true; enabled: false}
+
+            Bon.CheckBox {mixed:true; enabled: false}
         }
 
         /*Flow {
@@ -58,8 +60,8 @@ Window {
                 Item {
                     width: 40+40*(index/4)
                     height: width
-                    // @disable-check M300
-                    Elevation {
+
+                    Bon.Elevation {
                         anchors.fill: rect
                         radius: rect.radius
                         elevation: flow.elevations[index]
