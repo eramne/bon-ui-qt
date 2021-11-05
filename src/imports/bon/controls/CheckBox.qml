@@ -128,8 +128,16 @@ T.CheckBox {
                     }
                 }
 
-                startX: 0
+                startX: !_useMixedIcon ? 0 : 2;
                 startY: 4
+
+                Behavior on startX {
+                    animation: NumberAnimation {
+                        duration: _duration;
+                        easing.type: _easing;
+                    }
+                }
+
                 PathLine {
                     x: !_useMixedIcon ? 4 : 6;
                     y: !_useMixedIcon ? 8 : 4
@@ -147,8 +155,14 @@ T.CheckBox {
                     }
                 }
                 PathLine {
-                    x: 12;
+                    x: !_useMixedIcon ? 12 : 10;
                     y: !_useMixedIcon ? 0 : 4
+                    Behavior on x {
+                        animation: NumberAnimation {
+                            duration: _duration;
+                            easing.type: _easing;
+                        }
+                    }
                     Behavior on y {
                         animation: NumberAnimation {
                             duration: _duration;
