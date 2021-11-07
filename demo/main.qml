@@ -1,4 +1,5 @@
 import QtQuick
+import QtQuick.Controls as QuickControls
 import QtQuick.Window
 import bon as Bon
 
@@ -46,6 +47,57 @@ Window {
             Bon.CheckBox {checked:true; enabled: false}
 
             Bon.CheckBox {mixed:true; enabled: false}
+
+            Bon.Slider {}
+
+            Bon.Slider {enabled: false}
+
+            Bon.Slider {orientation: Qt.Vertical}
+
+            Bon.Slider {enabled: false; orientation: Qt.Vertical}
+
+            Bon.Slider {
+                from: 0
+                value: 25
+                to: 100
+                stepSize: 25
+                snapMode: QuickControls.Slider.SnapAlways
+            }
+
+            Bon.Slider {
+                from: 0
+                value: 25
+                to: 100
+                stepSize: 25
+                snapMode: QuickControls.Slider.SnapAlways
+                enabled: false
+            }
+
+            Bon.Slider {
+                from: 0
+                value: 25
+                to: 100
+                stepSize: 25
+                snapMode: QuickControls.Slider.SnapAlways
+                orientation: Qt.Vertical
+            }
+
+            Bon.Slider {
+                from: 0
+                value: 25
+                to: 100
+                stepSize: 25
+                snapMode: QuickControls.Slider.SnapAlways
+                enabled: false
+                orientation: Qt.Vertical
+            }
+
+            Bon.ProgressBar {
+                width: 200
+                from: 1
+                to: 2
+                value: 1.7
+            }
         }
 
         /*Flow {
