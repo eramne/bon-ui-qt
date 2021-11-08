@@ -8,6 +8,9 @@ T.Switch {
     implicitWidth: indicator.width + leftPadding + rightPadding
     implicitHeight: indicator.height + topPadding + bottomPadding
 
+    layer.enabled: true
+    opacity: _opacity
+
     property real _width: 40
     property real _height: 20
     property real _radius: Math.max(_width, _height)
@@ -50,7 +53,6 @@ T.Switch {
 
         radius: _radius
         color: _backgroundColor
-        opacity: _opacity;
 
         border.width: _borderWidth
         border.color: _borderColor

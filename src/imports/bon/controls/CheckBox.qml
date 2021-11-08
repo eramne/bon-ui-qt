@@ -59,6 +59,9 @@ T.CheckBox {
 
     padding: _padding
 
+    layer.enabled: true
+    opacity: _opacity
+
     Elevation {
         anchors.fill: indicator
         radius: indicator.radius
@@ -75,7 +78,6 @@ T.CheckBox {
 
         radius: _radius
         color: _backgroundColor
-        opacity: _opacity;
 
         border.width: _borderWidth
         border.color: _borderColor
@@ -102,13 +104,15 @@ T.CheckBox {
         }
 
         Shape {
-            x: (parent.width - width) / 2
-            y: (parent.height - height) / 2
-            width: 12
-            height: 8
+            anchors.centerIn: parent
+            width: 20
+            height: 20
+            layer.enabled: true
+            layer.samples: 8
+            opacity: _iconColor.a
             ShapePath {
                 id: icon
-                strokeColor: _iconColor
+                strokeColor: Qt.rgba(_iconColor.r,_iconColor.g,_iconColor.b,1)
                 strokeWidth: _iconWidth
                 fillColor: "transparent"
                 joinStyle: ShapePath.RoundJoin
@@ -128,8 +132,8 @@ T.CheckBox {
                     }
                 }
 
-                startX: !_useMixedIcon ? 0 : 2;
-                startY: 4
+                startX: (!_useMixedIcon ? 0 : 2)+4;
+                startY: 4+6
 
                 Behavior on startX {
                     animation: NumberAnimation {
@@ -139,8 +143,8 @@ T.CheckBox {
                 }
 
                 PathLine {
-                    x: !_useMixedIcon ? 4 : 6;
-                    y: !_useMixedIcon ? 8 : 4
+                    x: (!_useMixedIcon ? 4 : 6)+4;
+                    y: (!_useMixedIcon ? 8 : 4) + 6
                     Behavior on x {
                         animation: NumberAnimation {
                             duration: _duration;
@@ -155,8 +159,8 @@ T.CheckBox {
                     }
                 }
                 PathLine {
-                    x: !_useMixedIcon ? 12 : 10;
-                    y: !_useMixedIcon ? 0 : 4
+                    x: (!_useMixedIcon ? 12 : 10)+4;
+                    y: (!_useMixedIcon ? 0 : 4) + 6
                     Behavior on x {
                         animation: NumberAnimation {
                             duration: _duration;

@@ -1,4 +1,5 @@
 import QtQuick
+import QtQuick.Shapes
 import QtQuick.Templates as T
 import bon
 
@@ -10,9 +11,14 @@ T.ProgressBar {
     implicitHeight: Math.max(implicitBackgroundHeight + topInset + bottomInset,
                              implicitContentHeight + topPadding + bottomPadding)
 
+    layer.enabled: true
+    layer.samples: 8
+
     property int state: ProgressBar.State.Paused
 
-    property real _height: 8
+    property real _width: 40
+    property real _height: 40
+    property real _thickness: 8
     property real _radius: _height/2
     property color _indicatorColor: state === ProgressBar.State.Running ? __app__.style.palette.controls.accent
                                          : state === ProgressBar.State.Paused ? __app__.style.palette.controls.background_1
@@ -32,92 +38,24 @@ T.ProgressBar {
         Error
     }
 
-    onStateChanged: {
-        if (control.indeterminate) {
-            if (control.state === ProgressBar.State.Running) {
-                rotationTimer.running = true;
-            } else if (control.state === ProgressBar.State.Paused) {
-                rotationTimer.running = false;
-            } else {
-                rotationTimer.running = false;
-                indicator.indeterminateRotatorPosition = 0;
-            }
-        } else {
-            rotationTimer.running = false;
-            indicator.indeterminateRotatorPosition = 0;
-        }
-    }
-
-    Component.onCompleted: {
-        control.stateChanged();
-    }
-
-    width: 100
+    width: _width
     height: _height
 
-    contentItem: Item {
-        anchors.fill: parent
-        Elevation {
-            anchors.fill: indicator
-            radius: indicator.radius
-            elevation: _elevation
-            z: -1
-        }
-        Rectangle {
-            id: indicator
-            radius: _radius
-            width: control.indeterminate ? Math.min(Math.min(parent.width, parent.width-indicator.indeterminateRotatorPosition),parent.width+indicator.indeterminateRotatorPosition) : (control.state !== ProgressBar.State.Success && control.state !== ProgressBar.State.Error ? parent.width * control.position : parent.width)
-            height: parent.height
-            color: _indicatorColor
-            x: control.indeterminate ? Math.max(0,indicator.indeterminateRotatorPosition) : 0
-
-            property real indeterminateRotatorPosition: -parent.width
-
-            Timer {
-                id: rotationTimer
-                interval: 100
-                running: false
-                repeat: true
-                onTriggered: function () {
-                    indicator.indeterminateRotatorPosition += 10;
-                    if (indicator.indeterminateRotatorPosition > control.width) {
-                        xAnimation.enabled = false;
-                        indicator.indeterminateRotatorPosition = -control.width;
-                        xAnimation.enabled = true;
-                    }
-                }
-            }
-
-            Behavior on color {
-                ColorAnimation {
-                    duration: _duration;
-                    easing.type: _easing;
-                }
-            }
-
-            Behavior on indeterminateRotatorPosition {
-                id: xAnimation
-                animation: NumberAnimation {
-                    duration: _progressDuration;
-                    easing.type: _progressEasing;
-                }
-            }
-
-            Behavior on width {
-                enabled: !control.indeterminate
-                animation: NumberAnimation {
-                    duration: _progressDuration*8;
-                    easing.type: _progressEasing;
-                }
-            }
-        }
-        scale: control.mirrored ? -1 : 1
-    }
-
-    background: Rectangle {
+    background: Shape {
+        anchors.centerIn: parent
         width: parent.width
         height: parent.height
-        radius: _radius
-        color: _backgroundColor
+
+        ShapePath {
+            startX: control.width/2; startY: _thickness/2
+            fillColor: "transparent"
+            strokeColor: _backgroundColor
+            strokeWidth: _thickness
+            PathArc {
+                x: control.width/2-0.1; y: _thickness/2
+                radiusX: control.width/2 - _thickness/2; radiusY: control.height/2 - _thickness/2
+                useLargeArc: true
+            }
+        }
     }
 }

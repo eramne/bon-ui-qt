@@ -42,6 +42,8 @@ T.Slider {
     property bool _shouldDisplaySnapIndicators: snapMode !== Slider.NoSnap && _snapIndicatorSpacing > _minSnapIndicatorDistance
 
     padding: _padding
+
+    layer.enabled: true
     opacity: _opacity
 
     width: horizontal ? 100 : Math.max(_backgroundWidth,_handleLength)
