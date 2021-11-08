@@ -1,5 +1,6 @@
-import QtQuick 2.0
+import QtQuick
 import QtQuick.Templates as T
+import bon
 
 T.Dial {
     id: control
@@ -19,13 +20,20 @@ T.Dial {
     property color _handleColor: control.enabled ? (
                                            control.pressed || control.hovered ? __app__.style.palette.controls.highlight_1 : __app__.style.palette.controls.highlight
                                     ) : __app__.style.palette.controls.highlight_1
+    property real _elevation: 2
 
     width: _width
     height: _height
-    layer.enabled: true
     opacity: _opacity
 
     inputMode: Dial.Vertical
+
+    Elevation {
+        anchors.fill: background
+        radius: background.radius
+        elevation: _elevation
+        z: -1
+    }
 
     background: Rectangle {
         implicitWidth: parent.width

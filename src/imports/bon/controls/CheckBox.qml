@@ -59,7 +59,6 @@ T.CheckBox {
 
     padding: _padding
 
-    layer.enabled: true
     opacity: _opacity
 
     Elevation {
