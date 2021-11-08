@@ -94,9 +94,112 @@ Window {
 
             Bon.ProgressBar {
                 width: 200
-                from: 1
-                to: 2
-                value: 1.7
+                from: 0
+                to: 1
+                value: 0
+                Timer {
+                    interval: 2000; running: true; repeat: true
+                    onTriggered: function () {
+                        interval = 500;
+                        if (parent.value >= 1) {
+                            parent.value = 0;
+                        }
+                        if (Math.random() > 0.2) {
+                            parent.state = Bon.ProgressBar.State.Running
+                            parent.value += Math.random()/5
+                            if (parent.value >= 1) {
+                                parent.value = 1;
+                                parent.state = Math.random() > 0.5 ? Bon.ProgressBar.State.Success : Bon.ProgressBar.State.Error
+                                interval = 2000;
+                            }
+                        } else {
+                            parent.state = Bon.ProgressBar.State.Paused
+                            interval = 2000;
+                        }
+                    }
+                }
+            }
+
+            Bon.ProgressBar {
+                width: 200
+                from: 0
+                to: 1
+                value: 0
+                indeterminate: true
+                state: Bon.ProgressBar.State.Running
+                Timer {
+                    interval: 2000; running: true; repeat: true
+                    onTriggered: function () {
+                        if (parent.state === Bon.ProgressBar.State.Running) {
+                            var dice = Math.floor(Math.random()*3);
+                            if (dice == 2) {
+                                parent.state = Bon.ProgressBar.State.Success
+                            } else if (dice == 1) {
+                                parent.state = Bon.ProgressBar.State.Error
+                            } else if (dice == 0) {
+                                parent.state = Bon.ProgressBar.State.Paused
+                            }
+                            interval = 1000;
+                        } else {
+                            parent.state = Bon.ProgressBar.State.Running
+                            interval = 5000;
+                        }
+                    }
+                }
+            }
+
+            Bon.ProgressCircle {
+                from: 0
+                to: 1
+                value: 0
+                Timer {
+                    interval: 2000; running: true; repeat: true
+                    onTriggered: function () {
+                        interval = 500;
+                        if (parent.value >= 1) {
+                            parent.value = 0;
+                        }
+                        if (Math.random() > 0.2) {
+                            parent.state = Bon.ProgressBar.State.Running
+                            parent.value += Math.random()/5
+                            if (parent.value >= 1) {
+                                parent.value = 1;
+                                parent.state = Math.random() > 0.5 ? Bon.ProgressBar.State.Success : Bon.ProgressBar.State.Error
+                                interval = 2000;
+                            }
+                        } else {
+                            parent.state = Bon.ProgressBar.State.Paused
+                            interval = 2000;
+                        }
+                    }
+                }
+            }
+
+            Bon.ProgressCircle {
+                from: 0
+                to: 1
+                value: 0
+                indeterminate: true
+                state: Bon.ProgressBar.State.Running
+                Timer {
+                    interval: 2000; running: true; repeat: true
+                    onTriggered: function () {
+                        if (parent.state === Bon.ProgressBar.State.Running) {
+                            var dice = Math.floor(Math.random()*3);
+                            if (dice == 2) {
+                                parent.state = Bon.ProgressBar.State.Success
+                            } else if (dice == 1) {
+                                parent.state = Bon.ProgressBar.State.Error
+                            } else if (dice == 0) {
+                                parent.state = Bon.ProgressBar.State.Paused
+                            }
+                            interval = 1000;
+                        } else {
+                            parent.state = Bon.ProgressBar.State.Running
+                            interval = 5000;
+                        }
+                    }
+                }
             }
         }
 

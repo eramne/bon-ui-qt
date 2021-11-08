@@ -76,7 +76,7 @@ T.Switch {
             y: (parent.height - height) / 2
             width: tmpWidth
             height: _thumbHeight
-            radius:_thumbRadius
+            radius: _thumbRadius
             color: _thumbColor;
 
             property real tmpWidth: _thumbWidth
