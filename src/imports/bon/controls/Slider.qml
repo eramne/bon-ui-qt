@@ -49,14 +49,6 @@ T.Slider {
     width: horizontal ? 100 : Math.max(_backgroundWidth,_handleLength)
     height: horizontal ? Math.max(_backgroundHeight,_handleLength) : 100
 
-    /*Rectangle {
-        x: stepIndicators.x
-        y: stepIndicators.y
-        width: stepIndicators.width
-        height: stepIndicators.height
-        color: "red"
-    }*/
-
     Grid {
         id: stepIndicators
         visible: _shouldDisplaySnapIndicators

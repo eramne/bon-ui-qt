@@ -104,7 +104,7 @@ Window {
                         if (parent.value >= 1) {
                             parent.value = 0;
                         }
-                        if (Math.random() > 0.2) {
+                        if (Math.random() > 0.1) {
                             parent.state = Bon.ProgressBar.State.Running
                             parent.value += Math.random()/5
                             if (parent.value >= 1) {
@@ -159,16 +159,16 @@ Window {
                         if (parent.value >= 1) {
                             parent.value = 0;
                         }
-                        if (Math.random() > 0.2) {
-                            parent.state = Bon.ProgressBar.State.Running
+                        if (Math.random() > 0.1) {
+                            parent.state = Bon.ProgressCircle.State.Running
                             parent.value += Math.random()/5
                             if (parent.value >= 1) {
                                 parent.value = 1;
-                                parent.state = Math.random() > 0.5 ? Bon.ProgressBar.State.Success : Bon.ProgressBar.State.Error
+                                parent.state = Math.random() > 0.5 ? Bon.ProgressCircle.State.Success : Bon.ProgressCircle.State.Error
                                 interval = 2000;
                             }
                         } else {
-                            parent.state = Bon.ProgressBar.State.Paused
+                            parent.state = Bon.ProgressCircle.State.Paused
                             interval = 2000;
                         }
                     }
@@ -180,27 +180,87 @@ Window {
                 to: 1
                 value: 0
                 indeterminate: true
-                state: Bon.ProgressBar.State.Running
+                state: Bon.ProgressCircle.State.Running
                 Timer {
                     interval: 2000; running: true; repeat: true
                     onTriggered: function () {
-                        if (parent.state === Bon.ProgressBar.State.Running) {
+                        if (parent.state === Bon.ProgressCircle.State.Running) {
                             var dice = Math.floor(Math.random()*3);
                             if (dice == 2) {
-                                parent.state = Bon.ProgressBar.State.Success
+                                parent.state = Bon.ProgressCircle.State.Success
                             } else if (dice == 1) {
-                                parent.state = Bon.ProgressBar.State.Error
+                                parent.state = Bon.ProgressCircle.State.Error
                             } else if (dice == 0) {
-                                parent.state = Bon.ProgressBar.State.Paused
+                                parent.state = Bon.ProgressCircle.State.Paused
                             }
                             interval = 1000;
                         } else {
-                            parent.state = Bon.ProgressBar.State.Running
+                            parent.state = Bon.ProgressCircle.State.Running
                             interval = 5000;
                         }
                     }
                 }
             }
+
+            Bon.ProgressCircle {
+                from: 0
+                to: 1
+                value: 0
+                small: true
+                Timer {
+                    interval: 2000; running: true; repeat: true
+                    onTriggered: function () {
+                        interval = 500;
+                        if (parent.value >= 1) {
+                            parent.value = 0;
+                        }
+                        if (Math.random() > 0.1) {
+                            parent.state = Bon.ProgressCircle.State.Running
+                            parent.value += Math.random()/5
+                            if (parent.value >= 1) {
+                                parent.value = 1;
+                                parent.state = Math.random() > 0.5 ? Bon.ProgressCircle.State.Success : Bon.ProgressCircle.State.Error
+                                interval = 2000;
+                            }
+                        } else {
+                            parent.state = Bon.ProgressCircle.State.Paused
+                            interval = 2000;
+                        }
+                    }
+                }
+            }
+
+            Bon.ProgressCircle {
+                from: 0
+                to: 1
+                value: 0
+                indeterminate: true
+                state: Bon.ProgressCircle.State.Running
+                small: true
+                Timer {
+                    interval: 2000; running: true; repeat: true
+                    onTriggered: function () {
+                        if (parent.state === Bon.ProgressCircle.State.Running) {
+                            var dice = Math.floor(Math.random()*3);
+                            if (dice == 2) {
+                                parent.state = Bon.ProgressCircle.State.Success
+                            } else if (dice == 1) {
+                                parent.state = Bon.ProgressCircle.State.Error
+                            } else if (dice == 0) {
+                                parent.state = Bon.ProgressCircle.State.Paused
+                            }
+                            interval = 1000;
+                        } else {
+                            parent.state = Bon.ProgressCircle.State.Running
+                            interval = 5000;
+                        }
+                    }
+                }
+            }
+
+            Bon.Dial {}
+
+            Bon.Dial {enabled: false}
         }
 
         /*Flow {

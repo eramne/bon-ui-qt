@@ -20,8 +20,6 @@ T.Switch {
                                          control.pressed ? __app__.style.palette.controls.accent_1 : __app__.style.palette.controls.accent
                                      )
     property real _opacity: !control.enabled ? __app__.style.misc_values.disabled_opacity : 1
-    property color _borderColor: "#000000"
-    property real _borderWidth: 0
     property real _thumbWidth: 16 + (control.pressed ? (_pressedThumbWidthAdjust) : 0)
     property real _thumbHeight: 16
     property real _pressedThumbWidthAdjust: 8
@@ -53,9 +51,6 @@ T.Switch {
 
         radius: _radius
         color: _backgroundColor
-
-        border.width: _borderWidth
-        border.color: _borderColor
 
         Behavior on color {
             ColorAnimation {

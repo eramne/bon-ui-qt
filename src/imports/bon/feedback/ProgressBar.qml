@@ -18,8 +18,7 @@ T.ProgressBar {
                                          : state === ProgressBar.State.Paused ? __app__.style.palette.controls.background_1
                                          : state === ProgressBar.State.Success ? __app__.style.palette.success
                                          : __app__.style.palette.error
-    property color _backgroundColor: __app__.style.palette.controls.background
-    property real _elevation: 1
+    property color _backgroundColor: control.state !== ProgressBar.State.Success && control.state !== ProgressBar.State.Error ? __app__.style.palette.controls.background : _indicatorColor
     property real _progressEasing: Easing.Linear
     property real _progressDuration: __app__.style.animations.basic.duration
     property real _easing: __app__.style.animations.basic.type
@@ -40,7 +39,6 @@ T.ProgressBar {
                 rotationTimer.running = false;
             } else {
                 rotationTimer.running = false;
-                indicator.indeterminateRotatorPosition = 0;
             }
         } else {
             rotationTimer.running = false;
@@ -57,12 +55,6 @@ T.ProgressBar {
 
     contentItem: Item {
         anchors.fill: parent
-        Elevation {
-            anchors.fill: indicator
-            radius: indicator.radius
-            elevation: _elevation
-            z: -1
-        }
         Rectangle {
             id: indicator
             radius: _radius
@@ -81,9 +73,9 @@ T.ProgressBar {
                 onTriggered: function () {
                     indicator.indeterminateRotatorPosition += 10;
                     if (indicator.indeterminateRotatorPosition > control.width) {
-                        xAnimation.enabled = false;
+                        posAnimation.enabled = false;
                         indicator.indeterminateRotatorPosition = -control.width;
-                        xAnimation.enabled = true;
+                        posAnimation.enabled = true;
                     }
                 }
             }
@@ -96,7 +88,7 @@ T.ProgressBar {
             }
 
             Behavior on indeterminateRotatorPosition {
-                id: xAnimation
+                id: posAnimation
                 animation: NumberAnimation {
                     duration: _progressDuration;
                     easing.type: _progressEasing;
@@ -119,5 +111,12 @@ T.ProgressBar {
         height: parent.height
         radius: _radius
         color: _backgroundColor
+
+        Behavior on color {
+            ColorAnimation {
+                duration: _duration;
+                easing.type: _easing;
+            }
+        }
     }
 }
