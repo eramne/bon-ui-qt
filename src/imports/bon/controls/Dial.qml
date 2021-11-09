@@ -1,5 +1,6 @@
 import QtQuick
 import QtQuick.Templates as T
+import QtQuick.Shapes
 import bon
 
 T.Dial {
@@ -21,12 +22,139 @@ T.Dial {
                                            control.pressed || control.hovered ? __app__.style.palette.controls.highlight_1 : __app__.style.palette.controls.highlight
                                     ) : __app__.style.palette.controls.highlight_1
     property real _elevation: 2
+    property real _easing: __app__.style.animations.basic.type
+    property real _duration: __app__.style.animations.basic.duration
+
+    property real _indicatorDisplacement: 6
+    property real _indicatorThickness: 4
+    property color _indicatorColor: _backgroundColor
+    property color _indicatorBackgroundColor: control.pressed ? __app__.style.palette.controls.background_1 : __app__.style.palette.controls.background
+    property bool _willSnap: snapMode !== Slider.NoSnap
+    property real _snapIndicatorSpacing: (stepSize*280)/(to - from) //spacing between dots in degrees. 280 is qt's dials' angle range: control.position 0 would be angle -140, control.position 1 would be 140
+    property real _minSnapIndicatorDistance: 8 // in px
+    property bool _shouldDisplaySnapIndicators: snapMode !== Slider.NoSnap && 2*Math.PI*(Math.max(width,height)+_indicatorDisplacement*2)*(_snapIndicatorSpacing/360) > _minSnapIndicatorDistance //converts the dot spacing to px using the circles circumference, tests whether that spacing is too short or not
+
+    property bool showValue: false
 
     width: _width
     height: _height
     opacity: _opacity
 
     inputMode: Dial.Vertical
+
+    Item {
+        id: continuousIndicator
+        visible: control.showValue && !_shouldDisplaySnapIndicators
+        anchors.centerIn: parent
+        width: parent.width + _indicatorDisplacement*2
+        height: parent.height + _indicatorDisplacement*2
+
+        layer.enabled: true
+        layer.samples: 8
+
+        Shape {
+            id: continuousIndicatorBackground
+            anchors.fill: parent
+
+            property real start: 0.111
+            property real end: 0.888
+
+            ShapePath {
+                startX: -Math.sin(continuousIndicatorBackground.start*2*Math.PI)*((continuousIndicatorBackground.width/2)-(_indicatorThickness/2)) + continuousIndicatorBackground.width/2;
+                startY: Math.cos(continuousIndicatorBackground.start*2*Math.PI)*((continuousIndicatorBackground.height/2)-(_indicatorThickness/2)) + continuousIndicatorBackground.height/2;
+                fillColor: "transparent"
+                strokeColor: _indicatorBackgroundColor
+                strokeWidth: _indicatorThickness
+                capStyle: ShapePath.RoundCap
+
+                Behavior on strokeColor {
+                    ColorAnimation {
+                        duration: _duration;
+                        easing.type: _easing
+                    }
+                }
+
+                PathArc {
+                    x: -Math.sin(continuousIndicatorBackground.end*2*Math.PI)*((continuousIndicatorBackground.width/2)-(_indicatorThickness/2)) + continuousIndicatorBackground.width/2;
+                    y: Math.cos(continuousIndicatorBackground.end*2*Math.PI)*((continuousIndicatorBackground.height/2)-(_indicatorThickness/2)) + continuousIndicatorBackground.height/2;
+                    radiusX: continuousIndicatorBackground.width/2 - _indicatorThickness/2; radiusY: continuousIndicatorBackground.height/2 - _indicatorThickness/2
+                    useLargeArc: true
+                    direction: !useLargeArc ? PathArc.Counterclockwise : PathArc.Clockwise
+                }
+            }
+        }
+
+        Shape {
+            id: continuousIndicatorForeground
+            anchors.fill: parent
+
+            property real start: 0.111
+            property real end: (control.angle+180)/360
+
+            ShapePath {
+                startX: -Math.sin(continuousIndicatorForeground.start*2*Math.PI)*((continuousIndicatorForeground.width/2)-(_indicatorThickness/2)) + continuousIndicatorForeground.width/2;
+                startY: Math.cos(continuousIndicatorForeground.start*2*Math.PI)*((continuousIndicatorForeground.height/2)-(_indicatorThickness/2)) + continuousIndicatorForeground.height/2;
+                fillColor: "transparent"
+                strokeColor: _indicatorColor
+                strokeWidth: _indicatorThickness
+                capStyle: ShapePath.RoundCap
+
+                Behavior on strokeColor {
+                    ColorAnimation {
+                        duration: _duration;
+                        easing.type: _easing
+                    }
+                }
+
+                PathArc {
+                    x: -Math.sin(continuousIndicatorForeground.end*2*Math.PI)*((continuousIndicatorForeground.width/2)-(_indicatorThickness/2)) + continuousIndicatorForeground.width/2;
+                    y: Math.cos(continuousIndicatorForeground.end*2*Math.PI)*((continuousIndicatorForeground.height/2)-(_indicatorThickness/2)) + continuousIndicatorForeground.height/2;
+                    radiusX: continuousIndicatorForeground.width/2 - _indicatorThickness/2; radiusY: continuousIndicatorForeground.height/2 - _indicatorThickness/2
+                    useLargeArc: continuousIndicatorForeground.end - continuousIndicatorForeground.start > 0.5
+                }
+            }
+        }
+    }
+
+    Item {
+        id: snapIndicator
+        visible: control.showValue && _shouldDisplaySnapIndicators
+        anchors.centerIn: parent
+        width: parent.width + _indicatorDisplacement*2
+        height: parent.height + _indicatorDisplacement*2
+
+        layer.enabled: true
+        layer.samples: 8
+
+        Repeater {
+            model: _shouldDisplaySnapIndicators ? 1+Math.round((to-from)/stepSize) : 0
+            Rectangle {
+                id: dot
+                width: _indicatorThickness
+                height: _indicatorThickness
+                x: snapIndicator.width/2 - width/2
+                y: snapIndicator.height - height
+                property real angle: 40 + index*_snapIndicatorSpacing
+                visible: angle <= 360-40
+
+                transform: Rotation {
+                    origin.x: _indicatorThickness/2
+                    origin.y: _indicatorThickness - snapIndicator.height/2
+                    angle: dot.angle
+                }
+
+                color: angle <= (control.angle+180) ? _indicatorColor : _indicatorBackgroundColor
+                radius: Math.max(width, height)/2
+
+                Behavior on color {
+                    ColorAnimation {
+                        duration: _duration;
+                        easing.type: _easing
+                    }
+                }
+            }
+        }
+    }
 
     Elevation {
         anchors.fill: background
@@ -41,6 +169,13 @@ T.Dial {
         radius: _radius
         color: _backgroundColor
         opacity: control.enabled ? 1 : 0.3
+
+        Behavior on color {
+            ColorAnimation {
+                duration: _duration;
+                easing.type: _easing
+            }
+        }
     }
 
     handle: Rectangle {
@@ -50,6 +185,14 @@ T.Dial {
         height: _handleHeight
         color: _handleColor
         radius: Math.max(width,height)/2
+
+        Behavior on color {
+            ColorAnimation {
+                duration: _duration;
+                easing.type: _easing
+            }
+        }
+
         transform: [
             Translate {
                 y: -8
@@ -58,6 +201,14 @@ T.Dial {
                 angle: control.angle
                 origin.x: control.handle.width / 2
                 origin.y: control.handle.height / 2
+
+                Behavior on angle {
+                    enabled: _willSnap
+                    animation: NumberAnimation {
+                        duration: _duration;
+                        easing.type: _easing;
+                    }
+                }
             }
         ]
     }

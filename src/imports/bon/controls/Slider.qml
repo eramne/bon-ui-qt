@@ -37,7 +37,7 @@ T.Slider {
     property real _snapIndicatorHeight: 4
     property color _snapIndicatorColor: __app__.style.palette.controls.background
     property real _minSnapIndicatorDistance: 8
-    property bool _willSnap: snapMode !== Slider.NoSnap && (stepSize*(100))/(to - from) > 1
+    property bool _willSnap: snapMode !== Slider.NoSnap && (stepSize*(horizontal ? stepIndicators.width : stepIndicators.height))/(to - from) > 1
     property real _snapIndicatorSpacing: (stepSize*(horizontal ? stepIndicators.width : stepIndicators.height))/(to - from) - (horizontal ? _snapIndicatorWidth : _snapIndicatorHeight)
     property bool _shouldDisplaySnapIndicators: snapMode !== Slider.NoSnap && _snapIndicatorSpacing > _minSnapIndicatorDistance
 

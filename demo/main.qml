@@ -1,5 +1,6 @@
 import QtQuick
 import QtQuick.Controls as QuickControls
+import QtQuick.Layouts
 import QtQuick.Window
 import bon as Bon
 
@@ -48,6 +49,11 @@ Window {
 
             Bon.CheckBox {mixed:true; enabled: false}
 
+            Item {
+                width: Layout.maximumWidth
+                height: 10
+            }
+
             Bon.Slider {}
 
             Bon.Slider {enabled: false}
@@ -90,6 +96,11 @@ Window {
                 snapMode: QuickControls.Slider.SnapAlways
                 enabled: false
                 orientation: Qt.Vertical
+            }
+
+            Item {
+                width: Layout.maximumWidth
+                height: 10
             }
 
             Bon.ProgressBar {
@@ -258,9 +269,22 @@ Window {
                 }
             }
 
+            Item {
+                width: Layout.maximumWidth
+                height: 10
+            }
+
             Bon.Dial {}
 
             Bon.Dial {enabled: false}
+
+            Bon.Dial {showValue: true}
+
+            Bon.Dial {enabled: false; showValue: true}
+
+            Bon.Dial {showValue: true; snapMode: Bon.Dial.SnapAlways; stepSize: 0.1}
+
+            Bon.Dial {enabled: false; showValue: true; snapMode: Bon.Dial.SnapAlways; stepSize: 0.1}
         }
 
         /*Flow {
