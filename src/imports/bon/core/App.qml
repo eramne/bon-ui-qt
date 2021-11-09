@@ -27,7 +27,20 @@ Rectangle {
             'basic': {
                 'type': Easing.OutQuad,
                 'duration': 100
+            },
+            'progressStep': {
+                'type': Easing.Linear,
+                'duration': 800
+            },
+            'progressRotate': {
+                'type': Easing.Linear,
+                'duration': 100
+            },
+            'progressColor': {
+                'type': Easing.OutQuad,
+                'duration': 300
             }
+
         },
         'misc_values': {
             'disabled_opacity': 0.3

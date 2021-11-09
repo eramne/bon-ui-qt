@@ -83,16 +83,16 @@ T.ProgressBar {
         Behavior on indeterminateRotatorPosition {
             id: posAnimation
             animation: NumberAnimation {
-                duration: _progressDuration;
-                easing.type: _progressEasing;
+                duration: __app__.style.animations.progressRotate.duration;
+                easing.type: __app__.style.animations.progressRotate.type;
             }
         }
 
         Behavior on end {
             enabled: !control.indeterminate
             animation: NumberAnimation {
-                duration: _progressDuration*8;
-                easing.type: _progressEasing;
+                duration: __app__.style.animations.progressStep.duration;
+                easing.type: __app__.style.animations.progressStep.type;
             }
         }
 
@@ -106,8 +106,8 @@ T.ProgressBar {
 
             Behavior on strokeColor {
                 ColorAnimation {
-                    duration: _duration*2;
-                    easing.type: _easing;
+                    duration: __app__.style.animations.progressColor.duration;
+                    easing.type: __app__.style.animations.progressColor.type;
                 }
             }
 
@@ -133,8 +133,8 @@ T.ProgressBar {
 
             Behavior on strokeColor {
                 ColorAnimation {
-                    duration: _duration*2;
-                    easing.type: _easing;
+                    duration: __app__.style.animations.progressColor.duration;
+                    easing.type: __app__.style.animations.progressColor.type;
                 }
             }
 
