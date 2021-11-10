@@ -69,4 +69,6 @@ Rectangle {
             'disabled_opacity': 0.3
         }
     }
+
+    Fonts {}
 }

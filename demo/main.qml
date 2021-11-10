@@ -6,7 +6,7 @@ import bon as Bon
 
 Window {
     width: 800
-    height: 480
+    height: 600
     visible: true
     title: qsTr("Hello World")
 
@@ -285,6 +285,22 @@ Window {
             Bon.Dial {showValue: true; snapMode: Bon.Dial.SnapAlways; stepSize: 0.1}
 
             Bon.Dial {enabled: false; showValue: true; snapMode: Bon.Dial.SnapAlways; stepSize: 0.1}
+
+            Item {
+                width: Layout.maximumWidth
+                height: 10
+            }
+
+            Text {
+                //text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+                text: "Section"
+                //font: __app__.fonts.quicksand.font
+                font: Qt.font({
+                    'family': "Inter",
+                    'weight': Font.Normal,
+                    'pixelSize': 100
+                })
+            }
         }
 
         /*Flow {
