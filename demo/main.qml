@@ -12,7 +12,7 @@ Window {
 
     Bon.App {
         id: __app__
-        Flow {
+        /*Flow {
             padding: 20
             anchors.fill: parent
             spacing: 20
@@ -290,16 +290,99 @@ Window {
                 width: Layout.maximumWidth
                 height: 10
             }
+        }*/
 
-            Text {
-                //text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-                text: "Section"
-                //font: __app__.fonts.quicksand.font
-                font: Qt.font({
-                    'family': "Inter",
-                    'weight': Font.Normal,
-                    'pixelSize': 100
-                })
+        QuickControls.ScrollView {
+            anchors.fill: parent
+
+            Column {
+                padding: 20
+                anchors.fill: parent
+                spacing: 50
+
+                Text {
+                    text: "Display"
+                    color: __app__.style.palette.text.heading
+                    font: __app__.style.text.display
+                }
+
+                Text {
+                    text: "Display 2"
+                    color: __app__.style.palette.text.heading
+                    font: __app__.style.text.display_2
+                }
+
+                Text {
+                    text: "Title"
+                    color: __app__.style.palette.text.heading
+                    font: __app__.style.text.title
+                }
+
+                Text {
+                    text: "Subtitle"
+                    color: __app__.style.palette.text.heading
+                    font: __app__.style.text.subtitle
+                }
+
+                Text {
+                    text: "Section"
+                    color: __app__.style.palette.text.heading
+                    font: __app__.style.text.section
+                }
+
+                Text {
+                    text: "Section 2"
+                    color: __app__.style.palette.text.heading
+                    font: __app__.style.text.section_2
+                }
+
+                Text {
+                    text: "Section 3"
+                    color: __app__.style.palette.text.heading
+                    font: __app__.style.text.section_3
+                }
+
+                Text {
+                    text: "Heading"
+                    color: __app__.style.palette.text.heading
+                    font: __app__.style.text.heading
+                }
+
+                Text {
+                    text: "Subheading"
+                    color: __app__.style.palette.text.heading
+                    font: __app__.style.text.subheading
+                }
+
+                Text {
+                    text: "Body"
+                    color: __app__.style.palette.text.body
+                    font: __app__.style.text.body
+                }
+
+                Text {
+                    text: "Label"
+                    color: __app__.style.palette.text.label
+                    font: __app__.style.text.label
+                }
+
+                Text {
+                    text: "Caption"
+                    color: __app__.style.palette.text.label
+                    font: __app__.style.text.caption
+                }
+
+                Text {
+                    text: "Overline"
+                    color: __app__.style.palette.text.overline
+                    font: __app__.style.text.overline
+                }
+
+                Text {
+                    text: "Buttonweg"
+                    color: __app__.style.palette.text.label
+                    font: __app__.style.text.button
+                }
             }
         }
 
