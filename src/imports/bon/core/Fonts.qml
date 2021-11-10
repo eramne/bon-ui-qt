@@ -129,4 +129,11 @@ Item {
     FontLoader {
         source: "../fonts/inter/Inter-V.ttf"
     }
+
+
+    //MATERIAL ICONS
+
+    FontLoader {
+        source: "../fonts/mdicons/MaterialIconsRound.otf"
+    }
 }

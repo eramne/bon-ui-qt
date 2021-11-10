@@ -12,7 +12,7 @@ Window {
 
     Bon.App {
         id: __app__
-        /*Flow {
+        Flow {
             padding: 20
             anchors.fill: parent
             spacing: 20
@@ -290,9 +290,45 @@ Window {
                 width: Layout.maximumWidth
                 height: 10
             }
-        }*/
 
-        QuickControls.ScrollView {
+            Text {
+                text: __app__.icons.settings
+                font.family: "Material Icons Round"
+                font.pixelSize: 24
+            }
+
+            Text {
+                text: __app__.icons.home
+                font.family: "Material Icons Round"
+                font.pixelSize: 24
+            }
+
+            Text {
+                text: __app__.icons.account_circle
+                font.family: "Material Icons Round"
+                font.pixelSize: 24
+            }
+
+            Text {
+                text: __app__.icons.visibility
+                font.family: "Material Icons Round"
+                font.pixelSize: 24
+            }
+
+            Text {
+                text: __app__.icons.favorite
+                font.family: "Material Icons Round"
+                font.pixelSize: 24
+            }
+
+            Text {
+                text: __app__.icons.copy
+                font.family: "Material Icons Round"
+                font.pixelSize: 24
+            }
+        }
+
+        /*QuickControls.ScrollView {
             anchors.fill: parent
 
             Column {
@@ -384,7 +420,7 @@ Window {
                     font: __app__.style.text.button
                 }
             }
-        }
+        }*/
 
         /*Flow {
             id: flow
