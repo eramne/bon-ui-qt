@@ -291,40 +291,9 @@ Window {
                 height: 10
             }
 
-            Text {
-                text: __app__.icons.settings
-                font.family: "Material Icons Round"
-                font.pixelSize: 24
-            }
-
-            Text {
-                text: __app__.icons.home
-                font.family: "Material Icons Round"
-                font.pixelSize: 24
-            }
-
-            Text {
-                text: __app__.icons.account_circle
-                font.family: "Material Icons Round"
-                font.pixelSize: 24
-            }
-
-            Text {
-                text: __app__.icons.visibility
-                font.family: "Material Icons Round"
-                font.pixelSize: 24
-            }
-
-            Text {
-                text: __app__.icons.favorite
-                font.family: "Material Icons Round"
-                font.pixelSize: 24
-            }
-
-            Text {
-                text: __app__.icons.copy
-                font.family: "Material Icons Round"
-                font.pixelSize: 24
+            Bon.Icon {
+                name: "star"
+                color: __app__.style.palette.text.label
             }
         }
 

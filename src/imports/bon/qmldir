@@ -1,6 +1,7 @@
 module bon
 
 App 1.0 core/App.qml
+Icon 1.0 core/Icon.qml
 
 Switch 1.0 controls/Switch.qml
 RadioButton 1.0 controls/RadioButton.qml
