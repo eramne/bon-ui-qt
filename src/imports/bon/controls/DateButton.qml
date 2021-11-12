@@ -89,8 +89,6 @@ T.AbstractButton {
             id: text
             text: control.text
             anchors.fill: parent
-            anchors.rightMargin: 2
-            anchors.topMargin: 1
             color: _textColor
             font: __app__.style.text.button
             horizontalAlignment: Text.AlignHCenter

@@ -132,7 +132,7 @@ Rectangle {
         'animations': {
             'basic': {
                 'type': Easing.OutQuad,
-                'duration': 500
+                'duration': 100
             },
             'progressStep': {
                 'type': Easing.Linear,
