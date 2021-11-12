@@ -12,288 +12,508 @@ Window {
 
     Bon.App {
         id: __app__
-        Flow {
-            padding: 20
+
+        Flickable {
+            id: scrollview
             anchors.fill: parent
-            spacing: 20
+            contentWidth: width
+            contentHeight: flow.height
+            boundsBehavior: Flickable.DragOverBounds
 
-            Bon.Switch {}
+            Flow {
+                id: flow
+                padding: 20
+                width: parent.width
+                spacing: 20
 
-            Bon.Switch {checked: true}
+                Bon.Switch {}
 
-            Bon.Switch {enabled: false}
+                Bon.Switch {checked: true}
 
-            Bon.Switch {checked:true; enabled: false}
+                Bon.Switch {enabled: false}
 
-            Bon.RadioButton {}
+                Bon.Switch {checked:true; enabled: false}
 
-            Bon.RadioButton {checked: true}
+                Bon.RadioButton {}
 
-            Bon.RadioButton {mixed: true}
+                Bon.RadioButton {checked: true}
 
-            Bon.RadioButton {enabled: false}
+                Bon.RadioButton {mixed: true}
 
-            Bon.RadioButton {checked:true; enabled: false}
+                Bon.RadioButton {enabled: false}
 
-            Bon.RadioButton {mixed:true; enabled: false}
+                Bon.RadioButton {checked:true; enabled: false}
 
-            Bon.CheckBox {}
+                Bon.RadioButton {mixed:true; enabled: false}
 
-            Bon.CheckBox {checked: true}
+                Bon.CheckBox {}
 
-            Bon.CheckBox {mixed: true}
+                Bon.CheckBox {checked: true}
 
-            Bon.CheckBox {enabled: false}
+                Bon.CheckBox {mixed: true}
 
-            Bon.CheckBox {checked:true; enabled: false}
+                Bon.CheckBox {enabled: false}
 
-            Bon.CheckBox {mixed:true; enabled: false}
+                Bon.CheckBox {checked:true; enabled: false}
 
-            Item {
-                width: Layout.maximumWidth
-                height: 10
-            }
+                Bon.CheckBox {mixed:true; enabled: false}
 
-            Bon.Slider {}
-
-            Bon.Slider {enabled: false}
-
-            Bon.Slider {orientation: Qt.Vertical}
-
-            Bon.Slider {enabled: false; orientation: Qt.Vertical}
-
-            Bon.Slider {
-                from: 0
-                value: 25
-                to: 100
-                stepSize: 25
-                snapMode: QuickControls.Slider.SnapAlways
-            }
-
-            Bon.Slider {
-                from: 0
-                value: 25
-                to: 100
-                stepSize: 25
-                snapMode: QuickControls.Slider.SnapAlways
-                enabled: false
-            }
-
-            Bon.Slider {
-                from: 0
-                value: 25
-                to: 100
-                stepSize: 25
-                snapMode: QuickControls.Slider.SnapAlways
-                orientation: Qt.Vertical
-            }
-
-            Bon.Slider {
-                from: 0
-                value: 25
-                to: 100
-                stepSize: 25
-                snapMode: QuickControls.Slider.SnapAlways
-                enabled: false
-                orientation: Qt.Vertical
-            }
-
-            Item {
-                width: Layout.maximumWidth
-                height: 10
-            }
-
-            Bon.ProgressBar {
-                width: 200
-                from: 0
-                to: 1
-                value: 0
-                Timer {
-                    interval: 2000; running: true; repeat: true
-                    onTriggered: function () {
-                        interval = 500;
-                        if (parent.value >= 1) {
-                            parent.value = 0;
-                        }
-                        if (Math.random() > 0.1) {
-                            parent.state = Bon.ProgressBar.State.Running
-                            parent.value += Math.random()/5
-                            if (parent.value >= 1) {
-                                parent.value = 1;
-                                parent.state = Math.random() > 0.5 ? Bon.ProgressBar.State.Success : Bon.ProgressBar.State.Error
-                                interval = 2000;
-                            }
-                        } else {
-                            parent.state = Bon.ProgressBar.State.Paused
-                            interval = 2000;
-                        }
-                    }
+                Item {
+                    width: Layout.maximumWidth
+                    height: 10
                 }
-            }
 
-            Bon.ProgressBar {
-                width: 200
-                from: 0
-                to: 1
-                value: 0
-                indeterminate: true
-                state: Bon.ProgressBar.State.Running
-                Timer {
-                    interval: 2000; running: true; repeat: true
-                    onTriggered: function () {
-                        if (parent.state === Bon.ProgressBar.State.Running) {
-                            var dice = Math.floor(Math.random()*3);
-                            if (dice == 2) {
-                                parent.state = Bon.ProgressBar.State.Success
-                            } else if (dice == 1) {
-                                parent.state = Bon.ProgressBar.State.Error
-                            } else if (dice == 0) {
+                Bon.Slider {}
+
+                Bon.Slider {enabled: false}
+
+                Bon.Slider {orientation: Qt.Vertical}
+
+                Bon.Slider {enabled: false; orientation: Qt.Vertical}
+
+                Bon.Slider {
+                    from: 0
+                    value: 25
+                    to: 100
+                    stepSize: 25
+                    snapMode: QuickControls.Slider.SnapAlways
+                }
+
+                Bon.Slider {
+                    from: 0
+                    value: 25
+                    to: 100
+                    stepSize: 25
+                    snapMode: QuickControls.Slider.SnapAlways
+                    enabled: false
+                }
+
+                Bon.Slider {
+                    from: 0
+                    value: 25
+                    to: 100
+                    stepSize: 25
+                    snapMode: QuickControls.Slider.SnapAlways
+                    orientation: Qt.Vertical
+                }
+
+                Bon.Slider {
+                    from: 0
+                    value: 25
+                    to: 100
+                    stepSize: 25
+                    snapMode: QuickControls.Slider.SnapAlways
+                    enabled: false
+                    orientation: Qt.Vertical
+                }
+
+                Item {
+                    width: Layout.maximumWidth
+                    height: 10
+                }
+
+                Bon.ProgressBar {
+                    width: 200
+                    from: 0
+                    to: 1
+                    value: 0
+                    Timer {
+                        interval: 2000; running: true; repeat: true
+                        onTriggered: function () {
+                            interval = 500;
+                            if (parent.value >= 1) {
+                                parent.value = 0;
+                            }
+                            if (Math.random() > 0.1) {
+                                parent.state = Bon.ProgressBar.State.Running
+                                parent.value += Math.random()/5
+                                if (parent.value >= 1) {
+                                    parent.value = 1;
+                                    parent.state = Math.random() > 0.5 ? Bon.ProgressBar.State.Success : Bon.ProgressBar.State.Error
+                                    interval = 2000;
+                                }
+                            } else {
                                 parent.state = Bon.ProgressBar.State.Paused
-                            }
-                            interval = 1000;
-                        } else {
-                            parent.state = Bon.ProgressBar.State.Running
-                            interval = 5000;
-                        }
-                    }
-                }
-            }
-
-            Bon.ProgressCircle {
-                from: 0
-                to: 1
-                value: 0
-                Timer {
-                    interval: 2000; running: true; repeat: true
-                    onTriggered: function () {
-                        interval = 500;
-                        if (parent.value >= 1) {
-                            parent.value = 0;
-                        }
-                        if (Math.random() > 0.1) {
-                            parent.state = Bon.ProgressCircle.State.Running
-                            parent.value += Math.random()/5
-                            if (parent.value >= 1) {
-                                parent.value = 1;
-                                parent.state = Math.random() > 0.5 ? Bon.ProgressCircle.State.Success : Bon.ProgressCircle.State.Error
                                 interval = 2000;
                             }
-                        } else {
-                            parent.state = Bon.ProgressCircle.State.Paused
-                            interval = 2000;
                         }
                     }
                 }
-            }
 
-            Bon.ProgressCircle {
-                from: 0
-                to: 1
-                value: 0
-                indeterminate: true
-                state: Bon.ProgressCircle.State.Running
-                Timer {
-                    interval: 2000; running: true; repeat: true
-                    onTriggered: function () {
-                        if (parent.state === Bon.ProgressCircle.State.Running) {
-                            var dice = Math.floor(Math.random()*3);
-                            if (dice == 2) {
-                                parent.state = Bon.ProgressCircle.State.Success
-                            } else if (dice == 1) {
-                                parent.state = Bon.ProgressCircle.State.Error
-                            } else if (dice == 0) {
-                                parent.state = Bon.ProgressCircle.State.Paused
+                Bon.ProgressBar {
+                    width: 200
+                    from: 0
+                    to: 1
+                    value: 0
+                    indeterminate: true
+                    state: Bon.ProgressBar.State.Running
+                    Timer {
+                        interval: 2000; running: true; repeat: true
+                        onTriggered: function () {
+                            if (parent.state === Bon.ProgressBar.State.Running) {
+                                var dice = Math.floor(Math.random()*3);
+                                if (dice == 2) {
+                                    parent.state = Bon.ProgressBar.State.Success
+                                } else if (dice == 1) {
+                                    parent.state = Bon.ProgressBar.State.Error
+                                } else if (dice == 0) {
+                                    parent.state = Bon.ProgressBar.State.Paused
+                                }
+                                interval = 1000;
+                            } else {
+                                parent.state = Bon.ProgressBar.State.Running
+                                interval = 5000;
                             }
-                            interval = 1000;
-                        } else {
-                            parent.state = Bon.ProgressCircle.State.Running
-                            interval = 5000;
                         }
                     }
                 }
-            }
 
-            Bon.ProgressCircle {
-                from: 0
-                to: 1
-                value: 0
-                small: true
-                Timer {
-                    interval: 2000; running: true; repeat: true
-                    onTriggered: function () {
-                        interval = 500;
-                        if (parent.value >= 1) {
-                            parent.value = 0;
-                        }
-                        if (Math.random() > 0.1) {
-                            parent.state = Bon.ProgressCircle.State.Running
-                            parent.value += Math.random()/5
+                Bon.ProgressCircle {
+                    from: 0
+                    to: 1
+                    value: 0
+                    Timer {
+                        interval: 2000; running: true; repeat: true
+                        onTriggered: function () {
+                            interval = 500;
                             if (parent.value >= 1) {
-                                parent.value = 1;
-                                parent.state = Math.random() > 0.5 ? Bon.ProgressCircle.State.Success : Bon.ProgressCircle.State.Error
+                                parent.value = 0;
+                            }
+                            if (Math.random() > 0.1) {
+                                parent.state = Bon.ProgressCircle.State.Running
+                                parent.value += Math.random()/5
+                                if (parent.value >= 1) {
+                                    parent.value = 1;
+                                    parent.state = Math.random() > 0.5 ? Bon.ProgressCircle.State.Success : Bon.ProgressCircle.State.Error
+                                    interval = 2000;
+                                }
+                            } else {
+                                parent.state = Bon.ProgressCircle.State.Paused
                                 interval = 2000;
                             }
-                        } else {
-                            parent.state = Bon.ProgressCircle.State.Paused
-                            interval = 2000;
                         }
                     }
                 }
-            }
 
-            Bon.ProgressCircle {
-                from: 0
-                to: 1
-                value: 0
-                indeterminate: true
-                state: Bon.ProgressCircle.State.Running
-                small: true
-                Timer {
-                    interval: 2000; running: true; repeat: true
-                    onTriggered: function () {
-                        if (parent.state === Bon.ProgressCircle.State.Running) {
-                            var dice = Math.floor(Math.random()*3);
-                            if (dice == 2) {
-                                parent.state = Bon.ProgressCircle.State.Success
-                            } else if (dice == 1) {
-                                parent.state = Bon.ProgressCircle.State.Error
-                            } else if (dice == 0) {
-                                parent.state = Bon.ProgressCircle.State.Paused
+                Bon.ProgressCircle {
+                    from: 0
+                    to: 1
+                    value: 0
+                    indeterminate: true
+                    state: Bon.ProgressCircle.State.Running
+                    Timer {
+                        interval: 2000; running: true; repeat: true
+                        onTriggered: function () {
+                            if (parent.state === Bon.ProgressCircle.State.Running) {
+                                var dice = Math.floor(Math.random()*3);
+                                if (dice == 2) {
+                                    parent.state = Bon.ProgressCircle.State.Success
+                                } else if (dice == 1) {
+                                    parent.state = Bon.ProgressCircle.State.Error
+                                } else if (dice == 0) {
+                                    parent.state = Bon.ProgressCircle.State.Paused
+                                }
+                                interval = 1000;
+                            } else {
+                                parent.state = Bon.ProgressCircle.State.Running
+                                interval = 5000;
                             }
-                            interval = 1000;
-                        } else {
-                            parent.state = Bon.ProgressCircle.State.Running
-                            interval = 5000;
                         }
                     }
                 }
-            }
 
-            Item {
-                width: Layout.maximumWidth
-                height: 10
-            }
+                Bon.ProgressCircle {
+                    from: 0
+                    to: 1
+                    value: 0
+                    small: true
+                    Timer {
+                        interval: 2000; running: true; repeat: true
+                        onTriggered: function () {
+                            interval = 500;
+                            if (parent.value >= 1) {
+                                parent.value = 0;
+                            }
+                            if (Math.random() > 0.1) {
+                                parent.state = Bon.ProgressCircle.State.Running
+                                parent.value += Math.random()/5
+                                if (parent.value >= 1) {
+                                    parent.value = 1;
+                                    parent.state = Math.random() > 0.5 ? Bon.ProgressCircle.State.Success : Bon.ProgressCircle.State.Error
+                                    interval = 2000;
+                                }
+                            } else {
+                                parent.state = Bon.ProgressCircle.State.Paused
+                                interval = 2000;
+                            }
+                        }
+                    }
+                }
 
-            Bon.Dial {}
+                Bon.ProgressCircle {
+                    from: 0
+                    to: 1
+                    value: 0
+                    indeterminate: true
+                    state: Bon.ProgressCircle.State.Running
+                    small: true
+                    Timer {
+                        interval: 2000; running: true; repeat: true
+                        onTriggered: function () {
+                            if (parent.state === Bon.ProgressCircle.State.Running) {
+                                var dice = Math.floor(Math.random()*3);
+                                if (dice == 2) {
+                                    parent.state = Bon.ProgressCircle.State.Success
+                                } else if (dice == 1) {
+                                    parent.state = Bon.ProgressCircle.State.Error
+                                } else if (dice == 0) {
+                                    parent.state = Bon.ProgressCircle.State.Paused
+                                }
+                                interval = 1000;
+                            } else {
+                                parent.state = Bon.ProgressCircle.State.Running
+                                interval = 5000;
+                            }
+                        }
+                    }
+                }
 
-            Bon.Dial {enabled: false}
+                Item {
+                    width: Layout.maximumWidth
+                    height: 10
+                }
 
-            Bon.Dial {showValue: true}
+                Bon.Dial {}
 
-            Bon.Dial {enabled: false; showValue: true}
+                Bon.Dial {enabled: false}
 
-            Bon.Dial {showValue: true; snapMode: Bon.Dial.SnapAlways; stepSize: 0.1}
+                Bon.Dial {showValue: true}
 
-            Bon.Dial {enabled: false; showValue: true; snapMode: Bon.Dial.SnapAlways; stepSize: 0.1}
+                Bon.Dial {enabled: false; showValue: true}
 
-            Item {
-                width: Layout.maximumWidth
-                height: 10
-            }
+                Bon.Dial {showValue: true; snapMode: Bon.Dial.SnapAlways; stepSize: 0.1}
 
-            Bon.Icon {
-                name: "star"
-                color: __app__.style.palette.text.label
+                Bon.Dial {enabled: false; showValue: true; snapMode: Bon.Dial.SnapAlways; stepSize: 0.1}
+
+                Item {
+                    width: Layout.maximumWidth
+                    height: 10
+                }
+
+                Bon.Button {
+                    order: 1
+                    text: "Click me"
+                }
+
+                Bon.Button {
+                    order: 1
+                    text: "Click me"
+                    enabled: false
+                }
+
+                Bon.Button {
+                    order: 2
+                    text: "Click me"
+                }
+
+                Bon.Button {
+                    order: 2
+                    text: "Click me"
+                    enabled: false
+                }
+
+                Bon.Button {
+                    order: 3
+                    text: "Click me"
+                }
+
+                Bon.Button {
+                    order: 3
+                    text: "Click me"
+                    enabled: false
+                }
+
+                Bon.Button {
+                    order: 1
+                    icon.name: "settings"
+                    text: "Click me"
+                }
+
+                Bon.Button {
+                    order: 1
+                    icon.name: "settings"
+                    text: "Click me"
+                    enabled: false
+                }
+
+                Bon.Button {
+                    order: 2
+                    icon.name: "settings"
+                    text: "Click me"
+                }
+
+                Bon.Button {
+                    order: 2
+                    icon.name: "settings"
+                    text: "Click me"
+                    enabled: false
+                }
+
+                Bon.Button {
+                    order: 3
+                    icon.name: "settings"
+                    text: "Click me"
+                }
+
+                Bon.Button {
+                    order: 3
+                    icon.name: "settings"
+                    text: "Click me"
+                    enabled: false
+                }
+
+                Bon.Button {
+                    order: 1
+                    icon.name: "settings"
+                }
+
+                Bon.Button {
+                    order: 1
+                    icon.name: "settings"
+                    enabled: false
+                }
+
+                Bon.Button {
+                    order: 2
+                    icon.name: "settings"
+                }
+
+                Bon.Button {
+                    order: 2
+                    icon.name: "settings"
+                    enabled: false
+                }
+
+                Bon.Button {
+                    order: 3
+                    icon.name: "settings"
+                }
+
+                Bon.Button {
+                    order: 3
+                    icon.name: "settings"
+                    enabled: false
+                }
+
+                Bon.ToggleButton {
+                    checked: true
+                    icon.name: "format_bold"
+                }
+
+                Bon.ToggleButton {
+                    checked: true
+                    icon.name: "format_italic"
+                    enabled: false
+                }
+
+                Bon.ToggleButton {
+                    icon.name: "format_underlined"
+                }
+
+                Bon.ToggleButton {
+                    icon.name: "strikethrough_s"
+                    enabled: false
+                }
+
+                Bon.SmallIconButton {
+                    offIcon: "star"
+                }
+
+                Bon.SmallIconButton {
+                    offIcon: "star"
+                    enabled: false
+                }
+
+                Bon.SmallIconButton {
+                    offIcon: "star_border"
+                    onIcon: "star"
+                    checkable: true
+                }
+
+                Bon.SmallIconButton {
+                    offIcon: "star_border"
+                    onIcon: "star"
+                    checkable: true
+                    enabled: false
+                }
+
+                /*Bon.SmallIconButton {
+                    offIcon: "star"
+                    dark: true
+                }
+
+                Bon.SmallIconButton {
+                    offIcon: "star"
+                    enabled: false
+                    dark: true
+                }
+
+                Bon.SmallIconButton {
+                    offIcon: "star_border"
+                    onIcon: "star"
+                    checkable: true
+                    dark: true
+                }
+
+                Bon.SmallIconButton {
+                    offIcon: "star_border"
+                    onIcon: "star"
+                    checkable: true
+                    enabled: false
+                    dark: true
+                }*/
+
+                Bon.DateButton {
+                    checked: true
+                    text: "31"
+                }
+
+                Bon.DateButton {
+                    checked: true
+                    text: "31"
+                    enabled: false
+                }
+
+                Bon.DateButton {
+                    today: true
+                    text: "31"
+                }
+
+                Bon.DateButton {
+                    today: true
+                    text: "31"
+                    enabled: false
+                }
+
+                Bon.DateButton {
+                    text: "31"
+                }
+
+                Bon.DateButton {
+                    text: "31"
+                    enabled: false
+                }
+
+                Bon.DateButton {
+                    rangeSelected: true
+                    text: "31"
+                }
+
+                Bon.DateButton {
+                    rangeSelected: true
+                    text: "31"
+                    enabled: false
+                }
             }
         }
 
@@ -384,7 +604,7 @@ Window {
                 }
 
                 Text {
-                    text: "Buttonweg"
+                    text: "Button"
                     color: __app__.style.palette.text.label
                     font: __app__.style.text.button
                 }

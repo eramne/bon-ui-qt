@@ -19,8 +19,8 @@ T.Dial {
     property real _handleWidth: 8
     property real _handleHeight: 8
     property color _handleColor: control.enabled ? (
-                                           control.pressed || control.hovered ? __app__.style.palette.controls.highlight_1 : __app__.style.palette.controls.highlight
-                                    ) : __app__.style.palette.controls.highlight_1
+                                        control.pressed || control.hovered ? __app__.style.palette.controls.highlight_1 : __app__.style.palette.controls.highlight
+                                 ) : __app__.style.palette.controls.highlight_1
     property real _elevation: 2
     property real _easing: __app__.style.animations.basic.type
     property real _duration: __app__.style.animations.basic.duration

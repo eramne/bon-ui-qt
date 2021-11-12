@@ -8,6 +8,10 @@ RadioButton 1.0 controls/RadioButton.qml
 CheckBox 1.0 controls/CheckBox.qml
 Slider 1.0 controls/Slider.qml
 Dial 1.0 controls/Dial.qml
+Button 1.0 controls/Button.qml
+ToggleButton 1.0 controls/ToggleButton.qml
+SmallIconButton 1.0 controls/SmallIconButton.qml
+DateButton 1.0 controls/DateButton.qml
 
 ProgressBar 1.0 feedback/ProgressBar.qml
 ProgressCircle 1.0 feedback/ProgressCircle.qml

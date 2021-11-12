@@ -20,7 +20,7 @@ Rectangle {
                 'background': "#E0CDCA",
                 'background_1': "#D1B4B4",
                 'highlight': "#FFFFFF",
-                'highlight_1': "#CCFFFFFF" //80% opacity
+                'highlight_1': Qt.rgba(1,1,1,0.8)
             },
             'text': {
                 'overline': "#986578",
