@@ -514,6 +514,108 @@ Window {
                     text: "31"
                     enabled: false
                 }
+
+                Item {
+                    width: Layout.maximumWidth
+                    height: 10
+                }
+
+                Bon.InputChip {
+                    text: "Favorites"
+                    onClosed: {
+                        visible = false;
+                    }
+                }
+
+                Bon.InputChip {
+                    text: "Nature"
+                    enabled: false
+                    onClosed: {
+                        visible = false;
+                    }
+                }
+
+                Bon.InputChip {
+                    text: "Mountains"
+                    icon.name: "terrain"
+                    onClosed: {
+                        visible = false;
+                    }
+                }
+
+                Bon.InputChip {
+                    text: "Portraits"
+                    enabled: false
+                    icon.name: "portrait"
+                    onClosed: {
+                        visible = false;
+                    }
+                }
+
+                Bon.ChoiceChip {
+                    text: "Option 1"
+                }
+
+                Bon.ChoiceChip {
+                    text: "Option 2"
+                    enabled: false
+                }
+
+                Bon.ChoiceChip {
+                    text: "Option 3"
+                    icon.name: "dashboard"
+                }
+
+                Bon.ChoiceChip {
+                    text: "Option 4"
+                    enabled: false
+                    icon.name: "dashboard"
+                }
+
+                Bon.FilterChip {
+                    text: "Favorites"
+                }
+
+                Bon.FilterChip {
+                    text: "Nature"
+                    enabled: false
+                }
+
+                Bon.ActionChip {
+                    text: "Action 1"
+
+                    onClicked: {
+                        console.log("Running action 1");
+                    }
+                }
+
+                Bon.ActionChip {
+                    text: "Action 2"
+                    enabled: false
+
+                    onClicked: {
+                        console.log("Running action 2");
+                    }
+                }
+
+                Bon.ActionChip {
+                    text: "Action 3"
+                    icon.name: "play_arrow"
+
+                    onClicked: {
+                        console.log("Running action 3");
+                    }
+                }
+
+                Bon.ActionChip {
+                    text: "Action 4"
+                    enabled: false
+                    icon.name: "stop"
+
+                    onClicked: {
+                        console.log("Running action 4");
+                    }
+                }
             }
         }
 

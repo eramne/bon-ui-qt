@@ -12,6 +12,10 @@ Button 1.0 controls/Button.qml
 ToggleButton 1.0 controls/ToggleButton.qml
 SmallIconButton 1.0 controls/SmallIconButton.qml
 DateButton 1.0 controls/DateButton.qml
+InputChip 1.0 controls/InputChip.qml
+ChoiceChip 1.0 controls/ChoiceChip.qml
+FilterChip 1.0 controls/FilterChip.qml
+ActionChip 1.0 controls/ActionChip.qml
 
 ProgressBar 1.0 feedback/ProgressBar.qml
 ProgressCircle 1.0 feedback/ProgressCircle.qml
