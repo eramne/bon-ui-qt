@@ -42,6 +42,7 @@ T.AbstractButton {
     width: _width
     height: _height
     opacity: _opacity
+    layer.enabled: !control.enabled
 
     Behavior on _backgroundColor {
         ColorAnimation {

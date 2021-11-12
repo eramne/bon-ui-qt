@@ -47,6 +47,7 @@ T.Button {
     width: control.text.length > 0 ? contentItem.width + leftPadding + rightPadding : _height
     height: _height
     opacity: _opacity
+    layer.enabled: !control.enabled
 
     property int order: 1 // 1 = primary, 2 = secondary, 3 or anything else = tertiary
 

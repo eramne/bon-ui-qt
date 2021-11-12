@@ -44,6 +44,7 @@ T.Slider {
     padding: _padding
 
     opacity: _opacity
+    layer.enabled: !control.enabled
 
     width: horizontal ? 100 : Math.max(_backgroundWidth,_handleLength)
     height: horizontal ? Math.max(_backgroundHeight,_handleLength) : 100

@@ -57,6 +57,7 @@ T.RadioButton {
     property real _duration: __app__.style.animations.basic.duration
 
     opacity: _opacity
+    layer.enabled: !control.enabled
 
     padding: _padding
 

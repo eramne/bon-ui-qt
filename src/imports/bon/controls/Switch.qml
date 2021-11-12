@@ -9,6 +9,7 @@ T.Switch {
     implicitHeight: indicator.height + topPadding + bottomPadding
 
     opacity: _opacity
+    layer.enabled: !control.enabled
 
     property real _width: 40
     property real _height: 20

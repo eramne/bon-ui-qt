@@ -60,6 +60,7 @@ T.CheckBox {
     padding: _padding
 
     opacity: _opacity
+    layer.enabled: !control.enabled
 
     Elevation {
         anchors.fill: indicator
