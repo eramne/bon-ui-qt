@@ -14,6 +14,8 @@ Rectangle {
             'success': "#369AA0",
             'error': "#C17E86",
             'background-dark': "#0A2E45",
+            'selection_background': "#23607A",
+            'selection_text': "#FEFBFA",
             'controls': {
                 'accent': "#0A2E45",
                 'accent_1': "#23607A",

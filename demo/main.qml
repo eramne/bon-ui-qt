@@ -447,32 +447,6 @@ Window {
                     enabled: false
                 }
 
-                /*Bon.SmallIconButton {
-                    offIcon: "star"
-                    dark: true
-                }
-
-                Bon.SmallIconButton {
-                    offIcon: "star"
-                    enabled: false
-                    dark: true
-                }
-
-                Bon.SmallIconButton {
-                    offIcon: "star_border"
-                    onIcon: "star"
-                    checkable: true
-                    dark: true
-                }
-
-                Bon.SmallIconButton {
-                    offIcon: "star_border"
-                    onIcon: "star"
-                    checkable: true
-                    enabled: false
-                    dark: true
-                }*/
-
                 Bon.DateButton {
                     checked: true
                     text: "31"
@@ -615,6 +589,123 @@ Window {
                     onClicked: {
                         console.log("Running action 4");
                     }
+                }
+
+                Item {
+                    width: Layout.maximumWidth
+                    height: 10
+                }
+
+                Bon.TextField {
+                    field.placeholderText: "Enter name"
+                }
+
+                Bon.TextField {
+                    field.placeholderText: "Enter name"
+                    enabled: false
+                }
+
+                Bon.TextField {
+                    field.placeholderText: "Enter name"
+                    buttonIcon: field.length > 0 ? "cancel" : ""
+                    onIconClicked: {
+                        field.text = "";
+                    }
+                }
+
+                Bon.TextField {
+                    field.placeholderText: "Enter name"
+                    buttonIcon: field.length > 0 ? "cancel" : ""
+                    enabled: false
+                    onIconClicked: {
+                        field.text = "";
+                    }
+                }
+
+                Bon.TextField {
+                    field.placeholderText: "Enter an amount"
+                    field.validator: DoubleValidator {}
+                    buttonIcon: field.length > 0 ? "cancel" : ""
+                    showStatus: true
+                    onIconClicked: {
+                        field.text = "";
+                    }
+                }
+
+                Bon.TextField {
+                    field.placeholderText: "Enter an amount"
+                    field.validator: DoubleValidator {}
+                    buttonIcon: field.length > 0 ? "cancel" : ""
+                    showStatus: true
+                    onIconClicked: {
+                        field.text = "";
+                    }
+                }
+
+                Bon.TextField {
+                    field.placeholderText: "Enter name"
+                    leadingIcon: "face"
+                }
+
+                Bon.TextField {
+                    field.placeholderText: "Enter name"
+                    enabled: false
+                    leadingIcon: "face"
+                }
+
+                Bon.TextField {
+                    field.placeholderText: "1.00"
+                    prefixText: "$"
+                }
+
+                Bon.TextField {
+                    field.placeholderText: "john.doe"
+                    suffixText: "@gmail.com"
+                }
+
+                Bon.TextField {
+                    field.placeholderText: "Enter name"
+                    helpText: "Helper Text"
+                }
+
+                Bon.TextField {
+                    field.placeholderText: "Enter name"
+                    field.maximumLength: 20
+                    showCharacterCount: true
+                }
+
+                Bon.TextField {
+                    field.placeholderText: "Enter name"
+                    helpText: "Helper Text"
+                    field.maximumLength: 20
+                    showCharacterCount: true
+                }
+
+                Bon.TextField {
+                    field.placeholderText: "Enter name"
+                    labelText: "First name"
+                }
+
+                Bon.TextField {
+                    labelText: "Email address*"
+                    field.placeholderText: "jon.doe@gmail.com"
+                    helpText: "*Required"
+                }
+
+                Bon.TextField {
+                    field.placeholderText: "Enter an amount*"
+                    labelText: "Amount to donate"
+                    field.validator: DoubleValidator {}
+                    buttonIcon: field.length > 0 ? "cancel" : ""
+                    onIconClicked: {
+                        field.text = "";
+                    }
+                    prefixText: "$"
+                    suffixText: "USD"
+                    helpText: "*Required"
+                    successText: "Good"
+                    errorText: "Invalid amount"
+                    field.onAccepted: showStatus = true
                 }
             }
         }

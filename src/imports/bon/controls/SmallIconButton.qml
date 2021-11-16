@@ -14,6 +14,7 @@ T.AbstractButton {
     icon.color: _textColor
 
     hoverEnabled: enabled
+    visible: icon.isValid
     //checkable: false
 
     property color _textColor: dark ? (
