@@ -707,6 +707,47 @@ Window {
                     errorText: "Invalid amount"
                     field.onAccepted: showStatus = true
                 }
+
+                Item {
+                    width: Layout.maximumWidth
+                    height: 10
+                }
+
+                Bon.TextArea {
+                    enabled: false
+                    area.placeholderText: "Enter message"
+                }
+
+                Bon.TextArea {
+                    area.placeholderText: "Enter message"
+                }
+
+                Bon.TextArea {
+                    area.placeholderText: "Enter message"
+                    wordWrap: true
+                }
+
+                Bon.TextArea {
+                    area.placeholderText: "Enter message"
+                    helpText: "Required"
+                }
+
+                Bon.TextArea {
+                    labelText: "Message"
+                    area.placeholderText: "Enter message"
+                }
+
+                Bon.TextArea {
+                    labelText: "Message*"
+                    helpText: "*Required"
+                    showCharacterCount: true
+                    area.placeholderText: "Enter message"
+                }
+
+                Bon.TextArea {
+                    area.placeholderText: "Enter message"
+                    bordered: false
+                }
             }
         }
 

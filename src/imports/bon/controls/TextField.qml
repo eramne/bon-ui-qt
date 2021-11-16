@@ -6,7 +6,7 @@ TextInputBase {
     id: control
     property string buttonIcon: ""
 
-    trailingIcons: Component {
+    _trailingIcons: Component {
         Row {
             visible: control.enabled
             spacing: 10

@@ -7,7 +7,6 @@ import bon
 Item {
     id: control
     width: 220
-    //height: _height
     height: rowLayout.implicitHeight
 
     opacity: _opacity
@@ -42,7 +41,7 @@ Item {
     property bool showCharacterCount: false
     property bool showStatus: false
 
-    property Component trailingIcons: Component {
+    property Component _trailingIcons: Component {
         QtObject{}
     }
 
@@ -70,7 +69,6 @@ Item {
     }
 
     property alias field: field
-    property alias fadeEffect: fadeEffect
 
     RowLayout {
         id: rowLayout
@@ -292,7 +290,7 @@ Item {
                     }
 
                     Loader {
-                        sourceComponent: control.trailingIcons
+                        sourceComponent: control._trailingIcons
                     }
                 }
             }
