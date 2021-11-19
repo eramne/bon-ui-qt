@@ -1,6 +1,7 @@
 import QtQuick
 import QtQuick.Window
 import Qt5Compat.GraphicalEffects
+import "../lib/BigEval.min.js" as BigEval
 import bon
 
 Rectangle {
@@ -177,4 +178,6 @@ Rectangle {
 
         return tmpCodepoints;
     }
+
+    property var bigEval: new BigEval.BigEval();
 }

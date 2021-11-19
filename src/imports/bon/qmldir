@@ -18,6 +18,7 @@ FilterChip 1.0 controls/FilterChip.qml
 ActionChip 1.0 controls/ActionChip.qml
 TextField 1.0 controls/TextField.qml
 TextArea 1.0 controls/TextArea.qml
+NumberField 1.0 controls/NumberField.qml
 
 ProgressBar 1.0 feedback/ProgressBar.qml
 ProgressCircle 1.0 feedback/ProgressCircle.qml

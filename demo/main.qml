@@ -748,6 +748,62 @@ Window {
                     area.placeholderText: "Enter message"
                     bordered: false
                 }
+
+                Item {
+                    width: Layout.maximumWidth
+                    height: 10
+                }
+
+                Bon.NumberField {
+                    value: 5
+                }
+
+                Bon.NumberField {
+                    value: 5
+                    from: 0
+                    to: 100
+                    stepSize: 12
+                }
+
+                Bon.NumberField {
+                    value: 5
+                    wrap: true
+                    from: 0
+                    to: 100
+                    stepSize: 12
+                }
+
+                Bon.NumberField {
+                    value: 5
+                    showStepButtons: true
+                }
+
+                Bon.NumberField {
+                    value: 5
+                    showStepButtons: true
+                    from: 0
+                    to: 100
+                    stepSize: 12
+                }
+
+                Bon.NumberField {
+                    value: 5
+                    showStepButtons: true
+                    wrap: true
+                    from: 0
+                    to: 100
+                    stepSize: 12
+                }
+
+                Bon.NumberField {
+                    value: 5
+                    showStepButtons: true
+                    from: 0
+                    to: 100
+                    stepSize: 1
+                    wrap: true
+                    editable: false
+                }
             }
         }
 
