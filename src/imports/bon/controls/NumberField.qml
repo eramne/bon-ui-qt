@@ -89,7 +89,9 @@ TextInputBase {
             rightPadding: 0
 
             SmallIconButton {
+                visible: parent.visible
                 offIcon: "keyboard_arrow_up"
+                autoRepeat: true
 
                 onClicked: {
                     control.increase();
@@ -101,7 +103,9 @@ TextInputBase {
             }
 
             SmallIconButton {
+                visible: parent.visible
                 offIcon: "keyboard_arrow_down"
+                autoRepeat: true
 
                 onClicked: {
                     control.decrease();
