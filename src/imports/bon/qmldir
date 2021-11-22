@@ -21,6 +21,8 @@ TextField 1.0 controls/TextField.qml
 TextArea 1.0 controls/TextArea.qml
 NumberField 1.0 controls/NumberField.qml
 ComboBox 1.0 controls/ComboBox.qml
+Rating 1.0 controls/Rating.qml
+ScrollBar 1.0 controls/ScrollBar.qml
 
 ProgressBar 1.0 feedback/ProgressBar.qml
 ProgressCircle 1.0 feedback/ProgressCircle.qml

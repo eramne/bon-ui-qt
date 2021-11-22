@@ -74,6 +74,9 @@ Item {
                 boundsBehavior: Flickable.StopAtBounds
                 clip: true
 
+                ScrollBar.vertical: ScrollBar { }
+                ScrollBar.horizontal: ScrollBar { }
+
                 function ensureVisible(r) {
                      if (contentX >= r.x)
                          contentX = r.x;

@@ -20,6 +20,8 @@ Window {
             contentHeight: flow.height
             boundsBehavior: Flickable.DragOverBounds
 
+            QuickControls.ScrollBar.vertical: Bon.ScrollBar { }
+
             Flow {
                 id: flow
                 padding: 20
@@ -861,7 +863,16 @@ Window {
 
                 Item {
                     width: Layout.maximumWidth
-                    height: 400
+                    height: 10
+                }
+
+                Bon.Rating {
+
+                }
+
+                Bon.Rating {
+                    editable: false
+                    displayValue: 2.35
                 }
             }
         }
