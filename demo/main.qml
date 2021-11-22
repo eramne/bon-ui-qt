@@ -804,8 +804,82 @@ Window {
                     wrap: true
                     editable: false
                 }
+
+                Item {
+                    width: Layout.maximumWidth
+                    height: 10
+                }
+
+                Bon.ComboBox {
+                    id: combobox1
+
+                    model: ListModel {
+                        ListElement { name: "Point"; }
+                        ListElement { name: "Line"; }
+                        ListElement { name: "Line Segment"; }
+                        ListElement { name: "Ray"; }
+                        ListElement { name: "Triangle"; }
+                        ListElement { name: "Square"; }
+                        ListElement { name: "Rectangle"; }
+                        ListElement { name: "Rhombus"; }
+                        ListElement { name: "Parallelogram"; }
+                        ListElement { name: "Trapezoid"; }
+                        ListElement { name: "Pentagon"; }
+                        ListElement { name: "Hexagon"; }
+                        ListElement { name: "Octagon"; }
+                        ListElement { name: "Polygon"; }
+                        ListElement { name: "Circle"; }
+                        ListElement { name: "Semicircle"; }
+                        ListElement { name: "Arc"; }
+                        ListElement { name: "Plane"; }
+                        ListElement { name: "Triangular Prism"; }
+                        ListElement { name: "Rectangular Prism"; }
+                        ListElement { name: "Cube"; }
+                        ListElement { name: "Pentagonal Prism"; }
+                        ListElement { name: "Hexagonal Prism"; }
+                        ListElement { name: "Prism"; }
+                        ListElement { name: "Tetrahedron"; }
+                        ListElement { name: "Octahedron"; }
+                        ListElement { name: "Dodecahedron"; }
+                        ListElement { name: "Icosahedron"; }
+                        ListElement { name: "Sphere"; }
+                        ListElement { name: "Dome"; }
+                        ListElement { name: "Empty"; }
+                    }
+                }
+
+                Bon.ComboBox {
+                    model: combobox1.model
+                    editable: false
+                }
+
+                Bon.ComboBox {
+                    model: combobox1.model
+                    labelText: "Choose a shape"
+                    helpText: "Optional"
+                }
+
+                Item {
+                    width: Layout.maximumWidth
+                    height: 400
+                }
             }
         }
+
+        /*MouseArea {
+            anchors.fill: parent
+            propagateComposedEvents: true
+            acceptedButtons: Qt.RightButton
+            onClicked: function (mouse) {
+                popup.targetX = mouse.x;
+                popup.targetY = mouse.y;
+                popup.open();
+            }
+        }
+
+        Bon.Popup {
+            id: popup
+        }*/
 
         /*QuickControls.ScrollView {
             anchors.fill: parent
