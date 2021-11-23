@@ -904,6 +904,27 @@ Window {
                     color: "#D1B4B4"
                     enabled: false
                 }
+
+                Item {
+                    width: Layout.maximumWidth
+                    height: 10
+                }
+
+                Bon.ToggleButtonGroup {
+                    Bon.ToggleButton {
+                        checked: true
+                        icon.name: "format_bold"
+                    }
+                    Bon.ToggleButton {
+                        checked: false
+                        enabled: false
+                        icon.name: "format_italic"
+                    }
+                    Bon.ToggleButton {
+                        checked: false
+                        icon.name: "format_underline"
+                    }
+                }
             }
         }
 
