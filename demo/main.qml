@@ -874,6 +874,36 @@ Window {
                     editable: false
                     displayValue: 2.35
                 }
+
+                Bon.Rating {
+                    enabled: false
+                }
+
+                Item {
+                    width: Layout.maximumWidth
+                    height: 10
+                }
+
+                Bon.ColorSwatch {
+
+                }
+
+                Bon.ColorSwatch {
+                    color: "#cc66788A"
+                }
+
+                Bon.ColorSwatch {
+                    color: "#74D2D8"
+                }
+
+                Bon.ColorSwatch {
+                    color: "#D1B4B4"
+                }
+
+                Bon.ColorSwatch {
+                    color: "#D1B4B4"
+                    enabled: false
+                }
             }
         }
 

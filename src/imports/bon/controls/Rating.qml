@@ -6,7 +6,6 @@ import bon as Bon
 Item {
     id: control
 
-
     property int highlightedIndex: {
         var index = -1;
         for (var i = 0; i < group.buttons.length; i++) {
@@ -70,6 +69,9 @@ Item {
         }
     }
 
+    opacity: !control.enabled ? __app__.style.misc_values.disabled_opacity : 1
+    layer.enabled: !control.enabled
+
     T.ButtonGroup { id: group }
 
     width: row.width
@@ -87,11 +89,10 @@ Item {
                 width: indicator.width
                 height: indicator.height
                 enabled: control.editable
-                hoverEnabled: control.editable
+                hoverEnabled: control.editable && control.enabled
 
                 indicator: Bon.Icon {
                     color: _backgroundColor
-                    //opacity: parent.checked ? 1 : 0.5
                     name: "star_border"
                 }
             }

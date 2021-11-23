@@ -23,6 +23,7 @@ NumberField 1.0 controls/NumberField.qml
 ComboBox 1.0 controls/ComboBox.qml
 Rating 1.0 controls/Rating.qml
 ScrollBar 1.0 controls/ScrollBar.qml
+ColorSwatch 1.0 controls/ColorSwatch.qml
 
 ProgressBar 1.0 feedback/ProgressBar.qml
 ProgressCircle 1.0 feedback/ProgressCircle.qml
