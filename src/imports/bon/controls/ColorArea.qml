@@ -30,13 +30,6 @@ T.Control {
             radius: indicator.radius
             elevation: control.pressed ? 1 : 2
             z: -1
-
-            Behavior on elevation {
-                NumberAnimation {
-                    duration: _duration;
-                    easing.type: _easing
-                }
-            }
         }
 
         Rectangle {
@@ -45,8 +38,9 @@ T.Control {
             color: control.color
             radius: Math.max(width,height)/2;
 
-            border.width: control.hovered && !control.pressed ? 4 : 2
-            border.color: control.pressed ? __app__.style.palette.controls.highlight_1 : __app__.style.palette.controls.highlight
+            border.width: mouseArea.containsMouse && !control.pressed ? 4 : 2
+            //border.color: control.pressed ? __app__.style.palette.controls.highlight_1 : __app__.style.palette.controls.highlight
+            border.color: Qt.hsla(0,0,((1-control.color.hslLightness)*control.color.a) > 0.3 ? 1 : 0,control.pressed ? 0.8 : 1)
 
             Behavior on border.width {
                 NumberAnimation {
@@ -84,6 +78,12 @@ T.Control {
         preventStealing: true
 
         onPositionChanged: function (mouse) {
+            if (pressed) {
+                setHandlePos(mouse);
+            }
+        }
+
+        onPressed: function (mouse) {
             if (pressed) {
                 setHandlePos(mouse);
             }
