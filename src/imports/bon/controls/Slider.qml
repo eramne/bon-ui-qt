@@ -1,3 +1,5 @@
+//TODO: add tooltip that shows value when the slider is pressed
+
 import QtQuick
 import QtQuick.Templates as T
 import QtQuick.Layouts

@@ -28,6 +28,10 @@ Window {
                 width: parent.width
                 spacing: 20
 
+                Bon.ColorArea {
+
+                }
+
                 Bon.Switch {}
 
                 Bon.Switch {checked: true}
@@ -923,6 +927,73 @@ Window {
                     Bon.ToggleButton {
                         checked: false
                         icon.name: "format_underline"
+                    }
+                }
+
+                Item {
+                    width: Layout.maximumWidth
+                    height: 10
+                }
+
+                Bon.Option {
+                    name: "Option 1"
+                    width: 300
+                }
+
+                Bon.Option {
+                    name: "Option 1"
+                    enabled: false
+                    width: 300
+                }
+
+                Bon.Option {
+                    name: "Option 1"
+                    width: 300
+                    exclusive: true
+                }
+
+                Bon.Option {
+                    name: "Option 1"
+                    enabled: false
+                    width: 300
+                    exclusive: true
+                }
+
+                Item {
+                    width: Layout.maximumWidth
+                    height: 10
+                }
+
+                Bon.Choice {
+                    width: 300
+
+                    Bon.Option {
+                        name: "Option 1"
+                    }
+
+                    Bon.Option {
+                        name: "Option 2"
+                    }
+
+                    Bon.Option {
+                        name: "Option 3"
+                    }
+                }
+
+                Bon.Choice {
+                    width: 300
+                    exclusive: true
+
+                    Bon.Option {
+                        name: "Option 1"
+                    }
+
+                    Bon.Option {
+                        name: "Option 2"
+                    }
+
+                    Bon.Option {
+                        name: "Option 3"
                     }
                 }
             }
