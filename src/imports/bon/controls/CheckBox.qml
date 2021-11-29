@@ -176,34 +176,5 @@ T.CheckBox {
                 }
             }
         }
-
-        /*Rectangle {
-            id: icon
-            x: (parent.width - width) / 2
-            y: (parent.height - height) / 2
-            width: _iconWidth
-            height: _iconHeight
-            radius: _iconRadius
-            color: _iconColor;
-
-            Behavior on color {
-                ColorAnimation {
-                    duration: _duration;
-                    easing.type: _easing
-                }
-            }
-            Behavior on width {
-                animation: NumberAnimation {
-                    duration: _duration;
-                    easing.type: _easing;
-                }
-            }
-            Behavior on height {
-                animation: NumberAnimation {
-                    duration: _duration;
-                    easing.type: _easing;
-                }
-            }
-        }*/
     }
 }

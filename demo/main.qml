@@ -28,38 +28,6 @@ Window {
                 width: parent.width
                 spacing: 20
 
-                Bon.ColorArea {
-                    id: colorArea
-                    color.hsvHue: hueSlider.color.hsvHue
-                }
-
-                Bon.ColorSlider {
-                    id: hueSlider
-                    color: Qt.hsva(position, 1, 1, 1)
-                    gradient: Gradient {
-                        orientation: Gradient.Horizontal
-
-                        GradientStop { position: 0; color: Qt.hsva(0,1,1,1) }
-                        GradientStop { position: 1/6; color: Qt.hsva(1/6,1,1,1) }
-                        GradientStop { position: 2/6; color: Qt.hsva(2/6,1,1,1) }
-                        GradientStop { position: 3/6; color: Qt.hsva(3/6,1,1,1) }
-                        GradientStop { position: 4/6; color: Qt.hsva(4/6,1,1,1) }
-                        GradientStop { position: 5/6; color: Qt.hsva(5/6,1,1,1) }
-                        GradientStop { position: 1; color: Qt.hsva(1,1,1,1) }
-                    }
-                }
-
-                Bon.ColorSlider {
-                    value: 1
-                    color: Qt.alpha(colorArea.color,position)
-                    gradient: Gradient {
-                        orientation: Gradient.Horizontal
-
-                        GradientStop { position: 0; color: "transparent" }
-                        GradientStop { position: 1; color: colorArea.color }
-                    }
-                }
-
                 Bon.Switch {}
 
                 Bon.Switch {checked: true}
@@ -1022,6 +990,23 @@ Window {
 
                     Bon.Option {
                         name: "Option 3"
+                    }
+                }
+
+                Item {
+                    width: Layout.maximumWidth
+                    height: 10
+                }
+
+                Bon.ColorSwatch {
+                    checkable: false
+                    onClicked: {
+                        colorPopup.open();
+                    }
+                    color: colorPopup.editColor
+
+                    Bon.ColorPicker {
+                        id: colorPopup
                     }
                 }
             }

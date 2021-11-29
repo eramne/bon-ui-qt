@@ -8,9 +8,13 @@ T.Control {
     width: 220
     height: 220
 
-    property color color: Qt.hsva(0,0.5,0.5,1)
+    property color color: Qt.hsva(hue, saturation, value, 1);
+    property real hue: 0
 
-    property point _position: Qt.point(control.color.hsvSaturation, 1-control.color.hsvValue)
+    property real saturation: 0
+    property real value: 0
+
+    property point _position: Qt.point(saturation, 1-value)
     property alias position: control._position
 
     property bool pressed: mouseArea.pressed
@@ -39,7 +43,6 @@ T.Control {
             radius: Math.max(width,height)/2;
 
             border.width: mouseArea.containsMouse && !control.pressed ? 4 : 2
-            //border.color: control.pressed ? __app__.style.palette.controls.highlight_1 : __app__.style.palette.controls.highlight
             border.color: Qt.hsla(0,0,((1-control.color.hslLightness)*control.color.a) > 0.3 ? 1 : 0,control.pressed ? 0.8 : 1)
 
             Behavior on border.width {
@@ -104,8 +107,8 @@ T.Control {
             if (v > 1) {
                 v = 1;
             }
-            control.color.hsvSaturation = s;
-            control.color.hsvValue = v;
+            control.saturation = s;
+            control.value = v;
         }
     }
 }

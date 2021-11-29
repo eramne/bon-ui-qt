@@ -1,7 +1,7 @@
 import QtQuick
 import QtQuick.Templates as T
 import QtQuick.Window
-import bon
+import bon as Bon
 
 T.Popup {
     id: root
@@ -11,6 +11,9 @@ T.Popup {
     property real targetY: 0
     x: targetX
     y: targetY
+
+    width: contentItem.width
+    height: contentItem.height
 
     function outOfBounds(x, y) {
         var pos = parent.mapToGlobal(x,y);
@@ -35,7 +38,7 @@ T.Popup {
     background: Item {
         anchors.fill: parent
 
-        Elevation {
+        Bon.Elevation {
             elevation: 8
             anchors.fill: parent
             radius: root._radius

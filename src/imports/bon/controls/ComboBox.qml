@@ -225,38 +225,8 @@ TextInputBase {
 
     }
 
-    property Bon.Popup popup: Bon.Popup {
-        y: outOfBounds(x, control.height + 10 + height) ? control.height + 10 : -height - 10;
+    property Bon.Dropdown popup: Bon.Dropdown {
         width: control.width
-        height: Math.min(contentItem.height, control.Window.height - topMargin - bottomMargin)
-        closePolicy: T.Popup.CloseOnPressOutsideParent
-
-        function updatePopupPos() {
-            y = outOfBounds(x, control.height + 10 + height) ? control.height + 10 : -height - 10;
-            contentItem.height = Math.min(control.maxContentHeight, contentItem.contentHeight);
-        }
-
-        onAboutToShow: {
-            updatePopupPos();
-        }
-
-        Behavior on y {
-            enabled: popup.opened
-            animation: NumberAnimation {
-                duration: _duration;
-                easing.type: _easing;
-            }
-        }
-
-        Timer {
-            repeat: true
-            running: popup.opened
-            triggeredOnStart: true
-            interval: 100
-            onTriggered: {
-                popup.updatePopupPos();
-            }
-        }
 
         HoverHandler {
             onHoveredChanged: {

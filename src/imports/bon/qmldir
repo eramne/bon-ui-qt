@@ -2,7 +2,6 @@ module bon
 
 App 1.0 core/App.qml
 Icon 1.0 core/Icon.qml
-Popup 1.0 core/Popup.qml
 
 Switch 1.0 controls/Switch.qml
 RadioButton 1.0 controls/RadioButton.qml
@@ -25,9 +24,12 @@ Rating 1.0 controls/Rating.qml
 ScrollBar 1.0 controls/ScrollBar.qml
 ColorSwatch 1.0 controls/ColorSwatch.qml
 ToggleButtonGroup 1.0 controls/ToggleButtonGroup.qml
-
 ColorArea 1.0 controls/ColorArea.qml
 ColorSlider 1.0 controls/ColorSlider.qml
+
+Popup 1.0 popups/Popup.qml
+Dropdown 1.0 popups/Dropdown.qml
+ColorPicker 1.0 popups/ColorPicker.qml
 
 ProgressBar 1.0 feedback/ProgressBar.qml
 ProgressCircle 1.0 feedback/ProgressCircle.qml
