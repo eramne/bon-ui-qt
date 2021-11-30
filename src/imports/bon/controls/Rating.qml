@@ -4,7 +4,7 @@ import Qt5Compat.GraphicalEffects
 import bon as Bon
 
 Item {
-    id: control
+    id: root
 
     property int highlightedIndex: {
         var index = -1;
@@ -49,8 +49,8 @@ Item {
     property real _duration: __app__.style.animations.basic.duration
 
     property color _backgroundColor: __app__.style.palette.controls.background
-    property color _foregroundColor: control.pressed ? __app__.style.palette.controls.background_1 : (
-                                         control.hovered ? __app__.style.palette.controls.background : (
+    property color _foregroundColor: root.pressed ? __app__.style.palette.controls.background_1 : (
+                                         root.hovered ? __app__.style.palette.controls.background : (
                                              enteredValue >= 0 ? __app__.style.palette.controls.accent : __app__.style.palette.controls.accent_1
                                          )
                                      )
@@ -69,8 +69,8 @@ Item {
         }
     }
 
-    opacity: !control.enabled ? __app__.style.misc_values.disabled_opacity : 1
-    layer.enabled: !control.enabled
+    opacity: !root.enabled ? __app__.style.misc_values.disabled_opacity : 1
+    layer.enabled: !root.enabled
 
     T.ButtonGroup { id: group }
 
@@ -88,8 +88,8 @@ Item {
                 property int _index: index
                 width: indicator.width
                 height: indicator.height
-                enabled: control.editable
-                hoverEnabled: control.editable && control.enabled
+                enabled: root.editable
+                hoverEnabled: root.editable && root.enabled
 
                 indicator: Bon.Icon {
                     color: _backgroundColor
@@ -124,7 +124,7 @@ Item {
             anchors.top: parent.top
             anchors.bottom: parent.bottom
             anchors.left: parent.left
-            width: parent.width*(control.visiblePosition/5)
+            width: parent.width*(root.visiblePosition/5)
             color: _foregroundColor
         }
     }

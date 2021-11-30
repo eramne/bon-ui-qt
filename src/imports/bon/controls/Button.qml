@@ -4,7 +4,7 @@ import QtQuick.Templates as T
 import bon as Bon
 
 T.Button {
-    id: control
+    id: root
 
     implicitWidth: Math.max(implicitBackgroundWidth + leftInset + rightInset,
                                 implicitContentWidth + leftPadding + rightPadding)
@@ -24,30 +24,30 @@ T.Button {
                                ) : (
                                    __app__.style.palette.text.label
                                )
-    property real _textOpacity: control.down || control.hovered || !control.enabled ? __app__.style.palette.controls.highlight_1.a : 1
+    property real _textOpacity: root.down || root.hovered || !root.enabled ? __app__.style.palette.controls.highlight_1.a : 1
     property color _backgroundColor: order === 1 ? (
-                                         control.down ? __app__.style.palette.controls.accent_1 : __app__.style.palette.controls.accent
+                                         root.down ? __app__.style.palette.controls.accent_1 : __app__.style.palette.controls.accent
                                      ) : (
-                                         control.down ? __app__.style.palette.controls.background_1 : (
-                                             control.hovered ? __app__.style.palette.controls.background : __app__.style.palette.background
+                                         root.down ? __app__.style.palette.controls.background_1 : (
+                                             root.hovered ? __app__.style.palette.controls.background : __app__.style.palette.background
                                          )
                                      )
     property color _borderColor: __app__.style.palette.controls.background
-    property real _borderWidth: order === 2 && !control.down && !control.hovered ? 2 : 0
+    property real _borderWidth: order === 2 && !root.down && !root.hovered ? 2 : 0
     property real _radius: !_round ? 8 : Math.max(width, height)/2
     property real _elevation: order === 1 ? (
-                                  control.down ? 1 : 2
+                                  root.down ? 1 : 2
                               ) : 0
     property real _height: 40
-    property real _opacity: !control.enabled ? __app__.style.misc_values.disabled_opacity : 1
+    property real _opacity: !root.enabled ? __app__.style.misc_values.disabled_opacity : 1
     property real _easing: __app__.style.animations.basic.type
     property real _duration: __app__.style.animations.basic.duration
-    property bool _round: control.text.length === 0
+    property bool _round: root.text.length === 0
 
-    width: control.text.length > 0 ? contentItem.width + leftPadding + rightPadding : _height
+    width: root.text.length > 0 ? contentItem.width + leftPadding + rightPadding : _height
     height: _height
     opacity: _opacity
-    layer.enabled: !control.enabled
+    layer.enabled: !root.enabled
 
     property int order: 1 // 1 = primary, 2 = secondary, 3 or anything else = tertiary
 
@@ -80,22 +80,22 @@ T.Button {
     }
 
     contentItem: RowLayout {
-        anchors.centerIn: control
+        anchors.centerIn: root
         spacing: !_round ? 10 : 0
-        height: control.height
+        height: root.height
         width: Layout.minimumWidth
 
         Bon.Icon {
             id: icon
             Layout.alignment: Qt.AlignCenter
             visible: isValid
-            name: control.icon.name
-            color: control.icon.color
+            name: root.icon.name
+            color: root.icon.color
             opacity: _textOpacity
         }
 
         Text {
-            text: control.text
+            text: root.text
             Layout.alignment: Qt.AlignVCenter
             color: _textColor
             font: __app__.style.text.button
@@ -104,7 +104,7 @@ T.Button {
     }
 
     background: Rectangle {
-        anchors.fill: control
+        anchors.fill: root
         color: _backgroundColor
         radius: _radius
         border.color: _borderColor

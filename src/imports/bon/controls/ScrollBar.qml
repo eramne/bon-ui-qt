@@ -3,7 +3,7 @@ import QtQuick.Templates as T
 import bon
 
 T.ScrollBar {
-    id: control
+    id: root
 
     implicitWidth: Math.max(implicitBackgroundWidth + leftInset + rightInset,
                             implicitContentWidth + leftPadding + rightPadding)
@@ -11,17 +11,17 @@ T.ScrollBar {
                              implicitContentHeight + topPadding + bottomPadding)
 
     padding: 4
-    visible: control.policy !== T.ScrollBar.AlwaysOff && (control.policy === T.ScrollBar.AsNeeded ? control.size < 1 : true)
+    visible: root.policy !== T.ScrollBar.AlwaysOff && (root.policy === T.ScrollBar.AsNeeded ? root.size < 1 : true)
     minimumSize: orientation == Qt.Horizontal ? height / width : width / height
 
-    property color _color: control.pressed ? __app__.style.palette.controls.background_1 : __app__.style.palette.controls.background
+    property color _color: root.pressed ? __app__.style.palette.controls.background_1 : __app__.style.palette.controls.background
     property real _easing: __app__.style.animations.basic.type
     property real _duration: __app__.style.animations.basic.duration
     property real _elevation: 2
     property real _width: 4
     property real _radius: _width/2
 
-    opacity: control.active ? 1 : 0.0
+    opacity: root.active ? 1 : 0.0
     Behavior on opacity {
         animation: NumberAnimation {
             duration: _duration;

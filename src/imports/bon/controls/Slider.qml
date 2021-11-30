@@ -6,7 +6,7 @@ import QtQuick.Layouts
 import bon
 
 T.Slider {
-    id: control
+    id: root
 
     implicitWidth: Math.max(implicitBackgroundWidth + leftInset + rightInset,
                             implicitHandleWidth + leftPadding + rightPadding)
@@ -24,15 +24,15 @@ T.Slider {
     property real _highlightHeight: horizontal ? 8 : (_willSnap ? 4 : 8)
     property real _backgroundRadius: 4
     property real _padding: 0
-    property color _backgroundOffColor: control.pressed ? __app__.style.palette.controls.background_1 : __app__.style.palette.controls.background
-    property color _backgroundOnColor: control.enabled ? (
-                                           control.pressed ? __app__.style.palette.controls.accent_1 : __app__.style.palette.controls.accent
+    property color _backgroundOffColor: root.pressed ? __app__.style.palette.controls.background_1 : __app__.style.palette.controls.background
+    property color _backgroundOnColor: root.enabled ? (
+                                           root.pressed ? __app__.style.palette.controls.accent_1 : __app__.style.palette.controls.accent
                                        ) : __app__.style.palette.controls.background_1
     property color _handleColor: _backgroundOnColor
-    property color _highlightColor: control.pressed || control.hovered || !control.enabled ? __app__.style.palette.controls.highlight_1 : __app__.style.palette.controls.highlight
-    property real _opacity: !control.enabled ? __app__.style.misc_values.disabled_opacity : 1
+    property color _highlightColor: root.pressed || root.hovered || !root.enabled ? __app__.style.palette.controls.highlight_1 : __app__.style.palette.controls.highlight
+    property real _opacity: !root.enabled ? __app__.style.misc_values.disabled_opacity : 1
     property real _elevation: 1
-    property real _handleElevation: control.pressed ? 1 : 2
+    property real _handleElevation: root.pressed ? 1 : 2
     property real _easing: __app__.style.animations.basic.type
     property real _duration: __app__.style.animations.basic.duration
     property real _snapIndicatorWidth: 4
@@ -46,7 +46,7 @@ T.Slider {
     padding: _padding
 
     opacity: _opacity
-    layer.enabled: !control.enabled
+    layer.enabled: !root.enabled
 
     width: horizontal ? 100 : Math.max(_backgroundWidth,_handleLength)
     height: horizontal ? Math.max(_backgroundHeight,_handleLength) : 100
@@ -54,16 +54,16 @@ T.Slider {
     Grid {
         id: stepIndicators
         visible: _shouldDisplaySnapIndicators
-        x: control.horizontal ? _handleWidth/2 - _snapIndicatorWidth/2 : 0
-        y: control.horizontal ? control.height - height : height+(_handleHeight/2 + _snapIndicatorHeight/2)
+        x: root.horizontal ? _handleWidth/2 - _snapIndicatorWidth/2 : 0
+        y: root.horizontal ? root.height - height : height+(_handleHeight/2 + _snapIndicatorHeight/2)
         z: -1
-        width: control.horizontal ? _backgroundWidth -_handleWidthSnap : _snapIndicatorWidth
-        height: control.horizontal ? _snapIndicatorHeight : _backgroundHeight -_handleWidthSnap
+        width: root.horizontal ? _backgroundWidth -_handleWidthSnap : _snapIndicatorWidth
+        height: root.horizontal ? _snapIndicatorHeight : _backgroundHeight -_handleWidthSnap
         spacing: _snapIndicatorSpacing
         property int count: _shouldDisplaySnapIndicators ? 1+Math.round((to-from)/stepSize) : 0
-        rows: control.horizontal ? 0 : count
-        columns: control.horizontal ? count : 0
-        scale: control.horizontal ? 1 : -1
+        rows: root.horizontal ? 0 : count
+        columns: root.horizontal ? count : 0
+        scale: root.horizontal ? 1 : -1
         transformOrigin: Item.Top
 
         Repeater {
@@ -75,7 +75,7 @@ T.Slider {
                 height: _snapIndicatorHeight
                 radius: Math.max(width, height)/2
                 color: _snapIndicatorColor
-                visible: control.horizontal ? x < stepIndicators.width + _snapIndicatorWidth : y < stepIndicators.height + _snapIndicatorHeight
+                visible: root.horizontal ? x < stepIndicators.width + _snapIndicatorWidth : y < stepIndicators.height + _snapIndicatorHeight
             }
         }
     }
@@ -88,8 +88,8 @@ T.Slider {
     }
 
     handle: Rectangle {
-        x: control.leftPadding + (control.horizontal ? control.visualPosition * (control.availableWidth - width) : (control.availableWidth - width) / 2)
-        y: control.topPadding + (control.horizontal ? (control.availableHeight - height) / 2 : control.visualPosition * (control.availableHeight - height))
+        x: root.leftPadding + (root.horizontal ? root.visualPosition * (root.availableWidth - width) : (root.availableWidth - width) / 2)
+        y: root.topPadding + (root.horizontal ? (root.availableHeight - height) / 2 : root.visualPosition * (root.availableHeight - height))
         implicitWidth: _handleWidth
         implicitHeight: _handleHeight
         radius: width / 2
@@ -135,15 +135,15 @@ T.Slider {
     }
 
     background: Rectangle {
-        x: control.leftPadding + (control.horizontal ? 0 : (control.availableWidth - width) / 2)
-        y: control.topPadding + (control.horizontal ? (control.availableHeight - height) / 2 : 0)
+        x: root.leftPadding + (root.horizontal ? 0 : (root.availableWidth - width) / 2)
+        y: root.topPadding + (root.horizontal ? (root.availableHeight - height) / 2 : 0)
         implicitWidth: _backgroundWidth
         implicitHeight: _backgroundHeight
-        width: control.horizontal ? control.availableWidth : implicitWidth
-        height: control.horizontal ? implicitHeight : control.availableHeight
+        width: root.horizontal ? root.availableWidth : implicitWidth
+        height: root.horizontal ? implicitHeight : root.availableHeight
         radius: _backgroundRadius
         color: _backgroundOffColor
-        scale: control.horizontal && control.mirrored ? -1 : 1
+        scale: root.horizontal && root.mirrored ? -1 : 1
 
         Behavior on color {
             ColorAnimation {
@@ -161,9 +161,9 @@ T.Slider {
 
         Rectangle {
             id: indicator
-            y: control.horizontal ? 0 : control.handle.y + control.handle.height/2
-            width: control.horizontal ? control.handle.x + control.handle.width/2 : parent.width
-            height: control.horizontal ? parent.height : control.height - y
+            y: root.horizontal ? 0 : root.handle.y + root.handle.height/2
+            width: root.horizontal ? root.handle.x + root.handle.width/2 : parent.width
+            height: root.horizontal ? parent.height : root.height - y
 
             radius: _backgroundRadius
             color: _backgroundOnColor

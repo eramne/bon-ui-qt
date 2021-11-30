@@ -3,7 +3,7 @@ import QtQuick.Templates as T
 import bon
 
 T.ProgressBar {
-    id: control
+    id: root
 
     implicitWidth: Math.max(implicitBackgroundWidth + leftInset + rightInset,
                             implicitContentWidth + leftPadding + rightPadding)
@@ -18,7 +18,7 @@ T.ProgressBar {
                                          : state === ProgressBar.State.Paused ? __app__.style.palette.controls.background_1
                                          : state === ProgressBar.State.Success ? __app__.style.palette.success
                                          : __app__.style.palette.error
-    property color _backgroundColor: control.state !== ProgressBar.State.Success && control.state !== ProgressBar.State.Error ? __app__.style.palette.controls.background : _indicatorColor
+    property color _backgroundColor: root.state !== ProgressBar.State.Success && root.state !== ProgressBar.State.Error ? __app__.style.palette.controls.background : _indicatorColor
     property real _progressEasing: Easing.Linear
     property real _progressDuration: __app__.style.animations.basic.duration
     property real _easing: __app__.style.animations.basic.type
@@ -32,10 +32,10 @@ T.ProgressBar {
     }
 
     onStateChanged: {
-        if (control.indeterminate) {
-            if (control.state === ProgressBar.State.Running) {
+        if (root.indeterminate) {
+            if (root.state === ProgressBar.State.Running) {
                 rotationTimer.running = true;
-            } else if (control.state === ProgressBar.State.Paused) {
+            } else if (root.state === ProgressBar.State.Paused) {
                 rotationTimer.running = false;
             } else {
                 rotationTimer.running = false;
@@ -47,7 +47,7 @@ T.ProgressBar {
     }
 
     Component.onCompleted: {
-        control.stateChanged();
+        root.stateChanged();
     }
 
     width: 100
@@ -58,10 +58,10 @@ T.ProgressBar {
         Rectangle {
             id: indicator
             radius: _radius
-            width: control.indeterminate ? Math.min(Math.min(parent.width, parent.width-indicator.indeterminateRotatorPosition),parent.width+indicator.indeterminateRotatorPosition) : (control.state !== ProgressBar.State.Success && control.state !== ProgressBar.State.Error ? parent.width * control.position : parent.width)
+            width: root.indeterminate ? Math.min(Math.min(parent.width, parent.width-indicator.indeterminateRotatorPosition),parent.width+indicator.indeterminateRotatorPosition) : (root.state !== ProgressBar.State.Success && root.state !== ProgressBar.State.Error ? parent.width * root.position : parent.width)
             height: parent.height
             color: _indicatorColor
-            x: control.indeterminate ? Math.max(0,indicator.indeterminateRotatorPosition) : 0
+            x: root.indeterminate ? Math.max(0,indicator.indeterminateRotatorPosition) : 0
 
             property real indeterminateRotatorPosition: -parent.width
 
@@ -72,9 +72,9 @@ T.ProgressBar {
                 repeat: true
                 onTriggered: function () {
                     indicator.indeterminateRotatorPosition += 10;
-                    if (indicator.indeterminateRotatorPosition > control.width) {
+                    if (indicator.indeterminateRotatorPosition > root.width) {
                         posAnimation.enabled = false;
-                        indicator.indeterminateRotatorPosition = -control.width;
+                        indicator.indeterminateRotatorPosition = -root.width;
                         posAnimation.enabled = true;
                     }
                 }
@@ -96,14 +96,14 @@ T.ProgressBar {
             }
 
             Behavior on width {
-                enabled: !control.indeterminate
+                enabled: !root.indeterminate
                 animation: NumberAnimation {
                     duration: __app__.style.animations.progressStep.duration;
                     easing.type: __app__.style.animations.progressStep.type;
                 }
             }
         }
-        scale: control.mirrored ? -1 : 1
+        scale: root.mirrored ? -1 : 1
     }
 
     background: Rectangle {

@@ -5,7 +5,7 @@ import QtQml.Models
 import bon as Bon
 
 TextInputBase {
-    id: control
+    id: root
 
     property real _easing: __app__.style.animations.basic.type
     property real _duration: __app__.style.animations.basic.duration
@@ -15,7 +15,7 @@ TextInputBase {
     property int _hoveredIndex: -1
     property int firstVisibleIndex: {
         for (var i = 0; i < model.count; i++) {
-            if (control.filter(model.get(i).name)) {
+            if (root.filter(model.get(i).name)) {
                 return i;
             }
         }
@@ -36,7 +36,7 @@ TextInputBase {
         onTriggered: {
             _shouldOpenPopup = false;
             field.clear();
-            field.insert(0,control.value);
+            field.insert(0,root.value);
             _shouldOpenPopup = true;
         }
     }
@@ -76,10 +76,10 @@ TextInputBase {
 
     Keys.onPressed: function (event) {
         if (event.key === Qt.Key_Up) {
-            control.decrementCurrentIndex();
+            root.decrementCurrentIndex();
         }
         if (event.key === Qt.Key_Down) {
-            control.incrementCurrentIndex();
+            root.incrementCurrentIndex();
         }
     }
 
@@ -95,15 +95,15 @@ TextInputBase {
                         tmpIndex++;
                     }
                     tmpStopCounter++;
-                } while ((tmpIndex < 0 || !control.filter(model.get(tmpIndex).name)) && tmpStopCounter < model.count);
+                } while ((tmpIndex < 0 || !root.filter(model.get(tmpIndex).name)) && tmpStopCounter < model.count);
                 _hoveredIndex = tmpIndex;
                 listView.positionViewAtIndex(tmpIndex, ListView.Contain);
             }
         } else {
             if (currentIndex + 1 >= model.count) {
-                control.setIndex(0)
+                root.setIndex(0)
             } else {
-                control.setIndex(currentIndex + 1)
+                root.setIndex(currentIndex + 1)
             }
         }
     }
@@ -120,22 +120,22 @@ TextInputBase {
                         tmpIndex--;
                     }
                     tmpStopCounter++;
-                } while ((tmpIndex < 0 || !control.filter(model.get(tmpIndex).name)) && tmpStopCounter < model.count);
+                } while ((tmpIndex < 0 || !root.filter(model.get(tmpIndex).name)) && tmpStopCounter < model.count);
                 _hoveredIndex = tmpIndex;
                 listView.positionViewAtIndex(tmpIndex, ListView.Contain);
             }
         } else {
             if (currentIndex - 1 < 0) {
-                control.setIndex(model.count - 1)
+                root.setIndex(model.count - 1)
             } else {
-                control.setIndex(currentIndex - 1)
+                root.setIndex(currentIndex - 1)
             }
         }
     }
 
     _trailingIcons: Component {
         Row {
-            visible: control.enabled
+            visible: root.enabled
             spacing: 10
             Layout.alignment: Qt.AlignVCenter
             rightPadding: 0
@@ -145,11 +145,11 @@ TextInputBase {
                 offIcon: "expand_more"
 
                 onClicked: {
-                    if (control.popup.opened) {
-                        control.popup.close();
+                    if (root.popup.opened) {
+                        root.popup.close();
                     } else {
                         if (_shouldOpenPopup) {
-                            control.popup.open();
+                            root.popup.open();
                         }
                     }
                 }
@@ -175,17 +175,17 @@ TextInputBase {
         height: contentItem.height
         required property string name
         required property int index
-        visible: control.filter(name)
-        property bool isFirstItem: control.firstVisibleIndex === index
+        visible: root.filter(name)
+        property bool isFirstItem: root.firstVisibleIndex === index
 
         onHoveredChanged: {
             if (hovered) {
-                control._hoveredIndex = index
+                root._hoveredIndex = index
             }
         }
 
         onClicked: {
-            control.setIndex(index);
+            root.setIndex(index);
         }
 
         background: Rectangle {
@@ -226,13 +226,13 @@ TextInputBase {
     }
 
     property Bon.Dropdown popup: Bon.Dropdown {
-        targetWidth: control.width
+        targetWidth: root.width
         //targetHeight: control.maxPopupHeight
 
         HoverHandler {
             onHoveredChanged: {
                 if (!hovered) {
-                    control._hoveredIndex = -1;
+                    root._hoveredIndex = -1;
                 }
             }
         }
@@ -243,10 +243,10 @@ TextInputBase {
 
             ListView {
                 id: listView
-                height: Math.min(control.maxPopupHeight-parent.topPadding-parent.bottomPadding, contentHeight)
+                height: Math.min(root.maxPopupHeight-parent.topPadding-parent.bottomPadding, contentHeight)
                 width: parent.width - parent.leftPadding - parent.rightPadding
-                model: control.model
-                delegate: control.delegate
+                model: root.model
+                delegate: root.delegate
                 boundsBehavior: Flickable.DragOverBounds
                 clip: true
 

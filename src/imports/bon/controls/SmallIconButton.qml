@@ -4,7 +4,7 @@ import QtQuick.Templates as T
 import bon as Bon
 
 T.AbstractButton {
-    id: control
+    id: root
 
     implicitWidth: Math.max(implicitBackgroundWidth + leftInset + rightInset,
                                 implicitContentWidth + leftPadding + rightPadding)
@@ -22,17 +22,17 @@ T.AbstractButton {
                                ) : (
                                    __app__.style.palette.text.label
                                )
-    property real _textOpacity: control.down || control.hovered || !control.enabled ? __app__.style.palette.controls.highlight_1.a : 1
+    property real _textOpacity: root.down || root.hovered || !root.enabled ? __app__.style.palette.controls.highlight_1.a : 1
     property color _backgroundColor: dark ? (
-                                         control.down ? __app__.style.palette.controls.accent_1 : __app__.style.palette.controls.accent
+                                         root.down ? __app__.style.palette.controls.accent_1 : __app__.style.palette.controls.accent
                                      ) : (
-                                         control.down ? __app__.style.palette.controls.background_1 : __app__.style.palette.controls.background
+                                         root.down ? __app__.style.palette.controls.background_1 : __app__.style.palette.controls.background
                                      )
-    property real _backgroundOpacity: control.dark ? (control.pressed ? 1 : 0) : (control.pressed || control.hovered ? 1 : 0)
+    property real _backgroundOpacity: root.dark ? (root.pressed ? 1 : 0) : (root.pressed || root.hovered ? 1 : 0)
     property real _radius: Math.max(width,height)/2
     property real _width: 24
     property real _height: 24
-    property real _opacity: !control.enabled ? __app__.style.misc_values.disabled_opacity : 1
+    property real _opacity: !root.enabled ? __app__.style.misc_values.disabled_opacity : 1
     property real _easing: __app__.style.animations.basic.type
     property real _duration: __app__.style.animations.basic.duration
 
@@ -43,7 +43,7 @@ T.AbstractButton {
     width: _width
     height: _height
     opacity: _opacity
-    layer.enabled: !control.enabled
+    layer.enabled: !root.enabled
 
     Behavior on _backgroundColor {
         ColorAnimation {
@@ -72,14 +72,14 @@ T.AbstractButton {
             id: icon
             anchors.centerIn: parent
             visible: isValid
-            name: control.checked ? control.onIcon : control.offIcon
-            color: control.icon.color
+            name: root.checked ? root.onIcon : root.offIcon
+            color: root.icon.color
             opacity: _textOpacity
         }
     }
 
     background: Rectangle {
-        anchors.fill: control
+        anchors.fill: root
         color: _backgroundColor
         radius: _radius
         opacity: _backgroundOpacity

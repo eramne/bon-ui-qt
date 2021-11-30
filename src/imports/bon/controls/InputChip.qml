@@ -3,7 +3,7 @@ import QtQuick.Layouts
 import bon as Bon
 
 Chip {
-    id: control
+    id: root
 
     checkable: false
 
@@ -15,23 +15,23 @@ Chip {
     signal closed()
 
     contentItem: RowLayout {
-        anchors.verticalCenter: control.verticalCenter
-        x: control.leftPadding
+        anchors.verticalCenter: root.verticalCenter
+        x: root.leftPadding
         spacing: 5
-        height: control.height
+        height: root.height
         width: Layout.minimumWidth
 
         Bon.Icon {
             id: icon
             Layout.alignment: Qt.AlignCenter
             visible: isValid
-            name: control.icon.name
-            color: control.icon.color
+            name: root.icon.name
+            color: root.icon.color
             opacity: _textOpacity
         }
 
         Text {
-            text: control.text
+            text: root.text
             Layout.alignment: Qt.AlignVCenter
             color: _textColor
             font: __app__.style.text.label
@@ -41,7 +41,7 @@ Chip {
         SmallIconButton {
             offIcon: "cancel"
             Component.onCompleted: {
-                onClicked.connect(control.closed)
+                onClicked.connect(root.closed)
             }
         }
     }

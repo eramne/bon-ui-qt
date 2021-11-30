@@ -4,12 +4,12 @@ import QtQuick.Templates as T
 import bon
 
 Item {
-    id: control
+    id: root
     width: 220
     height: 100
 
     opacity: _opacity
-    layer.enabled: !control.enabled
+    layer.enabled: !root.enabled
 
     property real _borderWidth: 2
     property color _borderColor: area.focus ? __app__.style.palette.controls.background_1 : __app__.style.palette.controls.background
@@ -17,7 +17,7 @@ Item {
     property real _radius: 8
     property font _font: __app__.style.text.label
     property color _textColor: __app__.style.palette.text.label
-    property real _opacity: !control.enabled ? __app__.style.misc_values.disabled_opacity : 1
+    property real _opacity: !root.enabled ? __app__.style.misc_values.disabled_opacity : 1
     property real _easing: __app__.style.animations.basic.type
     property real _duration: __app__.style.animations.basic.duration
 
@@ -45,11 +45,11 @@ Item {
             Layout.fillWidth: true
             Layout.leftMargin: 10
             Layout.rightMargin: 10
-            text: control.labelText
+            text: root.labelText
             font: __app__.style.text.caption
             color: _textColor
             opacity: 0.5
-            visible: control.labelText.length > 0
+            visible: root.labelText.length > 0
             elide: Text.ElideRight
         }
 
@@ -60,7 +60,7 @@ Item {
             Rectangle {
                 id: background
                 anchors.fill: parent
-                border.width: control.bordered ? _borderWidth : 0
+                border.width: root.bordered ? _borderWidth : 0
                 border.color: _borderColor
                 radius: _radius
                 color: _backgroundColor
@@ -103,11 +103,11 @@ Item {
                     selectedTextColor: __app__.style.palette.selection_text
                     font: _font
                     selectByMouse: true
-                    enabled: control.enabled
-                    hoverEnabled: control.enabled
+                    enabled: root.enabled
+                    hoverEnabled: root.enabled
                     padding: 10
-                    wrapMode: control.wordWrap ? TextEdit.Wrap : TextEdit.NoWrap
-                    width: control.wordWrap ? control.width : implicitWidth
+                    wrapMode: root.wordWrap ? TextEdit.Wrap : TextEdit.NoWrap
+                    width: root.wordWrap ? root.width : implicitWidth
                     onCursorRectangleChanged: flickable.ensureVisible(Qt.rect(cursorRectangle.x - leftPadding,
                                                                               cursorRectangle.y - topPadding,
                                                                               cursorRectangle.width + leftPadding + topPadding,
@@ -137,16 +137,16 @@ Item {
             Layout.fillWidth: true
             Layout.leftMargin: 10
             Layout.rightMargin: 10
-            visible: control.helpText.length > 0 || control.showCharacterCount
+            visible: root.helpText.length > 0 || root.showCharacterCount
 
             Text {
                 id: helpText
                 Layout.fillWidth: true
-                text: control.helpText
+                text: root.helpText
                 font: __app__.style.text.caption
                 color: _textColor
                 opacity: 0.5
-                visible: control.helpText.length > 0
+                visible: root.helpText.length > 0
                 elide: Text.ElideRight
             }
 
@@ -157,7 +157,7 @@ Item {
                 font: __app__.style.text.caption
                 color: _textColor
                 opacity: 0.5
-                visible: control.showCharacterCount
+                visible: root.showCharacterCount
                 elide: Text.ElideRight
             }
         }

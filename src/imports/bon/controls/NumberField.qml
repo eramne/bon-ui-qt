@@ -4,7 +4,7 @@ import "../lib/BigEval.min.js" as BigEval
 import bon
 
 TextInputBase {
-    id: control
+    id: root
     width: 160
     property bool showStepButtons: false
     property real value: 0
@@ -83,7 +83,7 @@ TextInputBase {
 
     _trailingIcons: Component {
         Row {
-            visible: control.enabled && control.showStepButtons
+            visible: root.enabled && root.showStepButtons
             spacing: 10
             Layout.alignment: Qt.AlignVCenter
             rightPadding: 0
@@ -94,11 +94,11 @@ TextInputBase {
                 autoRepeat: true
 
                 onClicked: {
-                    control.increase();
+                    root.increase();
                 }
 
                 onDoubleClicked: {
-                    control.increase();
+                    root.increase();
                 }
             }
 
@@ -108,11 +108,11 @@ TextInputBase {
                 autoRepeat: true
 
                 onClicked: {
-                    control.decrease();
+                    root.decrease();
                 }
 
                 onDoubleClicked: {
-                    control.decrease();
+                    root.decrease();
                 }
             }
         }

@@ -3,28 +3,28 @@ import QtQuick.Layouts
 import bon
 
 TextInputBase {
-    id: control
+    id: root
     property string buttonIcon: ""
 
     _trailingIcons: Component {
         Row {
-            visible: control.enabled
+            visible: root.enabled
             spacing: 10
             Layout.alignment: Qt.AlignVCenter
             rightPadding: 0
 
             Icon {
-                name: control.field.acceptableInput ? "done" : "close"
-                color: control.field.acceptableInput ? __app__.style.palette.success : __app__.style.palette.error
-                visible: !control.field.focus && control.showStatus ? true : false
+                name: root.field.acceptableInput ? "done" : "close"
+                color: root.field.acceptableInput ? __app__.style.palette.success : __app__.style.palette.error
+                visible: !root.field.focus && root.showStatus ? true : false
             }
 
             SmallIconButton {
                 id: iconButton
-                offIcon: control.buttonIcon
+                offIcon: root.buttonIcon
 
                 Component.onCompleted: {
-                    onClicked.connect(control.iconClicked)
+                    onClicked.connect(root.iconClicked)
                 }
             }
         }

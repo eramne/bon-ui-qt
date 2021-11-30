@@ -1,7 +1,7 @@
 import QtQuick 2.0
 
 Item {
-    id: blend
+    id: root
     property variant source
     anchors.fill: source
 
@@ -18,9 +18,9 @@ Item {
         id: blendShaderEffect
         property variant source: windowSource
         property variant foregroundSource: blendEffectSource
-        anchors.fill: blend
+        anchors.fill: root
         property color background: __app__.color;
-        property vector4d objectDimensions: Qt.vector4d(blend.parent.mapToItem(__window__,blend.x,blend.y).x, blend.parent.mapToItem(__window__,blend.x,blend.y).y, width, height);
+        property vector4d objectDimensions: Qt.vector4d(root.parent.mapToItem(__window__,root.x,root.y).x, root.parent.mapToItem(__window__,root.x,root.y).y, width, height);
         property vector2d viewportDimensions: Qt.vector2d(__window__.width, __window__.height);
         visible: false;
 
@@ -29,15 +29,15 @@ Item {
 
     ShaderEffectSource {
         id: blendEffectSource
-        sourceItem: blend.source
-        anchors.fill: blend
+        sourceItem: root.source
+        anchors.fill: root
         visible: false
         hideSource: true
     }
 
     ShaderEffectSource {
         sourceItem: blendShaderEffect
-        anchors.fill: blend
+        anchors.fill: root
         visible: true
         hideSource: true
     }

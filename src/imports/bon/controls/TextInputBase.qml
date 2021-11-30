@@ -5,12 +5,12 @@ import Qt5Compat.GraphicalEffects
 import bon
 
 Item {
-    id: control
+    id: root
     width: 220
     height: rowLayout.implicitHeight
 
     opacity: _opacity
-    layer.enabled: !control.enabled
+    layer.enabled: !root.enabled
 
     property font _font: __app__.style.text.label
     property color _textColor: __app__.style.palette.text.label
@@ -29,7 +29,7 @@ Item {
     property real _fadeLength: 40
     property real _easing: __app__.style.animations.basic.type
     property real _duration: __app__.style.animations.basic.duration
-    property real _opacity: !control.enabled ? __app__.style.misc_values.disabled_opacity : 1
+    property real _opacity: !root.enabled ? __app__.style.misc_values.disabled_opacity : 1
 
     property string leadingIcon: ""
     property string prefixText: ""
@@ -91,12 +91,12 @@ Item {
                 Layout.fillWidth: true
                 Layout.leftMargin: 10
                 Layout.rightMargin: 10
-                text: control.labelText
+                text: root.labelText
                 font: __app__.style.text.caption
                 color: _textColor
                 opacity: 0.5
                 verticalAlignment: field.verticalAlignment
-                visible: control.labelText.length > 0
+                visible: root.labelText.length > 0
                 elide: Text.ElideRight
             }
 
@@ -144,7 +144,7 @@ Item {
                     spacing: 4
 
                     Text {
-                        text: control.prefixText
+                        text: root.prefixText
                         font: field.font
                         color: _textColor
                         opacity: 0.5
@@ -196,18 +196,18 @@ Item {
                                 verticalAlignment: TextInput.AlignVCenter
                                 font: _font
                                 selectByMouse: true
-                                enabled: control.enabled
-                                hoverEnabled: control.enabled
+                                enabled: root.enabled
+                                hoverEnabled: root.enabled
                             }
 
                             Item {
                                 id: fadeEffect
-                                anchors.fill: control.field
+                                anchors.fill: root.field
 
                                 ShaderEffectSource {
                                     id: fieldSource
                                     anchors.fill: parent
-                                    sourceItem: control.field
+                                    sourceItem: root.field
                                     hideSource: true
                                     visible: false
                                 }
@@ -279,7 +279,7 @@ Item {
                     }
 
                     Text {
-                        text: control.suffixText
+                        text: root.suffixText
                         font: field.font
                         color: _textColor
                         opacity: 0.5
@@ -290,7 +290,7 @@ Item {
                     }
 
                     Loader {
-                        sourceComponent: control._trailingIcons
+                        sourceComponent: root._trailingIcons
                     }
                 }
             }
@@ -303,12 +303,12 @@ Item {
                 Text {
                     id: helpText
                     Layout.fillWidth: true
-                    text: !(control.showStatus && !field.focus) ? control.helpText : (field.acceptableInput ? control.successText : control.errorText)
+                    text: !(root.showStatus && !field.focus) ? root.helpText : (field.acceptableInput ? root.successText : root.errorText)
                     font: __app__.style.text.caption
-                    color: !(control.showStatus && !field.focus) ? _textColor : (field.acceptableInput ? __app__.style.palette.success : __app__.style.palette.error)
-                    opacity: !(control.showStatus && !field.focus) ? 0.5 : 1
+                    color: !(root.showStatus && !field.focus) ? _textColor : (field.acceptableInput ? __app__.style.palette.success : __app__.style.palette.error)
+                    opacity: !(root.showStatus && !field.focus) ? 0.5 : 1
                     verticalAlignment: field.verticalAlignment
-                    visible: control.helpText.length > 0 || ((control.showStatus && !field.focus) && !field.acceptableInput && control.errorText.length > 0) || ((control.showStatus && !field.focus) && field.acceptableInput && control.successText.length > 0)
+                    visible: root.helpText.length > 0 || ((root.showStatus && !field.focus) && !field.acceptableInput && root.errorText.length > 0) || ((root.showStatus && !field.focus) && field.acceptableInput && root.successText.length > 0)
                     elide: Text.ElideRight
                 }
 
@@ -320,7 +320,7 @@ Item {
                     color: _textColor
                     opacity: 0.5
                     verticalAlignment: field.verticalAlignment
-                    visible: control.showCharacterCount
+                    visible: root.showCharacterCount
                     elide: Text.ElideRight
                 }
             }

@@ -4,7 +4,7 @@ import QtQuick.Shapes
 import bon
 
 T.Dial {
-    id: control
+    id: root
 
     implicitWidth: Math.max(implicitBackgroundWidth + leftInset + rightInset,
                             implicitContentWidth + leftPadding + rightPadding)
@@ -14,12 +14,12 @@ T.Dial {
     property real _width: 40
     property real _height: 40
     property real _radius: Math.max(_width, _height)
-    property color _backgroundColor: control.pressed ? __app__.style.palette.controls.accent_1 : __app__.style.palette.controls.accent
-    property real _opacity: !control.enabled ? __app__.style.misc_values.disabled_opacity : 1
+    property color _backgroundColor: root.pressed ? __app__.style.palette.controls.accent_1 : __app__.style.palette.controls.accent
+    property real _opacity: !root.enabled ? __app__.style.misc_values.disabled_opacity : 1
     property real _handleWidth: 8
     property real _handleHeight: 8
-    property color _handleColor: control.enabled ? (
-                                        control.pressed || control.hovered ? __app__.style.palette.controls.highlight_1 : __app__.style.palette.controls.highlight
+    property color _handleColor: root.enabled ? (
+                                        root.pressed || root.hovered ? __app__.style.palette.controls.highlight_1 : __app__.style.palette.controls.highlight
                                  ) : __app__.style.palette.controls.highlight_1
     property real _elevation: 2
     property real _easing: __app__.style.animations.basic.type
@@ -28,7 +28,7 @@ T.Dial {
     property real _indicatorDisplacement: 6
     property real _indicatorThickness: 4
     property color _indicatorColor: _backgroundColor
-    property color _indicatorBackgroundColor: control.pressed ? __app__.style.palette.controls.background_1 : __app__.style.palette.controls.background
+    property color _indicatorBackgroundColor: root.pressed ? __app__.style.palette.controls.background_1 : __app__.style.palette.controls.background
     property bool _willSnap: snapMode !== Slider.NoSnap
     property real _snapIndicatorSpacing: (stepSize*280)/(to - from) //spacing between dots in degrees. 280 is qt's dials' angle range: control.position 0 would be angle -140, control.position 1 would be 140
     property real _minSnapIndicatorDistance: 8 // in px
@@ -44,7 +44,7 @@ T.Dial {
 
     Item {
         id: continuousIndicator
-        visible: control.showValue && !_shouldDisplaySnapIndicators
+        visible: root.showValue && !_shouldDisplaySnapIndicators
         anchors.centerIn: parent
         width: parent.width + _indicatorDisplacement*2
         height: parent.height + _indicatorDisplacement*2
@@ -89,7 +89,7 @@ T.Dial {
             anchors.fill: parent
 
             property real start: 0.111
-            property real end: (control.angle+180)/360
+            property real end: (root.angle+180)/360
 
             ShapePath {
                 startX: -Math.sin(continuousIndicatorForeground.start*2*Math.PI)*((continuousIndicatorForeground.width/2)-(_indicatorThickness/2)) + continuousIndicatorForeground.width/2;
@@ -118,7 +118,7 @@ T.Dial {
 
     Item {
         id: snapIndicator
-        visible: control.showValue && _shouldDisplaySnapIndicators
+        visible: root.showValue && _shouldDisplaySnapIndicators
         anchors.centerIn: parent
         width: parent.width + _indicatorDisplacement*2
         height: parent.height + _indicatorDisplacement*2
@@ -143,7 +143,7 @@ T.Dial {
                     angle: dot.angle
                 }
 
-                color: angle <= (control.angle+180) ? _indicatorColor : _indicatorBackgroundColor
+                color: angle <= (root.angle+180) ? _indicatorColor : _indicatorBackgroundColor
                 radius: Math.max(width, height)/2
 
                 Behavior on color {
@@ -168,7 +168,7 @@ T.Dial {
         implicitHeight: parent.height
         radius: _radius
         color: _backgroundColor
-        opacity: control.enabled ? 1 : 0.3
+        opacity: root.enabled ? 1 : 0.3
 
         Behavior on color {
             ColorAnimation {
@@ -179,8 +179,8 @@ T.Dial {
     }
 
     handle: Rectangle {
-        x: control.background.x + control.background.width / 2 - width / 2
-        y: control.background.y + control.background.height / 2 - height / 2
+        x: root.background.x + root.background.width / 2 - width / 2
+        y: root.background.y + root.background.height / 2 - height / 2
         width: _handleWidth
         height: _handleHeight
         color: _handleColor
@@ -198,9 +198,9 @@ T.Dial {
                 y: -8
             },
             Rotation {
-                angle: control.angle
-                origin.x: control.handle.width / 2
-                origin.y: control.handle.height / 2
+                angle: root.angle
+                origin.x: root.handle.width / 2
+                origin.y: root.handle.height / 2
 
                 Behavior on angle {
                     enabled: _willSnap

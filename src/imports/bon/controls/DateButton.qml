@@ -4,7 +4,7 @@ import QtQuick.Templates as T
 import bon as Bon
 
 T.AbstractButton {
-    id: control
+    id: root
 
     implicitWidth: Math.max(implicitBackgroundWidth + leftInset + rightInset,
                                 implicitContentWidth + leftPadding + rightPadding)
@@ -21,27 +21,27 @@ T.AbstractButton {
                                ) : (
                                    __app__.style.palette.text.label
                                )
-    property real _textOpacity: control.down || control.hovered || !control.enabled ? __app__.style.palette.controls.highlight_1.a : 1
+    property real _textOpacity: root.down || root.hovered || !root.enabled ? __app__.style.palette.controls.highlight_1.a : 1
     property color _backgroundColor: rangeSelected ? (
-                                         control.down ? __app__.style.palette.controls.accent : __app__.style.palette.controls.accent_1
+                                         root.down ? __app__.style.palette.controls.accent : __app__.style.palette.controls.accent_1
                                      ) : (
                                          checked ? (
-                                             control.down ? __app__.style.palette.controls.accent_1 : __app__.style.palette.controls.accent
+                                             root.down ? __app__.style.palette.controls.accent_1 : __app__.style.palette.controls.accent
                                          ) : (
-                                             control.down ? __app__.style.palette.controls.background_1 : (
-                                                 control.hovered ? __app__.style.palette.controls.background : __app__.style.palette.background
+                                             root.down ? __app__.style.palette.controls.background_1 : (
+                                                 root.hovered ? __app__.style.palette.controls.background : __app__.style.palette.background
                                              )
                                          )
                                      )
     property color _borderColor: __app__.style.palette.controls.background
-    property real _borderWidth: today && !control.down && !control.hovered && !control.checked ? 2 : 0
+    property real _borderWidth: today && !root.down && !root.hovered && !root.checked ? 2 : 0
     property real _radius: Math.max(width,height)/2
-    property real _elevation: control.checked ? (
-                                  control.down ? 1 : 2
+    property real _elevation: root.checked ? (
+                                  root.down ? 1 : 2
                               ) : 0
     property real _width: 40
     property real _height: 40
-    property real _opacity: !control.enabled ? __app__.style.misc_values.disabled_opacity : 1
+    property real _opacity: !root.enabled ? __app__.style.misc_values.disabled_opacity : 1
     property real _easing: __app__.style.animations.basic.type
     property real _duration: __app__.style.animations.basic.duration
 
@@ -51,7 +51,7 @@ T.AbstractButton {
     width: _width
     height: _height
     opacity: _opacity
-    layer.enabled: !control.enabled
+    layer.enabled: !root.enabled
 
 
     Behavior on _backgroundColor {
@@ -87,7 +87,7 @@ T.AbstractButton {
 
         Text {
             id: text
-            text: control.text
+            text: root.text
             anchors.fill: parent
             color: _textColor
             font: __app__.style.text.button
@@ -98,7 +98,7 @@ T.AbstractButton {
     }
 
     background: Rectangle {
-        anchors.fill: control
+        anchors.fill: root
         color: _backgroundColor
         radius: _radius
         border.color: _borderColor

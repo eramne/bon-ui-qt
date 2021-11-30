@@ -4,7 +4,7 @@ import Qt5Compat.GraphicalEffects
 import bon
 
 T.Slider {
-    id: control
+    id: root
     width: 220
     height: 20
 
@@ -24,7 +24,7 @@ T.Slider {
     Elevation {
         anchors.fill: handle
         radius: handle.radius
-        elevation: control.pressed ? 1 : 2
+        elevation: root.pressed ? 1 : 2
         z: -1
     }
 
@@ -32,7 +32,7 @@ T.Slider {
         radius: 8
         width: 16
         height: 16
-        x: (control.position * (control.width-control.height)) + (control.height - width)/2
+        x: (root.position * (root.width-root.height)) + (root.height - width)/2
         anchors.verticalCenter: parent.verticalCenter
 
         color: "white"
@@ -71,10 +71,10 @@ T.Slider {
         Rectangle {
             anchors.fill: parent
             radius: parent.radius
-            border.width: control.hovered && !control.pressed ? 4 : 2
+            border.width: root.hovered && !root.pressed ? 4 : 2
             //border.color: control.pressed ? __app__.style.palette.controls.highlight_1 : __app__.style.palette.controls.highlight
-            border.color: Qt.hsla(0,0,((1-control.color.hslLightness)*control.color.a) > 0.3 ? 1 : 0,control.pressed ? 0.8 : 1)
-            color: control.color
+            border.color: Qt.hsla(0,0,((1-root.color.hslLightness)*root.color.a) > 0.3 ? 1 : 0,root.pressed ? 0.8 : 1)
+            color: root.color
 
             Behavior on border.width {
                 NumberAnimation {
@@ -131,7 +131,7 @@ T.Slider {
         Rectangle {
             anchors.fill: parent
             radius: parent.radius
-            gradient: control.gradient
+            gradient: root.gradient
         }
     }
 }

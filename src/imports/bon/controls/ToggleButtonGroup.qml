@@ -2,6 +2,7 @@ import QtQuick 2.0
 import Qt5Compat.GraphicalEffects
 
 Item {
+    id: root
     width: buttonRow.width
     height: buttonRow.height
     default property alias buttons: buttonRow.children

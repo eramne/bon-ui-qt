@@ -3,7 +3,7 @@ import QtQuick.Templates as T
 import bon
 
 T.Control {
-    id: control
+    id: root
 
     width: 220
     height: 220
@@ -15,7 +15,7 @@ T.Control {
     property real value: 0
 
     property point _position: Qt.point(saturation, 1-value)
-    property alias position: control._position
+    property alias position: root._position
 
     property bool pressed: mouseArea.pressed
 
@@ -24,26 +24,26 @@ T.Control {
 
     Item {
         id: handle
-        x: (control.position.x * control.width) - width/2
-        y: (control.position.y * control.height) - height/2
+        x: (root.position.x * root.width) - width/2
+        y: (root.position.y * root.height) - height/2
         width: 16
         height: 16
 
         Elevation {
             anchors.fill: indicator
             radius: indicator.radius
-            elevation: control.pressed ? 1 : 2
+            elevation: root.pressed ? 1 : 2
             z: -1
         }
 
         Rectangle {
             id: indicator
             anchors.fill: parent
-            color: control.color
+            color: root.color
             radius: Math.max(width,height)/2;
 
-            border.width: mouseArea.containsMouse && !control.pressed ? 4 : 2
-            border.color: Qt.hsla(0,0,((1-control.color.hslLightness)*control.color.a) > 0.3 ? 1 : 0,control.pressed ? 0.8 : 1)
+            border.width: mouseArea.containsMouse && !root.pressed ? 4 : 2
+            border.color: Qt.hsla(0,0,((1-root.color.hslLightness)*root.color.a) > 0.3 ? 1 : 0,root.pressed ? 0.8 : 1)
 
             Behavior on border.width {
                 NumberAnimation {
@@ -67,7 +67,7 @@ T.Control {
         layer.enabled: true
         layer.effect: ShaderEffect {
             anchors.fill: parent
-            property real hue: control.color.hsvHue
+            property real hue: root.color.hsvHue
 
             fragmentShader: '../effects/colorareagradient.frag.qsb'
         }
@@ -107,8 +107,8 @@ T.Control {
             if (v > 1) {
                 v = 1;
             }
-            control.saturation = s;
-            control.value = v;
+            root.saturation = s;
+            root.value = v;
         }
     }
 }

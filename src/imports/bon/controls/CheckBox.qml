@@ -4,14 +4,14 @@ import QtQuick.Shapes
 import bon
 
 T.CheckBox {
-    id: control
+    id: root
 
     implicitWidth: indicator.width + leftPadding + rightPadding
     implicitHeight: indicator.height + topPadding + bottomPadding
 
     property bool mixed: false
     hoverEnabled: enabled
-    property int effectiveState: mixed ? -1 : control.checked //0 = off, 1 = on, -1 = mixed
+    property int effectiveState: mixed ? -1 : root.checked //0 = off, 1 = on, -1 = mixed
 
     onClicked: function () {
         mixed = false;
@@ -20,47 +20,47 @@ T.CheckBox {
     property real _width: 20
     property real _height: 20
     property real _radius: 4
-    property color _backgroundColor: control.effectiveState === 0 ? (
+    property color _backgroundColor: root.effectiveState === 0 ? (
                                          __app__.style.palette.background
-                                     ) : control.effectiveState === 1  ? (
-                                         control.down ? __app__.style.palette.controls.accent_1 : __app__.style.palette.controls.accent
+                                     ) : root.effectiveState === 1  ? (
+                                         root.down ? __app__.style.palette.controls.accent_1 : __app__.style.palette.controls.accent
                                      ) : (
-                                         control.down ? __app__.style.palette.controls.accent : __app__.style.palette.controls.accent_1
+                                         root.down ? __app__.style.palette.controls.accent : __app__.style.palette.controls.accent_1
                                      )
-    property real _opacity: !control.enabled ? __app__.style.misc_values.disabled_opacity : 1
-    property color _borderColor: control.effectiveState == 0 ? (
-                                     control.down ? __app__.style.palette.controls.background_1 : __app__.style.palette.controls.background
+    property real _opacity: !root.enabled ? __app__.style.misc_values.disabled_opacity : 1
+    property color _borderColor: root.effectiveState == 0 ? (
+                                     root.down ? __app__.style.palette.controls.background_1 : __app__.style.palette.controls.background
                                  ) : "#00000000"
-    property real _borderWidth: control.effectiveState == 0 ? 2 : 0
-    property real _iconWidth: control.effectiveState == 1  ? 3
-                                  : (control.effectiveState == -1 && (control.hovered || control.down) ? 3
-                                  : (control.effectiveState == -1 ? 4
-                                  : (control.effectiveState == 0 && !control.hovered && !control.down) ? 0 : 2)
+    property real _borderWidth: root.effectiveState == 0 ? 2 : 0
+    property real _iconWidth: root.effectiveState == 1  ? 3
+                                  : (root.effectiveState == -1 && (root.hovered || root.down) ? 3
+                                  : (root.effectiveState == -1 ? 4
+                                  : (root.effectiveState == 0 && !root.hovered && !root.down) ? 0 : 2)
                               );
-    property color _iconColor: (control.effectiveState == 1 || control.effectiveState == -1) && (!control.hovered && !control.down) ? (
+    property color _iconColor: (root.effectiveState == 1 || root.effectiveState == -1) && (!root.hovered && !root.down) ? (
                                     __app__.style.palette.controls.highlight
-                                ) : (control.effectiveState == 1 || control.effectiveState == -1) ? (
+                                ) : (root.effectiveState == 1 || root.effectiveState == -1) ? (
                                     __app__.style.palette.controls.highlight_1
-                                ) : (!control.hovered && !control.down) ? __app__.style.palette.background : (
-                                    control.down ? __app__.style.palette.controls.background_1 : __app__.style.palette.controls.background
+                                ) : (!root.hovered && !root.down) ? __app__.style.palette.background : (
+                                    root.down ? __app__.style.palette.controls.background_1 : __app__.style.palette.controls.background
                                 );
     property real _iconRadius: 8
     property real _padding: 0
-    property real _elevation: control.enabled ? (
-                                  control.effectiveState == 0 ? (
-                                      !control.down ? 1 : 0
+    property real _elevation: root.enabled ? (
+                                  root.effectiveState == 0 ? (
+                                      !root.down ? 1 : 0
                                   ) : (
-                                      !control.down ? 2 : 1
+                                      !root.down ? 2 : 1
                                   )
                               ) : 0;
     property real _easing: __app__.style.animations.basic.type
     property real _duration: __app__.style.animations.basic.duration
-    property bool _useMixedIcon: control.mixed && !control.down && !control.hovered
+    property bool _useMixedIcon: root.mixed && !root.down && !root.hovered
 
     padding: _padding
 
     opacity: _opacity
-    layer.enabled: !control.enabled
+    layer.enabled: !root.enabled
 
     Elevation {
         anchors.fill: indicator
@@ -70,11 +70,11 @@ T.CheckBox {
     }
 
     indicator: Rectangle {
-        width: control._width;
-        height: control._height;
+        width: root._width;
+        height: root._height;
 
-        x: control.text ? (control.mirrored ? control.width - width - control.rightPadding : control.leftPadding) : control.leftPadding + (control.availableWidth - width) / 2
-        y: control.topPadding + (control.availableHeight - height) / 2
+        x: root.text ? (root.mirrored ? root.width - width - root.rightPadding : root.leftPadding) : root.leftPadding + (root.availableWidth - width) / 2
+        y: root.topPadding + (root.availableHeight - height) / 2
 
         radius: _radius
         color: _backgroundColor
