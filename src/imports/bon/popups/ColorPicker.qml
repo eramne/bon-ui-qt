@@ -7,8 +7,8 @@ import bon as Bon
 Bon.Dropdown {
     id: root
 
-    width: 275
-    height: contentItem.implicitHeight
+    targetWidth: 275
+    targetHeight: popupContentLayout.height + overflowArea.topMargin + overflowArea.bottomMargin
 
     property color color: "red"
     property color editColor: color
@@ -29,14 +29,17 @@ Bon.Dropdown {
         root.close();
     }
 
-    contentItem: C.Pane {
-        width: parent.width
-        padding: 20
-        background: Rectangle {color: "transparent"}
+    contentItem: Bon.OverflowArea {
+        id: overflowArea
+        anchors.fill: parent
+        contentWidth: popupContentLayout.width
+
+        margins: 20
 
         ColumnLayout {
+            id: popupContentLayout
             spacing: 10
-            width: parent.width
+            width: root.availableWidth - overflowArea.leftMargin - overflowArea.rightMargin
 
             RowLayout {
                 Layout.fillWidth: true

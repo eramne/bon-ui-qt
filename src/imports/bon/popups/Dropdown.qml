@@ -14,7 +14,6 @@ Bon.Popup {
 
     function updatePopupPos() {
         y = outOfBounds(x, target.height + 10 + height) ? target.height + 10 : -height - 10;
-        contentItem.height = Math.min(target.maxContentHeight, contentItem.contentHeight);
     }
 
     onAboutToShow: {

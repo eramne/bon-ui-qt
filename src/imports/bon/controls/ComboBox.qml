@@ -10,7 +10,7 @@ TextInputBase {
     property real _easing: __app__.style.animations.basic.type
     property real _duration: __app__.style.animations.basic.duration
 
-    property real maxContentHeight: 300
+    property real maxPopupHeight: 300
 
     property int _hoveredIndex: -1
     property int firstVisibleIndex: {
@@ -226,7 +226,8 @@ TextInputBase {
     }
 
     property Bon.Dropdown popup: Bon.Dropdown {
-        width: control.width
+        targetWidth: control.width
+        //targetHeight: control.maxPopupHeight
 
         HoverHandler {
             onHoveredChanged: {
@@ -242,7 +243,7 @@ TextInputBase {
 
             ListView {
                 id: listView
-                height: Math.min(control.maxContentHeight, contentHeight)
+                height: Math.min(control.maxPopupHeight-parent.topPadding-parent.bottomPadding, contentHeight)
                 width: parent.width - parent.leftPadding - parent.rightPadding
                 model: control.model
                 delegate: control.delegate

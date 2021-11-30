@@ -38,5 +38,6 @@ Blending 1.0 effects/Blending.qml
 BlendingRectangularGlow 1.0 effects/BlendingRectangularGlow.qml
 Elevation 1.0 effects/Elevation.qml
 
+OverflowArea 1.0 layout/OverflowArea.qml
 Option 1.0 layout/Option.qml
 Choice 1.0 layout/Choice.qml

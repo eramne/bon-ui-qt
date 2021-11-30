@@ -11,7 +11,7 @@ T.ScrollBar {
                              implicitContentHeight + topPadding + bottomPadding)
 
     padding: 4
-    visible: control.policy !== T.ScrollBar.AlwaysOff
+    visible: control.policy !== T.ScrollBar.AlwaysOff && (control.policy === T.ScrollBar.AsNeeded ? control.size < 1 : true)
     minimumSize: orientation == Qt.Horizontal ? height / width : width / height
 
     property color _color: control.pressed ? __app__.style.palette.controls.background_1 : __app__.style.palette.controls.background
