@@ -2,9 +2,9 @@ import QtQuick
 import QtQuick.Layouts
 import QtQuick.Controls as C
 import Qt5Compat.GraphicalEffects
-import bon as Bon
+import bon
 
-Bon.Dropdown {
+Dropdown {
     id: root
 
     targetWidth: 275
@@ -29,7 +29,7 @@ Bon.Dropdown {
         root.close();
     }
 
-    contentItem: Bon.OverflowArea {
+    contentItem: OverflowArea {
         id: overflowArea
         anchors.fill: parent
         contentWidth: popupContentLayout.width
@@ -48,11 +48,11 @@ Bon.Dropdown {
                 Text {
                     Layout.fillWidth: true
                     text: "Adjust Color"
-                    color: __app__.style.palette.text.heading
-                    font: __app__.style.text.heading
+                    color: Theme.palette.text.heading
+                    font: Theme.text.heading
                 }
 
-                Bon.Button {
+                Button {
                     Layout.preferredWidth: 40
                     Layout.preferredHeight: 40
                     order: 3
@@ -62,7 +62,7 @@ Bon.Dropdown {
                     }
                 }
 
-                Bon.Button {
+                Button {
                     Layout.preferredWidth: 40
                     Layout.preferredHeight: 40
                     order: 2
@@ -167,7 +167,7 @@ Bon.Dropdown {
                 }
             }
 
-            Bon.ColorArea {
+            ColorArea {
                 Layout.fillWidth: true
                 id: colorArea
                 hue: root.editColor.hsvHue;
@@ -187,7 +187,7 @@ Bon.Dropdown {
                 }
             }
 
-            Bon.ColorSlider {
+            ColorSlider {
                 id: hueSlider
                 Layout.fillWidth: true
                 color: Qt.hsva(root.editColor.hsvHue, 1, 1, 1)
@@ -212,7 +212,7 @@ Bon.Dropdown {
                 }
             }
 
-            Bon.ColorSlider {
+            ColorSlider {
                 id: alphaSlider
                 value: 1
                 Layout.fillWidth: true
@@ -237,7 +237,7 @@ Bon.Dropdown {
 
             //Number/Hex inputs
 
-            Bon.ComboBox {
+            ComboBox {
                 id: textInputTypeBox
                 width: 100
                 editable: false
@@ -258,7 +258,7 @@ Bon.Dropdown {
                 RowLayout {
                     Layout.fillWidth: true
                     spacing: 10
-                    Bon.NumberField {
+                    NumberField {
                         Layout.fillWidth: true
                         from: 0
                         to: 255
@@ -273,7 +273,7 @@ Bon.Dropdown {
                             updateVal();
                         }
                     }
-                    Bon.NumberField {
+                    NumberField {
                         Layout.fillWidth: true
                         from: 0
                         to: 255
@@ -288,7 +288,7 @@ Bon.Dropdown {
                             updateVal();
                         }
                     }
-                    Bon.NumberField {
+                    NumberField {
                         Layout.fillWidth: true
                         from: 0
                         to: 255
@@ -303,7 +303,7 @@ Bon.Dropdown {
                             updateVal();
                         }
                     }
-                    Bon.NumberField {
+                    NumberField {
                         Layout.fillWidth: true
                         from: 0
                         to: 100
@@ -325,7 +325,7 @@ Bon.Dropdown {
                 RowLayout {
                     Layout.fillWidth: true
                     spacing: 10
-                    Bon.NumberField {
+                    NumberField {
                         Layout.fillWidth: true
                         from: 0
                         to: 360
@@ -340,7 +340,7 @@ Bon.Dropdown {
                             updateVal();
                         }
                     }
-                    Bon.NumberField {
+                    NumberField {
                         Layout.fillWidth: true
                         from: 0
                         to: 100
@@ -355,7 +355,7 @@ Bon.Dropdown {
                             updateVal();
                         }
                     }
-                    Bon.NumberField {
+                    NumberField {
                         Layout.fillWidth: true
                         from: 0
                         to: 100
@@ -370,7 +370,7 @@ Bon.Dropdown {
                             updateVal();
                         }
                     }
-                    Bon.NumberField {
+                    NumberField {
                         Layout.fillWidth: true
                         from: 0
                         to: 100
@@ -389,7 +389,7 @@ Bon.Dropdown {
 
 
                 //HEX
-                Bon.TextField {
+                TextField {
                     Layout.fillWidth: true
                     field.onAccepted: {
                         root.editColor = field.text;

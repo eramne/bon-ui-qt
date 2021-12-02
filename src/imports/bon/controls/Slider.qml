@@ -24,20 +24,17 @@ T.Slider {
     property real _highlightHeight: horizontal ? 8 : (_willSnap ? 4 : 8)
     property real _backgroundRadius: 4
     property real _padding: 0
-    property color _backgroundOffColor: root.pressed ? __app__.style.palette.controls.background_1 : __app__.style.palette.controls.background
+    property color _backgroundOffColor: root.pressed ? Theme.palette.background_2 : Theme.palette.background_1
     property color _backgroundOnColor: root.enabled ? (
-                                           root.pressed ? __app__.style.palette.controls.accent_1 : __app__.style.palette.controls.accent
-                                       ) : __app__.style.palette.controls.background_1
+                                           root.pressed ? Theme.palette.accent_1 : Theme.palette.accent
+                                       ) : Theme.palette.background_2
     property color _handleColor: _backgroundOnColor
-    property color _highlightColor: root.pressed || root.hovered || !root.enabled ? __app__.style.palette.controls.highlight_1 : __app__.style.palette.controls.highlight
-    property real _opacity: !root.enabled ? __app__.style.misc_values.disabled_opacity : 1
+    property color _highlightColor: root.pressed || root.hovered || !root.enabled ? Theme.palette.highlight_1 : Theme.palette.highlight
     property real _elevation: 1
     property real _handleElevation: root.pressed ? 1 : 2
-    property real _easing: __app__.style.animations.basic.type
-    property real _duration: __app__.style.animations.basic.duration
     property real _snapIndicatorWidth: 4
     property real _snapIndicatorHeight: 4
-    property color _snapIndicatorColor: __app__.style.palette.controls.background
+    property color _snapIndicatorColor: Theme.palette.background_1
     property real _minSnapIndicatorDistance: 8
     property bool _willSnap: snapMode !== Slider.NoSnap && (stepSize*(horizontal ? stepIndicators.width : stepIndicators.height))/(to - from) > 1
     property real _snapIndicatorSpacing: (stepSize*(horizontal ? stepIndicators.width : stepIndicators.height))/(to - from) - (horizontal ? _snapIndicatorWidth : _snapIndicatorHeight)
@@ -45,7 +42,7 @@ T.Slider {
 
     padding: _padding
 
-    opacity: _opacity
+    opacity: !root.enabled ? Theme.disabled_opacity : 1
     layer.enabled: !root.enabled
 
     width: horizontal ? 100 : Math.max(_backgroundWidth,_handleLength)
@@ -97,22 +94,22 @@ T.Slider {
 
         Behavior on color {
             ColorAnimation {
-                duration: _duration;
-                easing.type: _easing
+                duration: Theme.animations.basic.duration
+                easing.type: Theme.animations.basic.type
             }
         }
 
         Behavior on x {
             animation: NumberAnimation {
-                duration: _duration;
-                easing.type: _easing;
+                duration: Theme.animations.basic.duration
+                easing.type: Theme.animations.basic.type
             }
         }
 
         Behavior on y {
             animation: NumberAnimation {
-                duration: _duration;
-                easing.type: _easing;
+                duration: Theme.animations.basic.duration
+                easing.type: Theme.animations.basic.type
             }
         }
 
@@ -127,8 +124,8 @@ T.Slider {
 
             Behavior on color {
                 ColorAnimation {
-                    duration: _duration;
-                    easing.type: _easing
+                    duration: Theme.animations.basic.duration
+                    easing.type: Theme.animations.basic.type
                 }
             }
         }
@@ -147,8 +144,8 @@ T.Slider {
 
         Behavior on color {
             ColorAnimation {
-                duration: _duration;
-                easing.type: _easing
+                duration: Theme.animations.basic.duration
+                easing.type: Theme.animations.basic.type
             }
         }
 

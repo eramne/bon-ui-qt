@@ -2,13 +2,10 @@ import QtQuick
 import QtQuick.Layouts
 import QtQuick.Templates as T
 import QtQml.Models
-import bon as Bon
+import bon
 
 TextInputBase {
     id: root
-
-    property real _easing: __app__.style.animations.basic.type
-    property real _duration: __app__.style.animations.basic.duration
 
     property real maxPopupHeight: 300
 
@@ -140,7 +137,7 @@ TextInputBase {
             Layout.alignment: Qt.AlignVCenter
             rightPadding: 0
 
-            Bon.SmallIconButton {
+            SmallIconButton {
                 id: iconButton
                 offIcon: "expand_more"
 
@@ -191,14 +188,14 @@ TextInputBase {
         background: Rectangle {
             anchors.fill: parent
             radius: 4
-            color: item.pressed ? __app__.style.palette.controls.background_1 : (
-                       highlightedIndex === item.index ? __app__.style.palette.controls.background : Qt.alpha(__app__.style.palette.background, 0)
+            color: item.pressed ? Theme.palette.background_2 : (
+                       highlightedIndex === item.index ? Theme.palette.background_1 : Qt.alpha(Theme.palette.background, 0)
                    )
 
             Behavior on color {
                 ColorAnimation {
-                    duration: _duration;
-                    easing.type: _easing
+                    duration: Theme.animations.basic.duration
+                    easing.type: Theme.animations.basic.type
                 }
             }
         }
@@ -215,8 +212,8 @@ TextInputBase {
                 text: item.name
                 height: 28
                 verticalAlignment: Text.AlignVCenter
-                font: __app__.style.text.body
-                color: __app__.style.palette.text.body
+                font: Theme.text.body
+                color: Theme.palette.text.body
             }
         }
     }
@@ -225,9 +222,8 @@ TextInputBase {
 
     }
 
-    property Bon.Dropdown popup: Bon.Dropdown {
+    property Dropdown popup: Dropdown {
         targetWidth: root.width
-        //targetHeight: control.maxPopupHeight
 
         HoverHandler {
             onHoveredChanged: {

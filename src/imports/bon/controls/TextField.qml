@@ -15,7 +15,7 @@ TextInputBase {
 
             Icon {
                 name: root.field.acceptableInput ? "done" : "close"
-                color: root.field.acceptableInput ? __app__.style.palette.success : __app__.style.palette.error
+                color: root.field.acceptableInput ? Theme.palette.success : Theme.palette.error
                 visible: !root.field.focus && root.showStatus ? true : false
             }
 

@@ -19,9 +19,6 @@ T.Control {
 
     property bool pressed: mouseArea.pressed
 
-    property real _easing: __app__.style.animations.basic.type
-    property real _duration: __app__.style.animations.basic.duration
-
     Item {
         id: handle
         x: (root.position.x * root.width) - width/2
@@ -47,15 +44,15 @@ T.Control {
 
             Behavior on border.width {
                 NumberAnimation {
-                    duration: _duration;
-                    easing.type: _easing;
+                    duration: Theme.animations.basic.duration;
+                    easing.type: Theme.animations.basic.type;
                 }
             }
 
             Behavior on border.color {
                 ColorAnimation {
-                    duration: _duration;
-                    easing.type: _easing;
+                    duration: Theme.animations.basic.duration;
+                    easing.type: Theme.animations.basic.type;
                 }
             }
         }

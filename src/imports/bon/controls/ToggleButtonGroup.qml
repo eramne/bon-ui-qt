@@ -1,4 +1,4 @@
-import QtQuick 2.0
+import QtQuick
 import Qt5Compat.GraphicalEffects
 
 Item {
@@ -6,8 +6,6 @@ Item {
     width: buttonRow.width
     height: buttonRow.height
     default property alias buttons: buttonRow.children
-
-    property real _radius: 8
 
     Row {
         id: buttonRow
@@ -29,7 +27,7 @@ Item {
     Rectangle {
         id: mask
         anchors.fill: parent
-        radius: _radius
+        radius: 8
         color: "black"
     }
 }

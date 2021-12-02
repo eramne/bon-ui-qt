@@ -2,6 +2,9 @@ module bon
 
 App 1.0 core/App.qml
 Icon 1.0 core/Icon.qml
+Fonts 1.0 core/Fonts.qml
+singleton Theme 1.0 core/Theme.qml
+singleton Bon 1.0 core/Bon.qml
 
 Switch 1.0 controls/Switch.qml
 RadioButton 1.0 controls/RadioButton.qml
@@ -16,6 +19,7 @@ InputChip 1.0 controls/InputChip.qml
 ChoiceChip 1.0 controls/ChoiceChip.qml
 FilterChip 1.0 controls/FilterChip.qml
 ActionChip 1.0 controls/ActionChip.qml
+TextInputBase 1.0 controls/TextInputBase.qml
 TextField 1.0 controls/TextField.qml
 TextArea 1.0 controls/TextArea.qml
 NumberField 1.0 controls/NumberField.qml

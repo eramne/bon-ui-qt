@@ -8,10 +8,9 @@ Window {
     width: 800
     height: 600
     visible: true
-    title: qsTr("Hello World")
+    title: qsTr("umagos")
 
     Bon.App {
-        id: __app__
 
         Flickable {
             id: scrollview

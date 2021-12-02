@@ -14,15 +14,11 @@ T.ProgressBar {
 
     property real _height: 8
     property real _radius: _height/2
-    property color _indicatorColor: state === ProgressBar.State.Running ? __app__.style.palette.controls.accent
-                                         : state === ProgressBar.State.Paused ? __app__.style.palette.controls.background_1
-                                         : state === ProgressBar.State.Success ? __app__.style.palette.success
-                                         : __app__.style.palette.error
-    property color _backgroundColor: root.state !== ProgressBar.State.Success && root.state !== ProgressBar.State.Error ? __app__.style.palette.controls.background : _indicatorColor
-    property real _progressEasing: Easing.Linear
-    property real _progressDuration: __app__.style.animations.basic.duration
-    property real _easing: __app__.style.animations.basic.type
-    property real _duration: __app__.style.animations.basic.duration
+    property color _indicatorColor: state === ProgressBar.State.Running ? Theme.palette.accent
+                                         : state === ProgressBar.State.Paused ? Theme.palette.background_2
+                                         : state === ProgressBar.State.Success ? Theme.palette.success
+                                         : Theme.palette.error
+    property color _backgroundColor: root.state !== ProgressBar.State.Success && root.state !== ProgressBar.State.Error ? Theme.palette.background_1 : _indicatorColor
 
     enum State {
         Running,
@@ -82,24 +78,24 @@ T.ProgressBar {
 
             Behavior on color {
                 ColorAnimation {
-                    duration: __app__.style.animations.progressColor.duration;
-                    easing.type: __app__.style.animations.progressColor.type;
+                    duration: Theme.animations.progressColor.duration;
+                    easing.type: Theme.animations.progressColor.type;
                 }
             }
 
             Behavior on indeterminateRotatorPosition {
                 id: posAnimation
                 animation: NumberAnimation {
-                    duration: __app__.style.animations.progressRotate.duration;
-                    easing.type: __app__.style.animations.progressRotate.type;
+                    duration: Theme.animations.progressRotate.duration;
+                    easing.type: Theme.animations.progressRotate.type;
                 }
             }
 
             Behavior on width {
                 enabled: !root.indeterminate
                 animation: NumberAnimation {
-                    duration: __app__.style.animations.progressStep.duration;
-                    easing.type: __app__.style.animations.progressStep.type;
+                    duration: Theme.animations.progressStep.duration;
+                    easing.type: Theme.animations.progressStep.type;
                 }
             }
         }
@@ -114,8 +110,8 @@ T.ProgressBar {
 
         Behavior on color {
             ColorAnimation {
-                duration: __app__.style.animations.progressColor.duration;
-                easing.type: __app__.style.animations.progressColor.type;
+                duration: Theme.animations.progressColor.duration;
+                easing.type: Theme.animations.progressColor.type;
             }
         }
     }

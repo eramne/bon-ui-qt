@@ -39,7 +39,7 @@ TextInputBase {
     function valueFromText(text, locale) {
         var val = 0;
         try {
-            var tmp = __app__.bigEval.exec(text);
+            var tmp = Bon.bigEval.exec(text);
             if (tmp !== "ERROR") {
                 val = parseFloat(tmp);
             } else {

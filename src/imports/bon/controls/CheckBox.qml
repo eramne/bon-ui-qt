@@ -21,15 +21,15 @@ T.CheckBox {
     property real _height: 20
     property real _radius: 4
     property color _backgroundColor: root.effectiveState === 0 ? (
-                                         __app__.style.palette.background
+                                         Theme.palette.background
                                      ) : root.effectiveState === 1  ? (
-                                         root.down ? __app__.style.palette.controls.accent_1 : __app__.style.palette.controls.accent
+                                         root.down ? Theme.palette.accent_1 : Theme.palette.accent
                                      ) : (
-                                         root.down ? __app__.style.palette.controls.accent : __app__.style.palette.controls.accent_1
+                                         root.down ? Theme.palette.accent : Theme.palette.accent_1
                                      )
-    property real _opacity: !root.enabled ? __app__.style.misc_values.disabled_opacity : 1
+    property real _opacity: !root.enabled ? Theme.disabled_opacity : 1
     property color _borderColor: root.effectiveState == 0 ? (
-                                     root.down ? __app__.style.palette.controls.background_1 : __app__.style.palette.controls.background
+                                     root.down ? Theme.palette.background_2 : Theme.palette.background_1
                                  ) : "#00000000"
     property real _borderWidth: root.effectiveState == 0 ? 2 : 0
     property real _iconWidth: root.effectiveState == 1  ? 3
@@ -38,11 +38,11 @@ T.CheckBox {
                                   : (root.effectiveState == 0 && !root.hovered && !root.down) ? 0 : 2)
                               );
     property color _iconColor: (root.effectiveState == 1 || root.effectiveState == -1) && (!root.hovered && !root.down) ? (
-                                    __app__.style.palette.controls.highlight
+                                    Theme.palette.highlight
                                 ) : (root.effectiveState == 1 || root.effectiveState == -1) ? (
-                                    __app__.style.palette.controls.highlight_1
-                                ) : (!root.hovered && !root.down) ? __app__.style.palette.background : (
-                                    root.down ? __app__.style.palette.controls.background_1 : __app__.style.palette.controls.background
+                                    Theme.palette.highlight_1
+                                ) : (!root.hovered && !root.down) ? Theme.palette.background : (
+                                    root.down ? Theme.palette.background_2 : Theme.palette.background_1
                                 );
     property real _iconRadius: 8
     property real _padding: 0
@@ -53,8 +53,6 @@ T.CheckBox {
                                       !root.down ? 2 : 1
                                   )
                               ) : 0;
-    property real _easing: __app__.style.animations.basic.type
-    property real _duration: __app__.style.animations.basic.duration
     property bool _useMixedIcon: root.mixed && !root.down && !root.hovered
 
     padding: _padding
@@ -84,22 +82,22 @@ T.CheckBox {
 
         Behavior on color {
             ColorAnimation {
-                duration: _duration;
-                easing.type: _easing
+                duration: Theme.animations.basic.duration
+                easing.type: Theme.animations.basic.type
             }
         }
 
         Behavior on border.width {
             animation: NumberAnimation {
-                duration: _duration;
-                easing.type: _easing;
+                duration: Theme.animations.basic.duration
+                easing.type: Theme.animations.basic.type
             }
         }
 
         Behavior on border.color {
             ColorAnimation {
-                duration: _duration;
-                easing.type: _easing
+                duration: Theme.animations.basic.duration
+                easing.type: Theme.animations.basic.type
             }
         }
 
@@ -120,15 +118,15 @@ T.CheckBox {
 
                 Behavior on strokeColor {
                     animation: ColorAnimation {
-                        duration: _duration;
-                        easing.type: _easing;
+                        duration: Theme.animations.basic.duration
+                        easing.type: Theme.animations.basic.type
                     }
                 }
 
                 Behavior on strokeWidth {
                     animation: NumberAnimation {
-                        duration: _duration;
-                        easing.type: _easing;
+                        duration: Theme.animations.basic.duration
+                        easing.type: Theme.animations.basic.type
                     }
                 }
 
@@ -137,40 +135,40 @@ T.CheckBox {
 
                 Behavior on startX {
                     animation: NumberAnimation {
-                        duration: _duration;
-                        easing.type: _easing;
+                        duration: Theme.animations.basic.duration
+                        easing.type: Theme.animations.basic.type
                     }
                 }
 
                 PathLine {
-                    x: (!_useMixedIcon ? 4 : 6)+4;
+                    x: (!_useMixedIcon ? 4 : 6)+4
                     y: (!_useMixedIcon ? 8 : 4) + 6
                     Behavior on x {
                         animation: NumberAnimation {
-                            duration: _duration;
-                            easing.type: _easing;
+                            duration: Theme.animations.basic.duration
+                            easing.type: Theme.animations.basic.type
                         }
                     }
                     Behavior on y {
                         animation: NumberAnimation {
-                            duration: _duration;
-                            easing.type: _easing;
+                            duration: Theme.animations.basic.duration
+                            easing.type: Theme.animations.basic.type
                         }
                     }
                 }
                 PathLine {
-                    x: (!_useMixedIcon ? 12 : 10)+4;
+                    x: (!_useMixedIcon ? 12 : 10)+4
                     y: (!_useMixedIcon ? 0 : 4) + 6
                     Behavior on x {
                         animation: NumberAnimation {
-                            duration: _duration;
-                            easing.type: _easing;
+                            duration: Theme.animations.basic.duration
+                            easing.type: Theme.animations.basic.type
                         }
                     }
                     Behavior on y {
                         animation: NumberAnimation {
-                            duration: _duration;
-                            easing.type: _easing;
+                            duration: Theme.animations.basic.duration
+                            easing.type: Theme.animations.basic.type
                         }
                     }
                 }

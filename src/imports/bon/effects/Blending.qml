@@ -1,4 +1,5 @@
-import QtQuick 2.0
+import QtQuick
+import QtQuick.Window
 
 Item {
     id: root
@@ -7,7 +8,7 @@ Item {
 
     ShaderEffectSource {
         id: windowSource
-        sourceItem: __app__
+        sourceItem: Window.window
         anchors.fill: parent
         visible: false
         hideSource: false
@@ -19,7 +20,7 @@ Item {
         property variant source: windowSource
         property variant foregroundSource: blendEffectSource
         anchors.fill: root
-        property color background: __app__.color;
+        property color background: Window.window.color;
         property vector4d objectDimensions: Qt.vector4d(root.parent.mapToItem(__window__,root.x,root.y).x, root.parent.mapToItem(__window__,root.x,root.y).y, width, height);
         property vector2d viewportDimensions: Qt.vector2d(__window__.width, __window__.height);
         visible: false;

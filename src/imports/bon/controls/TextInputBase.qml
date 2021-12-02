@@ -9,27 +9,24 @@ Item {
     width: 220
     height: rowLayout.implicitHeight
 
-    opacity: _opacity
+    opacity: !root.enabled ? Theme.disabled_opacity : 1
     layer.enabled: !root.enabled
 
-    property font _font: __app__.style.text.label
-    property color _textColor: __app__.style.palette.text.label
+    property font _font: Theme.text.label
+    property color _textColor: Theme.palette.text.label
     property real _height: 40
-    property color _backgroundColor: field.focus ? __app__.style.palette.controls.background_1 : (
-                                         field.hovered ? __app__.style.palette.controls.background : (
-                                             (showStatus && !field.acceptableInput) ? __app__.style.palette.error : __app__.style.palette.background
+    property color _backgroundColor: field.focus ? Theme.palette.background_2 : (
+                                         field.hovered ? Theme.palette.background_1 : (
+                                             (showStatus && !field.acceptableInput) ? Theme.palette.error : Theme.palette.background
                                          )
                                      )
     property real _backgroundOpacity: field.focus || field.hovered ? 0.3 : (showStatus && !field.acceptableInput ? 0.3 : 0)
     property real _radius: 4
     property real _bottomLineHeight: 2
-    property color _bottomLineColor: field.focus ? __app__.style.palette.controls.background_1 : showStatus ? (
-                                         field.acceptableInput ? __app__.style.palette.success : __app__.style.palette.error
-                                     ) : __app__.style.palette.controls.background
+    property color _bottomLineColor: field.focus ? Theme.palette.background_2 : showStatus ? (
+                                         field.acceptableInput ? Theme.palette.success : Theme.palette.error
+                                     ) : Theme.palette.background_1
     property real _fadeLength: 40
-    property real _easing: __app__.style.animations.basic.type
-    property real _duration: __app__.style.animations.basic.duration
-    property real _opacity: !root.enabled ? __app__.style.misc_values.disabled_opacity : 1
 
     property string leadingIcon: ""
     property string prefixText: ""
@@ -49,22 +46,22 @@ Item {
 
     Behavior on _backgroundColor {
         ColorAnimation {
-            duration: _duration;
-            easing.type: _easing
+            duration: Theme.animations.basic.duration
+            easing.type: Theme.animations.basic.type
         }
     }
 
     Behavior on _backgroundOpacity {
         NumberAnimation {
-            duration: _duration;
-            easing.type: _easing
+            duration: Theme.animations.basic.duration
+            easing.type: Theme.animations.basic.type
         }
     }
 
     Behavior on _bottomLineColor {
         ColorAnimation {
-            duration: _duration;
-            easing.type: _easing
+            duration: Theme.animations.basic.duration
+            easing.type: Theme.animations.basic.type
         }
     }
 
@@ -92,7 +89,7 @@ Item {
                 Layout.leftMargin: 10
                 Layout.rightMargin: 10
                 text: root.labelText
-                font: __app__.style.text.caption
+                font: Theme.text.caption
                 color: _textColor
                 opacity: 0.5
                 verticalAlignment: field.verticalAlignment
@@ -190,8 +187,8 @@ Item {
                                 anchors.fill: parent
 
                                 color: _textColor
-                                selectionColor: __app__.style.palette.selection_background
-                                selectedTextColor: __app__.style.palette.selection_text
+                                selectionColor: Theme.palette.selection_background
+                                selectedTextColor: Theme.palette.selection_text
                                 placeholderTextColor: "transparent"
                                 verticalAlignment: TextInput.AlignVCenter
                                 font: _font
@@ -304,8 +301,8 @@ Item {
                     id: helpText
                     Layout.fillWidth: true
                     text: !(root.showStatus && !field.focus) ? root.helpText : (field.acceptableInput ? root.successText : root.errorText)
-                    font: __app__.style.text.caption
-                    color: !(root.showStatus && !field.focus) ? _textColor : (field.acceptableInput ? __app__.style.palette.success : __app__.style.palette.error)
+                    font: Theme.text.caption
+                    color: !(root.showStatus && !field.focus) ? _textColor : (field.acceptableInput ? Theme.palette.success : Theme.palette.error)
                     opacity: !(root.showStatus && !field.focus) ? 0.5 : 1
                     verticalAlignment: field.verticalAlignment
                     visible: root.helpText.length > 0 || ((root.showStatus && !field.focus) && !field.acceptableInput && root.errorText.length > 0) || ((root.showStatus && !field.focus) && field.acceptableInput && root.successText.length > 0)
@@ -316,7 +313,7 @@ Item {
                     text: field.maximumLength < 32767 ? `${field.length}/${field.maximumLength}` : field.length
                     Layout.fillWidth: !helpText.visible
                     horizontalAlignment: Text.AlignRight
-                    font: __app__.style.text.caption
+                    font: Theme.text.caption
                     color: _textColor
                     opacity: 0.5
                     verticalAlignment: field.verticalAlignment

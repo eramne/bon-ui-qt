@@ -11,8 +11,6 @@ T.Slider {
     from: 0
     to: 1
 
-    property real _easing: __app__.style.animations.basic.type
-    property real _duration: __app__.style.animations.basic.duration
     property color color: "transparent"
     property Gradient gradient: Gradient {
         orientation: Gradient.Horizontal
@@ -72,21 +70,20 @@ T.Slider {
             anchors.fill: parent
             radius: parent.radius
             border.width: root.hovered && !root.pressed ? 4 : 2
-            //border.color: control.pressed ? __app__.style.palette.controls.highlight_1 : __app__.style.palette.controls.highlight
             border.color: Qt.hsla(0,0,((1-root.color.hslLightness)*root.color.a) > 0.3 ? 1 : 0,root.pressed ? 0.8 : 1)
             color: root.color
 
             Behavior on border.width {
                 NumberAnimation {
-                    duration: _duration;
-                    easing.type: _easing;
+                    duration: Theme.animations.basic.duration;
+                    easing.type: Theme.animations.basic.type;
                 }
             }
 
             Behavior on border.color {
                 ColorAnimation {
-                    duration: _duration;
-                    easing.type: _easing;
+                    duration: Theme.animations.basic.duration;
+                    easing.type: Theme.animations.basic.type;
                 }
             }
         }

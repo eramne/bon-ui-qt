@@ -1,7 +1,7 @@
-import QtQuick 2.0
+import QtQuick
 import QtQuick.Templates as T
 import Qt5Compat.GraphicalEffects
-import bon as Bon
+import bon
 
 Item {
     id: root
@@ -45,31 +45,28 @@ Item {
 
     property real visiblePosition: highlightedIndex > -1 ? highlightedIndex + 1 : (enteredValue >= 0 ? enteredValue + 1 : displayValue)
 
-    property real _easing: __app__.style.animations.basic.type
-    property real _duration: __app__.style.animations.basic.duration
-
-    property color _backgroundColor: __app__.style.palette.controls.background
-    property color _foregroundColor: root.pressed ? __app__.style.palette.controls.background_1 : (
-                                         root.hovered ? __app__.style.palette.controls.background : (
-                                             enteredValue >= 0 ? __app__.style.palette.controls.accent : __app__.style.palette.controls.accent_1
+    property color _backgroundColor: Theme.palette.background_1
+    property color _foregroundColor: root.pressed ? Theme.palette.background_2 : (
+                                         root.hovered ? Theme.palette.background_1 : (
+                                             enteredValue >= 0 ? Theme.palette.accent : Theme.palette.accent_1
                                          )
                                      )
 
     Behavior on _foregroundColor {
         ColorAnimation {
-            duration: _duration;
-            easing.type: _easing
+            duration: Theme.animations.basic.duration
+            easing.type: Theme.animations.basic.type
         }
     }
 
     Behavior on visiblePosition {
         animation: NumberAnimation {
-            duration: _duration;
-            easing.type: _easing;
+            duration: Theme.animations.basic.duration
+            easing.type: Theme.animations.basic.type
         }
     }
 
-    opacity: !root.enabled ? __app__.style.misc_values.disabled_opacity : 1
+    opacity: !root.enabled ? Theme.disabled_opacity : 1
     layer.enabled: !root.enabled
 
     T.ButtonGroup { id: group }
@@ -91,7 +88,7 @@ Item {
                 enabled: root.editable
                 hoverEnabled: root.editable && root.enabled
 
-                indicator: Bon.Icon {
+                indicator: Icon {
                     color: _backgroundColor
                     name: "star_border"
                 }
@@ -103,7 +100,7 @@ Item {
         id: starMask
         Repeater {
             model: 5
-            Bon.Icon {
+            Icon {
                 color: "black"
                 name: "star"
             }

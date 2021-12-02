@@ -1,7 +1,7 @@
 import QtQuick
 import QtQuick.Templates as T
 import QtQuick.Window
-import bon as Bon
+import bon
 
 T.Popup {
     id: root
@@ -43,7 +43,7 @@ T.Popup {
     background: Item {
         anchors.fill: parent
 
-        Bon.Elevation {
+        Elevation {
             elevation: 8
             anchors.fill: parent
             radius: root._radius
@@ -52,7 +52,7 @@ T.Popup {
         Rectangle {
             anchors.fill: parent
             radius: root._radius
-            color: __app__.style.palette.background
+            color: Theme.palette.background
         }
     }
 }

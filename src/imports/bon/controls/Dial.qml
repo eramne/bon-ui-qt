@@ -14,21 +14,18 @@ T.Dial {
     property real _width: 40
     property real _height: 40
     property real _radius: Math.max(_width, _height)
-    property color _backgroundColor: root.pressed ? __app__.style.palette.controls.accent_1 : __app__.style.palette.controls.accent
-    property real _opacity: !root.enabled ? __app__.style.misc_values.disabled_opacity : 1
+    property color _backgroundColor: root.pressed ? Theme.palette.accent_1 : Theme.palette.accent
     property real _handleWidth: 8
     property real _handleHeight: 8
     property color _handleColor: root.enabled ? (
-                                        root.pressed || root.hovered ? __app__.style.palette.controls.highlight_1 : __app__.style.palette.controls.highlight
-                                 ) : __app__.style.palette.controls.highlight_1
+                                        root.pressed || root.hovered ? Theme.palette.highlight_1 : Theme.palette.highlight
+                                 ) : Theme.palette.highlight_1
     property real _elevation: 2
-    property real _easing: __app__.style.animations.basic.type
-    property real _duration: __app__.style.animations.basic.duration
 
     property real _indicatorDisplacement: 6
     property real _indicatorThickness: 4
     property color _indicatorColor: _backgroundColor
-    property color _indicatorBackgroundColor: root.pressed ? __app__.style.palette.controls.background_1 : __app__.style.palette.controls.background
+    property color _indicatorBackgroundColor: root.pressed ? Theme.palette.background_2 : Theme.palette.background_1
     property bool _willSnap: snapMode !== Slider.NoSnap
     property real _snapIndicatorSpacing: (stepSize*280)/(to - from) //spacing between dots in degrees. 280 is qt's dials' angle range: control.position 0 would be angle -140, control.position 1 would be 140
     property real _minSnapIndicatorDistance: 8 // in px
@@ -38,7 +35,7 @@ T.Dial {
 
     width: _width
     height: _height
-    opacity: _opacity
+    opacity: !root.enabled ? Theme.disabled_opacity : 1
 
     inputMode: Dial.Vertical
 
@@ -69,8 +66,8 @@ T.Dial {
 
                 Behavior on strokeColor {
                     ColorAnimation {
-                        duration: _duration;
-                        easing.type: _easing
+                        duration: Theme.animations.basic.duration
+                        easing.type: Theme.animations.basic.type
                     }
                 }
 
@@ -101,8 +98,8 @@ T.Dial {
 
                 Behavior on strokeColor {
                     ColorAnimation {
-                        duration: _duration;
-                        easing.type: _easing
+                        duration: Theme.animations.basic.duration
+                        easing.type: Theme.animations.basic.type
                     }
                 }
 
@@ -148,8 +145,8 @@ T.Dial {
 
                 Behavior on color {
                     ColorAnimation {
-                        duration: _duration;
-                        easing.type: _easing
+                        duration: Theme.animations.basic.duration
+                        easing.type: Theme.animations.basic.type
                     }
                 }
             }
@@ -172,8 +169,8 @@ T.Dial {
 
         Behavior on color {
             ColorAnimation {
-                duration: _duration;
-                easing.type: _easing
+                duration: Theme.animations.basic.duration
+                easing.type: Theme.animations.basic.type
             }
         }
     }
@@ -188,8 +185,8 @@ T.Dial {
 
         Behavior on color {
             ColorAnimation {
-                duration: _duration;
-                easing.type: _easing
+                duration: Theme.animations.basic.duration
+                easing.type: Theme.animations.basic.type
             }
         }
 
@@ -205,8 +202,8 @@ T.Dial {
                 Behavior on angle {
                     enabled: _willSnap
                     animation: NumberAnimation {
-                        duration: _duration;
-                        easing.type: _easing;
+                        duration: Theme.animations.basic.duration
+                        easing.type: Theme.animations.basic.type
                     }
                 }
             }

@@ -20,13 +20,12 @@ T.RadioButton {
     property real _height: 20
     property real _radius: Math.max(_width, _height)
     property color _backgroundColor: root.effectiveState === 0 ? (
-                                         root.down ? __app__.style.palette.controls.background_1 : __app__.style.palette.controls.background
+                                         root.down ? Theme.palette.background_2 : Theme.palette.background_1
                                      ) : root.effectiveState === 1  ? (
-                                         root.down ? __app__.style.palette.controls.accent_1 : __app__.style.palette.controls.accent
+                                         root.down ? Theme.palette.accent_1 : Theme.palette.accent
                                      ) : (
-                                         root.down ? __app__.style.palette.controls.accent : __app__.style.palette.controls.accent_1
+                                         root.down ? Theme.palette.accent : Theme.palette.accent_1
                                      )
-    property real _opacity: !root.enabled ? __app__.style.misc_values.disabled_opacity : 1
     property color _borderColor: "#000000"
     property real _borderWidth: 0
     property real _iconWidth: root.effectiveState == 1 && !root.hovered && !root.down ? 8
@@ -40,12 +39,11 @@ T.RadioButton {
                                    : (root.effectiveState == 0 && !root.hovered && !root.down) ? 16 : 12)
                                );
     property color _iconColor: (root.effectiveState == 1 || root.effectiveState == -1) && (!root.hovered && !root.down) ? (
-                                    __app__.style.palette.controls.highlight
+                                    Theme.palette.highlight
                                 ) : root.effectiveState == -1 || (root.effectiveState == 1 && (!root.hovered && !root.down)) ? (
-                                    __app__.style.palette.controls.highlight_1
-                                ) : __app__.style.palette.background;
+                                    Theme.palette.highlight_1
+                                ) : Theme.palette.background;
     property real _iconRadius: 8
-    property real _padding: 0
     property real _elevation: root.enabled ? (
                                   root.effectiveState == 0 ? (
                                       !root.down ? 1 : 0
@@ -53,13 +51,11 @@ T.RadioButton {
                                       !root.down ? 2 : 1
                                   )
                               ) : 0;
-    property real _easing: __app__.style.animations.basic.type
-    property real _duration: __app__.style.animations.basic.duration
 
-    opacity: _opacity
+    opacity: !root.enabled ? Theme.disabled_opacity : 1
     layer.enabled: !root.enabled
 
-    padding: _padding
+    padding: 0
 
     Elevation {
         anchors.fill: indicator
@@ -83,8 +79,8 @@ T.RadioButton {
 
         Behavior on color {
             ColorAnimation {
-                duration: _duration;
-                easing.type: _easing
+                duration: Theme.animations.basic.duration
+                easing.type: Theme.animations.basic.type
             }
         }
 
@@ -99,20 +95,20 @@ T.RadioButton {
 
             Behavior on color {
                 ColorAnimation {
-                    duration: _duration;
-                    easing.type: _easing
+                    duration: Theme.animations.basic.duration
+                    easing.type: Theme.animations.basic.type
                 }
             }
             Behavior on width {
                 animation: NumberAnimation {
-                    duration: _duration;
-                    easing.type: _easing;
+                    duration: Theme.animations.basic.duration
+                    easing.type: Theme.animations.basic.type
                 }
             }
             Behavior on height {
                 animation: NumberAnimation {
-                    duration: _duration;
-                    easing.type: _easing;
+                    duration: Theme.animations.basic.duration
+                    easing.type: Theme.animations.basic.type
                 }
             }
         }

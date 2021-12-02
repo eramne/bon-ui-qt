@@ -1,7 +1,7 @@
 import QtQuick
 import QtQuick.Layouts
 import QtQuick.Templates as T
-import bon as Bon
+import bon
 
 T.AbstractButton {
     id: root;
@@ -10,8 +10,8 @@ T.AbstractButton {
     property bool exclusive: parent.exclusive ?? false
     property T.AbstractButton button: buttonLoader.item
 
-    property color _textColor: __app__.style.palette.text.label
-    property font _font: __app__.style.text.label
+    property color _textColor: Theme.palette.text.label
+    property font _font: Theme.text.label
 
     width: isFinite(Layout?.maximumWidth) ? Layout?.maximumWidth : 300
     height: layout.implicitHeight
@@ -43,7 +43,7 @@ T.AbstractButton {
             font: _font
             color: _textColor
             Layout.alignment: Qt.AlignLeft
-            opacity: root.enabled ? 1 : __app__.style.misc_values.disabled_opacity
+            opacity: root.enabled ? 1 : Theme.disabled_opacity
         }
 
         Loader {
@@ -56,7 +56,7 @@ T.AbstractButton {
     Component {
         id: check
 
-        Bon.CheckBox {
+        CheckBox {
             id: button
             enabled: root.enabled
 
@@ -69,7 +69,7 @@ T.AbstractButton {
     Component {
         id: radio
 
-        Bon.RadioButton {
+        RadioButton {
             id: button
             enabled: root.enabled
 

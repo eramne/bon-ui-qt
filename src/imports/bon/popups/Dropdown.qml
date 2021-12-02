@@ -1,13 +1,10 @@
 import QtQuick
 import QtQuick.Templates as T
-import bon as Bon
+import bon
 
-Bon.Popup {
+Popup {
     id: root
     property Item target: parent
-
-    property real _easing: __app__.style.animations.basic.type
-    property real _duration: __app__.style.animations.basic.duration
 
     y: outOfBounds(x, target.height + 10 + height) ? target.height + 10 : -height - 10;
     closePolicy: T.Popup.CloseOnPressOutsideParent
@@ -23,8 +20,8 @@ Bon.Popup {
     Behavior on y {
         enabled: root.opened
         animation: NumberAnimation {
-            duration: _duration;
-            easing.type: _easing;
+            duration: Theme.animations.basic.duration
+            easing.type: Theme.animations.basic.type
         }
     }
 

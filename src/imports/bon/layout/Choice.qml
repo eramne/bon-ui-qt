@@ -1,7 +1,7 @@
 import QtQuick
 import QtQuick.Layouts
 import QtQuick.Templates as T
-import bon as Bon
+import bon
 
 T.Control {
     id: root;

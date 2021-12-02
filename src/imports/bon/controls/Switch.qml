@@ -8,28 +8,25 @@ T.Switch {
     implicitWidth: indicator.width + leftPadding + rightPadding
     implicitHeight: indicator.height + topPadding + bottomPadding
 
-    opacity: _opacity
+    opacity: !root.enabled ? Theme.disabled_opacity : 1
     layer.enabled: !root.enabled
 
     property real _width: 40
     property real _height: 20
     property real _radius: Math.max(_width, _height)
     property color _backgroundColor: !root.checked ? (
-                                         root.pressed ? __app__.style.palette.controls.background_1 : __app__.style.palette.controls.background
+                                         root.pressed ? Theme.palette.background_2 : Theme.palette.background_1
                                      ) : (
-                                         root.pressed ? __app__.style.palette.controls.accent_1 : __app__.style.palette.controls.accent
+                                         root.pressed ? Theme.palette.accent_1 : Theme.palette.accent
                                      )
-    property real _opacity: !root.enabled ? __app__.style.misc_values.disabled_opacity : 1
     property real _thumbWidth: 16 + (root.pressed ? (_pressedThumbWidthAdjust) : 0)
     property real _thumbHeight: 16
     property real _pressedThumbWidthAdjust: 8
-    property color _thumbColor: root.enabled && !root.hovered && !root.pressed ? __app__.style.palette.controls.highlight : __app__.style.palette.controls.highlight_1
+    property color _thumbColor: root.enabled && !root.hovered && !root.pressed ? Theme.palette.highlight : Theme.palette.highlight_1
     property real _thumbRadius: Math.max(_thumbWidth, _thumbHeight)
     property real _padding: 0
     property real _elevation: !root.pressed && root.checked ? 1 : 0
     property real _thumbElevation: root.pressed ? 1 : 2
-    property real _easing: __app__.style.animations.basic.type
-    property real _duration: __app__.style.animations.basic.duration
 
     padding: _padding+Math.max(Math.max(0,thumb.width-indicator.width),Math.max(0,thumb.height-indicator.height))
 
@@ -54,8 +51,8 @@ T.Switch {
 
         Behavior on color {
             ColorAnimation {
-                duration: _duration;
-                easing.type: _easing
+                duration: Theme.animations.basic.duration
+                easing.type: Theme.animations.basic.type
             }
         }
 
@@ -80,23 +77,23 @@ T.Switch {
 
             Behavior on color {
                 ColorAnimation {
-                    duration: _duration;
-                    easing.type: _easing
+                    duration: Theme.animations.basic.duration
+                    easing.type: Theme.animations.basic.type
                 }
             }
 
             Behavior on x {
                 enabled: root.focus;
                 animation: NumberAnimation {
-                    duration: _duration;
-                    easing.type: _easing;
+                    duration: Theme.animations.basic.duration
+                    easing.type: Theme.animations.basic.type
                 }
             }
             Behavior on width {
                 enabled: root.focus;
                 animation: NumberAnimation {
-                    duration: _duration;
-                    easing.type: _easing;
+                    duration: Theme.animations.basic.duration
+                    easing.type: Theme.animations.basic.type
                 }
             }
         }

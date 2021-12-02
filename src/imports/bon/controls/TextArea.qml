@@ -8,18 +8,15 @@ Item {
     width: 220
     height: 100
 
-    opacity: _opacity
+    opacity: !root.enabled ? Theme.disabled_opacity : 1
     layer.enabled: !root.enabled
 
     property real _borderWidth: 2
-    property color _borderColor: area.focus ? __app__.style.palette.controls.background_1 : __app__.style.palette.controls.background
-    property color _backgroundColor: __app__.style.palette.background
+    property color _borderColor: area.focus ? Theme.palette.background_2 : Theme.palette.background_1
+    property color _backgroundColor: Theme.palette.background
     property real _radius: 8
-    property font _font: __app__.style.text.label
-    property color _textColor: __app__.style.palette.text.label
-    property real _opacity: !root.enabled ? __app__.style.misc_values.disabled_opacity : 1
-    property real _easing: __app__.style.animations.basic.type
-    property real _duration: __app__.style.animations.basic.duration
+    property font _font: Theme.text.label
+    property color _textColor: Theme.palette.text.label
 
     property bool bordered: true
     property string helpText: ""
@@ -31,8 +28,8 @@ Item {
 
     Behavior on _borderColor {
         ColorAnimation {
-            duration: _duration;
-            easing.type: _easing
+            duration: Theme.animations.basic.duration
+            easing.type: Theme.animations.basic.type
         }
     }
 
@@ -46,7 +43,7 @@ Item {
             Layout.leftMargin: 10
             Layout.rightMargin: 10
             text: root.labelText
-            font: __app__.style.text.caption
+            font: Theme.text.caption
             color: _textColor
             opacity: 0.5
             visible: root.labelText.length > 0
@@ -99,8 +96,8 @@ Item {
                                              placeholder.implicitHeight + topPadding + bottomPadding)
 
                     color: _textColor
-                    selectionColor: __app__.style.palette.selection_background
-                    selectedTextColor: __app__.style.palette.selection_text
+                    selectionColor: Theme.palette.selection_background
+                    selectedTextColor: Theme.palette.selection_text
                     font: _font
                     selectByMouse: true
                     enabled: root.enabled
@@ -143,7 +140,7 @@ Item {
                 id: helpText
                 Layout.fillWidth: true
                 text: root.helpText
-                font: __app__.style.text.caption
+                font: Theme.text.caption
                 color: _textColor
                 opacity: 0.5
                 visible: root.helpText.length > 0
@@ -154,7 +151,7 @@ Item {
                 text: area.length
                 Layout.fillWidth: !helpText.visible
                 horizontalAlignment: Text.AlignRight
-                font: __app__.style.text.caption
+                font: Theme.text.caption
                 color: _textColor
                 opacity: 0.5
                 visible: root.showCharacterCount

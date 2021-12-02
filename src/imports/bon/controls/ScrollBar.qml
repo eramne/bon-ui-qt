@@ -14,9 +14,7 @@ T.ScrollBar {
     visible: root.policy !== T.ScrollBar.AlwaysOff && (root.policy === T.ScrollBar.AsNeeded ? root.size < 1 : true)
     minimumSize: orientation == Qt.Horizontal ? height / width : width / height
 
-    property color _color: root.pressed ? __app__.style.palette.controls.background_1 : __app__.style.palette.controls.background
-    property real _easing: __app__.style.animations.basic.type
-    property real _duration: __app__.style.animations.basic.duration
+    property color _color: root.pressed ? Theme.palette.background_2 : Theme.palette.background_1
     property real _elevation: 2
     property real _width: 4
     property real _radius: _width/2
@@ -24,8 +22,8 @@ T.ScrollBar {
     opacity: root.active ? 1 : 0.0
     Behavior on opacity {
         animation: NumberAnimation {
-            duration: _duration;
-            easing.type: _easing;
+            duration: Theme.animations.basic.duration
+            easing.type: Theme.animations.basic.type
         }
     }
     layer.enabled: opacity < 1
@@ -47,8 +45,8 @@ T.ScrollBar {
 
         Behavior on color {
             ColorAnimation {
-                duration: _duration;
-                easing.type: _easing
+                duration: Theme.animations.basic.duration
+                easing.type: Theme.animations.basic.type
             }
         }
     }

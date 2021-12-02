@@ -1,6 +1,6 @@
-import QtQuick 2.0
+import QtQuick
 import QtQuick.Layouts
-import bon as Bon
+import bon
 
 Chip {
     id: root
@@ -15,7 +15,7 @@ Chip {
         height: root.height
         width: Layout.minimumWidth
 
-        Bon.Icon {
+        Icon {
             id: icon
             Layout.alignment: Qt.AlignCenter
             visible: isValid
@@ -27,8 +27,8 @@ Chip {
         Text {
             text: root.text
             Layout.alignment: Qt.AlignVCenter
-            color: _textColor
-            font: __app__.style.text.label
+            color: Theme.palette.text.label
+            font: Theme.text.label
             opacity: _textOpacity
         }
     }

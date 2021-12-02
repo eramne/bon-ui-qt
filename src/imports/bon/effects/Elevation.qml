@@ -1,20 +1,18 @@
-import QtQuick 2.0
+import QtQuick
 import Qt5Compat.GraphicalEffects
+import bon
 
 Item {
     id: root
     property real elevation: 1
     property real radius: 0
 
-    property real _easing: __app__.style.animations.basic.type
-    property real _duration: __app__.style.animations.basic.duration
-
     RectangularGlow {
         width: parent.width
         height: parent.height
         x: 0
         y: 0
-        color: "#986578"
+        color: Theme.palette.elevation
         spread: 0.95
         opacity: 0.1
         glowRadius: elevation*1/5
@@ -23,14 +21,14 @@ Item {
 
         Behavior on glowRadius {
             NumberAnimation {
-                duration: _duration;
-                easing.type: _easing
+                duration: Theme.animations.basic.duration
+                easing.type: Theme.animations.basic.type
             }
         }
     }
 
     RectangularGlow {
-        color: "#986578"
+        color: Theme.palette.elevation
         width: parent.width
         height: parent.height
         x: 0
@@ -43,28 +41,28 @@ Item {
 
         Behavior on glowRadius {
             NumberAnimation {
-                duration: _duration;
-                easing.type: _easing
+                duration: Theme.animations.basic.duration
+                easing.type: Theme.animations.basic.type
             }
         }
 
         Behavior on opacity {
             NumberAnimation {
-                duration: _duration;
-                easing.type: _easing
+                duration: Theme.animations.basic.duration
+                easing.type: Theme.animations.basic.type
             }
         }
 
         Behavior on y {
             NumberAnimation {
-                duration: _duration;
-                easing.type: _easing
+                duration: Theme.animations.basic.duration
+                easing.type: Theme.animations.basic.type
             }
         }
     }
 
     RectangularGlow {
-        color: "#986578"
+        color: Theme.palette.elevation
         width: parent.width
         height: parent.height
         x: 0
@@ -77,15 +75,15 @@ Item {
 
         Behavior on y {
             NumberAnimation {
-                duration: _duration;
-                easing.type: _easing
+                duration: Theme.animations.basic.duration
+                easing.type: Theme.animations.basic.type
             }
         }
 
         Behavior on glowRadius {
             NumberAnimation {
-                duration: _duration;
-                easing.type: _easing
+                duration: Theme.animations.basic.duration
+                easing.type: Theme.animations.basic.type
             }
         }
     }
