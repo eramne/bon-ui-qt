@@ -168,7 +168,7 @@ TextInputBase {
 
     property Component delegate: T.ItemDelegate {
         id: item
-        width: ListView.view.width
+        width: ListView.view.width - ListView.view.leftMargin - ListView.view.rightMargin
         height: contentItem.height
         required property string name
         required property int index
@@ -235,7 +235,7 @@ TextInputBase {
 
         contentItem: Column {
             width: parent.width
-            padding: 10
+            //padding: 10
 
             ListView {
                 id: listView
@@ -243,8 +243,21 @@ TextInputBase {
                 width: parent.width - parent.leftPadding - parent.rightPadding
                 model: root.model
                 delegate: root.delegate
-                boundsBehavior: Flickable.DragOverBounds
                 clip: true
+
+                boundsBehavior: Flickable.DragOverBounds
+
+                ScrollBar.vertical: ScrollBar { }
+                ScrollBar.horizontal: ScrollBar { }
+
+                property real margins: 10
+
+                leftMargin: margins
+                topMargin: margins
+                rightMargin: margins
+                bottomMargin: margins
+
+                maximumFlickVelocity: 4000
 
                 onHeightChanged: {
                     parent.height = height + parent.topPadding + parent.bottomPadding;

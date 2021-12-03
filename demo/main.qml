@@ -12,19 +12,14 @@ Window {
 
     Bon.App {
 
-        Flickable {
+        Bon.OverflowArea {
             id: scrollview
             anchors.fill: parent
-            contentWidth: width
-            contentHeight: flow.height
-            boundsBehavior: Flickable.DragOverBounds
-
-            QuickControls.ScrollBar.vertical: Bon.ScrollBar { }
 
             Flow {
                 id: flow
                 padding: 20
-                width: parent.width
+                width: scrollview.width
                 spacing: 20
 
                 Bon.Switch {}

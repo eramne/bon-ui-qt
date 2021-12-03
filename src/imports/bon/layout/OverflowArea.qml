@@ -11,8 +11,8 @@ Flickable {
 
     default property alias children: content.children
 
-    C.ScrollBar.vertical: ScrollBar { }
-    C.ScrollBar.horizontal: ScrollBar { }
+    ScrollBar.vertical: ScrollBar { }
+    ScrollBar.horizontal: ScrollBar { }
 
     property real margins: 10
 
@@ -20,6 +20,8 @@ Flickable {
     topMargin: margins
     rightMargin: margins
     bottomMargin: margins
+
+    maximumFlickVelocity: 4000
 
     Item {
         id: content
