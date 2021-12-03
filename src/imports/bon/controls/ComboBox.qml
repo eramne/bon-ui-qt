@@ -224,6 +224,7 @@ TextInputBase {
 
     property Dropdown popup: Dropdown {
         targetWidth: root.width
+        targetHeight: Math.min(root.maxPopupHeight, listView.contentHeight + topMargin + bottomMargin)
 
         HoverHandler {
             onHoveredChanged: {
@@ -233,35 +234,30 @@ TextInputBase {
             }
         }
 
-        contentItem: Column {
-            width: parent.width
-            //padding: 10
+        contentItem: ListView {
+            id: listView
+            height: parent.height - parent.topMargin - parent.bottomMargin
+            width: parent.width - parent.leftMargin - parent.rightMargin
+            model: root.model
+            delegate: root.delegate
+            clip: true
 
-            ListView {
-                id: listView
-                height: Math.min(root.maxPopupHeight-parent.topPadding-parent.bottomPadding, contentHeight)
-                width: parent.width - parent.leftPadding - parent.rightPadding
-                model: root.model
-                delegate: root.delegate
-                clip: true
+            boundsBehavior: Flickable.DragOverBounds
 
-                boundsBehavior: Flickable.DragOverBounds
+            ScrollBar.vertical: ScrollBar { }
+            ScrollBar.horizontal: ScrollBar { }
 
-                ScrollBar.vertical: ScrollBar { }
-                ScrollBar.horizontal: ScrollBar { }
+            property real margins: 10
 
-                property real margins: 10
+            leftMargin: margins
+            topMargin: margins
+            rightMargin: margins
+            bottomMargin: margins
 
-                leftMargin: margins
-                topMargin: margins
-                rightMargin: margins
-                bottomMargin: margins
+            maximumFlickVelocity: 4000
 
-                maximumFlickVelocity: 4000
-
-                onHeightChanged: {
-                    parent.height = height + parent.topPadding + parent.bottomPadding;
-                }
+            onHeightChanged: {
+                parent.height = height + parent.topPadding + parent.bottomPadding;
             }
         }
     }

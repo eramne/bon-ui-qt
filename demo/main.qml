@@ -19,7 +19,7 @@ Window {
             Flow {
                 id: flow
                 padding: 20
-                width: scrollview.width
+                width: scrollview.width - scrollview.leftMargin - scrollview.rightMargin
                 spacing: 20
 
                 Bon.Switch {}
