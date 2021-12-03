@@ -29,15 +29,15 @@ Chip {
             visible: isValid
             name: root.icon.name
             color: root.icon.color
-            opacity: _textOpacity
+            opacity: root._textOpacity
         }
 
         Text {
             text: root.text
             Layout.alignment: Qt.AlignVCenter
-            color: _textColor
+            color: root._textColor
             font: Theme.text.label
-            opacity: _textOpacity
+            opacity: root._textOpacity
         }
     }
 }

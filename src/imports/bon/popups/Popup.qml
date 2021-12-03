@@ -6,7 +6,6 @@ import bon
 T.Popup {
     id: root
     margins: 10
-    property real _radius: 8
     property real targetX: 0
     property real targetY: 0
     property real targetWidth: contentItem.width
@@ -46,12 +45,12 @@ T.Popup {
         Elevation {
             elevation: 8
             anchors.fill: parent
-            radius: root._radius
+            radius: 8
         }
 
         Rectangle {
             anchors.fill: parent
-            radius: root._radius
+            radius: 8
             color: Theme.palette.background
         }
     }

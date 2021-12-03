@@ -18,7 +18,7 @@ TextInputBase {
         }
         return -1;
     }
-    property int highlightedIndex: _hoveredIndex >= 0 ? _hoveredIndex : firstVisibleIndex
+    property int highlightedIndex: root._hoveredIndex >= 0 ? root._hoveredIndex : firstVisibleIndex
 
     property string value: model.get(currentIndex).name;
     property int currentIndex: 0
@@ -26,24 +26,24 @@ TextInputBase {
     property bool editable: true
     field.readOnly: !editable
 
+    property bool _shouldOpenPopup: true
+
     Timer {
         interval: 1
         running: true
         repeat: false
         onTriggered: {
-            _shouldOpenPopup = false;
+            root._shouldOpenPopup = false;
             field.clear();
             field.insert(0,root.value);
-            _shouldOpenPopup = true;
+            root._shouldOpenPopup = true;
         }
     }
-
-    property bool _shouldOpenPopup: true
 
     suffixText: popup.opened && highlightedIndex >= 0 ? model.get(highlightedIndex).name : ""
 
     field.onFocusChanged: {
-        if (field.focus && _shouldOpenPopup) {
+        if (field.focus && root._shouldOpenPopup) {
             popup.open();
         }
     }
@@ -65,10 +65,10 @@ TextInputBase {
     }
 
     field.onTextEdited: {
-        if (!popup.opened && _shouldOpenPopup) {
+        if (!popup.opened && root._shouldOpenPopup) {
             popup.open();
         }
-        _hoveredIndex = -1;
+        root._hoveredIndex = -1;
     }
 
     Keys.onPressed: function (event) {
@@ -93,7 +93,7 @@ TextInputBase {
                     }
                     tmpStopCounter++;
                 } while ((tmpIndex < 0 || !root.filter(model.get(tmpIndex).name)) && tmpStopCounter < model.count);
-                _hoveredIndex = tmpIndex;
+                root._hoveredIndex = tmpIndex;
                 listView.positionViewAtIndex(tmpIndex, ListView.Contain);
             }
         } else {
@@ -118,7 +118,7 @@ TextInputBase {
                     }
                     tmpStopCounter++;
                 } while ((tmpIndex < 0 || !root.filter(model.get(tmpIndex).name)) && tmpStopCounter < model.count);
-                _hoveredIndex = tmpIndex;
+                root._hoveredIndex = tmpIndex;
                 listView.positionViewAtIndex(tmpIndex, ListView.Contain);
             }
         } else {
@@ -145,7 +145,7 @@ TextInputBase {
                     if (root.popup.opened) {
                         root.popup.close();
                     } else {
-                        if (_shouldOpenPopup) {
+                        if (root._shouldOpenPopup) {
                             root.popup.open();
                         }
                     }

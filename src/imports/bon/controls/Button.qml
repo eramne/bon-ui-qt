@@ -11,7 +11,7 @@ T.Button {
     implicitHeight: Math.max(implicitBackgroundHeight + topInset + bottomInset,
                              implicitContentHeight + topPadding + bottomPadding)
 
-    icon.color: _textColor
+    icon.color: root._textColor
     icon.name: ""
 
     leftPadding: !_round ? 20 : 0
@@ -25,19 +25,6 @@ T.Button {
                                    Theme.palette.text.label
                                )
     property real _textOpacity: root.down || root.hovered || !root.enabled ? Theme.highlight_hover_opacity : 1
-    property color _backgroundColor: order === 1 ? (
-                                         root.down ? Theme.palette.accent_1 : Theme.palette.accent
-                                     ) : (
-                                         root.down ? Theme.palette.background_2 : (
-                                             root.hovered ? Theme.palette.background_1 : Theme.palette.background
-                                         )
-                                     )
-    property color _borderColor: Theme.palette.background_1
-    property real _borderWidth: order === 2 && !root.down && !root.hovered ? 2 : 0
-    property real _radius: !_round ? 8 : Math.max(width, height)/2
-    property real _elevation: order === 1 ? (
-                                  root.down ? 1 : 2
-                              ) : 0
     property bool _round: root.text.length === 0
 
     width: root.text.length > 0 ? contentItem.width + leftPadding + rightPadding : height
@@ -48,21 +35,7 @@ T.Button {
 
     property int order: 1 // 1 = primary, 2 = secondary, 3 or anything else = tertiary
 
-    Behavior on _backgroundColor {
-        ColorAnimation {
-            duration: Theme.animations.basic.duration
-            easing.type: Theme.animations.basic.type
-        }
-    }
-
     Behavior on _textOpacity {
-        NumberAnimation {
-            duration: Theme.animations.basic.duration
-            easing.type: Theme.animations.basic.type
-        }
-    }
-
-    Behavior on _borderWidth {
         NumberAnimation {
             duration: Theme.animations.basic.duration
             easing.type: Theme.animations.basic.type
@@ -72,13 +45,13 @@ T.Button {
     Elevation {
         anchors.fill: background
         radius: background.radius
-        elevation: _elevation
+        elevation: order === 1 ? (root.down ? 1 : 2) : 0
         z: -1
     }
 
     contentItem: RowLayout {
         anchors.centerIn: root
-        spacing: !_round ? 10 : 0
+        spacing: !root._round ? 10 : 0
         height: root.height
         width: Layout.minimumWidth
 
@@ -88,23 +61,43 @@ T.Button {
             visible: isValid
             name: root.icon.name
             color: root.icon.color
-            opacity: _textOpacity
+            opacity: root._textOpacity
         }
 
         Text {
             text: root.text
             Layout.alignment: Qt.AlignVCenter
-            color: _textColor
+            color: root._textColor
             font: Theme.text.button
-            opacity: _textOpacity
+            opacity: root._textOpacity
         }
     }
 
     background: Rectangle {
         anchors.fill: root
-        color: _backgroundColor
-        radius: _radius
-        border.color: _borderColor
-        border.width: _borderWidth
+        color: order === 1 ? (
+                   root.down ? Theme.palette.accent_1 : Theme.palette.accent
+               ) : (
+                   root.down ? Theme.palette.background_2 : (
+                       root.hovered ? Theme.palette.background_1 : Theme.palette.background
+                   )
+               )
+        radius: !root._round ? 8 : Math.max(width, height)/2
+        border.color: Theme.palette.background_1
+        border.width: order === 2 && !root.down && !root.hovered ? 2 : 0
+
+        Behavior on border.width {
+            NumberAnimation {
+                duration: Theme.animations.basic.duration
+                easing.type: Theme.animations.basic.type
+            }
+        }
+
+        Behavior on color {
+            ColorAnimation {
+                duration: Theme.animations.basic.duration
+                easing.type: Theme.animations.basic.type
+            }
+        }
     }
 }

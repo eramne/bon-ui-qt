@@ -45,20 +45,6 @@ Item {
 
     property real visiblePosition: highlightedIndex > -1 ? highlightedIndex + 1 : (enteredValue >= 0 ? enteredValue + 1 : displayValue)
 
-    property color _backgroundColor: Theme.palette.background_1
-    property color _foregroundColor: root.pressed ? Theme.palette.background_2 : (
-                                         root.hovered ? Theme.palette.background_1 : (
-                                             enteredValue >= 0 ? Theme.palette.accent : Theme.palette.accent_1
-                                         )
-                                     )
-
-    Behavior on _foregroundColor {
-        ColorAnimation {
-            duration: Theme.animations.basic.duration
-            easing.type: Theme.animations.basic.type
-        }
-    }
-
     Behavior on visiblePosition {
         animation: NumberAnimation {
             duration: Theme.animations.basic.duration
@@ -89,7 +75,7 @@ Item {
                 hoverEnabled: root.editable && root.enabled
 
                 indicator: Icon {
-                    color: _backgroundColor
+                    color: Theme.palette.background_1
                     name: "star_border"
                 }
             }
@@ -122,7 +108,18 @@ Item {
             anchors.bottom: parent.bottom
             anchors.left: parent.left
             width: parent.width*(root.visiblePosition/5)
-            color: _foregroundColor
+            color: root.pressed ? Theme.palette.background_2 : (
+                       root.hovered ? Theme.palette.background_1 : (
+                           enteredValue >= 0 ? Theme.palette.accent : Theme.palette.accent_1
+                       )
+                   )
+
+            Behavior on color {
+                ColorAnimation {
+                    duration: Theme.animations.basic.duration
+                    easing.type: Theme.animations.basic.type
+                }
+            }
         }
     }
     ShaderEffectSource {

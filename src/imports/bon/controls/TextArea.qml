@@ -11,13 +11,6 @@ Item {
     opacity: !root.enabled ? Theme.disabled_opacity : 1
     layer.enabled: !root.enabled
 
-    property real _borderWidth: 2
-    property color _borderColor: area.focus ? Theme.palette.background_2 : Theme.palette.background_1
-    property color _backgroundColor: Theme.palette.background
-    property real _radius: 8
-    property font _font: Theme.text.label
-    property color _textColor: Theme.palette.text.label
-
     property bool bordered: true
     property string helpText: ""
     property string labelText: ""
@@ -25,13 +18,6 @@ Item {
     property bool wordWrap: false
 
     property alias area: area
-
-    Behavior on _borderColor {
-        ColorAnimation {
-            duration: Theme.animations.basic.duration
-            easing.type: Theme.animations.basic.type
-        }
-    }
 
     ColumnLayout {
         spacing: 4
@@ -44,7 +30,7 @@ Item {
             Layout.rightMargin: 10
             text: root.labelText
             font: Theme.text.caption
-            color: _textColor
+            color: Theme.palette.text.label
             opacity: 0.5
             visible: root.labelText.length > 0
             elide: Text.ElideRight
@@ -57,10 +43,17 @@ Item {
             Rectangle {
                 id: background
                 anchors.fill: parent
-                border.width: root.bordered ? _borderWidth : 0
-                border.color: _borderColor
-                radius: _radius
-                color: _backgroundColor
+                border.width: root.bordered ? 2 : 0
+                border.color: area.focus ? Theme.palette.background_2 : Theme.palette.background_1
+                radius: 8
+                color: Theme.palette.background
+
+                Behavior on border.color {
+                    ColorAnimation {
+                        duration: Theme.animations.basic.duration
+                        easing.type: Theme.animations.basic.type
+                    }
+                }
             }
 
             Flickable {
@@ -95,10 +88,10 @@ Item {
                                              implicitBackgroundHeight + topInset + bottomInset,
                                              placeholder.implicitHeight + topPadding + bottomPadding)
 
-                    color: _textColor
+                    color: Theme.palette.text.label
                     selectionColor: Theme.palette.selection_background
                     selectedTextColor: Theme.palette.selection_text
-                    font: _font
+                    font: Theme.text.label
                     selectByMouse: true
                     enabled: root.enabled
                     hoverEnabled: root.enabled
@@ -119,7 +112,7 @@ Item {
 
                         text: area.placeholderText
                         font: area.font
-                        color: _textColor
+                        color: Theme.palette.text.label
                         opacity: 0.5
                         verticalAlignment: area.verticalAlignment
                         visible: !area.length && !area.preeditText && (!area.activeFocus || area.horizontalAlignment !== Qt.AlignHCenter)
@@ -141,7 +134,7 @@ Item {
                 Layout.fillWidth: true
                 text: root.helpText
                 font: Theme.text.caption
-                color: _textColor
+                color: Theme.palette.text.label
                 opacity: 0.5
                 visible: root.helpText.length > 0
                 elide: Text.ElideRight
@@ -152,7 +145,7 @@ Item {
                 Layout.fillWidth: !helpText.visible
                 horizontalAlignment: Text.AlignRight
                 font: Theme.text.caption
-                color: _textColor
+                color: Theme.palette.text.label
                 opacity: 0.5
                 visible: root.showCharacterCount
                 elide: Text.ElideRight

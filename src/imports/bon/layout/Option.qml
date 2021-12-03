@@ -10,9 +10,6 @@ T.AbstractButton {
     property bool exclusive: parent.exclusive ?? false
     property T.AbstractButton button: buttonLoader.item
 
-    property color _textColor: Theme.palette.text.label
-    property font _font: Theme.text.label
-
     width: isFinite(Layout?.maximumWidth) ? Layout?.maximumWidth : 300
     height: layout.implicitHeight
 
@@ -40,8 +37,8 @@ T.AbstractButton {
         Text {
             id: label
             text: root.name
-            font: _font
-            color: _textColor
+            font: Theme.text.label
+            color: Theme.palette.text.label
             Layout.alignment: Qt.AlignLeft
             opacity: root.enabled ? 1 : Theme.disabled_opacity
         }

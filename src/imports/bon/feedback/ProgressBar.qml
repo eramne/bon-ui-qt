@@ -12,13 +12,10 @@ T.ProgressBar {
 
     property int state: ProgressBar.State.Paused
 
-    property real _height: 8
-    property real _radius: _height/2
     property color _indicatorColor: state === ProgressBar.State.Running ? Theme.palette.accent
                                          : state === ProgressBar.State.Paused ? Theme.palette.background_2
                                          : state === ProgressBar.State.Success ? Theme.palette.success
                                          : Theme.palette.error
-    property color _backgroundColor: root.state !== ProgressBar.State.Success && root.state !== ProgressBar.State.Error ? Theme.palette.background_1 : _indicatorColor
 
     enum State {
         Running,
@@ -47,16 +44,16 @@ T.ProgressBar {
     }
 
     width: 100
-    height: _height
+    height: 8
 
     contentItem: Item {
         anchors.fill: parent
         Rectangle {
             id: indicator
-            radius: _radius
+            radius: height/2
             width: root.indeterminate ? Math.min(Math.min(parent.width, parent.width-indicator.indeterminateRotatorPosition),parent.width+indicator.indeterminateRotatorPosition) : (root.state !== ProgressBar.State.Success && root.state !== ProgressBar.State.Error ? parent.width * root.position : parent.width)
             height: parent.height
-            color: _indicatorColor
+            color: root._indicatorColor
             x: root.indeterminate ? Math.max(0,indicator.indeterminateRotatorPosition) : 0
 
             property real indeterminateRotatorPosition: -parent.width
@@ -105,8 +102,8 @@ T.ProgressBar {
     background: Rectangle {
         width: parent.width
         height: parent.height
-        radius: _radius
-        color: _backgroundColor
+        radius: height/2
+        color: root.state !== ProgressBar.State.Success && root.state !== ProgressBar.State.Error ? Theme.palette.background_1 : root._indicatorColor
 
         Behavior on color {
             ColorAnimation {

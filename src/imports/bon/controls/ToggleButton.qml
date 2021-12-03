@@ -23,15 +23,6 @@ T.AbstractButton {
                                    Theme.palette.text.label
                                )
     property real _textOpacity: root.down || root.hovered || !root.enabled ? Theme.highlight_hover_opacity : 1
-    property color _backgroundColor: checked ? (
-                                         root.down ? Theme.palette.accent_1 : Theme.palette.accent
-                                     ) : (
-                                         root.down ? Theme.palette.background_2 : Theme.palette.background_1
-                                     )
-    property real _radius: 0
-    property real _elevation: root.checked ? (
-                                  root.down ? 1 : 2
-                              ) : 0
 
     width: 40
     height: 40
@@ -39,12 +30,7 @@ T.AbstractButton {
     layer.enabled: !root.enabled
 
 
-    Behavior on _backgroundColor {
-        ColorAnimation {
-            duration: Theme.animations.basic.duration
-            easing.type: Theme.animations.basic.type
-        }
-    }
+
 
     Behavior on _textOpacity {
         NumberAnimation {
@@ -56,7 +42,7 @@ T.AbstractButton {
     Elevation {
         anchors.fill: background
         radius: background.radius
-        elevation: _elevation
+        elevation: root.checked ? (root.down ? 1 : 2) : 0
         z: -1
     }
 
@@ -74,7 +60,17 @@ T.AbstractButton {
 
     background: Rectangle {
         anchors.fill: root
-        color: _backgroundColor
-        radius: _radius
+        color: checked ? (
+                   root.down ? Theme.palette.accent_1 : Theme.palette.accent
+               ) : (
+                   root.down ? Theme.palette.background_2 : Theme.palette.background_1
+               )
+
+        Behavior on color {
+            ColorAnimation {
+                duration: Theme.animations.basic.duration
+                easing.type: Theme.animations.basic.type
+            }
+        }
     }
 }

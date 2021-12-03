@@ -15,7 +15,7 @@ T.Control {
     property real value: 0
 
     property point _position: Qt.point(saturation, 1-value)
-    property alias position: root._position
+    property alias position: root._position //using a private variable and an alias to make it read-only
 
     property bool pressed: mouseArea.pressed
 

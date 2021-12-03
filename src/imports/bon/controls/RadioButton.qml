@@ -16,42 +16,6 @@ T.RadioButton {
         mixed = false;
     }
 
-    property real _width: 20
-    property real _height: 20
-    property real _radius: Math.max(_width, _height)
-    property color _backgroundColor: root.effectiveState === 0 ? (
-                                         root.down ? Theme.palette.background_2 : Theme.palette.background_1
-                                     ) : root.effectiveState === 1  ? (
-                                         root.down ? Theme.palette.accent_1 : Theme.palette.accent
-                                     ) : (
-                                         root.down ? Theme.palette.accent : Theme.palette.accent_1
-                                     )
-    property color _borderColor: "#000000"
-    property real _borderWidth: 0
-    property real _iconWidth: root.effectiveState == 1 && !root.hovered && !root.down ? 8
-                                  : (root.effectiveState == -1 && (root.hovered || root.down) ? 8
-                                  : (root.effectiveState == -1 ? 12
-                                  : (root.effectiveState == 0 && !root.hovered && !root.down) ? 16 : 12)
-                              );
-    property real _iconHeight: root.effectiveState == 1 && !root.hovered && !root.down ? 8
-                                   : (root.effectiveState == -1 && (root.hovered || root.down) ? 8
-                                   : (root.effectiveState == -1 ? 4
-                                   : (root.effectiveState == 0 && !root.hovered && !root.down) ? 16 : 12)
-                               );
-    property color _iconColor: (root.effectiveState == 1 || root.effectiveState == -1) && (!root.hovered && !root.down) ? (
-                                    Theme.palette.highlight
-                                ) : root.effectiveState == -1 || (root.effectiveState == 1 && (!root.hovered && !root.down)) ? (
-                                    Theme.palette.highlight_1
-                                ) : Theme.palette.background;
-    property real _iconRadius: 8
-    property real _elevation: root.enabled ? (
-                                  root.effectiveState == 0 ? (
-                                      !root.down ? 1 : 0
-                                  ) : (
-                                      !root.down ? 2 : 1
-                                  )
-                              ) : 0;
-
     opacity: !root.enabled ? Theme.disabled_opacity : 1
     layer.enabled: !root.enabled
 
@@ -60,22 +24,31 @@ T.RadioButton {
     Elevation {
         anchors.fill: indicator
         radius: indicator.radius
-        elevation: _elevation
+        elevation: root.enabled ? (
+                       root.effectiveState == 0 ? (
+                           !root.down ? 1 : 0
+                       ) : (
+                           !root.down ? 2 : 1
+                       )
+                   ) : 0
         z: -1
     }
 
     indicator: Rectangle {
-        width: root._width;
-        height: root._height;
+        width: 20
+        height: 20
 
         x: root.text ? (root.mirrored ? root.width - width - root.rightPadding : root.leftPadding) : root.leftPadding + (root.availableWidth - width) / 2
         y: root.topPadding + (root.availableHeight - height) / 2
 
-        radius: _radius
-        color: _backgroundColor
-
-        border.width: _borderWidth
-        border.color: _borderColor
+        radius: Math.max(width, height)
+        color: root.effectiveState === 0 ? (
+                   root.down ? Theme.palette.background_2 : Theme.palette.background_1
+               ) : root.effectiveState === 1  ? (
+                   root.down ? Theme.palette.accent_1 : Theme.palette.accent
+               ) : (
+                   root.down ? Theme.palette.accent : Theme.palette.accent_1
+               )
 
         Behavior on color {
             ColorAnimation {
@@ -88,10 +61,22 @@ T.RadioButton {
             id: icon
             x: (parent.width - width) / 2
             y: (parent.height - height) / 2
-            width: _iconWidth
-            height: _iconHeight
-            radius: _iconRadius
-            color: _iconColor;
+            width: root.effectiveState == 1 && !root.hovered && !root.down ? 8
+                       : (root.effectiveState == -1 && (root.hovered || root.down) ? 8
+                       : (root.effectiveState == -1 ? 12
+                       : (root.effectiveState == 0 && !root.hovered && !root.down) ? 16 : 12)
+                   )
+            height: root.effectiveState == 1 && !root.hovered && !root.down ? 8
+                        : (root.effectiveState == -1 && (root.hovered || root.down) ? 8
+                        : (root.effectiveState == -1 ? 4
+                        : (root.effectiveState == 0 && !root.hovered && !root.down) ? 16 : 12)
+                    )
+            radius: 8
+            color: (root.effectiveState == 1 || root.effectiveState == -1) && (!root.hovered && !root.down) ? (
+                       Theme.palette.highlight
+                   ) : root.effectiveState == -1 || (root.effectiveState == 1 && (!root.hovered && !root.down)) ? (
+                       Theme.palette.highlight_1
+                   ) : Theme.palette.background
 
             Behavior on color {
                 ColorAnimation {

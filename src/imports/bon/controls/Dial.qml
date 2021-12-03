@@ -11,21 +11,10 @@ T.Dial {
     implicitHeight: Math.max(implicitBackgroundHeight + topInset + bottomInset,
                              implicitContentHeight + topPadding + bottomPadding)
 
-    property real _width: 40
-    property real _height: 40
-    property real _radius: Math.max(_width, _height)
-    property color _backgroundColor: root.pressed ? Theme.palette.accent_1 : Theme.palette.accent
-    property real _handleWidth: 8
-    property real _handleHeight: 8
-    property color _handleColor: root.enabled ? (
-                                        root.pressed || root.hovered ? Theme.palette.highlight_1 : Theme.palette.highlight
-                                 ) : Theme.palette.highlight_1
-    property real _elevation: 2
-
     property real _indicatorDisplacement: 6
     property real _indicatorThickness: 4
-    property color _indicatorColor: _backgroundColor
-    property color _indicatorBackgroundColor: root.pressed ? Theme.palette.background_2 : Theme.palette.background_1
+    property color _foregroundColor: root.pressed ? Theme.palette.accent_1 : Theme.palette.accent
+    property color _backgroundColor: root.pressed ? Theme.palette.background_2 : Theme.palette.background_1
     property bool _willSnap: snapMode !== Slider.NoSnap
     property real _snapIndicatorSpacing: (stepSize*280)/(to - from) //spacing between dots in degrees. 280 is qt's dials' angle range: control.position 0 would be angle -140, control.position 1 would be 140
     property real _minSnapIndicatorDistance: 8 // in px
@@ -33,8 +22,8 @@ T.Dial {
 
     property bool showValue: false
 
-    width: _width
-    height: _height
+    width: 40
+    height: 40
     opacity: !root.enabled ? Theme.disabled_opacity : 1
 
     inputMode: Dial.Vertical
@@ -43,8 +32,8 @@ T.Dial {
         id: continuousIndicator
         visible: root.showValue && !_shouldDisplaySnapIndicators
         anchors.centerIn: parent
-        width: parent.width + _indicatorDisplacement*2
-        height: parent.height + _indicatorDisplacement*2
+        width: parent.width + root._indicatorDisplacement*2
+        height: parent.height + root._indicatorDisplacement*2
 
         layer.enabled: true
         layer.samples: 8
@@ -60,7 +49,7 @@ T.Dial {
                 startX: -Math.sin(continuousIndicatorBackground.start*2*Math.PI)*((continuousIndicatorBackground.width/2)-(_indicatorThickness/2)) + continuousIndicatorBackground.width/2;
                 startY: Math.cos(continuousIndicatorBackground.start*2*Math.PI)*((continuousIndicatorBackground.height/2)-(_indicatorThickness/2)) + continuousIndicatorBackground.height/2;
                 fillColor: "transparent"
-                strokeColor: _indicatorBackgroundColor
+                strokeColor: root._backgroundColor
                 strokeWidth: _indicatorThickness
                 capStyle: ShapePath.RoundCap
 
@@ -92,7 +81,7 @@ T.Dial {
                 startX: -Math.sin(continuousIndicatorForeground.start*2*Math.PI)*((continuousIndicatorForeground.width/2)-(_indicatorThickness/2)) + continuousIndicatorForeground.width/2;
                 startY: Math.cos(continuousIndicatorForeground.start*2*Math.PI)*((continuousIndicatorForeground.height/2)-(_indicatorThickness/2)) + continuousIndicatorForeground.height/2;
                 fillColor: "transparent"
-                strokeColor: _indicatorColor
+                strokeColor: root._foregroundColor
                 strokeWidth: _indicatorThickness
                 capStyle: ShapePath.RoundCap
 
@@ -117,8 +106,8 @@ T.Dial {
         id: snapIndicator
         visible: root.showValue && _shouldDisplaySnapIndicators
         anchors.centerIn: parent
-        width: parent.width + _indicatorDisplacement*2
-        height: parent.height + _indicatorDisplacement*2
+        width: parent.width + root._indicatorDisplacement*2
+        height: parent.height + root._indicatorDisplacement*2
 
         layer.enabled: true
         layer.samples: 8
@@ -140,7 +129,7 @@ T.Dial {
                     angle: dot.angle
                 }
 
-                color: angle <= (root.angle+180) ? _indicatorColor : _indicatorBackgroundColor
+                color: angle <= (root.angle+180) ? root._foregroundColor : root._backgroundColor
                 radius: Math.max(width, height)/2
 
                 Behavior on color {
@@ -156,15 +145,15 @@ T.Dial {
     Elevation {
         anchors.fill: background
         radius: background.radius
-        elevation: _elevation
+        elevation: 2
         z: -1
     }
 
     background: Rectangle {
         implicitWidth: parent.width
         implicitHeight: parent.height
-        radius: _radius
-        color: _backgroundColor
+        radius: Math.max(width, height)
+        color: root._foregroundColor
         opacity: root.enabled ? 1 : 0.3
 
         Behavior on color {
@@ -178,9 +167,11 @@ T.Dial {
     handle: Rectangle {
         x: root.background.x + root.background.width / 2 - width / 2
         y: root.background.y + root.background.height / 2 - height / 2
-        width: _handleWidth
-        height: _handleHeight
-        color: _handleColor
+        width: 8
+        height: 8
+        color: root.enabled ? (
+                   root.pressed || root.hovered ? Theme.palette.highlight_1 : Theme.palette.highlight
+               ) : Theme.palette.highlight_1
         radius: Math.max(width,height)/2
 
         Behavior on color {

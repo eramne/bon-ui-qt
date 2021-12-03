@@ -12,13 +12,6 @@ T.RadioButton {
     hoverEnabled: enabled
 
     property color color: "transparent"
-    property color _borderColor: root.pressed ? Theme.palette.accent_1 : Theme.palette.accent
-    property real _borderWidth: root.checked ? (
-                                    root.pressed || root.hovered ? 6 : 4
-                                ) : (
-                                    root.pressed || root.hovered ? 2 : 0
-                                )
-    property real _elevation: root.down ? 1 : 2;
 
     opacity: !root.enabled ? Theme.disabled_opacity : 1
     layer.enabled: !root.enabled
@@ -28,7 +21,7 @@ T.RadioButton {
     Elevation {
         anchors.fill: indicator
         radius: indicator.radius
-        elevation: _elevation
+        elevation: root.down ? 1 : 2
         z: -1
     }
 
@@ -42,8 +35,12 @@ T.RadioButton {
         radius: Math.max(width,height)/2
         color: root.color
 
-        border.width: _borderWidth
-        border.color: _borderColor
+        border.width: root.checked ? (
+                          root.pressed || root.hovered ? 6 : 4
+                      ) : (
+                          root.pressed || root.hovered ? 2 : 0
+                      )
+        border.color: root.pressed ? Theme.palette.accent_1 : Theme.palette.accent
 
         Behavior on color {
             ColorAnimation {

@@ -12,20 +12,11 @@ Item {
     opacity: !root.enabled ? Theme.disabled_opacity : 1
     layer.enabled: !root.enabled
 
-    property font _font: Theme.text.label
-    property color _textColor: Theme.palette.text.label
-    property real _height: 40
     property color _backgroundColor: field.focus ? Theme.palette.background_2 : (
                                          field.hovered ? Theme.palette.background_1 : (
                                              (showStatus && !field.acceptableInput) ? Theme.palette.error : Theme.palette.background
                                          )
                                      )
-    property real _backgroundOpacity: field.focus || field.hovered ? 0.3 : (showStatus && !field.acceptableInput ? 0.3 : 0)
-    property real _radius: 4
-    property real _bottomLineHeight: 2
-    property color _bottomLineColor: field.focus ? Theme.palette.background_2 : showStatus ? (
-                                         field.acceptableInput ? Theme.palette.success : Theme.palette.error
-                                     ) : Theme.palette.background_1
     property real _fadeLength: 40
 
     property string leadingIcon: ""
@@ -51,20 +42,6 @@ Item {
         }
     }
 
-    Behavior on _backgroundOpacity {
-        NumberAnimation {
-            duration: Theme.animations.basic.duration
-            easing.type: Theme.animations.basic.type
-        }
-    }
-
-    Behavior on _bottomLineColor {
-        ColorAnimation {
-            duration: Theme.animations.basic.duration
-            easing.type: Theme.animations.basic.type
-        }
-    }
-
     property alias field: field
 
     RowLayout {
@@ -75,7 +52,7 @@ Item {
         Icon {
             name: leadingIcon
             visible: isValid
-            color: _textColor
+            color: Theme.palette.text.label
             Layout.alignment: Qt.AlignVCenter
         }
 
@@ -90,7 +67,7 @@ Item {
                 Layout.rightMargin: 10
                 text: root.labelText
                 font: Theme.text.caption
-                color: _textColor
+                color: Theme.palette.text.label
                 opacity: 0.5
                 verticalAlignment: field.verticalAlignment
                 visible: root.labelText.length > 0
@@ -98,7 +75,7 @@ Item {
             }
 
             Item {
-                height: _height
+                height: 40
                 Layout.fillWidth: true
 
                 Item {
@@ -107,13 +84,20 @@ Item {
 
                     Item {
                         anchors.fill: parent
-                        opacity: _backgroundOpacity
+                        opacity: field.focus || field.hovered ? 0.3 : (showStatus && !field.acceptableInput ? 0.3 : 0)
                         layer.enabled: true
+
+                        Behavior on opacity {
+                            NumberAnimation {
+                                duration: Theme.animations.basic.duration
+                                easing.type: Theme.animations.basic.type
+                            }
+                        }
 
                         Rectangle {
                             anchors.fill: parent
                             color: _backgroundColor
-                            radius: _radius
+                            radius: 4
                         }
 
                         Rectangle {
@@ -129,8 +113,16 @@ Item {
                         anchors.bottom: parent.bottom
                         anchors.right: parent.right
                         anchors.left: parent.left
-                        height: _bottomLineHeight
-                        color: _bottomLineColor
+                        height: 2
+                        color: field.focus ? Theme.palette.background_2 : showStatus ? (
+                                   field.acceptableInput ? Theme.palette.success : Theme.palette.error
+                               ) : Theme.palette.background_1
+                        Behavior on color {
+                            ColorAnimation {
+                                duration: Theme.animations.basic.duration
+                                easing.type: Theme.animations.basic.type
+                            }
+                        }
                     }
                 }
 
@@ -143,7 +135,7 @@ Item {
                     Text {
                         text: root.prefixText
                         font: field.font
-                        color: _textColor
+                        color: Theme.palette.text.label
                         opacity: 0.5
                         verticalAlignment: field.verticalAlignment
                         visible: prefixText.length > 0
@@ -164,7 +156,7 @@ Item {
 
                             text: field.placeholderText
                             font: field.font
-                            color: _textColor
+                            color: Theme.palette.text.label
                             opacity: 0.5
                             verticalAlignment: field.verticalAlignment
                             visible: !field.length && !field.preeditText && (!field.activeFocus || field.horizontalAlignment !== Qt.AlignHCenter)
@@ -186,12 +178,12 @@ Item {
 
                                 anchors.fill: parent
 
-                                color: _textColor
+                                color: Theme.palette.text.label
                                 selectionColor: Theme.palette.selection_background
                                 selectedTextColor: Theme.palette.selection_text
                                 placeholderTextColor: "transparent"
                                 verticalAlignment: TextInput.AlignVCenter
-                                font: _font
+                                font: Theme.text.label
                                 selectByMouse: true
                                 enabled: root.enabled
                                 hoverEnabled: root.enabled
@@ -278,7 +270,7 @@ Item {
                     Text {
                         text: root.suffixText
                         font: field.font
-                        color: _textColor
+                        color: Theme.palette.text.label
                         opacity: 0.5
                         verticalAlignment: field.verticalAlignment
                         visible: suffixText.length > 0
@@ -302,7 +294,7 @@ Item {
                     Layout.fillWidth: true
                     text: !(root.showStatus && !field.focus) ? root.helpText : (field.acceptableInput ? root.successText : root.errorText)
                     font: Theme.text.caption
-                    color: !(root.showStatus && !field.focus) ? _textColor : (field.acceptableInput ? Theme.palette.success : Theme.palette.error)
+                    color: !(root.showStatus && !field.focus) ? Theme.palette.text.label : (field.acceptableInput ? Theme.palette.success : Theme.palette.error)
                     opacity: !(root.showStatus && !field.focus) ? 0.5 : 1
                     verticalAlignment: field.verticalAlignment
                     visible: root.helpText.length > 0 || ((root.showStatus && !field.focus) && !field.acceptableInput && root.errorText.length > 0) || ((root.showStatus && !field.focus) && field.acceptableInput && root.successText.length > 0)
@@ -314,7 +306,7 @@ Item {
                     Layout.fillWidth: !helpText.visible
                     horizontalAlignment: Text.AlignRight
                     font: Theme.text.caption
-                    color: _textColor
+                    color: Theme.palette.text.label
                     opacity: 0.5
                     verticalAlignment: field.verticalAlignment
                     visible: root.showCharacterCount

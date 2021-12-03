@@ -23,24 +23,19 @@ T.Slider {
     property real _highlightWidth: horizontal ? (_willSnap ? 4 : 8) : 8
     property real _highlightHeight: horizontal ? 8 : (_willSnap ? 4 : 8)
     property real _backgroundRadius: 4
-    property real _padding: 0
     property color _backgroundOffColor: root.pressed ? Theme.palette.background_2 : Theme.palette.background_1
     property color _backgroundOnColor: root.enabled ? (
                                            root.pressed ? Theme.palette.accent_1 : Theme.palette.accent
                                        ) : Theme.palette.background_2
     property color _handleColor: _backgroundOnColor
-    property color _highlightColor: root.pressed || root.hovered || !root.enabled ? Theme.palette.highlight_1 : Theme.palette.highlight
-    property real _elevation: 1
-    property real _handleElevation: root.pressed ? 1 : 2
     property real _snapIndicatorWidth: 4
     property real _snapIndicatorHeight: 4
-    property color _snapIndicatorColor: Theme.palette.background_1
     property real _minSnapIndicatorDistance: 8
     property bool _willSnap: snapMode !== Slider.NoSnap && (stepSize*(horizontal ? stepIndicators.width : stepIndicators.height))/(to - from) > 1
     property real _snapIndicatorSpacing: (stepSize*(horizontal ? stepIndicators.width : stepIndicators.height))/(to - from) - (horizontal ? _snapIndicatorWidth : _snapIndicatorHeight)
     property bool _shouldDisplaySnapIndicators: snapMode !== Slider.NoSnap && _snapIndicatorSpacing > _minSnapIndicatorDistance
 
-    padding: _padding
+    padding: 0
 
     opacity: !root.enabled ? Theme.disabled_opacity : 1
     layer.enabled: !root.enabled
@@ -71,7 +66,7 @@ T.Slider {
                 width: _snapIndicatorWidth
                 height: _snapIndicatorHeight
                 radius: Math.max(width, height)/2
-                color: _snapIndicatorColor
+                color: Theme.palette.background_1
                 visible: root.horizontal ? x < stepIndicators.width + _snapIndicatorWidth : y < stepIndicators.height + _snapIndicatorHeight
             }
         }
@@ -80,7 +75,7 @@ T.Slider {
     Elevation {
         anchors.fill: handle
         radius: handle.radius
-        elevation: _handleElevation
+        elevation: root.pressed ? 1 : 2
         z: -1
     }
 
@@ -120,7 +115,7 @@ T.Slider {
             width: _highlightWidth
             height: _highlightHeight
             radius: width / 2
-            color: _highlightColor
+            color: root.pressed || root.hovered || !root.enabled ? Theme.palette.highlight_1 : Theme.palette.highlight
 
             Behavior on color {
                 ColorAnimation {
@@ -152,7 +147,7 @@ T.Slider {
         Elevation {
             anchors.fill: indicator
             radius: indicator.radius
-            elevation: _elevation
+            elevation: 1
             z: -1
         }
 

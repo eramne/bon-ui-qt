@@ -17,14 +17,11 @@ T.ProgressBar {
     property int state: ProgressCircle.State.Paused
     property bool small: false
 
-    property real _width: small ? 20 : 40
-    property real _height: small ? 20 : 40
     property real _thickness: 8
     property color _indicatorColor: state === ProgressCircle.State.Running ? Theme.palette.accent
                                          : state === ProgressCircle.State.Paused ? Theme.palette.background_2
                                          : state === ProgressCircle.State.Success ? Theme.palette.success
                                          : Theme.palette.error
-    property color _backgroundColor: root.state !== ProgressCircle.State.Success && root.state !== ProgressCircle.State.Error ? Theme.palette.background_1 : _indicatorColor
 
     enum State {
         Running,
@@ -52,8 +49,8 @@ T.ProgressBar {
         root.stateChanged();
     }
 
-    width: _width
-    height: _height
+    width: small ? 20 : 40
+    height: small ? 20 : 40
 
     contentItem: Shape {
         id: indicator
@@ -93,11 +90,11 @@ T.ProgressBar {
         }
 
         ShapePath {
-            startX: Math.sin(indicator.start*2*Math.PI)*((root.width/2)-(_thickness/2)) + root.width/2;
-            startY: -Math.cos(indicator.start*2*Math.PI)*((root.height/2)-(_thickness/2)) + root.height/2;
+            startX: Math.sin(indicator.start*2*Math.PI)*((root.width/2)-(root._thickness/2)) + root.width/2;
+            startY: -Math.cos(indicator.start*2*Math.PI)*((root.height/2)-(root._thickness/2)) + root.height/2;
             fillColor: "transparent"
-            strokeColor: _indicatorColor
-            strokeWidth: _thickness
+            strokeColor: root._indicatorColor
+            strokeWidth: root._thickness
             capStyle: ShapePath.RoundCap
 
             Behavior on strokeColor {
@@ -108,9 +105,9 @@ T.ProgressBar {
             }
 
             PathArc {
-                x: Math.sin(indicator.end*2*Math.PI)*((root.width/2)-(_thickness/2)) + root.width/2;
-                y: -Math.cos(indicator.end*2*Math.PI)*((root.height/2)-(_thickness/2)) + root.height/2;
-                radiusX: root.width/2 - _thickness/2; radiusY: root.height/2 - _thickness/2
+                x: Math.sin(indicator.end*2*Math.PI)*((root.width/2)-(root._thickness/2)) + root.width/2;
+                y: -Math.cos(indicator.end*2*Math.PI)*((root.height/2)-(root._thickness/2)) + root.height/2;
+                radiusX: root.width/2 - root._thickness/2; radiusY: root.height/2 - root._thickness/2
                 useLargeArc: Math.abs(indicator.end-indicator.start)>0.5
             }
         }
@@ -122,10 +119,10 @@ T.ProgressBar {
         height: parent.height
 
         ShapePath {
-            startX: root.width/2; startY: _thickness/2
+            startX: root.width/2; startY: root._thickness/2
             fillColor: "transparent"
-            strokeColor: _backgroundColor
-            strokeWidth: _thickness
+            strokeColor: root.state !== ProgressCircle.State.Success && root.state !== ProgressCircle.State.Error ? Theme.palette.background_1 : root._indicatorColor
+            strokeWidth: root._thickness
 
             Behavior on strokeColor {
                 ColorAnimation {
@@ -135,8 +132,8 @@ T.ProgressBar {
             }
 
             PathArc {
-                x: root.width/2-0.0001; y: _thickness/2
-                radiusX: root.width/2 - _thickness/2; radiusY: root.height/2 - _thickness/2
+                x: root.width/2-0.0001; y:root. _thickness/2
+                radiusX: root.width/2 - root._thickness/2; radiusY: root.height/2 - root._thickness/2
                 useLargeArc: true
             }
         }
