@@ -14,6 +14,25 @@ Dropdown {
     property int _visibleMonth: now.getMonth()
     property int _visibleYear: now.getFullYear()
 
+    property date date: now
+    property date selectedDate: date
+
+    signal finished
+    signal canceled
+
+    Component.onCompleted: {
+        selectedDate = date;
+        root.closed.connect(finished);
+    }
+
+    onFinished: {
+        date = selectedDate;
+    }
+    onCanceled: {
+        selectedDate = date;
+        root.close();
+    }
+
     contentItem: OverflowArea {
         id: overflowArea
         anchors.fill: parent
@@ -43,7 +62,7 @@ Dropdown {
                     order: 3
                     icon.name: "close"
                     onClicked: {
-                        //root.canceled();
+                        root.canceled();
                     }
                 }
 
@@ -54,7 +73,7 @@ Dropdown {
                     icon.name: "done"
 
                     onClicked: {
-                        //root.close();
+                        root.close();
                     }
                 }
             }
@@ -143,6 +162,12 @@ Dropdown {
                         text: date.getDate()
                         today: root.now.getDate() == date.getDate() && root.now.getMonth() == date.getMonth() && root.now.getFullYear() == date.getFullYear()
                         enabled: date.getMonth() == root._visibleMonth && date.getFullYear() == root._visibleYear
+
+                        checkable: false
+                        checked: root.selectedDate.getDate() == date.getDate() && root.selectedDate.getMonth() == date.getMonth() && root.selectedDate.getFullYear() == date.getFullYear()
+                        onReleased: {
+                            root.selectedDate = new Date(date.getFullYear(), date.getMonth(), date.getDate())
+                        }
                     }
                 }
             }

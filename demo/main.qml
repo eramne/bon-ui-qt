@@ -1015,13 +1015,24 @@ Window {
                     }
 
                     Bon.TextField {
+                        id: dateTextField
+                        field.text: datePopup.selectedDate.toLocaleDateString(Qt.locale(), Locale.ShortFormat)
+                        field.readOnly: true
+
                         buttonIcon: "today"
                         onIconClicked: {
                             datePopup.open();
                         }
 
+                        field.onFocusChanged: {
+                            if (field.focus) {
+                                datePopup.open();
+                            }
+                        }
+
                         Bon.DatePicker {
                             id: datePopup
+                            date: new Date(2021, 11, 25)
                         }
                     }
                 }

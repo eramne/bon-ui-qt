@@ -6,6 +6,17 @@ TextInputBase {
     id: root
     property string buttonIcon: ""
 
+    Timer {
+        interval: 1
+        running: true
+        repeat: false
+        onTriggered: {
+            var tmpTxt = field.text
+            field.clear()
+            field.insert(0,tmpTxt)
+        }
+    }
+
     _trailingIcons: Component {
         Row {
             visible: root.enabled
