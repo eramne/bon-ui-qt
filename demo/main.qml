@@ -1035,6 +1035,30 @@ Window {
                             date: new Date(2021, 11, 25)
                         }
                     }
+
+                    Bon.TextField {
+                        id: dateTextField1
+                        field.text: datePopup1.selectedDate.toLocaleDateString(Qt.locale(), Locale.ShortFormat) + (datePopup1.oneDateSelected ? "" : " - " + datePopup1.selectedEndDate.toLocaleDateString(Qt.locale(), Locale.ShortFormat))
+                        field.readOnly: true
+
+                        buttonIcon: "today"
+                        onIconClicked: {
+                            datePopup1.open();
+                        }
+
+                        field.onFocusChanged: {
+                            if (field.focus) {
+                                datePopup1.open();
+                            }
+                        }
+
+                        Bon.DatePicker {
+                            id: datePopup1
+                            selectRange: true
+                            date: new Date(2021, 11, 25)
+                            endDate: new Date(2021, 11, 30)
+                        }
+                    }
                 }
             }
 

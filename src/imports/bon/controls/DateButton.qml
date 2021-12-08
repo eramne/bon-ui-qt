@@ -59,7 +59,7 @@ T.AbstractButton {
 
     background: Rectangle {
         anchors.fill: root
-        color: rangeSelected ? (
+        color: root.rangeSelected ? (
                    root.down ? Theme.palette.accent : Theme.palette.accent_1
                ) : (
                    checked ? (
@@ -70,11 +70,13 @@ T.AbstractButton {
                        )
                    )
                )
+        opacity: root.rangeSelected ? (root.down ? 1 : 0) : 1
         radius: Math.max(width,height)/2
         border.color: Theme.palette.background_1
         border.width: today && !root.down && !root.hovered && !root.checked ? 2 : 0
 
         Behavior on color {
+            enabled: root.down || root.hovered
             ColorAnimation {
                 duration: Theme.animations.basic.duration
                 easing.type: Theme.animations.basic.type
