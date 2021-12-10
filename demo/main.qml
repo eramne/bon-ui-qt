@@ -32,6 +32,15 @@ Window {
                     width: scrollview.width - scrollview.leftMargin - scrollview.rightMargin
                     spacing: 20
 
+                    Bon.Tumbler {
+                        model: 60
+                    }
+
+                    Bon.Tumbler {
+                        orientation: Qt.Horizontal
+                        model: 60
+                    }
+
                     Bon.Switch {}
 
                     Bon.Switch {checked: true}

@@ -27,7 +27,7 @@ T.Button {
     property real _textOpacity: root.down || root.hovered || !root.enabled ? Theme.highlight_hover_opacity : 1
     property bool _round: root.text.length === 0
 
-    width: root.text.length > 0 ? contentItem.width + leftPadding + rightPadding : height
+    width: !_round ? contentItem.width + leftPadding + rightPadding : height
     height: 40
 
     opacity: !root.enabled ? Theme.disabled_opacity : 1
@@ -66,7 +66,7 @@ T.Button {
 
         Text {
             text: root.text
-            Layout.alignment: Qt.AlignVCenter
+            Layout.alignment: Qt.AlignCenter
             color: root._textColor
             font: Theme.text.button
             opacity: root._textOpacity

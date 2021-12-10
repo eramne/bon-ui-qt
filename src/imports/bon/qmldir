@@ -30,6 +30,7 @@ ColorSwatch 1.0 controls/ColorSwatch.qml
 ToggleButtonGroup 1.0 controls/ToggleButtonGroup.qml
 ColorArea 1.0 controls/ColorArea.qml
 ColorSlider 1.0 controls/ColorSlider.qml
+Tumbler 1.0 controls/Tumbler.qml
 
 Popup 1.0 popups/Popup.qml
 Dropdown 1.0 popups/Dropdown.qml

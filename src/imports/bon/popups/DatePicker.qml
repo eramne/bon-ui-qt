@@ -67,7 +67,7 @@ Dropdown {
 
                 Text {
                     Layout.fillWidth: true
-                    text: "Pick a date"
+                    text: root.selectRange ? "Pick a date range" : "Pick a date"
                     color: Theme.palette.text.heading
                     font: Theme.text.heading
                 }
