@@ -1,5 +1,6 @@
 import QtQuick
 import QtQuick.Templates as T
+import QtQuick.Layouts
 import bon
 
 T.Tumbler {
@@ -10,8 +11,8 @@ T.Tumbler {
     implicitHeight: Math.max(implicitBackgroundHeight + topInset + bottomInset,
                              implicitContentHeight + topPadding + bottomPadding)
 
-    width: orientation == Qt.Vertical ? 40 : 200
-    height: orientation == Qt.Vertical ? 200 : 40
+    width: orientation == Qt.Vertical ? 40 : (visibleItemCount * 40) + 80
+    height: orientation == Qt.Vertical ? (visibleItemCount * 40) + 80 : 40
 
     visibleItemCount: 5
 
@@ -19,7 +20,7 @@ T.Tumbler {
 
     delegate: Item {
         id: item
-        property string name: index + 1
+        required property string modelData
         required property int index
 
         T.ItemDelegate {
@@ -56,7 +57,7 @@ T.Tumbler {
 
             contentItem: Text {
                 visible: parent.visible
-                text: item.name
+                text: item.modelData
                 anchors.fill: parent
                 verticalAlignment: Text.AlignVCenter
                 horizontalAlignment: Text.AlignHCenter
@@ -66,37 +67,66 @@ T.Tumbler {
         }
     }
 
-    /*property ListModel model: ListModel {
+    contentItem: GridLayout {
+        anchors.fill: parent
 
-    } */
+        flow: root.orientation == Qt.Vertical ? GridLayout.TopToBottom : GridLayout.LeftToRight
 
-    contentItem: PathView {
-         id: pathView
-         model: root.model
-         delegate: root.delegate
-         pathItemCount: root.visibleItemCount
-         highlightRangeMode: PathView.StrictlyEnforceRange
-         highlightMoveDuration: 100
-         preferredHighlightBegin: 0.5
-         preferredHighlightEnd: 0.5
-         path: Path {
-             startX: root.orientation == Qt.Vertical ? pathView.width / 2 : 0
-             startY: root.orientation == Qt.Vertical ? 0 : pathView.height/2
-             PathLine {
-                 x: root.orientation == Qt.Vertical ? pathView.width / 2 : pathView.width
-                 y: root.orientation == Qt.Vertical ? pathView.height : pathView.height/2
-             }
-         }
+        Button {
+            icon.name: root.orientation == Qt.Vertical ? "keyboard_arrow_up" : "keyboard_arrow_left"
+            Layout.preferredWidth: 40
+            Layout.preferredHeight: 40
+            order: 3
+            onReleased: {
+                pathView.decrementCurrentIndex()
+            }
+        }
 
-         maximumFlickVelocity: 4000
-     }
+        Item {
+            Layout.fillWidth: true
+            Layout.fillHeight: true
 
-    background: Rectangle {
-        width: 40
-        height: 40
-        radius: 20
-        x: root.orientation == Qt.Vertical ? 0 :  pathView.width/2 - width/2
-        y: root.orientation == Qt.Vertical ? pathView.height/2 - height/2 : 0
-        color: Theme.palette.accent
+            Rectangle {
+                width: 40
+                height: 40
+                radius: Math.max(width, height)/2
+                anchors.centerIn: parent
+                color: Theme.palette.accent
+            }
+
+            PathView {
+                id: pathView
+                anchors.fill: parent
+                model: root.model
+                delegate: root.delegate
+                pathItemCount: root.visibleItemCount
+                highlightRangeMode: PathView.StrictlyEnforceRange
+                highlightMoveDuration: 100
+                preferredHighlightBegin: 0.5
+                preferredHighlightEnd: 0.5
+
+                path: Path {
+                    startX: root.orientation == Qt.Vertical ? pathView.width / 2 : 0
+                    startY: root.orientation == Qt.Vertical ? 0 : pathView.height/2
+
+                    PathLine {
+                        x: root.orientation == Qt.Vertical ? pathView.width / 2 : pathView.width
+                        y: root.orientation == Qt.Vertical ? pathView.height : pathView.height/2
+                    }
+                }
+
+                maximumFlickVelocity: 4000
+            }
+        }
+
+        Button {
+            icon.name: root.orientation == Qt.Vertical ? "keyboard_arrow_down" : "keyboard_arrow_right"
+            Layout.preferredWidth: 40
+            Layout.preferredHeight: 40
+            order: 3
+            onReleased: {
+                pathView.incrementCurrentIndex()
+            }
+        }
     }
 }

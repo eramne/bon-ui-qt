@@ -32,15 +32,6 @@ Window {
                     width: scrollview.width - scrollview.leftMargin - scrollview.rightMargin
                     spacing: 20
 
-                    Bon.Tumbler {
-                        model: 60
-                    }
-
-                    Bon.Tumbler {
-                        orientation: Qt.Horizontal
-                        model: 60
-                    }
-
                     Bon.Switch {}
 
                     Bon.Switch {checked: true}
@@ -1011,6 +1002,20 @@ Window {
                         height: 10
                     }
 
+                    Bon.Tumbler {
+                        model: 60
+                    }
+
+                    Bon.Tumbler {
+                        orientation: Qt.Horizontal
+                        model: 60
+                    }
+
+                    Item {
+                        width: Layout.maximumWidth
+                        height: 10
+                    }
+
                     Bon.ColorSwatch {
                         checkable: false
                         onClicked: {
@@ -1066,6 +1071,27 @@ Window {
                             selectRange: true
                             date: new Date(2021, 11, 25)
                             endDate: new Date(2021, 11, 30)
+                        }
+                    }
+
+                    Bon.TextField {
+                        id: timeTextField
+                        field.text: timePopup.editTime.toLocaleTimeString(Qt.locale())
+                        field.readOnly: true
+
+                        buttonIcon: "schedule"
+                        onIconClicked: {
+                            timePopup.open();
+                        }
+
+                        field.onFocusChanged: {
+                            if (field.focus) {
+                                timePopup.open();
+                            }
+                        }
+
+                        Bon.TimePicker {
+                            id: timePopup
                         }
                     }
                 }

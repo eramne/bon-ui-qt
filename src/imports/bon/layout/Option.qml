@@ -10,7 +10,7 @@ T.AbstractButton {
     property bool exclusive: parent.exclusive ?? false
     property T.AbstractButton button: buttonLoader.item
 
-    width: isFinite(Layout?.maximumWidth) ? Layout?.maximumWidth : 300
+    implicitWidth: parent.width
     height: layout.implicitHeight
 
     onCheckedChanged: {

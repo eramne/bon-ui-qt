@@ -4,7 +4,7 @@ import QtQuick.Templates as T
 import bon
 
 T.Control {
-    id: root;
+    id: root
     default property alias options: list.children
     property bool exclusive: false
     property alias group: buttonGroup

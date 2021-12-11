@@ -78,7 +78,7 @@ Dropdown {
                     order: 3
                     icon.name: "close"
                     onClicked: {
-                        root.canceled();
+                        root.canceled()
                     }
                 }
 
@@ -89,7 +89,7 @@ Dropdown {
                     icon.name: "done"
 
                     onClicked: {
-                        root.close();
+                        root.close()
                     }
                 }
             }
