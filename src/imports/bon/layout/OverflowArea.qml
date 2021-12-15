@@ -7,6 +7,7 @@ Flickable {
     contentWidth: content.childrenRect.width
     contentHeight: content.childrenRect.height
     boundsBehavior: Flickable.DragOverBounds
+    flickableDirection: Flickable.AutoFlickIfNeeded
     clip: true
 
     default property alias children: content.children

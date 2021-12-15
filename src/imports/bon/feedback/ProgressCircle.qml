@@ -17,7 +17,7 @@ T.ProgressBar {
     property int state: ProgressCircle.State.Paused
     property bool small: false
 
-    property real _thickness: 8
+    property real _thickness: small ? 4 : 8
     property color _indicatorColor: state === ProgressCircle.State.Running ? Theme.palette.accent
                                          : state === ProgressCircle.State.Paused ? Theme.palette.background_2
                                          : state === ProgressCircle.State.Success ? Theme.palette.success

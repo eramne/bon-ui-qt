@@ -229,8 +229,8 @@ Dropdown {
 
                             onPositionChanged: {
                                 if (active) {
-                                    if (Math.abs(position.x - beginDragPosition.x) > 10
-                                            || Math.abs(position.y - beginDragPosition.y) > 10) {
+                                    if (Math.abs(position.x - beginDragPosition.x) > dragThreshold
+                                            || Math.abs(position.y - beginDragPosition.y) > dragThreshold) {
                                         dragging = true
                                     }
                                 }
