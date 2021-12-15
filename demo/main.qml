@@ -1016,83 +1016,33 @@ Window {
                         height: 10
                     }
 
-                    Bon.ColorSwatch {
-                        checkable: false
-                        onClicked: {
-                            colorPopup.open();
-                        }
-                        color: colorPopup.editColor
-
-                        Bon.ColorPicker {
-                            id: colorPopup
-                        }
+                    Bon.ColorField {
+                        currentColor: "#e16c88"
                     }
 
-                    Bon.TextField {
-                        id: dateTextField
-                        field.text: datePopup.selectedDate.toLocaleDateString(Qt.locale(), Locale.ShortFormat)
-                        field.readOnly: true
+                    Bon.DateField {
 
-                        buttonIcon: "today"
-                        onIconClicked: {
-                            datePopup.open();
-                        }
-
-                        field.onFocusChanged: {
-                            if (field.focus) {
-                                datePopup.open();
-                            }
-                        }
-
-                        Bon.DatePicker {
-                            id: datePopup
-                            date: new Date(2021, 11, 25)
-                        }
                     }
 
-                    Bon.TextField {
-                        id: dateTextField1
-                        field.text: datePopup1.selectedDate.toLocaleDateString(Qt.locale(), Locale.ShortFormat) + (datePopup1.oneDateSelected ? "" : " - " + datePopup1.selectedEndDate.toLocaleDateString(Qt.locale(), Locale.ShortFormat))
-                        field.readOnly: true
-
-                        buttonIcon: "today"
-                        onIconClicked: {
-                            datePopup1.open();
-                        }
-
-                        field.onFocusChanged: {
-                            if (field.focus) {
-                                datePopup1.open();
-                            }
-                        }
-
-                        Bon.DatePicker {
-                            id: datePopup1
-                            selectRange: true
-                            date: new Date(2021, 11, 25)
-                            endDate: new Date(2021, 11, 30)
-                        }
+                    Bon.DateField {
+                        selectRange: true
                     }
 
-                    Bon.TextField {
-                        id: timeTextField
-                        field.text: timePopup.editTime.toLocaleTimeString(Qt.locale())
-                        field.readOnly: true
+                    Bon.TimeField {
 
-                        buttonIcon: "schedule"
-                        onIconClicked: {
-                            timePopup.open();
-                        }
+                    }
 
-                        field.onFocusChanged: {
-                            if (field.focus) {
-                                timePopup.open();
-                            }
-                        }
+                    Bon.TimeField {
+                        twentyFourHour: true
+                    }
 
-                        Bon.TimePicker {
-                            id: timePopup
-                        }
+                    Bon.TimeField {
+                        showSeconds: true
+                    }
+
+                    Bon.TimeField {
+                        twentyFourHour: true
+                        showSeconds: true
                     }
                 }
             }
