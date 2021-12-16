@@ -32,6 +32,29 @@ Window {
                     width: scrollview.width - scrollview.leftMargin - scrollview.rightMargin
                     spacing: 20
 
+                    Bon.List {
+                        model: ListModel {
+                            ListElement {name: "hi"}
+                            ListElement {name: "test"}
+                            ListElement {name: "the"}
+                            ListElement {name: "an"}
+                            ListElement {name: "goenfdj"}
+                            ListElement {name: "cat"}
+                            ListElement {name: "hi"}
+                            ListElement {name: "test"}
+                            ListElement {name: "the"}
+                            ListElement {name: "an"}
+                            ListElement {name: "goenfdj"}
+                            ListElement {name: "cat"}
+                            ListElement {name: "hi"}
+                            ListElement {name: "test"}
+                            ListElement {name: "the"}
+                            ListElement {name: "an"}
+                            ListElement {name: "goenfdj"}
+                            ListElement {name: "cat"}
+                        }
+                    }
+
                     Bon.Switch {}
 
                     Bon.Switch {checked: true}

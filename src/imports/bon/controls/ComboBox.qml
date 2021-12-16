@@ -18,7 +18,7 @@ TextInputBase {
         }
         return -1;
     }
-    property int highlightedIndex: root._hoveredIndex >= 0 ? root._hoveredIndex : firstVisibleIndex
+    property int highlightedIndex: root._hoveredIndex >= 0 ? root._hoveredIndex : currentIndex
 
     property string value: model.get(currentIndex).name;
     property int currentIndex: 0
@@ -173,7 +173,6 @@ TextInputBase {
         required property string name
         required property int index
         visible: root.filter(name)
-        property bool isFirstItem: root.firstVisibleIndex === index
 
         onHoveredChanged: {
             if (hovered) {
