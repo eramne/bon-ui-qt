@@ -9,19 +9,8 @@ TextInputBase {
 
     property real maxPopupHeight: 300
 
-    property int _hoveredIndex: -1
-    property int firstVisibleIndex: {
-        for (var i = 0; i < model.count; i++) {
-            if (root.filter(model.get(i).name)) {
-                return i;
-            }
-        }
-        return -1;
-    }
-    property int highlightedIndex: root._hoveredIndex >= 0 ? root._hoveredIndex : currentIndex
-
-    property string value: model.get(currentIndex).name;
-    property int currentIndex: 0
+    property string value: list.model.get(currentIndex).name
+    property alias currentIndex: list.currentIndex
 
     property bool editable: true
     field.readOnly: !editable
@@ -40,95 +29,68 @@ TextInputBase {
         }
     }
 
-    suffixText: popup.opened && highlightedIndex >= 0 ? model.get(highlightedIndex).name : ""
+    suffixText: popup.opened && list.highlightedIndex >= 0 ? model.get(list.highlightedIndex).name : ""
 
     field.onFocusChanged: {
         if (field.focus && root._shouldOpenPopup) {
             popup.open();
         }
+        _updateValue()
     }
 
-    function setIndex(i) {
-        if (i >= 0) {
-            currentIndex = i;
-        }
-        field.text = value;
-        popup.close();
+    onCurrentIndexChanged: {
+        _updateValue()
+        popup.close()
         if (!editable) {
-            focus = false;
-            field.focus = false;
+            focus = false
+            field.focus = false
         }
+    }
+
+    function _updateValue() {
+        list.currentIndex = list.highlightedIndex
+        value = list.model.get(currentIndex).name
+        field.text = value
     }
 
     field.onEditingFinished: {
-        setIndex(highlightedIndex);
+        _updateValue()
     }
 
     field.onTextEdited: {
         if (!popup.opened && root._shouldOpenPopup) {
             popup.open();
         }
-        root._hoveredIndex = -1;
     }
 
     Keys.onPressed: function (event) {
         if (event.key === Qt.Key_Up) {
-            root.decrementCurrentIndex();
+            if (!popup.visible) {
+                if (currentIndex - 1 < 0) {
+                    list.hoveredIndex = list.model.count - 1
+                    _updateValue()
+                } else {
+                    list.hoveredIndex--
+                    _updateValue()
+                }
+                event.accepted = true
+            }
         }
         if (event.key === Qt.Key_Down) {
-            root.incrementCurrentIndex();
-        }
-    }
-
-    function incrementCurrentIndex() {
-        if (popup.opened) {
-            if (firstVisibleIndex >= 0) {
-                var tmpIndex = highlightedIndex;
-                var tmpStopCounter = 0; //to prevent possible infinite loop if i made a mistake anywhere
-                do {
-                    if (tmpIndex + 1 >= model.count) {
-                        tmpIndex = 0;
-                    } else {
-                        tmpIndex++;
-                    }
-                    tmpStopCounter++;
-                } while ((tmpIndex < 0 || !root.filter(model.get(tmpIndex).name)) && tmpStopCounter < model.count);
-                root._hoveredIndex = tmpIndex;
-                listView.positionViewAtIndex(tmpIndex, ListView.Contain);
-            }
-        } else {
-            if (currentIndex + 1 >= model.count) {
-                root.setIndex(0)
-            } else {
-                root.setIndex(currentIndex + 1)
+            if (!popup.visible) {
+                if (currentIndex + 1 >= model.count) {
+                    list.hoveredIndex = 0
+                    _updateValue()
+                } else {
+                    list.hoveredIndex++
+                    _updateValue()
+                }
+                event.accepted = true
             }
         }
     }
 
-    function decrementCurrentIndex() {
-        if (popup.opened) {
-            if (firstVisibleIndex >= 0) {
-                var tmpIndex = highlightedIndex;
-                var tmpStopCounter = 0; //to prevent possible infinite loop if i made a mistake anywhere
-                do {
-                    if (tmpIndex - 1 < 0) {
-                        tmpIndex = model.count-1;
-                    } else {
-                        tmpIndex--;
-                    }
-                    tmpStopCounter++;
-                } while ((tmpIndex < 0 || !root.filter(model.get(tmpIndex).name)) && tmpStopCounter < model.count);
-                root._hoveredIndex = tmpIndex;
-                listView.positionViewAtIndex(tmpIndex, ListView.Contain);
-            }
-        } else {
-            if (currentIndex - 1 < 0) {
-                root.setIndex(model.count - 1)
-            } else {
-                root.setIndex(currentIndex - 1)
-            }
-        }
-    }
+    Keys.forwardTo: list
 
     _trailingIcons: Component {
         Row {
@@ -141,7 +103,7 @@ TextInputBase {
                 id: iconButton
                 offIcon: "expand_more"
 
-                onClicked: {
+                onReleased: {
                     if (root.popup.opened) {
                         root.popup.close();
                     } else {
@@ -150,69 +112,6 @@ TextInputBase {
                         }
                     }
                 }
-
-                onDoubleClicked: {
-                    onClicked();
-                }
-            }
-        }
-    }
-
-    function filter(name) {
-        if (field.displayText.trim().toLowerCase() === value.trim().toLowerCase()) {
-            return true;
-        } else {
-            return name.trim().toLowerCase().startsWith(field.displayText.trim().toLowerCase());
-        }
-    }
-
-    property Component delegate: T.ItemDelegate {
-        id: item
-        width: ListView.view.width - ListView.view.leftMargin - ListView.view.rightMargin
-        height: contentItem.height
-        required property string name
-        required property int index
-        visible: root.filter(name)
-
-        onHoveredChanged: {
-            if (hovered) {
-                root._hoveredIndex = index
-            }
-        }
-
-        onClicked: {
-            root.setIndex(index);
-        }
-
-        background: Rectangle {
-            anchors.fill: parent
-            radius: 4
-            color: item.pressed ? Theme.palette.background_2 : (
-                       highlightedIndex === item.index ? Theme.palette.background_1 : Qt.alpha(Theme.palette.background, 0)
-                   )
-
-            Behavior on color {
-                ColorAnimation {
-                    duration: Theme.animations.basic.duration
-                    easing.type: Theme.animations.basic.type
-                }
-            }
-        }
-
-        contentItem: Row {
-            id: itemRow
-            leftPadding: 10
-            rightPadding: 10
-            height: implicitHeight
-            visible: parent.visible
-
-            Text {
-                visible: parent.visible
-                text: item.name
-                height: 28
-                verticalAlignment: Text.AlignVCenter
-                font: Theme.text.body
-                color: Theme.palette.text.body
             }
         }
     }
@@ -223,40 +122,38 @@ TextInputBase {
 
     property Dropdown popup: Dropdown {
         targetWidth: root.width
-        targetHeight: Math.min(root.maxPopupHeight, listView.contentHeight + topMargin + bottomMargin)
+        targetHeight: Math.min(root.maxPopupHeight, list.contentHeight + list.topMargin + list.bottomMargin)
 
-        HoverHandler {
-            onHoveredChanged: {
-                if (!hovered) {
-                    root._hoveredIndex = -1;
-                }
+        margins: 0
+
+        onFocusChanged: {
+            if (focus) {
+                root.focus = true
             }
         }
 
-        contentItem: ListView {
-            id: listView
-            height: parent.height - parent.topMargin - parent.bottomMargin
-            width: parent.width - parent.leftMargin - parent.rightMargin
+        List {
+            id: list
             model: root.model
-            delegate: root.delegate
-            clip: true
+            anchors.fill: parent
+            currentIndex: 0
 
-            boundsBehavior: Flickable.DragOverBounds
-
-            ScrollBar.vertical: ScrollBar { }
-            ScrollBar.horizontal: ScrollBar { }
-
-            property real margins: 10
-
-            leftMargin: margins
-            topMargin: margins
-            rightMargin: margins
-            bottomMargin: margins
-
-            maximumFlickVelocity: 4000
+            function filter(name) {
+                if (root.field.displayText.trim().toLowerCase() === root.value.trim().toLowerCase() || !root.popup.opened) {
+                    return true;
+                } else {
+                    return name.trim().toLowerCase().startsWith(root.field.displayText.trim().toLowerCase());
+                }
+            }
 
             onHeightChanged: {
                 parent.height = height + parent.topPadding + parent.bottomPadding;
+            }
+
+            onFocusChanged: {
+                if (focus) {
+                    root.focus = true
+                }
             }
         }
     }

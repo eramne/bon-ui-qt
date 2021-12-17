@@ -5,14 +5,24 @@ import bon
 ListView {
     id: root
 
-    property int _hoveredIndex: -1
-    property int highlightedIndex: root._hoveredIndex >= 0 ? root._hoveredIndex : currentIndex
+    property int hoveredIndex: -1
+    property int highlightedIndex: root.hoveredIndex >= 0 ? root.hoveredIndex : currentIndex
+
+    property int _firstVisibleIndex: {
+        for (var i = 0; i < model.count; i++) {
+            if (root.filter(model.get(i).name)) {
+                return i;
+            }
+        }
+        return -1;
+    }
 
     contentWidth: contentItem.childrenRect.width
     contentHeight: contentItem.childrenRect.height
     boundsBehavior: Flickable.DragOverBounds
     flickableDirection: Flickable.AutoFlickIfNeeded
     clip: true
+    keyNavigationEnabled: false
 
     ScrollBar.vertical: ScrollBar { }
     ScrollBar.horizontal: ScrollBar { }
@@ -35,41 +45,45 @@ ListView {
 
     Keys.onPressed: function (event) {
         if (event.key === Qt.Key_Up) {
-            root.decrementCurrentIndex();
+            root.decrementCurrentIndex()
         }
         if (event.key === Qt.Key_Down) {
-            root.incrementCurrentIndex();
+            root.incrementCurrentIndex()
         }
     }
 
     function incrementCurrentIndex() {
-        var tmpIndex = highlightedIndex;
-        var tmpStopCounter = 0; //to prevent possible infinite loop if i made a mistake anywhere
-        do {
-            if (tmpIndex + 1 >= model.count) {
-                tmpIndex = 0;
-            } else {
-                tmpIndex++;
-            }
-            tmpStopCounter++;
-        } while ((tmpIndex < 0 || !root.filter(model.get(tmpIndex).name)) && tmpStopCounter < model.count);
-        root._hoveredIndex = tmpIndex;
-        root.positionViewAtIndex(tmpIndex, ListView.Contain);
+        if (_firstVisibleIndex >= 0) {
+            var tmpIndex = highlightedIndex;
+            var tmpStopCounter = 0; //to prevent possible infinite loop if i made a mistake anywhere
+            do {
+                if (tmpIndex + 1 >= model.count) {
+                    tmpIndex = 0;
+                } else {
+                    tmpIndex++;
+                }
+                tmpStopCounter++;
+            } while ((tmpIndex < 0 || !root.filter(model.get(tmpIndex).name)) && tmpStopCounter < model.count);
+            root.hoveredIndex = tmpIndex;
+            root.positionViewAtIndex(tmpIndex, ListView.Contain);
+        }
     }
 
     function decrementCurrentIndex() {
-        var tmpIndex = highlightedIndex;
-        var tmpStopCounter = 0; //to prevent possible infinite loop if i made a mistake anywhere
-        do {
-            if (tmpIndex - 1 < 0) {
-                tmpIndex = model.count-1;
-            } else {
-                tmpIndex--;
-            }
-            tmpStopCounter++;
-        } while ((tmpIndex < 0 || !root.filter(model.get(tmpIndex).name)) && tmpStopCounter < model.count);
-        root._hoveredIndex = tmpIndex;
-        root.positionViewAtIndex(tmpIndex, ListView.Contain);
+        if (_firstVisibleIndex >= 0) {
+            var tmpIndex = highlightedIndex;
+            var tmpStopCounter = 0; //to prevent possible infinite loop if i made a mistake anywhere
+            do {
+                if (tmpIndex - 1 < 0) {
+                    tmpIndex = model.count-1;
+                } else {
+                    tmpIndex--;
+                }
+                tmpStopCounter++;
+            } while ((tmpIndex < 0 || !root.filter(model.get(tmpIndex).name)) && tmpStopCounter < model.count);
+            root.hoveredIndex = tmpIndex;
+            root.positionViewAtIndex(tmpIndex, ListView.Contain);
+        }
     }
 
     delegate: T.ItemDelegate {
@@ -81,7 +95,7 @@ ListView {
         visible: root.filter(name)
 
         onHoveredChanged: {
-            root._hoveredIndex = -1
+            root.hoveredIndex = -1
             if (hovered) {
                 sethovertimer.start()
             }
@@ -93,7 +107,7 @@ ListView {
             repeat: false
             running: false
             onTriggered: {
-                root._hoveredIndex = item.index
+                root.hoveredIndex = item.index
             }
         }
 
