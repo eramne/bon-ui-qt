@@ -137,6 +137,7 @@ TextInputBase {
             model: root.model
             anchors.fill: parent
             currentIndex: 0
+            compact: true
 
             function filter(name) {
                 if (root.field.displayText.trim().toLowerCase() === root.value.trim().toLowerCase() || !root.popup.opened) {

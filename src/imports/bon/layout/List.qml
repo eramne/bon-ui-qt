@@ -1,9 +1,12 @@
 import QtQuick
 import QtQuick.Templates as T
+import QtQuick.Layouts
 import bon
 
 ListView {
     id: root
+
+    property bool compact: false
 
     property int hoveredIndex: -1
     property int highlightedIndex: root.hoveredIndex >= 0 ? root.hoveredIndex : currentIndex
@@ -89,8 +92,9 @@ ListView {
     delegate: T.ItemDelegate {
         id: item
         width: Math.max(implicitWidth, root.width - root.leftMargin - root.rightMargin)
-        height: contentItem.height
+        height: itemRow.height
         required property string name
+        property string caption: ListView.view.model.get(index).caption ?? ""
         required property int index
         visible: root.filter(name)
 
@@ -132,20 +136,42 @@ ListView {
             }
         }
 
-        contentItem: Row {
+        contentItem: RowLayout {
             id: itemRow
-            leftPadding: 10
-            rightPadding: 10
             height: implicitHeight
             visible: parent.visible
 
-            Text {
-                visible: parent.visible
-                text: item.name
-                height: 28
-                verticalAlignment: Text.AlignVCenter
-                font: Theme.text.body
-                color: Theme.palette.text.body
+            ColumnLayout {
+                spacing: 5
+                Layout.fillHeight: true
+                Layout.fillWidth: true
+                Layout.leftMargin: root.compact ? 10 : 20
+                Layout.rightMargin: root.compact ? 10 : 20
+                Layout.topMargin: root.compact ? 4 : 14
+                Layout.bottomMargin: root.compact ? 4 : 14
+
+                Text {
+                    visible: parent.visible
+                    text: item.name
+                    verticalAlignment: Text.AlignVCenter
+                    Layout.fillWidth: true
+                    maximumLineCount: 1
+                    elide: Text.ElideRight
+                    font: Theme.text.body
+                    color: Theme.palette.text.body
+                }
+
+                Text {
+                    visible: parent.visible && item.caption
+                    text: item.caption
+                    verticalAlignment: Text.AlignVCenter
+                    Layout.fillWidth: true
+                    wrapMode: Text.Wrap
+                    maximumLineCount: 2
+                    elide: Text.ElideRight
+                    font: Theme.text.caption
+                    color: Theme.palette.text.label
+                }
             }
         }
     }

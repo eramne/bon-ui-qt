@@ -33,19 +33,22 @@ Window {
                     spacing: 20
 
                     Bon.List {
+                        id: list1
+                        width: 400
+
                         model: ListModel {
                             ListElement {name: "hi"}
-                            ListElement {name: "test"}
+                            ListElement {name: "test"; caption: "caption test"}
                             ListElement {name: "the"}
                             ListElement {name: "an"}
                             ListElement {name: "goenfdj"}
-                            ListElement {name: "cat"}
+                            ListElement {name: "cat"; caption: "Lorem ipsum dolor sit amet"}
                             ListElement {name: "hi"}
                             ListElement {name: "test"}
                             ListElement {name: "the"}
                             ListElement {name: "an"}
-                            ListElement {name: "goenfdj"}
-                            ListElement {name: "cat"}
+                            ListElement {name: "goenfdj"; caption: "Lorem ipsum dolor sit amet, consectetur adsipling elit, the quick brown fox jumps over the lazy dog, etc"}
+                            ListElement {name: "cataaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"; caption: "Lorem ipsum dolor sit amet, consectetur adsipling elit, the quick brown fox jumps over the lazy dog, etc nhioteshbtugboiutewbioutwbhitw go tsh tsh t h rsth rst hsoeige bo bo bou we"}
                             ListElement {name: "hi"}
                             ListElement {name: "test"}
                             ListElement {name: "the"}
@@ -53,6 +56,11 @@ Window {
                             ListElement {name: "goenfdj"}
                             ListElement {name: "cat"}
                         }
+                    }
+
+                    Bon.List {
+                        model: list1.model
+                        compact: true
                     }
 
                     Bon.Switch {}
