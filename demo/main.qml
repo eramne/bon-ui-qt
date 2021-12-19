@@ -39,10 +39,10 @@ Window {
                         model: ListModel {
                             ListElement {name: "hi"}
                             ListElement {name: "test"; caption: "caption test"}
-                            ListElement {name: "the"}
+                            ListElement {name: "the"; overline: "tech"}
                             ListElement {name: "an"}
                             ListElement {name: "goenfdj"}
-                            ListElement {name: "cat"; caption: "Lorem ipsum dolor sit amet"}
+                            ListElement {name: "cat"; caption: "Lorem ipsum dolor sit amet";  overline: "breaking"}
                             ListElement {name: "hi"}
                             ListElement {name: "test"}
                             ListElement {name: "the"}

@@ -94,7 +94,8 @@ ListView {
         width: Math.max(implicitWidth, root.width - root.leftMargin - root.rightMargin)
         height: itemRow.height
         required property string name
-        property string caption: ListView.view.model.get(index).caption ?? ""
+        property string caption: ListView.view.model.get(index).caption ?? "";
+        property string overline: ListView.view.model.get(index).overline ?? "";
         required property int index
         visible: root.filter(name)
 
@@ -142,13 +143,24 @@ ListView {
             visible: parent.visible
 
             ColumnLayout {
-                spacing: 5
+                spacing: root.compact ? 2 : 5
                 Layout.fillHeight: true
                 Layout.fillWidth: true
                 Layout.leftMargin: root.compact ? 10 : 20
                 Layout.rightMargin: root.compact ? 10 : 20
                 Layout.topMargin: root.compact ? 4 : 14
                 Layout.bottomMargin: root.compact ? 4 : 14
+
+                Text {
+                    visible: parent.visible && item.overline
+                    text: item.overline
+                    verticalAlignment: Text.AlignVCenter
+                    Layout.fillWidth: true
+                    maximumLineCount: 1
+                    elide: Text.ElideRight
+                    font: Theme.text.overline
+                    color: Theme.palette.text.overline
+                }
 
                 Text {
                     visible: parent.visible
