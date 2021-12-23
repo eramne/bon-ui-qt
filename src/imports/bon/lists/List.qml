@@ -160,6 +160,8 @@ ListView {
                         switch (listItem.leading?.type) {
                         case ListLeading.Type.Icon:
                             return leadingIcon
+                        case ListLeading.Type.Avatar:
+                            return leadingAvatar
                         default:
                             return undefined
                         }
@@ -171,6 +173,14 @@ ListView {
                         Icon {
                             name: listItem.leading?.name ?? "";
                             color: Theme.palette.text.label
+                        }
+                    }
+
+                    Component {
+                        id: leadingAvatar
+
+                        Avatar {
+                            source: listItem.leading?.source ?? "";
                         }
                     }
                 }

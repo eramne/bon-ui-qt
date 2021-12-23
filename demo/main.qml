@@ -41,7 +41,7 @@ Window {
                             {name: "test", caption: "caption test"},
                             {name: "the", overline: "tech"},
                             {name: "an", leading: Bon.ListLeading.icon({name: "home"})},
-                            {name: "goenfdj"},
+                            {name: "goenfdj", leading: Bon.ListLeading.avatar({source: "https://pbs.twimg.com/profile_images/1466199778598047749/sdljjuYA_400x400.jpg"})},
                             {name: "cat", caption: "Lorem ipsum dolor sit amet",  overline: "breaking"},
                             {name: "hi"},
                             {name: "test"},

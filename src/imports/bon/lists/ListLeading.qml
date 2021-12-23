@@ -9,4 +9,8 @@ QtObject {
     function icon({name}={}) {
         return {type: ListLeading.Type.Icon, name: name}
     }
+
+    function avatar({source}={}) {
+        return {type: ListLeading.Type.Avatar, source: source}
+    }
 }

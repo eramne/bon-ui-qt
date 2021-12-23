@@ -1,7 +1,6 @@
 module bon
 
 App 1.0 core/App.qml
-Icon 1.0 core/Icon.qml
 Fonts 1.0 core/Fonts.qml
 singleton Theme 1.0 core/Theme.qml
 singleton Bon 1.0 core/Bon.qml
@@ -51,6 +50,8 @@ Elevation 1.0 effects/Elevation.qml
 OverflowArea 1.0 layout/OverflowArea.qml
 Option 1.0 layout/Option.qml
 Choice 1.0 layout/Choice.qml
+Icon 1.0 layout/Icon.qml
+Avatar 1.0 layout/Avatar.qml
 
 List 1.0 lists/List.qml
 singleton ListLeading 1.0 lists/ListLeading.qml
