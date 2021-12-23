@@ -42,7 +42,7 @@ Window {
                             {name: "the", overline: "tech"},
                             {name: "an", leading: Bon.ListLeading.icon({name: "home"})},
                             {name: "goenfdj", leading: Bon.ListLeading.avatar({source: "https://pbs.twimg.com/profile_images/1466199778598047749/sdljjuYA_400x400.jpg"})},
-                            {name: "cat", caption: "Lorem ipsum dolor sit amet",  overline: "breaking"},
+                            {name: "chrimsntas yayaya", caption: "Lorem ipsum dolor sit amet",  overline: "breaking", leading: Bon.ListLeading.thumbnail({source: "https://picography.co/wp-content/uploads/2017/12/xmas-bokeh-lights-768x525.jpg"})},
                             {name: "hi"},
                             {name: "test"},
                             {name: "the"},

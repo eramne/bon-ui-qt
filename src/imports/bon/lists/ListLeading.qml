@@ -3,7 +3,9 @@ import QtQuick
 
 QtObject {
     enum Type {
-        Icon
+        Icon,
+        Avatar,
+        Thumbnail
     }
 
     function icon({name}={}) {
@@ -12,5 +14,9 @@ QtObject {
 
     function avatar({source}={}) {
         return {type: ListLeading.Type.Avatar, source: source}
+    }
+
+    function thumbnail({source}={}) {
+        return {type: ListLeading.Type.Thumbnail, source: source}
     }
 }

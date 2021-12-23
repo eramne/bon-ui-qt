@@ -162,6 +162,8 @@ ListView {
                             return leadingIcon
                         case ListLeading.Type.Avatar:
                             return leadingAvatar
+                        case ListLeading.Type.Thumbnail:
+                            return leadingThumbnail
                         default:
                             return undefined
                         }
@@ -180,6 +182,14 @@ ListView {
                         id: leadingAvatar
 
                         Avatar {
+                            source: listItem.leading?.source ?? "";
+                        }
+                    }
+
+                    Component {
+                        id: leadingThumbnail
+
+                        Thumbnail {
                             source: listItem.leading?.source ?? "";
                         }
                     }
