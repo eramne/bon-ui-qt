@@ -243,11 +243,11 @@ Dropdown {
                 editable: false
                 currentIndex: 2
 
-                model: ListModel {
-                    ListElement { name: "RGBA"; }
-                    ListElement { name: "HSVA"; }
-                    ListElement { name: "HEX"; }
-                }
+                model: [
+                    { name: "RGBA" },
+                    { name: "HSVA" },
+                    { name: "HEX" }
+                ]
             }
 
             StackLayout {

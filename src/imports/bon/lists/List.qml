@@ -12,8 +12,8 @@ ListView {
     property int highlightedIndex: root.hoveredIndex >= 0 ? root.hoveredIndex : currentIndex
 
     property int _firstVisibleIndex: {
-        for (var i = 0; i < model.count; i++) {
-            if (root.filter(model.get(i).name)) {
+        for (var i = 0; i < model.length; i++) {
+            if (root.filter(model[i].name)) {
                 return i;
             }
         }
@@ -60,13 +60,13 @@ ListView {
             var tmpIndex = highlightedIndex;
             var tmpStopCounter = 0; //to prevent possible infinite loop if i made a mistake anywhere
             do {
-                if (tmpIndex + 1 >= model.count) {
+                if (tmpIndex + 1 >= model.length) {
                     tmpIndex = 0;
                 } else {
                     tmpIndex++;
                 }
                 tmpStopCounter++;
-            } while ((tmpIndex < 0 || !root.filter(model.get(tmpIndex).name)) && tmpStopCounter < model.count);
+            } while ((tmpIndex < 0 || !root.filter(model[tmpIndex].name)) && tmpStopCounter < model.length);
             root.hoveredIndex = tmpIndex;
             root.positionViewAtIndex(tmpIndex, ListView.Contain);
         }
@@ -78,24 +78,25 @@ ListView {
             var tmpStopCounter = 0; //to prevent possible infinite loop if i made a mistake anywhere
             do {
                 if (tmpIndex - 1 < 0) {
-                    tmpIndex = model.count-1;
+                    tmpIndex = model.length-1;
                 } else {
                     tmpIndex--;
                 }
                 tmpStopCounter++;
-            } while ((tmpIndex < 0 || !root.filter(model.get(tmpIndex).name)) && tmpStopCounter < model.count);
+            } while ((tmpIndex < 0 || !root.filter(model[tmpIndex].name)) && tmpStopCounter < model.length);
             root.hoveredIndex = tmpIndex;
             root.positionViewAtIndex(tmpIndex, ListView.Contain);
         }
     }
 
     delegate: T.ItemDelegate {
-        id: item
+        id: listItem
         width: Math.max(implicitWidth, root.width - root.leftMargin - root.rightMargin)
         height: itemRow.height
-        required property string name
-        property string caption: ListView.view.model.get(index).caption ?? "";
-        property string overline: ListView.view.model.get(index).overline ?? "";
+        property string name: model[index].name ?? ""
+        property string caption: model[index].caption ?? ""
+        property string overline: model[index].overline ?? "";
+        property var leading: model[index].leading ?? undefined;
         required property int index
         visible: root.filter(name)
 
@@ -112,7 +113,7 @@ ListView {
             repeat: false
             running: false
             onTriggered: {
-                root.hoveredIndex = item.index
+                root.hoveredIndex = listItem.index
             }
         }
 
@@ -124,8 +125,8 @@ ListView {
         background: Rectangle {
             anchors.fill: parent
             radius: 4
-            color: item.pressed || root.currentIndex === item.index ? Theme.palette.background_2 : (
-                       root.highlightedIndex === item.index ? Theme.palette.background_1 : Qt.alpha(Theme.palette.background, 0)
+            color: listItem.pressed || root.currentIndex === listItem.index ? Theme.palette.background_2 : (
+                       root.highlightedIndex === listItem.index ? Theme.palette.background_1 : Qt.alpha(Theme.palette.background, 0)
                    )
             opacity: 0.3   //something to consider, not really sure if i should make it opaque or not, i feel like it might be a bit too much contrast with the text and the backround in hover & pressed states, maybe opaque in compact lists and slightly transparent in spacous lists? idk
 
@@ -142,47 +143,76 @@ ListView {
             height: implicitHeight
             visible: parent.visible
 
-            ColumnLayout {
-                spacing: root.compact ? 2 : 5
+            RowLayout {
+                spacing: 10
                 Layout.fillHeight: true
                 Layout.fillWidth: true
+
                 Layout.leftMargin: root.compact ? 10 : 20
                 Layout.rightMargin: root.compact ? 10 : 20
                 Layout.topMargin: root.compact ? 4 : 14
                 Layout.bottomMargin: root.compact ? 4 : 14
 
-                Text {
-                    visible: parent.visible && item.overline
-                    text: item.overline
-                    verticalAlignment: Text.AlignVCenter
-                    Layout.fillWidth: true
-                    maximumLineCount: 1
-                    elide: Text.ElideRight
-                    font: Theme.text.overline
-                    color: Theme.palette.text.overline
+
+                Loader {
+                    active: listItem.leading !== undefined
+                    sourceComponent: {
+                        switch (listItem.leading?.type) {
+                        case ListLeading.Type.Icon:
+                            return leadingIcon
+                        default:
+                            return undefined
+                        }
+                    }
+
+                    Component {
+                        id: leadingIcon
+
+                        Icon {
+                            name: listItem.leading?.name ?? "";
+                            color: Theme.palette.text.label
+                        }
+                    }
                 }
 
-                Text {
-                    visible: parent.visible
-                    text: item.name
-                    verticalAlignment: Text.AlignVCenter
+                ColumnLayout {
+                    spacing: root.compact ? 2 : 5
+                    Layout.fillHeight: true
                     Layout.fillWidth: true
-                    maximumLineCount: 1
-                    elide: Text.ElideRight
-                    font: Theme.text.body
-                    color: Theme.palette.text.body
-                }
 
-                Text {
-                    visible: parent.visible && item.caption
-                    text: item.caption
-                    verticalAlignment: Text.AlignVCenter
-                    Layout.fillWidth: true
-                    wrapMode: Text.Wrap
-                    maximumLineCount: 2
-                    elide: Text.ElideRight
-                    font: Theme.text.caption
-                    color: Theme.palette.text.label
+                    Text {
+                        visible: parent.visible && listItem.overline
+                        text: listItem.overline
+                        verticalAlignment: Text.AlignVCenter
+                        Layout.fillWidth: true
+                        maximumLineCount: 1
+                        elide: Text.ElideRight
+                        font: Theme.text.overline
+                        color: Theme.palette.text.overline
+                    }
+
+                    Text {
+                        visible: parent.visible
+                        text: listItem.name
+                        verticalAlignment: Text.AlignVCenter
+                        Layout.fillWidth: true
+                        maximumLineCount: 1
+                        elide: Text.ElideRight
+                        font: Theme.text.body
+                        color: Theme.palette.text.body
+                    }
+
+                    Text {
+                        visible: parent.visible && listItem.caption
+                        text: listItem.caption
+                        verticalAlignment: Text.AlignVCenter
+                        Layout.fillWidth: true
+                        wrapMode: Text.Wrap
+                        maximumLineCount: 2
+                        elide: Text.ElideRight
+                        font: Theme.text.caption
+                        color: Theme.palette.text.label
+                    }
                 }
             }
         }

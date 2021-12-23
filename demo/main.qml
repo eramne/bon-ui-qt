@@ -36,26 +36,26 @@ Window {
                         id: list1
                         width: 400
 
-                        model: ListModel {
-                            ListElement {name: "hi"}
-                            ListElement {name: "test"; caption: "caption test"}
-                            ListElement {name: "the"; overline: "tech"}
-                            ListElement {name: "an"}
-                            ListElement {name: "goenfdj"}
-                            ListElement {name: "cat"; caption: "Lorem ipsum dolor sit amet";  overline: "breaking"}
-                            ListElement {name: "hi"}
-                            ListElement {name: "test"}
-                            ListElement {name: "the"}
-                            ListElement {name: "an"}
-                            ListElement {name: "goenfdj"; caption: "Lorem ipsum dolor sit amet, consectetur adsipling elit, the quick brown fox jumps over the lazy dog, etc"}
-                            ListElement {name: "cataaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"; caption: "Lorem ipsum dolor sit amet, consectetur adsipling elit, the quick brown fox jumps over the lazy dog, etc nhioteshbtugboiutewbioutwbhitw go tsh tsh t h rsth rst hsoeige bo bo bou we"}
-                            ListElement {name: "hi"}
-                            ListElement {name: "test"}
-                            ListElement {name: "the"}
-                            ListElement {name: "an"}
-                            ListElement {name: "goenfdj"}
-                            ListElement {name: "cat"}
-                        }
+                        model: [
+                            {name: "hi"},
+                            {name: "test", caption: "caption test"},
+                            {name: "the", overline: "tech"},
+                            {name: "an", leading: Bon.ListLeading.icon({name: "home"})},
+                            {name: "goenfdj"},
+                            {name: "cat", caption: "Lorem ipsum dolor sit amet",  overline: "breaking"},
+                            {name: "hi"},
+                            {name: "test"},
+                            {name: "the"},
+                            {name: "an"},
+                            {name: "goenfdj", caption: "Lorem ipsum dolor sit amet, consectetur adsipling elit, the quick brown fox jumps over the lazy dog, etc"},
+                            {name: "cataaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", caption: "Lorem ipsum dolor sit amet, consectetur adsipling elit, the quick brown fox jumps over the lazy dog, etc nhioteshbtugboiutewbioutwbhitw go tsh tsh t h rsth rst hsoeige bo bo bou we"},
+                            {name: "hi"},
+                            {name: "test"},
+                            {name: "the"},
+                            {name: "an"},
+                            {name: "goenfdj"},
+                            {name: "cat"}
+                        ]
                     }
 
                     Bon.List {
@@ -850,39 +850,39 @@ Window {
                     Bon.ComboBox {
                         id: combobox1
 
-                        model: ListModel {
-                            ListElement { name: "Point"; }
-                            ListElement { name: "Line"; }
-                            ListElement { name: "Line Segment"; }
-                            ListElement { name: "Ray"; }
-                            ListElement { name: "Triangle"; }
-                            ListElement { name: "Square"; }
-                            ListElement { name: "Rectangle"; }
-                            ListElement { name: "Rhombus"; }
-                            ListElement { name: "Parallelogram"; }
-                            ListElement { name: "Trapezoid"; }
-                            ListElement { name: "Pentagon"; }
-                            ListElement { name: "Hexagon"; }
-                            ListElement { name: "Octagon"; }
-                            ListElement { name: "Polygon"; }
-                            ListElement { name: "Circle"; }
-                            ListElement { name: "Semicircle"; }
-                            ListElement { name: "Arc"; }
-                            ListElement { name: "Plane"; }
-                            ListElement { name: "Triangular Prism"; }
-                            ListElement { name: "Rectangular Prism"; }
-                            ListElement { name: "Cube"; }
-                            ListElement { name: "Pentagonal Prism"; }
-                            ListElement { name: "Hexagonal Prism"; }
-                            ListElement { name: "Prism"; }
-                            ListElement { name: "Tetrahedron"; }
-                            ListElement { name: "Octahedron"; }
-                            ListElement { name: "Dodecahedron"; }
-                            ListElement { name: "Icosahedron"; }
-                            ListElement { name: "Sphere"; }
-                            ListElement { name: "Dome"; }
-                            ListElement { name: "Empty"; }
-                        }
+                        model: [
+                            { name: "Point" },
+                            { name: "Line" },
+                            { name: "Line Segment" },
+                            { name: "Ray" },
+                            { name: "Triangle" },
+                            { name: "Square" },
+                            { name: "Rectangle" },
+                            { name: "Rhombus" },
+                            { name: "Parallelogram" },
+                            { name: "Trapezoid" },
+                            { name: "Pentagon" },
+                            { name: "Hexagon" },
+                            { name: "Octagon" },
+                            { name: "Polygon" },
+                            { name: "Circle" },
+                            { name: "Semicircle" },
+                            { name: "Arc" },
+                            { name: "Plane" },
+                            { name: "Triangular Prism" },
+                            { name: "Rectangular Prism" },
+                            { name: "Cube" },
+                            { name: "Pentagonal Prism" },
+                            { name: "Hexagonal Prism" },
+                            { name: "Prism" },
+                            { name: "Tetrahedron" },
+                            { name: "Octahedron" },
+                            { name: "Dodecahedron" },
+                            { name: "Icosahedron" },
+                            { name: "Sphere" },
+                            { name: "Dome" },
+                            { name: "Empty" }
+                        ]
                     }
 
                     Bon.ComboBox {

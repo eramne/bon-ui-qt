@@ -51,4 +51,6 @@ Elevation 1.0 effects/Elevation.qml
 OverflowArea 1.0 layout/OverflowArea.qml
 Option 1.0 layout/Option.qml
 Choice 1.0 layout/Choice.qml
-List 1.0 layout/List.qml
+
+List 1.0 lists/List.qml
+singleton ListLeading 1.0 lists/ListLeading.qml

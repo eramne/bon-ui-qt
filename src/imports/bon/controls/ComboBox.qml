@@ -9,7 +9,7 @@ TextInputBase {
 
     property real maxPopupHeight: 300
 
-    property string value: list.model.get(currentIndex).name
+    property string value: list.model[currentIndex].name
     property alias currentIndex: list.currentIndex
 
     property bool editable: true
@@ -29,7 +29,7 @@ TextInputBase {
         }
     }
 
-    suffixText: popup.opened && list.highlightedIndex >= 0 ? model.get(list.highlightedIndex).name : ""
+    suffixText: popup.opened && list.highlightedIndex >= 0 ? model[list.highlightedIndex].name : ""
 
     field.onFocusChanged: {
         if (field.focus && root._shouldOpenPopup) {
@@ -49,7 +49,7 @@ TextInputBase {
 
     function _updateValue() {
         list.currentIndex = list.highlightedIndex
-        value = list.model.get(currentIndex).name
+        value = list.model[currentIndex].name
         field.text = value
     }
 
@@ -67,7 +67,7 @@ TextInputBase {
         if (event.key === Qt.Key_Up) {
             if (!popup.visible) {
                 if (currentIndex - 1 < 0) {
-                    list.hoveredIndex = list.model.count - 1
+                    list.hoveredIndex = list.model.length - 1
                     _updateValue()
                 } else {
                     list.hoveredIndex--
@@ -78,7 +78,7 @@ TextInputBase {
         }
         if (event.key === Qt.Key_Down) {
             if (!popup.visible) {
-                if (currentIndex + 1 >= model.count) {
+                if (currentIndex + 1 >= model.length) {
                     list.hoveredIndex = 0
                     _updateValue()
                 } else {
@@ -116,9 +116,7 @@ TextInputBase {
         }
     }
 
-    property ListModel model: ListModel {
-
-    }
+    property var model: []
 
     property Dropdown popup: Dropdown {
         targetWidth: root.width
