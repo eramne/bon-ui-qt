@@ -92,7 +92,7 @@ ListView {
     delegate: T.ItemDelegate {
         id: listItem
         width: Math.max(implicitWidth, root.width - root.leftMargin - root.rightMargin)
-        height: itemRow.height
+        height: itemContent.height
         property string name: model[index].name ?? ""
         property string caption: model[index].caption ?? ""
         property string overline: model[index].overline ?? "";
@@ -140,11 +140,12 @@ ListView {
         }
 
         contentItem: RowLayout {
-            id: itemRow
+            id: itemContent
             height: implicitHeight
             visible: parent.visible
 
             RowLayout {
+                id: itemRow
                 spacing: 10
                 Layout.fillHeight: true
                 Layout.fillWidth: true
@@ -235,6 +236,14 @@ ListView {
                     }
                 }
 
+                Component.onCompleted: {
+                    if (listItem.trailing !== undefined && listItem.trailing?.type === ListTrailing.Type.Item) {
+                        if (listItem.trailing?.component.status === Component.Ready) {
+                            listItem.trailing?.component.createObject(itemRow);
+                        }
+                    }
+                }
+
                 Loader {
                     active: listItem.trailing !== undefined
                     sourceComponent: {
@@ -243,6 +252,9 @@ ListView {
                             return trailingCaption
                         case ListTrailing.Type.Icon:
                             return trailingIcon
+                        case ListTrailing.Type.Item:
+                            //return listItem.trailing?.component
+                            return undefined
                         default:
                             return undefined
                         }

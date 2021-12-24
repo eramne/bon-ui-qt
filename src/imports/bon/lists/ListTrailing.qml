@@ -4,7 +4,8 @@ import QtQuick
 QtObject {
     enum Type {
         Caption,
-        Icon
+        Icon,
+        Item
     }
 
     function caption({text}={}) {
@@ -13,5 +14,9 @@ QtObject {
 
     function icon({name}={}) {
         return {type: ListTrailing.Type.Icon, name: name}
+    }
+
+    function item({component}={}) {
+        return {type: ListTrailing.Type.Item, component: component}
     }
 }

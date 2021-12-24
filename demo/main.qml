@@ -46,7 +46,11 @@ Window {
                             {name: "hi"},
                             {name: "test", trailing: Bon.ListTrailing.caption({text: "Caption"})},
                             {name: "the", trailing: Bon.ListTrailing.icon({name: "arrow_right"})},
-                            {name: "an"},
+                            {name: "a", trailing: Bon.ListTrailing.item({component: listRadioButton}) },
+                            {name: "b", trailing: Bon.ListTrailing.item({component: listRadioButton}) },
+                            {name: "c", trailing: Bon.ListTrailing.item({component: listRadioButton}) },
+                            {name: "d", trailing: Bon.ListTrailing.item({component: listRadioButton}) },
+                            {name: "e", trailing: Bon.ListTrailing.item({component: listRadioButton}) },
                             {name: "goenfdj", caption: "Lorem ipsum dolor sit amet, consectetur adsipling elit, the quick brown fox jumps over the lazy dog, etc"},
                             {name: "cataaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", caption: "Lorem ipsum dolor sit amet, consectetur adsipling elit, the quick brown fox jumps over the lazy dog, etc nhioteshbtugboiutewbioutwbhitw go tsh tsh t h rsth rst hsoeige bo bo bou we", trailing: Bon.ListTrailing.caption({text: "aaaaaaa"})},
                             {name: "hi"},
@@ -56,6 +60,21 @@ Window {
                             {name: "goenfdj"},
                             {name: "cat"}
                         ]
+
+                        QuickControls.ButtonGroup {
+                            id: listButtonGroupTest
+                            exclusive: true
+                        }
+
+                        Component {
+                            id: listRadioButton
+
+                            Bon.RadioButton {
+                                //opacity: (parent.parent.parent.index%3)/4+1/4
+
+                                QuickControls.ButtonGroup.group: listButtonGroupTest
+                            }
+                        }
                     }
 
                     Bon.List {
