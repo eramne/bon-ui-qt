@@ -53,6 +53,7 @@ Choice 1.0 layout/Choice.qml
 Icon 1.0 layout/Icon.qml
 Avatar 1.0 layout/Avatar.qml
 Thumbnail 1.0 layout/Thumbnail.qml
+Divider 1.0 layout/Divider.qml
 
 List 1.0 lists/List.qml
 singleton ListLeading 1.0 lists/ListLeading.qml

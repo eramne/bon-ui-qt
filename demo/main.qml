@@ -25,10 +25,11 @@ Window {
 
             Bon.OverflowArea {
                 id: scrollview
+                margins: 0
 
                 Flow {
                     id: flow
-                    padding: 20
+                    padding: 40
                     width: scrollview.width - scrollview.leftMargin - scrollview.rightMargin
                     spacing: 20
 
@@ -82,6 +83,12 @@ Window {
                         compact: true
                     }
 
+                    Bon.Divider {
+                        width: parent.width
+                        leftInset: -parent.leftPadding
+                        name: "Switches"
+                    }
+
                     Bon.Switch {}
 
                     Bon.Switch {checked: true}
@@ -89,6 +96,12 @@ Window {
                     Bon.Switch {enabled: false}
 
                     Bon.Switch {checked:true; enabled: false}
+
+                    Bon.Divider {
+                        width: parent.width
+                        leftInset: -parent.leftPadding
+                        name: "Radio Buttons"
+                    }
 
                     Bon.RadioButton {}
 
@@ -102,6 +115,12 @@ Window {
 
                     Bon.RadioButton {mixed:true; enabled: false}
 
+                    Bon.Divider {
+                        width: parent.width
+                        leftInset: -parent.leftPadding
+                        name: "Checkboxes"
+                    }
+
                     Bon.CheckBox {}
 
                     Bon.CheckBox {checked: true}
@@ -114,9 +133,10 @@ Window {
 
                     Bon.CheckBox {mixed:true; enabled: false}
 
-                    Item {
-                        width: Layout.maximumWidth
-                        height: 10
+                    Bon.Divider {
+                        width: parent.width
+                        leftInset: -parent.leftPadding
+                        name: "Sliders"
                     }
 
                     Bon.Slider {}
@@ -163,9 +183,10 @@ Window {
                         orientation: Qt.Vertical
                     }
 
-                    Item {
-                        width: Layout.maximumWidth
-                        height: 10
+                    Bon.Divider {
+                        width: parent.width
+                        leftInset: -parent.leftPadding
+                        name: "Progress"
                     }
 
                     Bon.ProgressBar {
@@ -334,9 +355,10 @@ Window {
                         }
                     }
 
-                    Item {
-                        width: Layout.maximumWidth
-                        height: 10
+                    Bon.Divider {
+                        width: parent.width
+                        leftInset: -parent.leftPadding
+                        name: "Dials"
                     }
 
                     Bon.Dial {}
@@ -351,9 +373,10 @@ Window {
 
                     Bon.Dial {enabled: false; showValue: true; snapMode: Bon.Dial.SnapAlways; stepSize: 0.1}
 
-                    Item {
-                        width: Layout.maximumWidth
-                        height: 10
+                    Bon.Divider {
+                        width: parent.width
+                        leftInset: -parent.leftPadding
+                        name: "Buttons"
                     }
 
                     Bon.Button {
@@ -545,9 +568,10 @@ Window {
                         enabled: false
                     }
 
-                    Item {
-                        width: Layout.maximumWidth
-                        height: 10
+                    Bon.Divider {
+                        width: parent.width
+                        leftInset: -parent.leftPadding
+                        name: "Chips"
                     }
 
                     Bon.InputChip {
@@ -647,9 +671,10 @@ Window {
                         }
                     }
 
-                    Item {
-                        width: Layout.maximumWidth
-                        height: 10
+                    Bon.Divider {
+                        width: parent.width
+                        leftInset: -parent.leftPadding
+                        name: "Text Fields"
                     }
 
                     Bon.TextField {
@@ -764,9 +789,10 @@ Window {
                         field.onAccepted: showStatus = true
                     }
 
-                    Item {
-                        width: Layout.maximumWidth
-                        height: 10
+                    Bon.Divider {
+                        width: parent.width
+                        leftInset: -parent.leftPadding
+                        name: "Text Areas"
                     }
 
                     Bon.TextArea {
@@ -805,9 +831,10 @@ Window {
                         bordered: false
                     }
 
-                    Item {
-                        width: Layout.maximumWidth
-                        height: 10
+                    Bon.Divider {
+                        width: parent.width
+                        leftInset: -parent.leftPadding
+                        name: "Number Fields"
                     }
 
                     Bon.NumberField {
@@ -861,9 +888,10 @@ Window {
                         editable: false
                     }
 
-                    Item {
-                        width: Layout.maximumWidth
-                        height: 10
+                    Bon.Divider {
+                        width: parent.width
+                        leftInset: -parent.leftPadding
+                        name: "Combo Boxes"
                     }
 
                     Bon.ComboBox {
@@ -915,9 +943,10 @@ Window {
                         helpText: "Optional"
                     }
 
-                    Item {
-                        width: Layout.maximumWidth
-                        height: 10
+                    Bon.Divider {
+                        width: parent.width
+                        leftInset: -parent.leftPadding
+                        name: "Ratings"
                     }
 
                     Bon.Rating {
@@ -933,9 +962,10 @@ Window {
                         enabled: false
                     }
 
-                    Item {
-                        width: Layout.maximumWidth
-                        height: 10
+                    Bon.Divider {
+                        width: parent.width
+                        leftInset: -parent.leftPadding
+                        name: "Color Swatches"
                     }
 
                     Bon.ColorSwatch {
@@ -959,9 +989,10 @@ Window {
                         enabled: false
                     }
 
-                    Item {
-                        width: Layout.maximumWidth
-                        height: 10
+                    Bon.Divider {
+                        width: parent.width
+                        leftInset: -parent.leftPadding
+                        name: "Toggle Buttons"
                     }
 
                     Bon.ToggleButtonGroup {
@@ -980,9 +1011,10 @@ Window {
                         }
                     }
 
-                    Item {
-                        width: Layout.maximumWidth
-                        height: 10
+                    Bon.Divider {
+                        width: parent.width
+                        leftInset: -parent.leftPadding
+                        name: "Single Options"
                     }
 
                     Bon.Option {
@@ -1009,9 +1041,10 @@ Window {
                         exclusive: true
                     }
 
-                    Item {
-                        width: Layout.maximumWidth
-                        height: 10
+                    Bon.Divider {
+                        width: parent.width
+                        leftInset: -parent.leftPadding
+                        name: "Multiple Choices"
                     }
 
                     Bon.Choice {
@@ -1047,9 +1080,10 @@ Window {
                         }
                     }
 
-                    Item {
-                        width: Layout.maximumWidth
-                        height: 10
+                    Bon.Divider {
+                        width: parent.width
+                        leftInset: -parent.leftPadding
+                        name: "Tumblers"
                     }
 
                     Bon.Tumbler {
@@ -1061,9 +1095,10 @@ Window {
                         model: 60
                     }
 
-                    Item {
-                        width: Layout.maximumWidth
-                        height: 10
+                    Bon.Divider {
+                        width: parent.width
+                        leftInset: -parent.leftPadding
+                        name: "Pickers"
                     }
 
                     Bon.ColorField {
