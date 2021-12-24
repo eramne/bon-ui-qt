@@ -97,6 +97,7 @@ ListView {
         property string caption: model[index].caption ?? ""
         property string overline: model[index].overline ?? "";
         property var leading: model[index].leading ?? undefined;
+        property var trailing: model[index].trailing ?? undefined;
         required property int index
         visible: root.filter(name)
 
@@ -152,7 +153,6 @@ ListView {
                 Layout.rightMargin: root.compact ? 10 : 20
                 Layout.topMargin: root.compact ? 4 : 14
                 Layout.bottomMargin: root.compact ? 4 : 14
-
 
                 Loader {
                     active: listItem.leading !== undefined
@@ -232,6 +232,39 @@ ListView {
                         elide: Text.ElideRight
                         font: Theme.text.caption
                         color: Theme.palette.text.label
+                    }
+                }
+
+                Loader {
+                    active: listItem.trailing !== undefined
+                    sourceComponent: {
+                        switch (listItem.trailing?.type) {
+                        case ListTrailing.Type.Caption:
+                            return trailingCaption
+                        case ListTrailing.Type.Icon:
+                            return trailingIcon
+                        default:
+                            return undefined
+                        }
+                    }
+
+                    Component {
+                        id: trailingCaption
+
+                        Text {
+                            text: listItem.trailing?.text ?? "";
+                            font: Theme.text.caption
+                            color: Theme.palette.text.label
+                        }
+                    }
+
+                    Component {
+                        id: trailingIcon
+
+                        Icon {
+                            name: listItem.trailing?.name ?? "";
+                            color: Theme.palette.text.label
+                        }
                     }
                 }
             }

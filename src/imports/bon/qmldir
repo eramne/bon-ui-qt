@@ -56,3 +56,4 @@ Thumbnail 1.0 layout/Thumbnail.qml
 
 List 1.0 lists/List.qml
 singleton ListLeading 1.0 lists/ListLeading.qml
+singleton ListTrailing 1.0 lists/ListTrailing.qml
