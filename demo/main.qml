@@ -83,6 +83,29 @@ Window {
                         compact: true
                     }
 
+                    Bon.List {
+                        model: [
+                            {name: "item"},
+                            {name: "a"},
+                            {name: "abc123"},
+                            {name: "hgend"},
+                            {name: "cat"},
+                            {name: "dog"},
+                            {name: "hound"},
+                            {name: "AAAAAAAA"},
+                            {name: "qwertyuiop"},
+                            {name: "asdfghjkl"},
+                            {name: "zxcvbnm"},
+                            {name: "option"},
+                            {name: "file1"},
+                            {name: "file2"},
+                            {name: "file3"},
+                            {name: "loremipsumdolorsitametngjdfk"}
+                        ]
+                        compact: true
+                        selectionMode: Bon.List.SelectionMode.Multiple
+                    }
+
                     Bon.Divider {
                         width: parent.width
                         leftInset: -parent.leftPadding

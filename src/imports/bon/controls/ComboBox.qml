@@ -9,8 +9,8 @@ TextInputBase {
 
     property real maxPopupHeight: 300
 
-    property string value: list.model[currentIndex].name
-    property alias currentIndex: list.currentIndex
+    property string value: list.model[selectedIndex].name
+    property int selectedIndex: 1
 
     property bool editable: true
     field.readOnly: !editable
@@ -38,18 +38,18 @@ TextInputBase {
         _updateValue()
     }
 
-    onCurrentIndexChanged: {
+    onSelectedIndexChanged: {
+        list.currentIndex = selectedIndex
+        list.selectedIndices = [selectedIndex]
         _updateValue()
         popup.close()
-        if (!editable) {
-            focus = false
-            field.focus = false
-        }
+        focus = false
+        field.focus = false
     }
 
     function _updateValue() {
-        list.currentIndex = list.highlightedIndex
-        value = list.model[currentIndex].name
+        selectedIndex = list.currentIndex
+        value = list.model[selectedIndex].name
         field.text = value
     }
 
@@ -66,11 +66,11 @@ TextInputBase {
     Keys.onPressed: function (event) {
         if (event.key === Qt.Key_Up) {
             if (!popup.visible) {
-                if (currentIndex - 1 < 0) {
-                    list.hoveredIndex = list.model.length - 1
+                if (list.currentIndex - 1 < 0) {
+                    list.currentIndex = list.model.length - 1
                     _updateValue()
                 } else {
-                    list.hoveredIndex--
+                    list.currentIndex--
                     _updateValue()
                 }
                 event.accepted = true
@@ -79,10 +79,10 @@ TextInputBase {
         if (event.key === Qt.Key_Down) {
             if (!popup.visible) {
                 if (currentIndex + 1 >= model.length) {
-                    list.hoveredIndex = 0
+                    list.currentIndex = 0
                     _updateValue()
                 } else {
-                    list.hoveredIndex++
+                    list.currentIndex++
                     _updateValue()
                 }
                 event.accepted = true
@@ -109,6 +109,7 @@ TextInputBase {
                     } else {
                         if (root._shouldOpenPopup) {
                             root.popup.open();
+                            root.field.focus = true;
                         }
                     }
                 }
@@ -136,6 +137,7 @@ TextInputBase {
             anchors.fill: parent
             currentIndex: 0
             compact: true
+            selectionMode: List.SelectionMode.Single
 
             function filter(name) {
                 if (root.field.displayText.trim().toLowerCase() === root.value.trim().toLowerCase() || !root.popup.opened) {
@@ -153,6 +155,10 @@ TextInputBase {
                 if (focus) {
                     root.focus = true
                 }
+            }
+
+            onSelectedIndicesChanged: {
+                root.selectedIndex = selectedIndices[0] ?? 0;
             }
         }
     }

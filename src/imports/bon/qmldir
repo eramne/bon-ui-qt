@@ -4,6 +4,7 @@ App 1.0 core/App.qml
 Fonts 1.0 core/Fonts.qml
 singleton Theme 1.0 core/Theme.qml
 singleton Bon 1.0 core/Bon.qml
+SelectionModel 1.0 core/SelectionModel.qml
 
 Switch 1.0 controls/Switch.qml
 RadioButton 1.0 controls/RadioButton.qml

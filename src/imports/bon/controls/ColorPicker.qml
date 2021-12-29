@@ -241,7 +241,7 @@ Dropdown {
                 id: textInputTypeBox
                 width: 100
                 editable: false
-                currentIndex: 2
+                selectedIndex: 2
 
                 model: [
                     { name: "RGBA" },
@@ -252,7 +252,7 @@ Dropdown {
 
             StackLayout {
                 Layout.fillWidth: true
-                currentIndex: textInputTypeBox.currentIndex
+                currentIndex: textInputTypeBox.selectedIndex
 
                 //RGBA
                 RowLayout {

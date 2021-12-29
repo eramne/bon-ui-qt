@@ -7,9 +7,20 @@ ListView {
     id: root
 
     property bool compact: false
+    //property bool selectMultiple: false
+    property int selectionMode: List.SelectionMode.None
+
+    enum SelectionMode {
+        None,
+        Single,
+        Multiple
+    }
 
     property int hoveredIndex: -1
-    property int highlightedIndex: root.hoveredIndex >= 0 ? root.hoveredIndex : currentIndex
+    property int highlightedIndex: root.hoveredIndex >= 0 ? root.hoveredIndex : selectionModel.currentIndex
+
+    property alias currentIndex: selectionModel.currentIndex
+    property alias selectedIndices: selectionModel.selectedIndices
 
     property int _firstVisibleIndex: {
         for (var i = 0; i < model.length; i++) {
@@ -46,14 +57,31 @@ ListView {
         return true
     }
 
-    Keys.onPressed: function (event) {
-        if (event.key === Qt.Key_Up) {
-            root.decrementCurrentIndex()
-        }
-        if (event.key === Qt.Key_Down) {
-            root.incrementCurrentIndex()
-        }
-    }
+    property bool shiftDown: false
+    property bool ctrlDown: false
+    Keys.onPressed: (event) => {
+                        if (event.key === Qt.Key_Up) {
+                            root.decrementCurrentIndex()
+                        }
+                        if (event.key === Qt.Key_Down) {
+                            root.incrementCurrentIndex()
+                        }
+
+                        if (event.key === Qt.Key_Shift) {
+                            root.shiftDown = true
+                        }
+                        if (event.key === Qt.Key_Control) {
+                            root.ctrlDown = true
+                        }
+                    }
+    Keys.onReleased: (event) => {
+                         if (event.key === Qt.Key_Shift) {
+                             root.shiftDown = false
+                         }
+                         if (event.key === Qt.Key_Control) {
+                             root.ctrlDown = false
+                         }
+                     }
 
     function incrementCurrentIndex() {
         if (_firstVisibleIndex >= 0) {
@@ -67,7 +95,7 @@ ListView {
                 }
                 tmpStopCounter++;
             } while ((tmpIndex < 0 || !root.filter(model[tmpIndex].name)) && tmpStopCounter < model.length);
-            root.hoveredIndex = tmpIndex;
+            selectionModel.currentIndex = tmpIndex;
             root.positionViewAtIndex(tmpIndex, ListView.Contain);
         }
     }
@@ -84,10 +112,16 @@ ListView {
                 }
                 tmpStopCounter++;
             } while ((tmpIndex < 0 || !root.filter(model[tmpIndex].name)) && tmpStopCounter < model.length);
-            root.hoveredIndex = tmpIndex;
+            selectionModel.currentIndex = tmpIndex;
             root.positionViewAtIndex(tmpIndex, ListView.Contain);
         }
     }
+
+    SelectionModel {
+        id: selectionModel
+    }
+
+    signal _updateSelectionBackgroundColors
 
     delegate: T.ItemDelegate {
         id: listItem
@@ -119,17 +153,42 @@ ListView {
         }
 
         onClicked: {
-            root.currentIndex = index
+            if (root.selectionMode === List.SelectionMode.Multiple) {
+                if (!root.ctrlDown && !root.shiftDown) {
+                    selectionModel.select(index)
+                } else if (!root.ctrlDown && root.shiftDown) {
+                    selectionModel.select(index, SelectionModel.SelectionType.Range)
+                } else if (root.ctrlDown && !root.shiftDown) {
+                    selectionModel.select(index, SelectionModel.SelectionType.Toggle)
+                } else if (root.ctrlDown && root.shiftDown) {
+                    selectionModel.select(index, SelectionModel.SelectionType.AddRange)
+                }
+            } else if (root.selectionMode === List.SelectionMode.Single) {
+                selectionModel.select(index)
+            }
             root.focus = true
+            root._updateSelectionBackgroundColors()
         }
 
         background: Rectangle {
             anchors.fill: parent
             radius: 4
-            color: listItem.pressed || root.currentIndex === listItem.index ? Theme.palette.background_2 : (
-                       root.highlightedIndex === listItem.index ? Theme.palette.background_1 : Qt.alpha(Theme.palette.background, 0)
-                   )
-            opacity: 0.3   //something to consider, not really sure if i should make it opaque or not, i feel like it might be a bit too much contrast with the text and the backround in hover & pressed states, maybe opaque in compact lists and slightly transparent in spacous lists? idk
+            color: getColor()
+            function getColor() {
+                return listItem.pressed || selectionModel.isSelected(listItem.index) ? Theme.palette.background_2 : (
+                           root.hoveredIndex === listItem.index ? Theme.palette.background_1 : Qt.alpha(Theme.palette.background, 0)
+                       )
+            }
+
+            Component.onCompleted: {
+                root._updateSelectionBackgroundColors.connect(function(){
+                    color = Qt.binding(function () {return getColor()})
+                })
+            }
+
+            border.width: root.hoveredIndex !== listItem.index && root.highlightedIndex === listItem.index ? 2 : 0
+            border.color: Theme.palette.background_1
+            opacity: 0.3
 
             Behavior on color {
                 ColorAnimation {
@@ -147,6 +206,8 @@ ListView {
             RowLayout {
                 id: itemRow
                 spacing: 10
+                visible: parent.visible
+
                 Layout.fillHeight: true
                 Layout.fillWidth: true
 
