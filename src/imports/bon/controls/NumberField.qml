@@ -93,11 +93,7 @@ TextInputBase {
                 offIcon: "keyboard_arrow_up"
                 autoRepeat: true
 
-                onClicked: {
-                    root.increase();
-                }
-
-                onDoubleClicked: {
+                onReleased: {
                     root.increase();
                 }
             }
@@ -107,11 +103,7 @@ TextInputBase {
                 offIcon: "keyboard_arrow_down"
                 autoRepeat: true
 
-                onClicked: {
-                    root.decrease();
-                }
-
-                onDoubleClicked: {
+                onReleased: {
                     root.decrease();
                 }
             }

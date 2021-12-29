@@ -182,7 +182,9 @@ ListView {
 
             Component.onCompleted: {
                 root._updateSelectionBackgroundColors.connect(function(){
-                    color = Qt.binding(function () {return getColor()})
+                    if (listItem?.background?.color) {
+                        listItem.background.color = Qt.binding(function () {return getColor()})
+                    }
                 })
             }
 
