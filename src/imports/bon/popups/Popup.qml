@@ -12,11 +12,13 @@ T.Popup {
     property real targetHeight: contentItem.height
     x: targetX
     y: targetY
-    width: Math.min(targetWidth, parent.Window.width - leftMargin - rightMargin)
-    height: Math.min(targetHeight, parent.Window.height - topMargin - bottomMargin)
+    width: Math.min(targetWidth, maxWidth)
+    height: Math.min(targetHeight, maxHeight)
+    property real maxWidth: (parent?.Window?.width??0) - leftMargin - rightMargin
+    property real maxHeight: (parent?.Window?.height??0) - topMargin - bottomMargin
 
     function outOfBounds(x, y) {
-        if (parent.Window.window) {
+        if (parent?.Window?.window) {
             var pos = parent.mapToGlobal(x,y);
             var windowPos = parent.Window.window.contentItem.mapToGlobal(0,0);
             var windowWidth = parent.Window.width;

@@ -123,8 +123,6 @@ TextInputBase {
         targetWidth: root.width
         targetHeight: Math.min(root.maxPopupHeight, list.contentHeight + list.topMargin + list.bottomMargin)
 
-        margins: 0
-
         onFocusChanged: {
             if (focus) {
                 root.focus = true

@@ -7,7 +7,6 @@ ListView {
     id: root
 
     property bool compact: false
-    //property bool selectMultiple: false
     property int selectionMode: List.SelectionMode.None
 
     enum SelectionMode {
@@ -22,14 +21,22 @@ ListView {
     property alias currentIndex: selectionModel.currentIndex
     property alias selectedIndices: selectionModel.selectedIndices
 
+    onCurrentIndexChanged: {
+        if (itemAtIndex(currentIndex)) {
+            itemAtIndex(currentIndex).focus = true
+        }
+    }
+
     property int _firstVisibleIndex: {
         for (var i = 0; i < model.length; i++) {
-            if (root.filter(model[i].name)) {
+            if (root.filter(model[i].name) && (model[i]?.enabled ?? true)) {
                 return i;
             }
         }
         return -1;
     }
+
+    signal itemActivated(int index, var item)
 
     contentWidth: contentItem.childrenRect.width
     contentHeight: contentItem.childrenRect.height
@@ -94,7 +101,7 @@ ListView {
                     tmpIndex++;
                 }
                 tmpStopCounter++;
-            } while ((tmpIndex < 0 || !root.filter(model[tmpIndex].name)) && tmpStopCounter < model.length);
+            } while ((tmpIndex < 0 || !(root.filter(model[tmpIndex].name) && (model[tmpIndex]?.enabled ?? true))) && tmpStopCounter < model.length);
             selectionModel.currentIndex = tmpIndex;
             root.positionViewAtIndex(tmpIndex, ListView.Contain);
         }
@@ -111,7 +118,7 @@ ListView {
                     tmpIndex--;
                 }
                 tmpStopCounter++;
-            } while ((tmpIndex < 0 || !root.filter(model[tmpIndex].name)) && tmpStopCounter < model.length);
+            } while ((tmpIndex < 0 || !(root.filter(model[tmpIndex].name) && (model[tmpIndex]?.enabled ?? true))) && tmpStopCounter < model.length);
             selectionModel.currentIndex = tmpIndex;
             root.positionViewAtIndex(tmpIndex, ListView.Contain);
         }
@@ -132,8 +139,24 @@ ListView {
         property string overline: model[index].overline ?? "";
         property var leading: model[index].leading ?? undefined;
         property var trailing: model[index].trailing ?? undefined;
+        property bool showDivider: model[index].showDivider ?? false;
+        property string sectionName: model[index].sectionName ?? "";
+        enabled: model[index].enabled ?? true;
         required property int index
         visible: root.filter(name)
+
+        property real _itemImplicitWidth: itemRow.implicitWidth + itemRow.Layout.leftMargin + itemRow.Layout.rightMargin
+
+        layer.enabled: !enabled
+        opacity: enabled ? 1 : Theme.disabled_opacity
+        hoverEnabled: enabled
+
+        Keys.enabled: true
+        Keys.onPressed: function (event) {
+            if (event.key === Qt.Key_Return) {
+                onReleased()
+            }
+        }
 
         onHoveredChanged: {
             root.hoveredIndex = -1
@@ -152,7 +175,7 @@ ListView {
             }
         }
 
-        onClicked: {
+        onReleased: {
             if (root.selectionMode === List.SelectionMode.Multiple) {
                 if (!root.ctrlDown && !root.shiftDown) {
                     selectionModel.select(index)
@@ -168,10 +191,13 @@ ListView {
             }
             root.focus = true
             root._updateSelectionBackgroundColors()
+            root.itemActivated(listItem.index, listItem)
         }
 
         background: Rectangle {
-            anchors.fill: parent
+            width: parent.width
+            y: container.y
+            height: container.height
             radius: 4
             color: getColor()
             function getColor() {
@@ -200,145 +226,163 @@ ListView {
             }
         }
 
-        contentItem: RowLayout {
+        contentItem: ColumnLayout {
             id: itemContent
+            width: implicitWidth
             height: implicitHeight
             visible: parent.visible
 
+            Divider {
+                visible: listItem.showDivider
+                name: listItem.sectionName
+                Layout.fillWidth: true
+                Layout.topMargin: 5
+                textInset: itemRow.Layout.leftMargin
+            }
+
             RowLayout {
-                id: itemRow
-                spacing: 10
+                id: container
+                width: implicitWidth
+                height: implicitHeight
                 visible: parent.visible
 
-                Layout.fillHeight: true
-                Layout.fillWidth: true
+                RowLayout {
+                    id: itemRow
+                    spacing: root.compact ? 5 : 10
+                    visible: parent.visible
 
-                Layout.leftMargin: root.compact ? 10 : 20
-                Layout.rightMargin: root.compact ? 10 : 20
-                Layout.topMargin: root.compact ? 4 : 14
-                Layout.bottomMargin: root.compact ? 4 : 14
-
-                Loader {
-                    active: listItem.leading !== undefined
-                    sourceComponent: {
-                        switch (listItem.leading?.type) {
-                        case ListLeading.Type.Icon:
-                            return leadingIcon
-                        case ListLeading.Type.Avatar:
-                            return leadingAvatar
-                        case ListLeading.Type.Thumbnail:
-                            return leadingThumbnail
-                        default:
-                            return undefined
-                        }
-                    }
-
-                    Component {
-                        id: leadingIcon
-
-                        Icon {
-                            name: listItem.leading?.name ?? "";
-                            color: Theme.palette.text.label
-                        }
-                    }
-
-                    Component {
-                        id: leadingAvatar
-
-                        Avatar {
-                            source: listItem.leading?.source ?? "";
-                        }
-                    }
-
-                    Component {
-                        id: leadingThumbnail
-
-                        Thumbnail {
-                            source: listItem.leading?.source ?? "";
-                        }
-                    }
-                }
-
-                ColumnLayout {
-                    spacing: root.compact ? 2 : 5
                     Layout.fillHeight: true
                     Layout.fillWidth: true
 
-                    Text {
-                        visible: parent.visible && listItem.overline
-                        text: listItem.overline
-                        verticalAlignment: Text.AlignVCenter
-                        Layout.fillWidth: true
-                        maximumLineCount: 1
-                        elide: Text.ElideRight
-                        font: Theme.text.overline
-                        color: Theme.palette.text.overline
-                    }
+                    Layout.leftMargin: root.compact ? 10 : 20
+                    Layout.rightMargin: root.compact ? 10 : 20
+                    Layout.topMargin: root.compact ? 4 : 14
+                    Layout.bottomMargin: root.compact ? 4 : 14
 
-                    Text {
-                        visible: parent.visible
-                        text: listItem.name
-                        verticalAlignment: Text.AlignVCenter
-                        Layout.fillWidth: true
-                        maximumLineCount: 1
-                        elide: Text.ElideRight
-                        font: Theme.text.body
-                        color: Theme.palette.text.body
-                    }
-
-                    Text {
-                        visible: parent.visible && listItem.caption
-                        text: listItem.caption
-                        verticalAlignment: Text.AlignVCenter
-                        Layout.fillWidth: true
-                        wrapMode: Text.Wrap
-                        maximumLineCount: 2
-                        elide: Text.ElideRight
-                        font: Theme.text.caption
-                        color: Theme.palette.text.label
-                    }
-                }
-
-                Component.onCompleted: {
-                    if (listItem.trailing !== undefined && listItem.trailing?.type === ListTrailing.Type.Item) {
-                        if (listItem.trailing?.component.status === Component.Ready) {
-                            listItem.trailing?.component.createObject(itemRow);
+                    Loader {
+                        active: listItem.leading !== undefined
+                        sourceComponent: {
+                            switch (listItem.leading?.type) {
+                            case ListLeading.Type.Icon:
+                                return leadingIcon
+                            case ListLeading.Type.Avatar:
+                                return leadingAvatar
+                            case ListLeading.Type.Thumbnail:
+                                return leadingThumbnail
+                            default:
+                                return undefined
+                            }
                         }
-                    }
-                }
 
-                Loader {
-                    active: listItem.trailing !== undefined
-                    sourceComponent: {
-                        switch (listItem.trailing?.type) {
-                        case ListTrailing.Type.Caption:
-                            return trailingCaption
-                        case ListTrailing.Type.Icon:
-                            return trailingIcon
-                        case ListTrailing.Type.Item:
-                            //return listItem.trailing?.component
-                            return undefined
-                        default:
-                            return undefined
+                        Component {
+                            id: leadingIcon
+
+                            Icon {
+                                name: listItem.leading?.name ?? "";
+                                color: Theme.palette.text.label
+                                size: root.compact ? 20 : 24
+                            }
+                        }
+
+                        Component {
+                            id: leadingAvatar
+
+                            Avatar {
+                                source: listItem.leading?.source ?? "";
+                            }
+                        }
+
+                        Component {
+                            id: leadingThumbnail
+
+                            Thumbnail {
+                                source: listItem.leading?.source ?? "";
+                            }
                         }
                     }
 
-                    Component {
-                        id: trailingCaption
+                    ColumnLayout {
+                        spacing: root.compact ? 2 : 5
+                        Layout.fillHeight: true
+                        Layout.fillWidth: true
 
                         Text {
-                            text: listItem.trailing?.text ?? "";
+                            visible: parent.visible && listItem.overline
+                            text: listItem.overline
+                            verticalAlignment: Text.AlignVCenter
+                            Layout.fillWidth: true
+                            maximumLineCount: 1
+                            elide: Text.ElideRight
+                            font: Theme.text.overline
+                            color: Theme.palette.text.overline
+                        }
+
+                        Text {
+                            visible: parent.visible
+                            text: listItem.name
+                            verticalAlignment: Text.AlignVCenter
+                            Layout.fillWidth: true
+                            maximumLineCount: 1
+                            elide: Text.ElideRight
+                            font: Theme.text.body
+                            color: Theme.palette.text.body
+                        }
+
+                        Text {
+                            visible: parent.visible && listItem.caption
+                            text: listItem.caption
+                            verticalAlignment: Text.AlignVCenter
+                            Layout.fillWidth: true
+                            wrapMode: Text.Wrap
+                            maximumLineCount: 2
+                            elide: Text.ElideRight
                             font: Theme.text.caption
                             color: Theme.palette.text.label
                         }
                     }
 
-                    Component {
-                        id: trailingIcon
+                    Component.onCompleted: {
+                        if (listItem.trailing !== undefined && listItem.trailing?.type === ListTrailing.Type.Item) {
+                            if (listItem.trailing?.component.status === Component.Ready) {
+                                listItem.trailing?.component.createObject(itemRow);
+                            }
+                        }
+                    }
 
-                        Icon {
-                            name: listItem.trailing?.name ?? "";
-                            color: Theme.palette.text.label
+                    Loader {
+                        active: listItem.trailing !== undefined
+                        sourceComponent: {
+                            switch (listItem.trailing?.type) {
+                            case ListTrailing.Type.Caption:
+                                return trailingCaption
+                            case ListTrailing.Type.Icon:
+                                return trailingIcon
+                            case ListTrailing.Type.Item:
+                                //return listItem.trailing?.component
+                                return undefined
+                            default:
+                                return undefined
+                            }
+                        }
+
+                        Component {
+                            id: trailingCaption
+
+                            Text {
+                                text: listItem.trailing?.text ?? "";
+                                font: Theme.text.caption
+                                color: Theme.palette.text.label
+                            }
+                        }
+
+                        Component {
+                            id: trailingIcon
+
+                            Icon {
+                                name: listItem.trailing?.name ?? "";
+                                color: Theme.palette.text.label
+                                size: root.compact ? 20 : 24
+                            }
                         }
                     }
                 }

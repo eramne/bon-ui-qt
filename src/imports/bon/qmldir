@@ -40,6 +40,8 @@ TimeField 1.0 controls/TimeField.qml
 
 Popup 1.0 popups/Popup.qml
 Dropdown 1.0 popups/Dropdown.qml
+Menu 1.0 popups/Menu.qml
+MenuItem 1.0 popups/MenuItem.qml
 
 ProgressBar 1.0 feedback/ProgressBar.qml
 ProgressCircle 1.0 feedback/ProgressCircle.qml

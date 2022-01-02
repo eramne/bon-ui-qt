@@ -6,15 +6,28 @@ Popup {
     id: root
     property Item target: parent
 
-    y: outOfBounds(x, target.height + 10 + height) ? target.height + 10 : -height - 10;
     closePolicy: T.Popup.CloseOnPressOutsideParent
 
-    function updatePopupPos() {
-        y = outOfBounds(x, target.height + 10 + height) ? target.height + 10 : -height - 10;
+    property bool autoAdjustPositionAroundTarget: true
+
+    x: targetX
+    y: targetY
+
+    function _updatePopupPos() {
+        if (autoAdjustPositionAroundTarget) {
+            y = Qt.binding(function () {return outOfBounds(x, (target?.height??0) + 10 + height) ? (target?.height??0) + 10 : -height - 10;})
+        }
+    }
+    Component.onCompleted: {
+        if (autoAdjustPositionAroundTarget) {
+            _updatePopupPos()
+        }
     }
 
     onAboutToShow: {
-        updatePopupPos();
+        if (autoAdjustPositionAroundTarget) {
+            _updatePopupPos()
+        }
     }
 
     Behavior on y {
@@ -27,11 +40,13 @@ Popup {
 
     Timer {
         repeat: true
-        running: root.opened
+        running: root.opened && root.autoAdjustPositionAroundTarget
         triggeredOnStart: true
         interval: 100
         onTriggered: {
-            root.updatePopupPos();
+            if (root.autoAdjustPositionAroundTarget) {
+                root._updatePopupPos()
+            }
         }
     }
 }

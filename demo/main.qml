@@ -33,79 +33,6 @@ Window {
                     width: scrollview.width - scrollview.leftMargin - scrollview.rightMargin
                     spacing: 20
 
-                    Bon.List {
-                        id: list1
-                        width: 400
-
-                        model: [
-                            {name: "hi"},
-                            {name: "test", caption: "caption test"},
-                            {name: "the", overline: "tech"},
-                            {name: "an", leading: Bon.ListLeading.icon({name: "home"})},
-                            {name: "goenfdj", leading: Bon.ListLeading.avatar({source: "https://pbs.twimg.com/profile_images/1466199778598047749/sdljjuYA_400x400.jpg"})},
-                            {name: "chrimsntas yayaya", caption: "Lorem ipsum dolor sit amet",  overline: "breaking", leading: Bon.ListLeading.thumbnail({source: "https://picography.co/wp-content/uploads/2017/12/xmas-bokeh-lights-768x525.jpg"})},
-                            {name: "hi"},
-                            {name: "test", trailing: Bon.ListTrailing.caption({text: "Caption"})},
-                            {name: "the", trailing: Bon.ListTrailing.icon({name: "arrow_right"})},
-                            {name: "a", trailing: Bon.ListTrailing.item({component: listRadioButton}) },
-                            {name: "b", trailing: Bon.ListTrailing.item({component: listRadioButton}) },
-                            {name: "c", trailing: Bon.ListTrailing.item({component: listRadioButton}) },
-                            {name: "d", trailing: Bon.ListTrailing.item({component: listRadioButton}) },
-                            {name: "e", trailing: Bon.ListTrailing.item({component: listRadioButton}) },
-                            {name: "goenfdj", caption: "Lorem ipsum dolor sit amet, consectetur adsipling elit, the quick brown fox jumps over the lazy dog, etc"},
-                            {name: "cataaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", caption: "Lorem ipsum dolor sit amet, consectetur adsipling elit, the quick brown fox jumps over the lazy dog, etc nhioteshbtugboiutewbioutwbhitw go tsh tsh t h rsth rst hsoeige bo bo bou we", trailing: Bon.ListTrailing.caption({text: "aaaaaaa"})},
-                            {name: "hi"},
-                            {name: "test"},
-                            {name: "the"},
-                            {name: "an"},
-                            {name: "goenfdj"},
-                            {name: "cat"}
-                        ]
-
-                        QuickControls.ButtonGroup {
-                            id: listButtonGroupTest
-                            exclusive: true
-                        }
-
-                        Component {
-                            id: listRadioButton
-
-                            Bon.RadioButton {
-                                //opacity: (parent.parent.parent.index%3)/4+1/4
-
-                                QuickControls.ButtonGroup.group: listButtonGroupTest
-                            }
-                        }
-                    }
-
-                    Bon.List {
-                        model: list1.model
-                        compact: true
-                    }
-
-                    Bon.List {
-                        model: [
-                            {name: "item"},
-                            {name: "a"},
-                            {name: "abc123"},
-                            {name: "hgend"},
-                            {name: "cat"},
-                            {name: "dog"},
-                            {name: "hound"},
-                            {name: "AAAAAAAA"},
-                            {name: "qwertyuiop"},
-                            {name: "asdfghjkl"},
-                            {name: "zxcvbnm"},
-                            {name: "option"},
-                            {name: "file1"},
-                            {name: "file2"},
-                            {name: "file3"},
-                            {name: "loremipsumdolorsitametngjdfk"}
-                        ]
-                        compact: true
-                        selectionMode: Bon.List.SelectionMode.Multiple
-                    }
-
                     Bon.Divider {
                         width: parent.width
                         leftInset: -parent.leftPadding
@@ -1151,6 +1078,221 @@ Window {
                     Bon.TimeField {
                         twentyFourHour: true
                         showSeconds: true
+                    }
+
+                    Bon.Divider {
+                        width: parent.width
+                        leftInset: -parent.leftPadding
+                        name: "List"
+                    }
+
+                    Bon.List {
+                        id: list1
+                        width: 400
+
+                        model: [
+                            {name: "hi"},
+                            {name: "test", caption: "caption test", showDivider: true},
+                            {name: "the", overline: "tech"},
+                            {name: "an", leading: Bon.ListLeading.icon({name: "home"})},
+                            {name: "goenfdj", leading: Bon.ListLeading.avatar({source: "https://pbs.twimg.com/profile_images/1466199778598047749/sdljjuYA_400x400.jpg"})},
+                            {name: "chrimsntas yayaya", caption: "Lorem ipsum dolor sit amet",  overline: "breaking", leading: Bon.ListLeading.thumbnail({source: "https://picography.co/wp-content/uploads/2017/12/xmas-bokeh-lights-768x525.jpg"})},
+                            {name: "hi", showDivider: true, sectionName: "Heading"},
+                            {name: "test", trailing: Bon.ListTrailing.caption({text: "Caption"})},
+                            {name: "the", trailing: Bon.ListTrailing.icon({name: "arrow_right"})},
+                            {name: "a", trailing: Bon.ListTrailing.item({component: listRadioButton}) },
+                            {name: "b", trailing: Bon.ListTrailing.item({component: listRadioButton}) },
+                            {name: "c", trailing: Bon.ListTrailing.item({component: listRadioButton}) },
+                            {name: "d", trailing: Bon.ListTrailing.item({component: listRadioButton}) },
+                            {name: "e", trailing: Bon.ListTrailing.item({component: listRadioButton}) },
+                            {name: "goenfdj", caption: "Lorem ipsum dolor sit amet, consectetur adsipling elit, the quick brown fox jumps over the lazy dog, etc"},
+                            {name: "cataaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", caption: "Lorem ipsum dolor sit amet, consectetur adsipling elit, the quick brown fox jumps over the lazy dog, etc nhioteshbtugboiutewbioutwbhitw go tsh tsh t h rsth rst hsoeige bo bo bou we", trailing: Bon.ListTrailing.caption({text: "aaaaaaa"})},
+                            {name: "hi"},
+                            {name: "test"},
+                            {name: "the"},
+                            {name: "an"},
+                            {name: "goenfdj"},
+                            {name: "cat"}
+                        ]
+
+                        QuickControls.ButtonGroup {
+                            id: listButtonGroupTest
+                            exclusive: true
+                        }
+
+                        Component {
+                            id: listRadioButton
+
+                            Bon.RadioButton {
+                                //opacity: (parent.parent.parent.index%3)/4+1/4
+
+                                QuickControls.ButtonGroup.group: listButtonGroupTest
+                            }
+                        }
+                    }
+
+                    Bon.List {
+                        model: list1.model
+                        compact: true
+                    }
+
+                    Bon.List {
+                        model: [
+                            {name: "item", showDivider: true, sectionName: "Heading"},
+                            {name: "a"},
+                            {name: "abc123"},
+                            {name: "hgend"},
+                            {name: "cat"},
+                            {name: "dog", showDivider: true},
+                            {name: "hound"},
+                            {name: "AAAAAAAA"},
+                            {name: "qwertyuiop"},
+                            {name: "asdfghjkl"},
+                            {name: "zxcvbnm"},
+                            {name: "option", showDivider: true, sectionName: "Heading"},
+                            {name: "file1"},
+                            {name: "file2"},
+                            {name: "file3"},
+                            {name: "loremipsumdolorsitametngjdfk", showDivider: true, sectionName: "Heading"}
+                        ]
+                        compact: true
+                        selectionMode: Bon.List.SelectionMode.Multiple
+                    }
+
+                    Bon.Divider {
+                        width: parent.width
+                        leftInset: -parent.leftPadding
+                        name: "Menu"
+                    }
+
+                    Bon.Button {
+                        text: "Open Menu"
+                        onReleased: menu1.open()
+
+                        Bon.Menu {
+                            id: menu1
+
+                            Bon.MenuItem {
+                                text: "Copy"
+                                shortcut: StandardKey.Copy
+                                icon.name: "content_copy"
+                                onTriggered: {
+                                    console.log("Copied!");
+                                }
+                            }
+
+                            Bon.MenuItem {
+                                text: "Paste"
+                                shortcut: StandardKey.Paste
+                                enabled: false
+                            }
+
+                            Bon.Menu {
+                                title: "Submenu"
+                                showDivider: true
+
+                                Bon.Menu {
+                                    title: "SubSubmenu"
+
+                                    Bon.MenuItem {
+                                        text: "deeep action"
+
+                                        onTriggered: {
+                                            console.log("a");
+                                        }
+                                    }
+
+                                    Bon.MenuItem {text: "a"; shortcut: "Ctrl+Shift+H"}
+                                    Bon.MenuItem {text: "bbb"}
+                                    Bon.MenuItem {text: "cccds"}
+                                    Bon.MenuItem {text: "fdbdhbd"}
+                                    Bon.MenuItem {text: "s"}
+                                    Bon.MenuItem {text: "hsahstrh"}
+                                    Bon.MenuItem {text: "vat"}
+                                    Bon.MenuItem {text: "ahtegdc"}
+                                    Bon.MenuItem {text: "dog"}
+                                    Bon.MenuItem {text: "animal"}
+                                    Bon.MenuItem {text: "plant"}
+                                    Bon.MenuItem {text: "snkgndjkhhh"}
+                                    Bon.MenuItem {text: "a"}
+                                    Bon.MenuItem {text: "bbb"}
+                                    Bon.MenuItem {text: "cccds"}
+                                    Bon.MenuItem {text: "fdbdhbdhhhhhhhhhhhhhhhhhhhh"; shortcut: "Ctrl+Shift+H"}
+                                    Bon.MenuItem {text: "s"}
+                                    Bon.MenuItem {text: "hsahstrh"}
+                                    Bon.MenuItem {text: "vat"}
+                                    Bon.MenuItem {text: "ahtegdc"}
+                                    Bon.MenuItem {text: "dog"}
+                                    Bon.MenuItem {text: "animal"}
+                                    Bon.MenuItem {text: "planthhhhhhhhhh"}
+                                    Bon.MenuItem {text: "a"}
+                                    Bon.MenuItem {text: "bbb"}
+                                    Bon.MenuItem {text: "cccds"}
+                                    Bon.MenuItem {text: "fdbdhbd"}
+                                    Bon.MenuItem {text: "s"}
+                                    Bon.MenuItem {text: "hsahstrh"}
+                                    Bon.MenuItem {text: "vat"}
+                                    Bon.MenuItem {text: "ahtegdc"}
+                                    Bon.MenuItem {text: "dog"}
+                                    Bon.MenuItem {text: "animal"}
+                                    Bon.MenuItem {text: "plant"}
+                                }
+
+                                Bon.MenuItem {
+                                    text: "do nothing"
+
+                                    onTriggered: {
+                                        console.log("nothing");
+                                    }
+                                }
+                            }
+
+                            Bon.MenuItem {
+                                text: "something"
+                                showDivider: true
+                            }
+
+                            Bon.MenuItem {
+                                text: "Toggle"
+                                checkable: true
+                                shortcut: "Ctrl+H"
+                                onToggled: {
+                                    console.log(checked ? "Toggled On" : "Toggled Off");
+                                }
+                            }
+
+                            Bon.MenuItem {
+                                text: "Toggle Disabled"
+                                showDivider: true
+                                checkable: true
+                                enabled: false
+                                checked: true
+                            }
+
+                            Bon.Menu {
+                                title: "Submenu"
+
+                                Bon.Menu {
+                                    title: "SubSubmenu"
+
+                                    Bon.MenuItem {
+                                        text: "deeep action"
+
+                                        onTriggered: {
+                                            console.log("a");
+                                        }
+                                    }
+                                }
+
+                                Bon.MenuItem {
+                                    text: "do nothing"
+
+                                    onTriggered: {
+                                        console.log("nothing");
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
             }
