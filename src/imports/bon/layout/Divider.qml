@@ -1,6 +1,6 @@
 import QtQuick
 import QtQuick.Layouts
-import bon
+import bon as B
 
 Item {
     id: root
@@ -23,15 +23,15 @@ Item {
         Rectangle {
             Layout.fillWidth: true
             height: 2
-            color: Theme.palette.background_1
+            color: B.Theme.palette.background_1
         }
 
         Text {
             Layout.leftMargin: root.textInset
             visible: root.name
             text: root.name
-            font: Theme.text.caption
-            color: Theme.palette.text.label
+            font: B.Theme.text.caption
+            color: B.Theme.palette.text.label
         }
     }
 }

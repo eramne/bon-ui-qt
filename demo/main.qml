@@ -1,8 +1,8 @@
 import QtQuick
-import QtQuick.Controls as QuickControls
+import QtQuick.Controls as C
 import QtQuick.Layouts
 import QtQuick.Window
-import bon as Bon
+import bon as B
 
 Window {
     width: 800
@@ -10,7 +10,7 @@ Window {
     visible: true
     title: qsTr("umagos")
 
-    Bon.App {
+    B.App {
 
         StackLayout {
             anchors.fill: parent
@@ -23,7 +23,7 @@ Window {
                                 }
                             }*/
 
-            Bon.OverflowArea {
+            B.OverflowArea {
                 id: scrollview
                 margins: 0
 
@@ -33,113 +33,113 @@ Window {
                     width: scrollview.width - scrollview.leftMargin - scrollview.rightMargin
                     spacing: 20
 
-                    Bon.Divider {
+                    B.Divider {
                         width: parent.width
                         leftInset: -parent.leftPadding
                         name: "Switches"
                     }
 
-                    Bon.Switch {}
+                    B.Switch {}
 
-                    Bon.Switch {checked: true}
+                    B.Switch {checked: true}
 
-                    Bon.Switch {enabled: false}
+                    B.Switch {enabled: false}
 
-                    Bon.Switch {checked:true; enabled: false}
+                    B.Switch {checked:true; enabled: false}
 
-                    Bon.Divider {
+                    B.Divider {
                         width: parent.width
                         leftInset: -parent.leftPadding
                         name: "Radio Buttons"
                     }
 
-                    Bon.RadioButton {}
+                    B.RadioButton {}
 
-                    Bon.RadioButton {checked: true}
+                    B.RadioButton {checked: true}
 
-                    Bon.RadioButton {mixed: true}
+                    B.RadioButton {mixed: true}
 
-                    Bon.RadioButton {enabled: false}
+                    B.RadioButton {enabled: false}
 
-                    Bon.RadioButton {checked:true; enabled: false}
+                    B.RadioButton {checked:true; enabled: false}
 
-                    Bon.RadioButton {mixed:true; enabled: false}
+                    B.RadioButton {mixed:true; enabled: false}
 
-                    Bon.Divider {
+                    B.Divider {
                         width: parent.width
                         leftInset: -parent.leftPadding
                         name: "Checkboxes"
                     }
 
-                    Bon.CheckBox {}
+                    B.CheckBox {}
 
-                    Bon.CheckBox {checked: true}
+                    B.CheckBox {checked: true}
 
-                    Bon.CheckBox {mixed: true}
+                    B.CheckBox {mixed: true}
 
-                    Bon.CheckBox {enabled: false}
+                    B.CheckBox {enabled: false}
 
-                    Bon.CheckBox {checked:true; enabled: false}
+                    B.CheckBox {checked:true; enabled: false}
 
-                    Bon.CheckBox {mixed:true; enabled: false}
+                    B.CheckBox {mixed:true; enabled: false}
 
-                    Bon.Divider {
+                    B.Divider {
                         width: parent.width
                         leftInset: -parent.leftPadding
                         name: "Sliders"
                     }
 
-                    Bon.Slider {}
+                    B.Slider {}
 
-                    Bon.Slider {enabled: false}
+                    B.Slider {enabled: false}
 
-                    Bon.Slider {orientation: Qt.Vertical}
+                    B.Slider {orientation: Qt.Vertical}
 
-                    Bon.Slider {enabled: false; orientation: Qt.Vertical}
+                    B.Slider {enabled: false; orientation: Qt.Vertical}
 
-                    Bon.Slider {
+                    B.Slider {
                         from: 0
                         value: 25
                         to: 100
                         stepSize: 25
-                        snapMode: QuickControls.Slider.SnapAlways
+                        snapMode: C.Slider.SnapAlways
                     }
 
-                    Bon.Slider {
+                    B.Slider {
                         from: 0
                         value: 25
                         to: 100
                         stepSize: 25
-                        snapMode: QuickControls.Slider.SnapAlways
+                        snapMode: C.Slider.SnapAlways
                         enabled: false
                     }
 
-                    Bon.Slider {
+                    B.Slider {
                         from: 0
                         value: 25
                         to: 100
                         stepSize: 25
-                        snapMode: QuickControls.Slider.SnapAlways
+                        snapMode: C.Slider.SnapAlways
                         orientation: Qt.Vertical
                     }
 
-                    Bon.Slider {
+                    B.Slider {
                         from: 0
                         value: 25
                         to: 100
                         stepSize: 25
-                        snapMode: QuickControls.Slider.SnapAlways
+                        snapMode: C.Slider.SnapAlways
                         enabled: false
                         orientation: Qt.Vertical
                     }
 
-                    Bon.Divider {
+                    B.Divider {
                         width: parent.width
                         leftInset: -parent.leftPadding
                         name: "Progress"
                     }
 
-                    Bon.ProgressBar {
+                    B.ProgressBar {
                         width: 200
                         from: 0
                         to: 1
@@ -152,50 +152,50 @@ Window {
                                     parent.value = 0;
                                 }
                                 if (Math.random() > 0.1) {
-                                    parent.state = Bon.ProgressBar.State.Running
+                                    parent.state = B.ProgressBar.State.Running
                                     parent.value += Math.random()/5
                                     if (parent.value >= 1) {
                                         parent.value = 1;
-                                        parent.state = Math.random() > 0.5 ? Bon.ProgressBar.State.Success : Bon.ProgressBar.State.Error
+                                        parent.state = Math.random() > 0.5 ? B.ProgressBar.State.Success : B.ProgressBar.State.Error
                                         interval = 2000;
                                     }
                                 } else {
-                                    parent.state = Bon.ProgressBar.State.Paused
+                                    parent.state = B.ProgressBar.State.Paused
                                     interval = 2000;
                                 }
                             }
                         }
                     }
 
-                    Bon.ProgressBar {
+                    B.ProgressBar {
                         width: 200
                         from: 0
                         to: 1
                         value: 0
                         indeterminate: true
-                        state: Bon.ProgressBar.State.Running
+                        state: B.ProgressBar.State.Running
                         Timer {
                             interval: 2000; running: true; repeat: true
                             onTriggered: function () {
-                                if (parent.state === Bon.ProgressBar.State.Running) {
+                                if (parent.state === B.ProgressBar.State.Running) {
                                     var dice = Math.floor(Math.random()*3);
                                     if (dice == 2) {
-                                        parent.state = Bon.ProgressBar.State.Success
+                                        parent.state = B.ProgressBar.State.Success
                                     } else if (dice == 1) {
-                                        parent.state = Bon.ProgressBar.State.Error
+                                        parent.state = B.ProgressBar.State.Error
                                     } else if (dice == 0) {
-                                        parent.state = Bon.ProgressBar.State.Paused
+                                        parent.state = B.ProgressBar.State.Paused
                                     }
                                     interval = 1000;
                                 } else {
-                                    parent.state = Bon.ProgressBar.State.Running
+                                    parent.state = B.ProgressBar.State.Running
                                     interval = 5000;
                                 }
                             }
                         }
                     }
 
-                    Bon.ProgressCircle {
+                    B.ProgressCircle {
                         from: 0
                         to: 1
                         value: 0
@@ -207,49 +207,49 @@ Window {
                                     parent.value = 0;
                                 }
                                 if (Math.random() > 0.1) {
-                                    parent.state = Bon.ProgressCircle.State.Running
+                                    parent.state = B.ProgressCircle.State.Running
                                     parent.value += Math.random()/5
                                     if (parent.value >= 1) {
                                         parent.value = 1;
-                                        parent.state = Math.random() > 0.5 ? Bon.ProgressCircle.State.Success : Bon.ProgressCircle.State.Error
+                                        parent.state = Math.random() > 0.5 ? B.ProgressCircle.State.Success : B.ProgressCircle.State.Error
                                         interval = 2000;
                                     }
                                 } else {
-                                    parent.state = Bon.ProgressCircle.State.Paused
+                                    parent.state = B.ProgressCircle.State.Paused
                                     interval = 2000;
                                 }
                             }
                         }
                     }
 
-                    Bon.ProgressCircle {
+                    B.ProgressCircle {
                         from: 0
                         to: 1
                         value: 0
                         indeterminate: true
-                        state: Bon.ProgressCircle.State.Running
+                        state: B.ProgressCircle.State.Running
                         Timer {
                             interval: 2000; running: true; repeat: true
                             onTriggered: function () {
-                                if (parent.state === Bon.ProgressCircle.State.Running) {
+                                if (parent.state === B.ProgressCircle.State.Running) {
                                     var dice = Math.floor(Math.random()*3);
                                     if (dice == 2) {
-                                        parent.state = Bon.ProgressCircle.State.Success
+                                        parent.state = B.ProgressCircle.State.Success
                                     } else if (dice == 1) {
-                                        parent.state = Bon.ProgressCircle.State.Error
+                                        parent.state = B.ProgressCircle.State.Error
                                     } else if (dice == 0) {
-                                        parent.state = Bon.ProgressCircle.State.Paused
+                                        parent.state = B.ProgressCircle.State.Paused
                                     }
                                     interval = 1000;
                                 } else {
-                                    parent.state = Bon.ProgressCircle.State.Running
+                                    parent.state = B.ProgressCircle.State.Running
                                     interval = 5000;
                                 }
                             }
                         }
                     }
 
-                    Bon.ProgressCircle {
+                    B.ProgressCircle {
                         from: 0
                         to: 1
                         value: 0
@@ -262,276 +262,276 @@ Window {
                                     parent.value = 0;
                                 }
                                 if (Math.random() > 0.1) {
-                                    parent.state = Bon.ProgressCircle.State.Running
+                                    parent.state = B.ProgressCircle.State.Running
                                     parent.value += Math.random()/5
                                     if (parent.value >= 1) {
                                         parent.value = 1;
-                                        parent.state = Math.random() > 0.5 ? Bon.ProgressCircle.State.Success : Bon.ProgressCircle.State.Error
+                                        parent.state = Math.random() > 0.5 ? B.ProgressCircle.State.Success : B.ProgressCircle.State.Error
                                         interval = 2000;
                                     }
                                 } else {
-                                    parent.state = Bon.ProgressCircle.State.Paused
+                                    parent.state = B.ProgressCircle.State.Paused
                                     interval = 2000;
                                 }
                             }
                         }
                     }
 
-                    Bon.ProgressCircle {
+                    B.ProgressCircle {
                         from: 0
                         to: 1
                         value: 0
                         indeterminate: true
-                        state: Bon.ProgressCircle.State.Running
+                        state: B.ProgressCircle.State.Running
                         small: true
                         Timer {
                             interval: 2000; running: true; repeat: true
                             onTriggered: function () {
-                                if (parent.state === Bon.ProgressCircle.State.Running) {
+                                if (parent.state === B.ProgressCircle.State.Running) {
                                     var dice = Math.floor(Math.random()*3);
                                     if (dice == 2) {
-                                        parent.state = Bon.ProgressCircle.State.Success
+                                        parent.state = B.ProgressCircle.State.Success
                                     } else if (dice == 1) {
-                                        parent.state = Bon.ProgressCircle.State.Error
+                                        parent.state = B.ProgressCircle.State.Error
                                     } else if (dice == 0) {
-                                        parent.state = Bon.ProgressCircle.State.Paused
+                                        parent.state = B.ProgressCircle.State.Paused
                                     }
                                     interval = 1000;
                                 } else {
-                                    parent.state = Bon.ProgressCircle.State.Running
+                                    parent.state = B.ProgressCircle.State.Running
                                     interval = 5000;
                                 }
                             }
                         }
                     }
 
-                    Bon.Divider {
+                    B.Divider {
                         width: parent.width
                         leftInset: -parent.leftPadding
                         name: "Dials"
                     }
 
-                    Bon.Dial {}
+                    B.Dial {}
 
-                    Bon.Dial {enabled: false}
+                    B.Dial {enabled: false}
 
-                    Bon.Dial {showValue: true}
+                    B.Dial {showValue: true}
 
-                    Bon.Dial {enabled: false; showValue: true}
+                    B.Dial {enabled: false; showValue: true}
 
-                    Bon.Dial {showValue: true; snapMode: Bon.Dial.SnapAlways; stepSize: 0.1}
+                    B.Dial {showValue: true; snapMode: B.Dial.SnapAlways; stepSize: 0.1}
 
-                    Bon.Dial {enabled: false; showValue: true; snapMode: Bon.Dial.SnapAlways; stepSize: 0.1}
+                    B.Dial {enabled: false; showValue: true; snapMode: B.Dial.SnapAlways; stepSize: 0.1}
 
-                    Bon.Divider {
+                    B.Divider {
                         width: parent.width
                         leftInset: -parent.leftPadding
                         name: "Buttons"
                     }
 
-                    Bon.Button {
+                    B.Button {
                         order: 1
                         text: "Click me"
                     }
 
-                    Bon.Button {
+                    B.Button {
                         order: 1
                         text: "Click me"
                         enabled: false
                     }
 
-                    Bon.Button {
+                    B.Button {
                         order: 2
                         text: "Click me"
                     }
 
-                    Bon.Button {
+                    B.Button {
                         order: 2
                         text: "Click me"
                         enabled: false
                     }
 
-                    Bon.Button {
+                    B.Button {
                         order: 3
                         text: "Click me"
                     }
 
-                    Bon.Button {
+                    B.Button {
                         order: 3
                         text: "Click me"
                         enabled: false
                     }
 
-                    Bon.Button {
+                    B.Button {
                         order: 1
                         icon.name: "settings"
                         text: "Click me"
                     }
 
-                    Bon.Button {
+                    B.Button {
                         order: 1
                         icon.name: "settings"
                         text: "Click me"
                         enabled: false
                     }
 
-                    Bon.Button {
+                    B.Button {
                         order: 2
                         icon.name: "settings"
                         text: "Click me"
                     }
 
-                    Bon.Button {
+                    B.Button {
                         order: 2
                         icon.name: "settings"
                         text: "Click me"
                         enabled: false
                     }
 
-                    Bon.Button {
+                    B.Button {
                         order: 3
                         icon.name: "settings"
                         text: "Click me"
                     }
 
-                    Bon.Button {
+                    B.Button {
                         order: 3
                         icon.name: "settings"
                         text: "Click me"
                         enabled: false
                     }
 
-                    Bon.Button {
+                    B.Button {
                         order: 1
                         icon.name: "settings"
                     }
 
-                    Bon.Button {
+                    B.Button {
                         order: 1
                         icon.name: "settings"
                         enabled: false
                     }
 
-                    Bon.Button {
+                    B.Button {
                         order: 2
                         icon.name: "settings"
                     }
 
-                    Bon.Button {
+                    B.Button {
                         order: 2
                         icon.name: "settings"
                         enabled: false
                     }
 
-                    Bon.Button {
+                    B.Button {
                         order: 3
                         icon.name: "settings"
                     }
 
-                    Bon.Button {
+                    B.Button {
                         order: 3
                         icon.name: "settings"
                         enabled: false
                     }
 
-                    Bon.ToggleButton {
+                    B.ToggleButton {
                         checked: true
                         icon.name: "format_bold"
                     }
 
-                    Bon.ToggleButton {
+                    B.ToggleButton {
                         checked: true
                         icon.name: "format_italic"
                         enabled: false
                     }
 
-                    Bon.ToggleButton {
+                    B.ToggleButton {
                         icon.name: "format_underlined"
                     }
 
-                    Bon.ToggleButton {
+                    B.ToggleButton {
                         icon.name: "strikethrough_s"
                         enabled: false
                     }
 
-                    Bon.SmallIconButton {
+                    B.SmallIconButton {
                         offIcon: "star"
                     }
 
-                    Bon.SmallIconButton {
+                    B.SmallIconButton {
                         offIcon: "star"
                         enabled: false
                     }
 
-                    Bon.SmallIconButton {
+                    B.SmallIconButton {
                         offIcon: "star_border"
                         onIcon: "star"
                         checkable: true
                     }
 
-                    Bon.SmallIconButton {
+                    B.SmallIconButton {
                         offIcon: "star_border"
                         onIcon: "star"
                         checkable: true
                         enabled: false
                     }
 
-                    Bon.DateButton {
+                    B.DateButton {
                         checked: true
                         text: "31"
                     }
 
-                    Bon.DateButton {
+                    B.DateButton {
                         checked: true
                         text: "31"
                         enabled: false
                     }
 
-                    Bon.DateButton {
+                    B.DateButton {
                         today: true
                         text: "31"
                     }
 
-                    Bon.DateButton {
+                    B.DateButton {
                         today: true
                         text: "31"
                         enabled: false
                     }
 
-                    Bon.DateButton {
+                    B.DateButton {
                         text: "31"
                     }
 
-                    Bon.DateButton {
-                        text: "31"
-                        enabled: false
-                    }
-
-                    Bon.DateButton {
-                        rangeSelected: true
-                        text: "31"
-                    }
-
-                    Bon.DateButton {
-                        rangeSelected: true
+                    B.DateButton {
                         text: "31"
                         enabled: false
                     }
 
-                    Bon.Divider {
+                    B.DateButton {
+                        rangeSelected: true
+                        text: "31"
+                    }
+
+                    B.DateButton {
+                        rangeSelected: true
+                        text: "31"
+                        enabled: false
+                    }
+
+                    B.Divider {
                         width: parent.width
                         leftInset: -parent.leftPadding
                         name: "Chips"
                     }
 
-                    Bon.InputChip {
+                    B.InputChip {
                         text: "Favorites"
                         onClosed: {
                             visible = false;
                         }
                     }
 
-                    Bon.InputChip {
+                    B.InputChip {
                         text: "Nature"
                         enabled: false
                         onClosed: {
@@ -539,7 +539,7 @@ Window {
                         }
                     }
 
-                    Bon.InputChip {
+                    B.InputChip {
                         text: "Mountains"
                         icon.name: "terrain"
                         onClosed: {
@@ -547,7 +547,7 @@ Window {
                         }
                     }
 
-                    Bon.InputChip {
+                    B.InputChip {
                         text: "Portraits"
                         enabled: false
                         icon.name: "portrait"
@@ -556,36 +556,36 @@ Window {
                         }
                     }
 
-                    Bon.ChoiceChip {
+                    B.ChoiceChip {
                         text: "Option 1"
                     }
 
-                    Bon.ChoiceChip {
+                    B.ChoiceChip {
                         text: "Option 2"
                         enabled: false
                     }
 
-                    Bon.ChoiceChip {
+                    B.ChoiceChip {
                         text: "Option 3"
                         icon.name: "dashboard"
                     }
 
-                    Bon.ChoiceChip {
+                    B.ChoiceChip {
                         text: "Option 4"
                         enabled: false
                         icon.name: "dashboard"
                     }
 
-                    Bon.FilterChip {
+                    B.FilterChip {
                         text: "Favorites"
                     }
 
-                    Bon.FilterChip {
+                    B.FilterChip {
                         text: "Nature"
                         enabled: false
                     }
 
-                    Bon.ActionChip {
+                    B.ActionChip {
                         text: "Action 1"
 
                         onClicked: {
@@ -593,7 +593,7 @@ Window {
                         }
                     }
 
-                    Bon.ActionChip {
+                    B.ActionChip {
                         text: "Action 2"
                         enabled: false
 
@@ -602,7 +602,7 @@ Window {
                         }
                     }
 
-                    Bon.ActionChip {
+                    B.ActionChip {
                         text: "Action 3"
                         icon.name: "play_arrow"
 
@@ -611,7 +611,7 @@ Window {
                         }
                     }
 
-                    Bon.ActionChip {
+                    B.ActionChip {
                         text: "Action 4"
                         enabled: false
                         icon.name: "stop"
@@ -621,22 +621,22 @@ Window {
                         }
                     }
 
-                    Bon.Divider {
+                    B.Divider {
                         width: parent.width
                         leftInset: -parent.leftPadding
                         name: "Text Fields"
                     }
 
-                    Bon.TextField {
+                    B.TextField {
                         field.placeholderText: "Enter name"
                     }
 
-                    Bon.TextField {
+                    B.TextField {
                         field.placeholderText: "Enter name"
                         enabled: false
                     }
 
-                    Bon.TextField {
+                    B.TextField {
                         field.placeholderText: "Enter name"
                         buttonIcon: field.length > 0 ? "cancel" : ""
                         onIconClicked: {
@@ -644,7 +644,7 @@ Window {
                         }
                     }
 
-                    Bon.TextField {
+                    B.TextField {
                         field.placeholderText: "Enter name"
                         buttonIcon: field.length > 0 ? "cancel" : ""
                         enabled: false
@@ -653,7 +653,7 @@ Window {
                         }
                     }
 
-                    Bon.TextField {
+                    B.TextField {
                         field.placeholderText: "Enter an amount"
                         field.validator: DoubleValidator {}
                         buttonIcon: field.length > 0 ? "cancel" : ""
@@ -663,7 +663,7 @@ Window {
                         }
                     }
 
-                    Bon.TextField {
+                    B.TextField {
                         field.placeholderText: "Enter an amount"
                         field.validator: DoubleValidator {}
                         buttonIcon: field.length > 0 ? "cancel" : ""
@@ -673,57 +673,57 @@ Window {
                         }
                     }
 
-                    Bon.TextField {
+                    B.TextField {
                         field.placeholderText: "Enter name"
                         leadingIcon: "face"
                     }
 
-                    Bon.TextField {
+                    B.TextField {
                         field.placeholderText: "Enter name"
                         enabled: false
                         leadingIcon: "face"
                     }
 
-                    Bon.TextField {
+                    B.TextField {
                         field.placeholderText: "1.00"
                         prefixText: "$"
                     }
 
-                    Bon.TextField {
+                    B.TextField {
                         field.placeholderText: "john.doe"
                         suffixText: "@gmail.com"
                     }
 
-                    Bon.TextField {
+                    B.TextField {
                         field.placeholderText: "Enter name"
                         helpText: "Helper Text"
                     }
 
-                    Bon.TextField {
+                    B.TextField {
                         field.placeholderText: "Enter name"
                         field.maximumLength: 20
                         showCharacterCount: true
                     }
 
-                    Bon.TextField {
+                    B.TextField {
                         field.placeholderText: "Enter name"
                         helpText: "Helper Text"
                         field.maximumLength: 20
                         showCharacterCount: true
                     }
 
-                    Bon.TextField {
+                    B.TextField {
                         field.placeholderText: "Enter name"
                         labelText: "First name"
                     }
 
-                    Bon.TextField {
+                    B.TextField {
                         labelText: "Email address*"
                         field.placeholderText: "jon.doe@gmail.com"
                         helpText: "*Required"
                     }
 
-                    Bon.TextField {
+                    B.TextField {
                         field.placeholderText: "Enter an amount*"
                         labelText: "Amount to donate"
                         field.validator: DoubleValidator {}
@@ -739,66 +739,66 @@ Window {
                         field.onAccepted: showStatus = true
                     }
 
-                    Bon.Divider {
+                    B.Divider {
                         width: parent.width
                         leftInset: -parent.leftPadding
                         name: "Text Areas"
                     }
 
-                    Bon.TextArea {
+                    B.TextArea {
                         enabled: false
                         area.placeholderText: "Enter message"
                     }
 
-                    Bon.TextArea {
+                    B.TextArea {
                         area.placeholderText: "Enter message"
                     }
 
-                    Bon.TextArea {
+                    B.TextArea {
                         area.placeholderText: "Enter message"
                         wordWrap: true
                     }
 
-                    Bon.TextArea {
+                    B.TextArea {
                         area.placeholderText: "Enter message"
                         helpText: "Required"
                     }
 
-                    Bon.TextArea {
+                    B.TextArea {
                         labelText: "Message"
                         area.placeholderText: "Enter message"
                     }
 
-                    Bon.TextArea {
+                    B.TextArea {
                         labelText: "Message*"
                         helpText: "*Required"
                         showCharacterCount: true
                         area.placeholderText: "Enter message"
                     }
 
-                    Bon.TextArea {
+                    B.TextArea {
                         area.placeholderText: "Enter message"
                         bordered: false
                     }
 
-                    Bon.Divider {
+                    B.Divider {
                         width: parent.width
                         leftInset: -parent.leftPadding
                         name: "Number Fields"
                     }
 
-                    Bon.NumberField {
+                    B.NumberField {
                         value: 5
                     }
 
-                    Bon.NumberField {
+                    B.NumberField {
                         value: 5
                         from: 0
                         to: 100
                         stepSize: 12
                     }
 
-                    Bon.NumberField {
+                    B.NumberField {
                         value: 5
                         wrap: true
                         from: 0
@@ -806,12 +806,12 @@ Window {
                         stepSize: 12
                     }
 
-                    Bon.NumberField {
+                    B.NumberField {
                         value: 5
                         showStepButtons: true
                     }
 
-                    Bon.NumberField {
+                    B.NumberField {
                         value: 5
                         showStepButtons: true
                         from: 0
@@ -819,7 +819,7 @@ Window {
                         stepSize: 12
                     }
 
-                    Bon.NumberField {
+                    B.NumberField {
                         value: 5
                         showStepButtons: true
                         wrap: true
@@ -828,7 +828,7 @@ Window {
                         stepSize: 12
                     }
 
-                    Bon.NumberField {
+                    B.NumberField {
                         value: 5
                         showStepButtons: true
                         from: 0
@@ -838,13 +838,13 @@ Window {
                         editable: false
                     }
 
-                    Bon.Divider {
+                    B.Divider {
                         width: parent.width
                         leftInset: -parent.leftPadding
                         name: "Combo Boxes"
                     }
 
-                    Bon.ComboBox {
+                    B.ComboBox {
                         id: combobox1
 
                         model: [
@@ -882,211 +882,211 @@ Window {
                         ]
                     }
 
-                    Bon.ComboBox {
+                    B.ComboBox {
                         model: combobox1.model
                         editable: false
                     }
 
-                    Bon.ComboBox {
+                    B.ComboBox {
                         model: combobox1.model
                         labelText: "Choose a shape"
                         helpText: "Optional"
                     }
 
-                    Bon.Divider {
+                    B.Divider {
                         width: parent.width
                         leftInset: -parent.leftPadding
                         name: "Ratings"
                     }
 
-                    Bon.Rating {
+                    B.Rating {
 
                     }
 
-                    Bon.Rating {
+                    B.Rating {
                         editable: false
                         displayValue: 2.35
                     }
 
-                    Bon.Rating {
+                    B.Rating {
                         enabled: false
                     }
 
-                    Bon.Divider {
+                    B.Divider {
                         width: parent.width
                         leftInset: -parent.leftPadding
                         name: "Color Swatches"
                     }
 
-                    Bon.ColorSwatch {
+                    B.ColorSwatch {
 
                     }
 
-                    Bon.ColorSwatch {
+                    B.ColorSwatch {
                         color: "#cc66788A"
                     }
 
-                    Bon.ColorSwatch {
+                    B.ColorSwatch {
                         color: "#74D2D8"
                     }
 
-                    Bon.ColorSwatch {
+                    B.ColorSwatch {
                         color: "#D1B4B4"
                     }
 
-                    Bon.ColorSwatch {
+                    B.ColorSwatch {
                         color: "#D1B4B4"
                         enabled: false
                     }
 
-                    Bon.Divider {
+                    B.Divider {
                         width: parent.width
                         leftInset: -parent.leftPadding
                         name: "Toggle Buttons"
                     }
 
-                    Bon.ToggleButtonGroup {
-                        Bon.ToggleButton {
+                    B.ToggleButtonGroup {
+                        B.ToggleButton {
                             checked: true
                             icon.name: "format_bold"
                         }
-                        Bon.ToggleButton {
+                        B.ToggleButton {
                             checked: false
                             enabled: false
                             icon.name: "format_italic"
                         }
-                        Bon.ToggleButton {
+                        B.ToggleButton {
                             checked: false
                             icon.name: "format_underline"
                         }
                     }
 
-                    Bon.Divider {
+                    B.Divider {
                         width: parent.width
                         leftInset: -parent.leftPadding
                         name: "Single Options"
                     }
 
-                    Bon.Option {
+                    B.Option {
                         name: "Option 1"
                         width: 300
                     }
 
-                    Bon.Option {
+                    B.Option {
                         name: "Option 1"
                         enabled: false
                         width: 300
                     }
 
-                    Bon.Option {
+                    B.Option {
                         name: "Option 1"
                         width: 300
                         exclusive: true
                     }
 
-                    Bon.Option {
+                    B.Option {
                         name: "Option 1"
                         enabled: false
                         width: 300
                         exclusive: true
                     }
 
-                    Bon.Divider {
+                    B.Divider {
                         width: parent.width
                         leftInset: -parent.leftPadding
                         name: "Multiple Choices"
                     }
 
-                    Bon.Choice {
+                    B.Choice {
                         width: 300
 
-                        Bon.Option {
+                        B.Option {
                             name: "Option 1"
                         }
 
-                        Bon.Option {
+                        B.Option {
                             name: "Option 2"
                         }
 
-                        Bon.Option {
+                        B.Option {
                             name: "Option 3"
                         }
                     }
 
-                    Bon.Choice {
+                    B.Choice {
                         width: 300
                         exclusive: true
 
-                        Bon.Option {
+                        B.Option {
                             name: "Option 1"
                         }
 
-                        Bon.Option {
+                        B.Option {
                             name: "Option 2"
                         }
 
-                        Bon.Option {
+                        B.Option {
                             name: "Option 3"
                         }
                     }
 
-                    Bon.Divider {
+                    B.Divider {
                         width: parent.width
                         leftInset: -parent.leftPadding
                         name: "Tumblers"
                     }
 
-                    Bon.Tumbler {
+                    B.Tumbler {
                         model: 60
                     }
 
-                    Bon.Tumbler {
+                    B.Tumbler {
                         orientation: Qt.Horizontal
                         model: 60
                     }
 
-                    Bon.Divider {
+                    B.Divider {
                         width: parent.width
                         leftInset: -parent.leftPadding
                         name: "Pickers"
                     }
 
-                    Bon.ColorField {
+                    B.ColorField {
                         currentColor: "#e16c88"
                     }
 
-                    Bon.DateField {
+                    B.DateField {
 
                     }
 
-                    Bon.DateField {
+                    B.DateField {
                         selectRange: true
                     }
 
-                    Bon.TimeField {
+                    B.TimeField {
 
                     }
 
-                    Bon.TimeField {
+                    B.TimeField {
                         twentyFourHour: true
                     }
 
-                    Bon.TimeField {
+                    B.TimeField {
                         showSeconds: true
                     }
 
-                    Bon.TimeField {
+                    B.TimeField {
                         twentyFourHour: true
                         showSeconds: true
                     }
 
-                    Bon.Divider {
+                    B.Divider {
                         width: parent.width
                         leftInset: -parent.leftPadding
                         name: "List"
                     }
 
-                    Bon.List {
+                    B.List {
                         id: list1
                         width: 400
 
@@ -1094,19 +1094,19 @@ Window {
                             {name: "hi"},
                             {name: "test", caption: "caption test", showDivider: true},
                             {name: "the", overline: "tech"},
-                            {name: "an", leading: Bon.ListLeading.icon({name: "home"})},
-                            {name: "goenfdj", leading: Bon.ListLeading.avatar({source: "https://pbs.twimg.com/profile_images/1466199778598047749/sdljjuYA_400x400.jpg"})},
-                            {name: "chrimsntas yayaya", caption: "Lorem ipsum dolor sit amet",  overline: "breaking", leading: Bon.ListLeading.thumbnail({source: "https://picography.co/wp-content/uploads/2017/12/xmas-bokeh-lights-768x525.jpg"})},
+                            {name: "an", leading: B.ListLeading.icon({name: "home"})},
+                            {name: "goenfdj", leading: B.ListLeading.avatar({source: "https://pbs.twimg.com/profile_images/1466199778598047749/sdljjuYA_400x400.jpg"})},
+                            {name: "chrimsntas yayaya", caption: "Lorem ipsum dolor sit amet",  overline: "breaking", leading: B.ListLeading.thumbnail({source: "https://picography.co/wp-content/uploads/2017/12/xmas-bokeh-lights-768x525.jpg"})},
                             {name: "hi", showDivider: true, sectionName: "Heading"},
-                            {name: "test", trailing: Bon.ListTrailing.caption({text: "Caption"})},
-                            {name: "the", trailing: Bon.ListTrailing.icon({name: "arrow_right"})},
-                            {name: "a", trailing: Bon.ListTrailing.item({component: listRadioButton}) },
-                            {name: "b", trailing: Bon.ListTrailing.item({component: listRadioButton}) },
-                            {name: "c", trailing: Bon.ListTrailing.item({component: listRadioButton}) },
-                            {name: "d", trailing: Bon.ListTrailing.item({component: listRadioButton}) },
-                            {name: "e", trailing: Bon.ListTrailing.item({component: listRadioButton}) },
+                            {name: "test", trailing: B.ListTrailing.caption({text: "Caption"})},
+                            {name: "the", trailing: B.ListTrailing.icon({name: "arrow_right"})},
+                            {name: "a", trailing: B.ListTrailing.item({component: listRadioButton}) },
+                            {name: "b", trailing: B.ListTrailing.item({component: listRadioButton}) },
+                            {name: "c", trailing: B.ListTrailing.item({component: listRadioButton}) },
+                            {name: "d", trailing: B.ListTrailing.item({component: listRadioButton}) },
+                            {name: "e", trailing: B.ListTrailing.item({component: listRadioButton}) },
                             {name: "goenfdj", caption: "Lorem ipsum dolor sit amet, consectetur adsipling elit, the quick brown fox jumps over the lazy dog, etc"},
-                            {name: "cataaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", caption: "Lorem ipsum dolor sit amet, consectetur adsipling elit, the quick brown fox jumps over the lazy dog, etc nhioteshbtugboiutewbioutwbhitw go tsh tsh t h rsth rst hsoeige bo bo bou we", trailing: Bon.ListTrailing.caption({text: "aaaaaaa"})},
+                            {name: "cataaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", caption: "Lorem ipsum dolor sit amet, consectetur adsipling elit, the quick brown fox jumps over the lazy dog, etc nhioteshbtugboiutewbioutwbhitw go tsh tsh t h rsth rst hsoeige bo bo bou we", trailing: B.ListTrailing.caption({text: "aaaaaaa"})},
                             {name: "hi"},
                             {name: "test"},
                             {name: "the"},
@@ -1115,7 +1115,7 @@ Window {
                             {name: "cat"}
                         ]
 
-                        QuickControls.ButtonGroup {
+                        C.ButtonGroup {
                             id: listButtonGroupTest
                             exclusive: true
                         }
@@ -1123,20 +1123,20 @@ Window {
                         Component {
                             id: listRadioButton
 
-                            Bon.RadioButton {
+                            B.RadioButton {
                                 //opacity: (parent.parent.parent.index%3)/4+1/4
 
-                                QuickControls.ButtonGroup.group: listButtonGroupTest
+                                C.ButtonGroup.group: listButtonGroupTest
                             }
                         }
                     }
 
-                    Bon.List {
+                    B.List {
                         model: list1.model
                         compact: true
                     }
 
-                    Bon.List {
+                    B.List {
                         model: [
                             {name: "item", showDivider: true, sectionName: "Heading"},
                             {name: "a"},
@@ -1156,23 +1156,23 @@ Window {
                             {name: "loremipsumdolorsitametngjdfk", showDivider: true, sectionName: "Heading"}
                         ]
                         compact: true
-                        selectionMode: Bon.List.SelectionMode.Multiple
+                        selectionMode: B.List.SelectionMode.Multiple
                     }
 
-                    Bon.Divider {
+                    B.Divider {
                         width: parent.width
                         leftInset: -parent.leftPadding
                         name: "Menu"
                     }
 
-                    Bon.Button {
+                    B.Button {
                         text: "Open Menu"
                         onReleased: menu1.open()
 
-                        Bon.Menu {
+                        B.Menu {
                             id: menu1
 
-                            Bon.MenuItem {
+                            B.MenuItem {
                                 text: "Copy"
                                 shortcut: StandardKey.Copy
                                 icon.name: "content_copy"
@@ -1181,20 +1181,20 @@ Window {
                                 }
                             }
 
-                            Bon.MenuItem {
+                            B.MenuItem {
                                 text: "Paste"
                                 shortcut: StandardKey.Paste
                                 enabled: false
                             }
 
-                            Bon.Menu {
+                            B.Menu {
                                 title: "Submenu"
                                 showDivider: true
 
-                                Bon.Menu {
+                                B.Menu {
                                     title: "SubSubmenu"
 
-                                    Bon.MenuItem {
+                                    B.MenuItem {
                                         text: "deeep action"
 
                                         onTriggered: {
@@ -1202,43 +1202,43 @@ Window {
                                         }
                                     }
 
-                                    Bon.MenuItem {text: "a"; shortcut: "Ctrl+Shift+H"}
-                                    Bon.MenuItem {text: "bbb"}
-                                    Bon.MenuItem {text: "cccds"}
-                                    Bon.MenuItem {text: "fdbdhbd"}
-                                    Bon.MenuItem {text: "s"}
-                                    Bon.MenuItem {text: "hsahstrh"}
-                                    Bon.MenuItem {text: "vat"}
-                                    Bon.MenuItem {text: "ahtegdc"}
-                                    Bon.MenuItem {text: "dog"}
-                                    Bon.MenuItem {text: "animal"}
-                                    Bon.MenuItem {text: "plant"}
-                                    Bon.MenuItem {text: "snkgndjkhhh"}
-                                    Bon.MenuItem {text: "a"}
-                                    Bon.MenuItem {text: "bbb"}
-                                    Bon.MenuItem {text: "cccds"}
-                                    Bon.MenuItem {text: "fdbdhbdhhhhhhhhhhhhhhhhhhhh"; shortcut: "Ctrl+Shift+H"}
-                                    Bon.MenuItem {text: "s"}
-                                    Bon.MenuItem {text: "hsahstrh"}
-                                    Bon.MenuItem {text: "vat"}
-                                    Bon.MenuItem {text: "ahtegdc"}
-                                    Bon.MenuItem {text: "dog"}
-                                    Bon.MenuItem {text: "animal"}
-                                    Bon.MenuItem {text: "planthhhhhhhhhh"}
-                                    Bon.MenuItem {text: "a"}
-                                    Bon.MenuItem {text: "bbb"}
-                                    Bon.MenuItem {text: "cccds"}
-                                    Bon.MenuItem {text: "fdbdhbd"}
-                                    Bon.MenuItem {text: "s"}
-                                    Bon.MenuItem {text: "hsahstrh"}
-                                    Bon.MenuItem {text: "vat"}
-                                    Bon.MenuItem {text: "ahtegdc"}
-                                    Bon.MenuItem {text: "dog"}
-                                    Bon.MenuItem {text: "animal"}
-                                    Bon.MenuItem {text: "plant"}
+                                    B.MenuItem {text: "a"; shortcut: "Ctrl+Shift+H"}
+                                    B.MenuItem {text: "bbb"}
+                                    B.MenuItem {text: "cccds"}
+                                    B.MenuItem {text: "fdbdhbd"}
+                                    B.MenuItem {text: "s"}
+                                    B.MenuItem {text: "hsahstrh"}
+                                    B.MenuItem {text: "vat"}
+                                    B.MenuItem {text: "ahtegdc"}
+                                    B.MenuItem {text: "dog"}
+                                    B.MenuItem {text: "animal"}
+                                    B.MenuItem {text: "plant"}
+                                    B.MenuItem {text: "snkgndjkhhh"}
+                                    B.MenuItem {text: "a"}
+                                    B.MenuItem {text: "bbb"}
+                                    B.MenuItem {text: "cccds"}
+                                    B.MenuItem {text: "fdbdhbdhhhhhhhhhhhhhhhhhhhh"; shortcut: "Ctrl+Shift+H"}
+                                    B.MenuItem {text: "s"}
+                                    B.MenuItem {text: "hsahstrh"}
+                                    B.MenuItem {text: "vat"}
+                                    B.MenuItem {text: "ahtegdc"}
+                                    B.MenuItem {text: "dog"}
+                                    B.MenuItem {text: "animal"}
+                                    B.MenuItem {text: "planthhhhhhhhhh"}
+                                    B.MenuItem {text: "a"}
+                                    B.MenuItem {text: "bbb"}
+                                    B.MenuItem {text: "cccds"}
+                                    B.MenuItem {text: "fdbdhbd"}
+                                    B.MenuItem {text: "s"}
+                                    B.MenuItem {text: "hsahstrh"}
+                                    B.MenuItem {text: "vat"}
+                                    B.MenuItem {text: "ahtegdc"}
+                                    B.MenuItem {text: "dog"}
+                                    B.MenuItem {text: "animal"}
+                                    B.MenuItem {text: "plant"}
                                 }
 
-                                Bon.MenuItem {
+                                B.MenuItem {
                                     text: "do nothing"
 
                                     onTriggered: {
@@ -1247,12 +1247,12 @@ Window {
                                 }
                             }
 
-                            Bon.MenuItem {
+                            B.MenuItem {
                                 text: "something"
                                 showDivider: true
                             }
 
-                            Bon.MenuItem {
+                            B.MenuItem {
                                 text: "Toggle"
                                 checkable: true
                                 shortcut: "Ctrl+H"
@@ -1261,7 +1261,7 @@ Window {
                                 }
                             }
 
-                            Bon.MenuItem {
+                            B.MenuItem {
                                 text: "Toggle Disabled"
                                 showDivider: true
                                 checkable: true
@@ -1269,13 +1269,13 @@ Window {
                                 checked: true
                             }
 
-                            Bon.Menu {
+                            B.Menu {
                                 title: "Submenu"
 
-                                Bon.Menu {
+                                B.Menu {
                                     title: "SubSubmenu"
 
-                                    Bon.MenuItem {
+                                    B.MenuItem {
                                         text: "deeep action"
 
                                         onTriggered: {
@@ -1284,7 +1284,7 @@ Window {
                                     }
                                 }
 
-                                Bon.MenuItem {
+                                B.MenuItem {
                                     text: "do nothing"
 
                                     onTriggered: {
@@ -1308,11 +1308,11 @@ Window {
                 }
             }
 
-            Bon.Popup {
+            B.Popup {
                 id: popup
             }*/
 
-            Bon.OverflowArea {
+            B.OverflowArea {
 
                 Column {
                     padding: 20
@@ -1320,86 +1320,86 @@ Window {
 
                     Text {
                         text: "Display"
-                        color: Bon.Theme.palette.text.heading
-                        font: Bon.Theme.text.display
+                        color: B.Theme.palette.text.heading
+                        font: B.Theme.text.display
                     }
 
                     Text {
                         text: "Display 2"
-                        color: Bon.Theme.palette.text.heading
-                        font: Bon.Theme.text.display_2
+                        color: B.Theme.palette.text.heading
+                        font: B.Theme.text.display_2
                     }
 
                     Text {
                         text: "Title"
-                        color: Bon.Theme.palette.text.heading
-                        font: Bon.Theme.text.title
+                        color: B.Theme.palette.text.heading
+                        font: B.Theme.text.title
                     }
 
                     Text {
                         text: "Subtitle"
-                        color: Bon.Theme.palette.text.heading
-                        font: Bon.Theme.text.subtitle
+                        color: B.Theme.palette.text.heading
+                        font: B.Theme.text.subtitle
                     }
 
                     Text {
                         text: "Section"
-                        color: Bon.Theme.palette.text.heading
-                        font: Bon.Theme.text.section
+                        color: B.Theme.palette.text.heading
+                        font: B.Theme.text.section
                     }
 
                     Text {
                         text: "Section 2"
-                        color: Bon.Theme.palette.text.heading
-                        font: Bon.Theme.text.section_2
+                        color: B.Theme.palette.text.heading
+                        font: B.Theme.text.section_2
                     }
 
                     Text {
                         text: "Section 3"
-                        color: Bon.Theme.palette.text.heading
-                        font: Bon.Theme.text.section_3
+                        color: B.Theme.palette.text.heading
+                        font: B.Theme.text.section_3
                     }
 
                     Text {
                         text: "Heading"
-                        color: Bon.Theme.palette.text.heading
-                        font: Bon.Theme.text.heading
+                        color: B.Theme.palette.text.heading
+                        font: B.Theme.text.heading
                     }
 
                     Text {
                         text: "Subheading"
-                        color: Bon.Theme.palette.text.heading
-                        font: Bon.Theme.text.subheading
+                        color: B.Theme.palette.text.heading
+                        font: B.Theme.text.subheading
                     }
 
                     Text {
                         text: "Body"
-                        color: Bon.Theme.palette.text.body
-                        font: Bon.Theme.text.body
+                        color: B.Theme.palette.text.body
+                        font: B.Theme.text.body
                     }
 
                     Text {
                         text: "Label"
-                        color: Bon.Theme.palette.text.label
-                        font: Bon.Theme.text.label
+                        color: B.Theme.palette.text.label
+                        font: B.Theme.text.label
                     }
 
                     Text {
                         text: "Caption"
-                        color: Bon.Theme.palette.text.label
-                        font: Bon.Theme.text.caption
+                        color: B.Theme.palette.text.label
+                        font: B.Theme.text.caption
                     }
 
                     Text {
                         text: "Overline"
-                        color: Bon.Theme.palette.text.overline
-                        font: Bon.Theme.text.overline
+                        color: B.Theme.palette.text.overline
+                        font: B.Theme.text.overline
                     }
 
                     Text {
                         text: "Button"
-                        color: Bon.Theme.palette.text.label
-                        font: Bon.Theme.text.button
+                        color: B.Theme.palette.text.label
+                        font: B.Theme.text.button
                     }
                 }
             }
@@ -1416,7 +1416,7 @@ Window {
                         width: 40+40*(index/4)
                         height: width
 
-                        Bon.Elevation {
+                        B.Elevation {
                             anchors.fill: rect
                             radius: rect.radius
                             elevation: flow1.elevations[index]

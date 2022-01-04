@@ -1,6 +1,6 @@
 import QtQuick
 import QtQuick.Templates as T
-import bon
+import bon as B
 
 T.ProgressBar {
     id: root
@@ -12,10 +12,10 @@ T.ProgressBar {
 
     property int state: ProgressBar.State.Paused
 
-    property color _indicatorColor: state === ProgressBar.State.Running ? Theme.palette.accent
-                                         : state === ProgressBar.State.Paused ? Theme.palette.background_2
-                                         : state === ProgressBar.State.Success ? Theme.palette.success
-                                         : Theme.palette.error
+    property color _indicatorColor: state === ProgressBar.State.Running ? B.Theme.palette.accent
+                                         : state === ProgressBar.State.Paused ? B.Theme.palette.background_2
+                                         : state === ProgressBar.State.Success ? B.Theme.palette.success
+                                         : B.Theme.palette.error
 
     enum State {
         Running,
@@ -75,24 +75,24 @@ T.ProgressBar {
 
             Behavior on color {
                 ColorAnimation {
-                    duration: Theme.animations.progressColor.duration;
-                    easing.type: Theme.animations.progressColor.type;
+                    duration: B.Theme.animations.progressColor.duration;
+                    easing.type: B.Theme.animations.progressColor.type;
                 }
             }
 
             Behavior on indeterminateRotatorPosition {
                 id: posAnimation
                 animation: NumberAnimation {
-                    duration: Theme.animations.progressRotate.duration;
-                    easing.type: Theme.animations.progressRotate.type;
+                    duration: B.Theme.animations.progressRotate.duration;
+                    easing.type: B.Theme.animations.progressRotate.type;
                 }
             }
 
             Behavior on width {
                 enabled: !root.indeterminate
                 animation: NumberAnimation {
-                    duration: Theme.animations.progressStep.duration;
-                    easing.type: Theme.animations.progressStep.type;
+                    duration: B.Theme.animations.progressStep.duration;
+                    easing.type: B.Theme.animations.progressStep.type;
                 }
             }
         }
@@ -103,12 +103,12 @@ T.ProgressBar {
         width: parent.width
         height: parent.height
         radius: height/2
-        color: root.state !== ProgressBar.State.Success && root.state !== ProgressBar.State.Error ? Theme.palette.background_1 : root._indicatorColor
+        color: root.state !== ProgressBar.State.Success && root.state !== ProgressBar.State.Error ? B.Theme.palette.background_1 : root._indicatorColor
 
         Behavior on color {
             ColorAnimation {
-                duration: Theme.animations.progressColor.duration;
-                easing.type: Theme.animations.progressColor.type;
+                duration: B.Theme.animations.progressColor.duration;
+                easing.type: B.Theme.animations.progressColor.type;
             }
         }
     }

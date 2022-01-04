@@ -1,5 +1,5 @@
 import QtQuick
-import bon
+import bon as B
 
 QtObject {
     id: root

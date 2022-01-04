@@ -1,6 +1,6 @@
 import QtQuick
 import QtQuick.Controls as C
-import bon
+import bon as B
 
 Flickable {
     id: root
@@ -12,8 +12,8 @@ Flickable {
 
     default property alias children: content.children
 
-    ScrollBar.vertical: ScrollBar { }
-    ScrollBar.horizontal: ScrollBar { }
+    B.ScrollBar.vertical: B.ScrollBar { }
+    B.ScrollBar.horizontal: B.ScrollBar { }
 
     property real margins: 10
 

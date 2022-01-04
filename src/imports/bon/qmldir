@@ -3,45 +3,45 @@ module bon
 App 1.0 core/App.qml
 Fonts 1.0 core/Fonts.qml
 singleton Theme 1.0 core/Theme.qml
-singleton Bon 1.0 core/Bon.qml
+singleton Utils 1.0 core/Utils.qml
 SelectionModel 1.0 core/SelectionModel.qml
 
-Switch 1.0 controls/Switch.qml
-RadioButton 1.0 controls/RadioButton.qml
-CheckBox 1.0 controls/CheckBox.qml
-Slider 1.0 controls/Slider.qml
-Dial 1.0 controls/Dial.qml
-Button 1.0 controls/Button.qml
-ToggleButton 1.0 controls/ToggleButton.qml
-SmallIconButton 1.0 controls/SmallIconButton.qml
-DateButton 1.0 controls/DateButton.qml
-InputChip 1.0 controls/InputChip.qml
-ChoiceChip 1.0 controls/ChoiceChip.qml
-FilterChip 1.0 controls/FilterChip.qml
-ActionChip 1.0 controls/ActionChip.qml
-TextInputBase 1.0 controls/TextInputBase.qml
-TextField 1.0 controls/TextField.qml
-TextArea 1.0 controls/TextArea.qml
-NumberField 1.0 controls/NumberField.qml
-ComboBox 1.0 controls/ComboBox.qml
-Rating 1.0 controls/Rating.qml
-ScrollBar 1.0 controls/ScrollBar.qml
-ColorSwatch 1.0 controls/ColorSwatch.qml
-ToggleButtonGroup 1.0 controls/ToggleButtonGroup.qml
-ColorArea 1.0 controls/ColorArea.qml
-ColorSlider 1.0 controls/ColorSlider.qml
-Tumbler 1.0 controls/Tumbler.qml
-ColorPicker 1.0 controls/ColorPicker.qml
-DatePicker 1.0 controls/DatePicker.qml
-TimePicker 1.0 controls/TimePicker.qml
-ColorField 1.0 controls/ColorField.qml
-DateField 1.0 controls/DateField.qml
-TimeField 1.0 controls/TimeField.qml
+Button 1.0 action/Button.qml
+DateButton 1.0 action/DateButton.qml
+Menu 1.0 action/Menu.qml
+MenuItem 1.0 action/MenuItem.qml
+SmallIconButton 1.0 action/SmallIconButton.qml
 
-Popup 1.0 popups/Popup.qml
-Dropdown 1.0 popups/Dropdown.qml
-Menu 1.0 popups/Menu.qml
-MenuItem 1.0 popups/MenuItem.qml
+Switch 1.0 input/Switch.qml
+RadioButton 1.0 input/RadioButton.qml
+CheckBox 1.0 input/CheckBox.qml
+Slider 1.0 input/Slider.qml
+Dial 1.0 input/Dial.qml
+ToggleButton 1.0 input/ToggleButton.qml
+InputChip 1.0 input/InputChip.qml
+ChoiceChip 1.0 input/ChoiceChip.qml
+FilterChip 1.0 input/FilterChip.qml
+ActionChip 1.0 input/ActionChip.qml
+TextInputBase 1.0 input/TextInputBase.qml
+TextField 1.0 input/TextField.qml
+TextArea 1.0 input/TextArea.qml
+NumberField 1.0 input/NumberField.qml
+ComboBox 1.0 input/ComboBox.qml
+Rating 1.0 input/Rating.qml
+ColorSwatch 1.0 input/ColorSwatch.qml
+ToggleButtonGroup 1.0 input/ToggleButtonGroup.qml
+ColorArea 1.0 input/ColorArea.qml
+ColorSlider 1.0 input/ColorSlider.qml
+Tumbler 1.0 input/Tumbler.qml
+ColorPicker 1.0 input/ColorPicker.qml
+DatePicker 1.0 input/DatePicker.qml
+TimePicker 1.0 input/TimePicker.qml
+ColorField 1.0 input/ColorField.qml
+DateField 1.0 input/DateField.qml
+TimeField 1.0 input/TimeField.qml
+Chip 1.0 input/Chip.qml
+Option 1.0 input/Option.qml
+Choice 1.0 input/Choice.qml
 
 ProgressBar 1.0 feedback/ProgressBar.qml
 ProgressCircle 1.0 feedback/ProgressCircle.qml
@@ -51,13 +51,15 @@ BlendingRectangularGlow 1.0 effects/BlendingRectangularGlow.qml
 Elevation 1.0 effects/Elevation.qml
 
 OverflowArea 1.0 layout/OverflowArea.qml
-Option 1.0 layout/Option.qml
-Choice 1.0 layout/Choice.qml
+
 Icon 1.0 layout/Icon.qml
 Avatar 1.0 layout/Avatar.qml
 Thumbnail 1.0 layout/Thumbnail.qml
 Divider 1.0 layout/Divider.qml
+Dropdown 1.0 layout/Dropdown.qml
+Popup 1.0 layout/Popup.qml
+List 1.0 layout/List.qml
+singleton ListLeading 1.0 layout/ListLeading.qml
+singleton ListTrailing 1.0 layout/ListTrailing.qml
 
-List 1.0 lists/List.qml
-singleton ListLeading 1.0 lists/ListLeading.qml
-singleton ListTrailing 1.0 lists/ListTrailing.qml
+ScrollBar 1.0 navigation/ScrollBar.qml

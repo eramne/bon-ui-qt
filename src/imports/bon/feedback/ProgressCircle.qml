@@ -1,7 +1,7 @@
 import QtQuick
 import QtQuick.Shapes
 import QtQuick.Templates as T
-import bon
+import bon as B
 
 T.ProgressBar {
     id: root
@@ -18,10 +18,10 @@ T.ProgressBar {
     property bool small: false
 
     property real _thickness: small ? 4 : 8
-    property color _indicatorColor: state === ProgressCircle.State.Running ? Theme.palette.accent
-                                         : state === ProgressCircle.State.Paused ? Theme.palette.background_2
-                                         : state === ProgressCircle.State.Success ? Theme.palette.success
-                                         : Theme.palette.error
+    property color _indicatorColor: state === ProgressCircle.State.Running ? B.Theme.palette.accent
+                                         : state === ProgressCircle.State.Paused ? B.Theme.palette.background_2
+                                         : state === ProgressCircle.State.Success ? B.Theme.palette.success
+                                         : B.Theme.palette.error
 
     enum State {
         Running,
@@ -76,16 +76,16 @@ T.ProgressBar {
         Behavior on indeterminateRotatorPosition {
             id: posAnimation
             animation: NumberAnimation {
-                duration: Theme.animations.progressRotate.duration;
-                easing.type: Theme.animations.progressRotate.type;
+                duration: B.Theme.animations.progressRotate.duration;
+                easing.type: B.Theme.animations.progressRotate.type;
             }
         }
 
         Behavior on end {
             enabled: !root.indeterminate
             animation: NumberAnimation {
-                duration: Theme.animations.progressStep.duration;
-                easing.type: Theme.animations.progressStep.type;
+                duration: B.Theme.animations.progressStep.duration;
+                easing.type: B.Theme.animations.progressStep.type;
             }
         }
 
@@ -99,8 +99,8 @@ T.ProgressBar {
 
             Behavior on strokeColor {
                 ColorAnimation {
-                    duration: Theme.animations.progressColor.duration;
-                    easing.type: Theme.animations.progressColor.type;
+                    duration: B.Theme.animations.progressColor.duration;
+                    easing.type: B.Theme.animations.progressColor.type;
                 }
             }
 
@@ -121,13 +121,13 @@ T.ProgressBar {
         ShapePath {
             startX: root.width/2; startY: root._thickness/2
             fillColor: "transparent"
-            strokeColor: root.state !== ProgressCircle.State.Success && root.state !== ProgressCircle.State.Error ? Theme.palette.background_1 : root._indicatorColor
+            strokeColor: root.state !== ProgressCircle.State.Success && root.state !== ProgressCircle.State.Error ? B.Theme.palette.background_1 : root._indicatorColor
             strokeWidth: root._thickness
 
             Behavior on strokeColor {
                 ColorAnimation {
-                    duration: Theme.animations.progressColor.duration;
-                    easing.type: Theme.animations.progressColor.type;
+                    duration: B.Theme.animations.progressColor.duration;
+                    easing.type: B.Theme.animations.progressColor.type;
                 }
             }
 
