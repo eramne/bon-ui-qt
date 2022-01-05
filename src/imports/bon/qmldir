@@ -51,7 +51,6 @@ BlendingRectangularGlow 1.0 effects/BlendingRectangularGlow.qml
 Elevation 1.0 effects/Elevation.qml
 
 OverflowArea 1.0 layout/OverflowArea.qml
-
 Icon 1.0 layout/Icon.qml
 Avatar 1.0 layout/Avatar.qml
 Thumbnail 1.0 layout/Thumbnail.qml
@@ -61,5 +60,6 @@ Popup 1.0 layout/Popup.qml
 List 1.0 layout/List.qml
 singleton ListLeading 1.0 layout/ListLeading.qml
 singleton ListTrailing 1.0 layout/ListTrailing.qml
+Pane 1.0 layout/Pane.qml
 
 ScrollBar 1.0 navigation/ScrollBar.qml

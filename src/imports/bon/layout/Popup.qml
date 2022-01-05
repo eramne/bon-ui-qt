@@ -41,19 +41,7 @@ T.Popup {
         }
     }
 
-    background: Item {
-        anchors.fill: parent
-
-        B.Elevation {
-            elevation: 8
-            anchors.fill: parent
-            radius: 8
-        }
-
-        Rectangle {
-            anchors.fill: parent
-            radius: 8
-            color: B.Theme.palette.background
-        }
+    background: B.Pane {
+        elevation: 8
     }
 }

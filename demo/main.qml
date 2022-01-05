@@ -1294,6 +1294,21 @@ Window {
                             }
                         }
                     }
+
+                    B.Divider {
+                        width: parent.width
+                        leftInset: -parent.leftPadding
+                        name: "Pane"
+                    }
+
+                    B.Pane {
+                        width: 200
+                        height: 200
+
+                        B.Button {
+                            text: "Click me!"
+                        }
+                    }
                 }
             }
 
