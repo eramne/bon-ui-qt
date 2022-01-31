@@ -10,6 +10,7 @@ Button 1.0 action/Button.qml
 DateButton 1.0 action/DateButton.qml
 Menu 1.0 action/Menu.qml
 MenuItem 1.0 action/MenuItem.qml
+ContextMenu 1.0 action/ContextMenu.qml
 SmallIconButton 1.0 action/SmallIconButton.qml
 
 Switch 1.0 input/Switch.qml

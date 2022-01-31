@@ -30,14 +30,6 @@ B.Popup {
         }
     }
 
-    Behavior on y {
-        enabled: root.opened
-        animation: NumberAnimation {
-            duration: B.Theme.animations.basic.duration
-            easing.type: B.Theme.animations.basic.type
-        }
-    }
-
     Timer {
         repeat: true
         running: root.opened && root.autoAdjustPositionAroundTarget

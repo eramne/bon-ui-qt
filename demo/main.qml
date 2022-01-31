@@ -1487,23 +1487,32 @@ Window {
                         headerAvatar: "https://pbs.twimg.com/profile_images/1479243521727115265/7X85etcr_400x400.png"
                         description: "hello how are you today"
                     }
+
+                    B.Divider {
+                        width: parent.width
+                        leftInset: -parent.leftPadding
+                        name: "Context Menu"
+                    }
+
+                    B.Pane {
+
+                        B.ContextMenu {
+                            B.MenuItem {
+                                text: "Cut"
+                                shortcut: StandardKey.Cut
+                            }
+                            B.MenuItem {
+                                text: "Copy"
+                                shortcut: StandardKey.Copy
+                            }
+                            B.MenuItem {
+                                text: "Paste"
+                                shortcut: StandardKey.Paste
+                            }
+                        }
+                    }
                 }
             }
-
-            /*MouseArea {
-                anchors.fill: parent
-                propagateComposedEvents: true
-                acceptedButtons: Qt.RightButton
-                onClicked: function (mouse) {
-                    popup.targetX = mouse.x;
-                    popup.targetY = mouse.y;
-                    popup.open();
-                }
-            }
-
-            B.Popup {
-                id: popup
-            }*/
 
             B.OverflowArea {
 
