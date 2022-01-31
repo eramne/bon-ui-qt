@@ -43,5 +43,7 @@ T.Popup {
 
     background: B.Pane {
         elevation: 8
+        width: root.targetWidth
+        height: root.targetHeight
     }
 }

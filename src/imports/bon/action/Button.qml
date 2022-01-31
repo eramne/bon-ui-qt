@@ -6,11 +6,6 @@ import bon as B
 T.Button {
     id: root
 
-    implicitWidth: Math.max(implicitBackgroundWidth + leftInset + rightInset,
-                                implicitContentWidth + leftPadding + rightPadding)
-    implicitHeight: Math.max(implicitBackgroundHeight + topInset + bottomInset,
-                             implicitContentHeight + topPadding + bottomPadding)
-
     icon.color: root._textColor
     icon.name: ""
 

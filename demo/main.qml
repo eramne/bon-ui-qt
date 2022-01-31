@@ -1095,7 +1095,7 @@ Window {
                             {name: "test", caption: "caption test", showDivider: true},
                             {name: "the", overline: "tech"},
                             {name: "an", leading: B.ListLeading.icon({name: "home"})},
-                            {name: "goenfdj", leading: B.ListLeading.avatar({source: "https://pbs.twimg.com/profile_images/1466199778598047749/sdljjuYA_400x400.jpg"})},
+                            {name: "goenfdj", leading: B.ListLeading.avatar({source: "https://pbs.twimg.com/profile_images/1479243521727115265/7X85etcr_400x400.png"})},
                             {name: "chrimsntas yayaya", caption: "Lorem ipsum dolor sit amet",  overline: "breaking", leading: B.ListLeading.thumbnail({source: "https://picography.co/wp-content/uploads/2017/12/xmas-bokeh-lights-768x525.jpg"})},
                             {name: "hi", showDivider: true, sectionName: "Heading"},
                             {name: "test", trailing: B.ListTrailing.caption({text: "Caption"})},
@@ -1166,7 +1166,8 @@ Window {
                     }
 
                     B.Button {
-                        text: "Open Menu"
+                        icon.name: "more_vert"
+                        order: 2
                         onReleased: menu1.open()
 
                         B.Menu {
@@ -1302,12 +1303,189 @@ Window {
                     }
 
                     B.Pane {
-                        width: 200
-                        height: 200
-
                         B.Button {
                             text: "Click me!"
                         }
+                    }
+
+                    B.Divider {
+                        width: parent.width
+                        leftInset: -parent.leftPadding
+                        name: "Card"
+                    }
+
+                    B.Card {
+
+                    }
+
+                    B.Card {
+                        width: 400
+                        overline: "tech"
+                        title: "Lorem Ipsum"
+                        subtitle: "by John Doe"
+                        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+                    }
+
+                    B.Card {
+                        width: 400
+                        title: "Lorem Ipsum"
+                        description: "Lorem ipsum dolor sit amet"
+                        rightActions: [
+                            B.Button {
+                                order: 1
+                                text: "Action"
+                            },
+
+                            B.Button {
+                                order: 3
+                                text: "Action"
+                            }
+                        ]
+                    }
+
+                    B.Card {
+                        width: 400
+                        title: "Lorem Ipsum"
+                        description: "Lorem ipsum dolor sit amet"
+                        leftActions: [
+                            B.Button {
+                                order: 1
+                                text: "Action"
+                            },
+
+                            B.Button {
+                                order: 3
+                                text: "Action"
+                            }
+                        ]
+                    }
+
+                    B.Card {
+                        width: 400
+                        title: "Lorem Ipsum"
+                        description: "Lorem ipsum dolor sit amet"
+                        leftActions: [
+                            B.Button {
+                                order: 1
+                                text: "Action"
+                            },
+
+                            B.Button {
+                                order: 3
+                                text: "Action"
+                            }
+                        ]
+                        rightActions: [
+                            B.Button {
+                                icon.name: checked ? "favorite" : "favorite_border"
+                                checkable: true
+                                order: 3
+                            },
+
+                            B.Button {
+                                icon.name: "chat_bubble_outline"
+                                order: 3
+                            },
+
+                            B.Button {
+                                icon.name: "share"
+                                order: 3
+                            }
+                        ]
+                    }
+
+                    B.Card {
+                        width: 300
+                        media: [
+                            B.Thumbnail {
+                                source: "https://picography.co/wp-content/uploads/2017/12/xmas-bokeh-lights-768x525.jpg"
+                            }
+                        ]
+                        overline: "tech"
+                        title: "Lorem Ipsum"
+                        subtitle: "by John Doe"
+                    }
+
+                    B.Card {
+                        width: 300
+                        menu: B.Menu {
+                            B.MenuItem {
+                                text: "Cut"
+                                shortcut: StandardKey.Cut
+                            }
+                            B.MenuItem {
+                                text: "Copy"
+                                shortcut: StandardKey.Copy
+                            }
+                            B.MenuItem {
+                                text: "Paste"
+                                shortcut: StandardKey.Paste
+                            }
+                        }
+
+                        media: [
+                            B.Thumbnail {
+                                source: "https://picography.co/wp-content/uploads/2017/12/xmas-bokeh-lights-768x525.jpg"
+                            }
+                        ]
+                        overline: "tech"
+                        title: "Lorem Ipsum"
+                        subtitle: "by John Doe"
+                    }
+
+                    B.Card {
+                        width: 300
+                        menu: B.Menu {
+                            B.MenuItem {
+                                text: "Cut"
+                                shortcut: StandardKey.Cut
+                            }
+                            B.MenuItem {
+                                text: "Copy"
+                                shortcut: StandardKey.Copy
+                            }
+                            B.MenuItem {
+                                text: "Paste"
+                                shortcut: StandardKey.Paste
+                            }
+                        }
+                        overline: "tech"
+                        title: "Lorem Ipsum Dolor Sit Amet"
+                        subtitle: "by John Doe"
+                        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. "
+                    }
+
+                    B.Card {
+                        width: 400
+                        header: "Header"
+                        subheader: "Subheader"
+                        headerIcon: "home"
+                        menu: B.Menu {
+                            B.MenuItem {
+                                text: "Cut"
+                                shortcut: StandardKey.Cut
+                            }
+                            B.MenuItem {
+                                text: "Copy"
+                                shortcut: StandardKey.Copy
+                            }
+                            B.MenuItem {
+                                text: "Paste"
+                                shortcut: StandardKey.Paste
+                            }
+                        }
+                        overline: "tech"
+                        title: "Lorem Ipsum Dolor Sit Amet"
+                        subtitle: "by John Doe"
+                        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. "
+                    }
+
+                    B.Card {
+                        width: 400
+                        header: "eramne"
+                        subheader: "1:12 PM, 1/28/2021"
+                        headerAvatar: "https://pbs.twimg.com/profile_images/1479243521727115265/7X85etcr_400x400.png"
+                        description: "hello how are you today"
                     }
                 }
             }

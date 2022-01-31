@@ -12,7 +12,10 @@ T.Pane {
 
     padding: 10
 
-    property real elevation: 2
+    width: 200
+    height: 200
+
+    property real elevation: 4
     property real radius: 8
 
     background: Item {

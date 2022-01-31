@@ -61,5 +61,6 @@ List 1.0 layout/List.qml
 singleton ListLeading 1.0 layout/ListLeading.qml
 singleton ListTrailing 1.0 layout/ListTrailing.qml
 Pane 1.0 layout/Pane.qml
+Card 1.0 layout/Card.qml
 
 ScrollBar 1.0 navigation/ScrollBar.qml
