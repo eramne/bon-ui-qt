@@ -1511,6 +1511,28 @@ Window {
                             }
                         }
                     }
+
+                    B.Divider {
+                        width: parent.width
+                        leftInset: -parent.leftPadding
+                        name: "Tooltip"
+                    }
+
+                    B.Button {
+                        text: "Click me!"
+
+                        B.ToolTip {
+                            //text: "Test Tooltip"
+                            text: "Test Tooltip HTRSNDKFgeth thi toi woiboothindf ihre fdhnoerufjkd ibk"
+                            visible: parent.hovered
+                        }
+                    }
+
+                    Rectangle {
+                        width: 100
+                        height: 1000
+                        color: "transparent"
+                    }
                 }
             }
 

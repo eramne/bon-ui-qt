@@ -17,6 +17,7 @@ T.Pane {
 
     property real elevation: 4
     property real radius: 8
+    property color color: B.Theme.palette.background
 
     background: Item {
 
@@ -29,7 +30,7 @@ T.Pane {
         Rectangle {
             anchors.fill: parent
             radius: root.radius
-            color: B.Theme.palette.background
+            color: root.color
         }
     }
 }
