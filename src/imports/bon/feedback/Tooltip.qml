@@ -46,10 +46,13 @@ T.ToolTip {
         clip: false
 
         Shape {
-            x: root.parent.width/2 - root.x - width/4
+            x: root.parent.width/2 - root.x - width/2
             y: root._above ? parent.height : -height
             width: 10
             height: 10
+
+            layer.enabled: true
+            layer.samples: 8
 
             ShapePath {
                 fillColor: B.Theme.palette.accent

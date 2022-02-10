@@ -1,5 +1,3 @@
-//TODO: add tooltip that shows value when the slider is pressed
-
 import QtQuick
 import QtQuick.Templates as T
 import QtQuick.Layouts
@@ -86,6 +84,11 @@ T.Slider {
         implicitHeight: _handleHeight
         radius: width / 2
         color: _handleColor
+
+        B.ToolTip {
+            visible: root.pressed && root.enabled
+            text: root.value.toFixed(2)
+        }
 
         Behavior on color {
             ColorAnimation {
