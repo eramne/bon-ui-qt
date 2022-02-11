@@ -45,11 +45,9 @@ B.Dropdown {
                 Layout.fillWidth: true
                 spacing: 10
 
-                Text {
+                B.HeadingText {
                     Layout.fillWidth: true
                     text: "Adjust Color"
-                    color: B.Theme.palette.text.heading
-                    font: B.Theme.text.heading
                 }
 
                 B.Button {

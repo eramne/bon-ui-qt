@@ -11,14 +11,12 @@ T.Button {
     implicitHeight: Math.max(implicitBackgroundHeight + topInset + bottomInset,
                              implicitContentHeight + topPadding + bottomPadding)
 
-    icon.color: root._textColor
 
     leftPadding: 10
     rightPadding: 10
 
     hoverEnabled: enabled
 
-    property color _textColor: checked ? B.Theme.palette.text.label_dark : B.Theme.palette.text.label
     property real _textOpacity: root.down || root.hovered || !root.enabled ? B.Theme.highlight_hover_opacity : 1
 
     height: 34

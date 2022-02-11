@@ -26,12 +26,10 @@ Item {
             color: B.Theme.palette.background_1
         }
 
-        Text {
+        B.CaptionText {
             Layout.leftMargin: root.textInset
             visible: root.name
             text: root.name
-            font: B.Theme.text.caption
-            color: B.Theme.palette.text.label
         }
     }
 }

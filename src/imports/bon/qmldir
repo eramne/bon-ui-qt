@@ -66,3 +66,19 @@ Pane 1.0 layout/Pane.qml
 Card 1.0 layout/Card.qml
 
 ScrollBar 1.0 navigation/ScrollBar.qml
+
+TextBase 1.0 text/TextBase.qml
+DisplayText 1.0 text/DisplayText.qml
+Display2Text 1.0 text/Display2Text.qml
+TitleText 1.0 text/TitleText.qml
+SubtitleText 1.0 text/SubtitleText.qml
+SectionText 1.0 text/SectionText.qml
+Section2Text 1.0 text/Section2Text.qml
+Section3Text 1.0 text/Section3Text.qml
+HeadingText 1.0 text/HeadingText.qml
+SubheadingText 1.0 text/SubheadingText.qml
+BodyText 1.0 text/BodyText.qml
+LabelText 1.0 text/LabelText.qml
+CaptionText 1.0 text/CaptionText.qml
+OverlineText 1.0 text/OverlineText.qml
+ButtonText 1.0 text/ButtonText.qml

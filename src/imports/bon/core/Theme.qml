@@ -34,16 +34,16 @@ QtObject {
             property QtObject link: QtObject {
                 property QtObject body: QtObject {
                     property color light: "#2A7C87"
-                    property color light_pressed: "#1D5C75"
+                    property color light_hover: "#1D5C75"
                     property color dark: "#E0CDCA"
-                    property color dark_pressed: "#D1B4B4"
+                    property color dark_hover: "#D1B4B4"
                 }
 
                 property QtObject caption: QtObject {
                     property color light: "#369AA0"
-                    property color light_pressed: "#2A7C87"
+                    property color light_hover: "#2A7C87"
                     property color dark: "#D1B4B4"
-                    property color dark_pressed: "#E0CDCA"
+                    property color dark_hover: "#E0CDCA"
                 }
             }
         }
@@ -134,22 +134,22 @@ QtObject {
 
     property QtObject animations: QtObject {
         property QtObject basic: QtObject {
-            property var type: Easing.OutQuad
+            property int type: Easing.OutQuad
             property real duration: 100
         }
 
         property QtObject progressStep: QtObject {
-            property var type: Easing.Linear
+            property int type: Easing.Linear
             property real duration: 800
         }
 
         property QtObject progressRotate: QtObject {
-            property var type: Easing.Linear
+            property int type: Easing.Linear
             property real duration: 100
         }
 
         property QtObject progressColor: QtObject {
-            property var type: Easing.OutQuad
+            property int type: Easing.OutQuad
             property real duration: 300
         }
     }

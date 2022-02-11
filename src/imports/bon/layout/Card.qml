@@ -40,7 +40,6 @@ B.Pane {
                 B.Icon {
                     visible: root.headerIcon
                     name: root.headerIcon ?? "";
-                    color: B.Theme.palette.text.label
                     size: 24
                 }
 
@@ -54,27 +53,20 @@ B.Pane {
                     Layout.fillHeight: true
                     Layout.fillWidth: true
 
-                    Text {
+                    B.BodyText {
                         visible: parent.visible && root.header
                         text: root.header
                         verticalAlignment: Text.AlignVCenter
                         Layout.fillWidth: true
-                        maximumLineCount: 1
-                        elide: Text.ElideRight
-                        font: B.Theme.text.body
-                        color: B.Theme.palette.text.body
+                        lines: 1
                     }
 
-                    Text {
+                    B.CaptionText {
                         visible: parent.visible && root.subheader
                         text: root.subheader
                         verticalAlignment: Text.AlignVCenter
                         Layout.fillWidth: true
-                        wrapMode: Text.Wrap
-                        maximumLineCount: 2
-                        elide: Text.ElideRight
-                        font: B.Theme.text.caption
-                        color: B.Theme.palette.text.label
+                        lines: 2
                     }
                 }
 
@@ -126,31 +118,23 @@ B.Pane {
                     Layout.fillWidth: true
                     spacing: 10
 
-                    Text {
+                    B.OverlineText {
                         visible: root.overline
                         text: root.overline
-                        font: B.Theme.text.overline
-                        color: B.Theme.palette.text.overline
                         Layout.fillWidth: true
-                        wrapMode: Text.Wrap
+                        lines: 1
                     }
 
-                    Text {
+                    B.HeadingText {
                         visible: root.title
                         text: root.title
-                        font: B.Theme.text.heading
-                        color: B.Theme.palette.text.heading
                         Layout.fillWidth: true
-                        wrapMode: Text.Wrap
                     }
 
-                    Text {
+                    B.SubheadingText {
                         visible: root.subtitle
                         text: root.subtitle
-                        font: B.Theme.text.subheading
-                        color: B.Theme.palette.text.heading
                         Layout.fillWidth: true
-                        wrapMode: Text.Wrap
                     }
                 }
 
@@ -167,13 +151,10 @@ B.Pane {
                 }
             }
 
-            Text {
+            B.BodyText {
                 visible: root.description
                 text: root.description
-                font: B.Theme.text.body
-                color: B.Theme.palette.text.body
                 Layout.fillWidth: true
-                wrapMode: Text.Wrap
             }
 
             Item {

@@ -20,15 +20,14 @@ B.Chip {
             Layout.alignment: Qt.AlignCenter
             visible: isValid
             name: root.icon.name
-            color: root.icon.color
+            dark: root.checked
             opacity: root._textOpacity
         }
 
-        Text {
+        B.LabelText {
             text: root.text
             Layout.alignment: Qt.AlignVCenter
-            color: root._textColor
-            font: B.Theme.text.label
+            dark: root.checked
             opacity: root._textOpacity
         }
     }

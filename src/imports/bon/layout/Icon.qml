@@ -5,7 +5,8 @@ Item {
     id: root
     property string name: "settings"
     property real size: 24
-    property color color: "black"
+    property bool dark: false
+    property color color: !dark ? B.Theme.palette.text.label : B.Theme.palette.text.label_dark
     property bool isValid: name === "blank" || (B.Utils.icons[root.name] ?? "").length > 0
     width: size
     height: size

@@ -34,11 +34,9 @@ T.AbstractButton {
     contentItem: RowLayout {
         id: layout
 
-        Text {
+        B.LabelText {
             id: label
             text: root.name
-            font: B.Theme.text.label
-            color: B.Theme.palette.text.label
             Layout.alignment: Qt.AlignLeft
             opacity: root.enabled ? 1 : B.Theme.disabled_opacity
         }

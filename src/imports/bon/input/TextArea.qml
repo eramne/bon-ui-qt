@@ -23,14 +23,12 @@ Item {
         spacing: 4
         anchors.fill: parent
 
-        Text {
+        B.CaptionText {
             id: label
             Layout.fillWidth: true
             Layout.leftMargin: 10
             Layout.rightMargin: 10
             text: root.labelText
-            font: B.Theme.text.caption
-            color: B.Theme.palette.text.label
             opacity: 0.5
             visible: root.labelText.length > 0
             elide: Text.ElideRight
@@ -103,7 +101,7 @@ Item {
                                                                               cursorRectangle.width + leftPadding + topPadding,
                                                                               cursorRectangle.height + topPadding + bottomPadding))
 
-                    Text {
+                    B.LabelText {
                         id: placeholder
                         x: area.leftPadding
                         y: area.topPadding
@@ -111,13 +109,9 @@ Item {
                         height: area.height - (area.topPadding + area.bottomPadding)
 
                         text: area.placeholderText
-                        font: area.font
-                        color: B.Theme.palette.text.label
                         opacity: 0.5
                         verticalAlignment: area.verticalAlignment
                         visible: !area.length && !area.preeditText && (!area.activeFocus || area.horizontalAlignment !== Qt.AlignHCenter)
-                        elide: Text.ElideRight
-                        renderType: area.renderType
                     }
                 }
             }
@@ -129,23 +123,19 @@ Item {
             Layout.rightMargin: 10
             visible: root.helpText.length > 0 || root.showCharacterCount
 
-            Text {
+            B.CaptionText {
                 id: helpText
                 Layout.fillWidth: true
                 text: root.helpText
-                font: B.Theme.text.caption
-                color: B.Theme.palette.text.label
                 opacity: 0.5
                 visible: root.helpText.length > 0
                 elide: Text.ElideRight
             }
 
-            Text {
+            B.CaptionText {
                 text: area.length
                 Layout.fillWidth: !helpText.visible
                 horizontalAlignment: Text.AlignRight
-                font: B.Theme.text.caption
-                color: B.Theme.palette.text.label
                 opacity: 0.5
                 visible: root.showCharacterCount
                 elide: Text.ElideRight

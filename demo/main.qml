@@ -1542,88 +1542,60 @@ Window {
                     padding: 20
                     spacing: 50
 
-                    Text {
+                    B.DisplayText {
                         text: "Display"
-                        color: B.Theme.palette.text.heading
-                        font: B.Theme.text.display
                     }
 
-                    Text {
+                    B.Display2Text {
                         text: "Display 2"
-                        color: B.Theme.palette.text.heading
-                        font: B.Theme.text.display_2
                     }
 
-                    Text {
+                    B.TitleText {
                         text: "Title"
-                        color: B.Theme.palette.text.heading
-                        font: B.Theme.text.title
                     }
 
-                    Text {
+                    B.SubtitleText {
                         text: "Subtitle"
-                        color: B.Theme.palette.text.heading
-                        font: B.Theme.text.subtitle
                     }
 
-                    Text {
+                    B.SectionText {
                         text: "Section"
-                        color: B.Theme.palette.text.heading
-                        font: B.Theme.text.section
                     }
 
-                    Text {
+                    B.Section2Text {
                         text: "Section 2"
-                        color: B.Theme.palette.text.heading
-                        font: B.Theme.text.section_2
                     }
 
-                    Text {
+                    B.Section3Text {
                         text: "Section 3"
-                        color: B.Theme.palette.text.heading
-                        font: B.Theme.text.section_3
                     }
 
-                    Text {
+                    B.HeadingText {
                         text: "Heading"
-                        color: B.Theme.palette.text.heading
-                        font: B.Theme.text.heading
                     }
 
-                    Text {
+                    B.SubheadingText {
                         text: "Subheading"
-                        color: B.Theme.palette.text.heading
-                        font: B.Theme.text.subheading
                     }
 
-                    Text {
+                    B.BodyText {
                         text: "Body"
-                        color: B.Theme.palette.text.body
-                        font: B.Theme.text.body
                     }
 
-                    Text {
+                    B.LabelText {
                         text: "Label"
-                        color: B.Theme.palette.text.label
-                        font: B.Theme.text.label
                     }
 
-                    Text {
+                    B.CaptionText {
                         text: "Caption"
-                        color: B.Theme.palette.text.label
-                        font: B.Theme.text.caption
                     }
 
-                    Text {
+                    B.OverlineText {
                         text: "Overline"
-                        color: B.Theme.palette.text.overline
-                        font: B.Theme.text.overline
                     }
 
-                    Text {
+                    B.ButtonText {
                         text: "Button"
-                        color: B.Theme.palette.text.label
-                        font: B.Theme.text.button
                     }
                 }
             }

@@ -21,19 +21,14 @@ T.ToolTip {
         id: layout
         width: parent.width
 
-        Text {
+        B.CaptionText {
             Layout.leftMargin: 12
             Layout.rightMargin: 12
             Layout.topMargin: 8
             Layout.bottomMargin: 8
             Layout.fillWidth: true
-
             text: root.text
-            font: B.Theme.text.caption
-            color: B.Theme.palette.text.label_dark
-            wrapMode: Text.Wrap
-            //horizontalAlignment: Text.AlignHCenter
-            //verticalAlignment: Text.AlignVCenter
+            dark: true
         }
     }
 

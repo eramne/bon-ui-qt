@@ -64,11 +64,9 @@ B.Dropdown {
                 Layout.leftMargin: 15
                 spacing: 10
 
-                Text {
+                B.HeadingText {
                     Layout.fillWidth: true
                     text: root.selectRange ? "Pick a date range" : "Pick a date"
-                    color: B.Theme.palette.text.heading
-                    font: B.Theme.text.heading
                 }
 
                 B.Button {
@@ -98,11 +96,9 @@ B.Dropdown {
                 Layout.leftMargin: 15
                 spacing: 10
 
-                Text {
+                B.SubheadingText {
                     Layout.fillWidth: true
                     text: new Date(root._visibleYear, root._visibleMonth).toLocaleString(Qt.locale(), "MMMM yyyy")
-                    color: B.Theme.palette.text.heading
-                    font: B.Theme.text.subheading
                 }
 
                 B.Button {
@@ -147,11 +143,9 @@ B.Dropdown {
                         width: 40
                         height: 24
 
-                        Text {
+                        B.CaptionText {
                             text: Qt.locale().dayName((index + Qt.locale().firstDayOfWeek)%7, Locale.ShortFormat)
                             anchors.centerIn: parent
-                            font: B.Theme.text.caption
-                            color: B.Theme.palette.text.label
                             horizontalAlignment: Text.AlignHCenter
                             verticalAlignment: Text.AlignVCenter
                         }

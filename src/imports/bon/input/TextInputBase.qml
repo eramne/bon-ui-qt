@@ -52,7 +52,6 @@ Item {
         B.Icon {
             name: leadingIcon
             visible: isValid
-            color: B.Theme.palette.text.label
             Layout.alignment: Qt.AlignVCenter
         }
 
@@ -60,18 +59,15 @@ Item {
             spacing: 4
             Layout.fillWidth: true
 
-            Text {
+            B.CaptionText {
                 id: label
                 Layout.fillWidth: true
                 Layout.leftMargin: 10
                 Layout.rightMargin: 10
                 text: root.labelText
-                font: B.Theme.text.caption
-                color: B.Theme.palette.text.label
                 opacity: 0.5
                 verticalAlignment: field.verticalAlignment
                 visible: root.labelText.length > 0
-                elide: Text.ElideRight
             }
 
             Item {
@@ -132,36 +128,27 @@ Item {
                     anchors.rightMargin: 10
                     spacing: 4
 
-                    Text {
+                    B.LabelText {
                         text: root.prefixText
-                        font: field.font
-                        color: B.Theme.palette.text.label
                         opacity: 0.5
                         verticalAlignment: field.verticalAlignment
                         visible: prefixText.length > 0
-                        elide: Text.ElideRight
-                        renderType: field.renderType
                     }
 
                     Item {
                         Layout.fillHeight: true
                         Layout.fillWidth: true
 
-                        Text {
+                        B.LabelText {
                             id: placeholder
                             x: field.leftPadding
                             y: field.topPadding
                             width: field.width - (field.leftPadding + field.rightPadding)
                             height: field.height - (field.topPadding + field.bottomPadding)
-
                             text: field.placeholderText
-                            font: field.font
-                            color: B.Theme.palette.text.label
                             opacity: 0.5
                             verticalAlignment: field.verticalAlignment
                             visible: !field.length && !field.preeditText && (!field.activeFocus || field.horizontalAlignment !== Qt.AlignHCenter)
-                            elide: Text.ElideRight
-                            renderType: field.renderType
                         }
 
                         Item {
@@ -177,13 +164,12 @@ Item {
                                                          placeholder.implicitHeight + topPadding + bottomPadding)
 
                                 anchors.fill: parent
-
                                 color: B.Theme.palette.text.label
+                                font: B.Theme.text.label
                                 selectionColor: B.Theme.palette.selection_background
                                 selectedTextColor: B.Theme.palette.selection_text
                                 placeholderTextColor: "transparent"
                                 verticalAlignment: TextInput.AlignVCenter
-                                font: B.Theme.text.label
                                 selectByMouse: true
                                 enabled: root.enabled
                                 hoverEnabled: root.enabled
@@ -267,15 +253,11 @@ Item {
                         }
                     }
 
-                    Text {
+                    B.LabelText {
                         text: root.suffixText
-                        font: field.font
-                        color: B.Theme.palette.text.label
                         opacity: 0.5
                         verticalAlignment: field.verticalAlignment
                         visible: suffixText.length > 0
-                        elide: Text.ElideRight
-                        renderType: field.renderType
                     }
 
                     Loader {
@@ -289,28 +271,23 @@ Item {
                 Layout.leftMargin: 10
                 Layout.rightMargin: 10
 
-                Text {
+                B.CaptionText {
                     id: helpText
                     Layout.fillWidth: true
                     text: !(root.showStatus && !field.focus) ? root.helpText : (field.acceptableInput ? root.successText : root.errorText)
-                    font: B.Theme.text.caption
                     color: !(root.showStatus && !field.focus) ? B.Theme.palette.text.label : (field.acceptableInput ? B.Theme.palette.success : B.Theme.palette.error)
                     opacity: !(root.showStatus && !field.focus) ? 0.5 : 1
                     verticalAlignment: field.verticalAlignment
                     visible: root.helpText.length > 0 || ((root.showStatus && !field.focus) && !field.acceptableInput && root.errorText.length > 0) || ((root.showStatus && !field.focus) && field.acceptableInput && root.successText.length > 0)
-                    elide: Text.ElideRight
                 }
 
-                Text {
+                B.CaptionText {
                     text: field.maximumLength < 32767 ? `${field.length}/${field.maximumLength}` : field.length
                     Layout.fillWidth: !helpText.visible
                     horizontalAlignment: Text.AlignRight
-                    font: B.Theme.text.caption
-                    color: B.Theme.palette.text.label
                     opacity: 0.5
                     verticalAlignment: field.verticalAlignment
                     visible: root.showCharacterCount
-                    elide: Text.ElideRight
                 }
             }
         }

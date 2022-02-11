@@ -18,17 +18,16 @@ B.Chip {
         B.Icon {
             id: icon
             Layout.alignment: Qt.AlignCenter
+            dark: root.checked
             visible: isValid
             name: root.icon.name
-            color: root.icon.color
             opacity: root._textOpacity
         }
 
-        Text {
+        B.LabelText {
             text: root.text
+            dark: root.checked
             Layout.alignment: Qt.AlignVCenter
-            color: root._textColor
-            font: B.Theme.text.label
             opacity: root._textOpacity
         }
     }

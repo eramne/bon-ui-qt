@@ -11,7 +11,6 @@ T.AbstractButton {
     implicitHeight: Math.max(implicitBackgroundHeight + topInset + bottomInset,
                              implicitContentHeight + topPadding + bottomPadding)
 
-
     hoverEnabled: enabled
     checkable: true
     text: "1"
@@ -34,19 +33,14 @@ T.AbstractButton {
     contentItem: Item {
         anchors.fill: parent
 
-        Text {
+        B.ButtonText {
             id: text
             text: root.text
             anchors.fill: parent
-            color: checked || rangeSelected ? (
-                       B.Theme.palette.text.label_dark
-                   ) : (
-                       B.Theme.palette.text.label
-                   )
-            font: B.Theme.text.button
+            dark: checked || rangeSelected
+            opacity: root.down || root.hovered || !root.enabled ? B.Theme.highlight_hover_opacity : 1
             horizontalAlignment: Text.AlignHCenter
             verticalAlignment: Text.AlignVCenter
-            opacity: root.down || root.hovered || !root.enabled ? B.Theme.highlight_hover_opacity : 1
 
             Behavior on opacity {
                 NumberAnimation {

@@ -6,7 +6,6 @@ import bon as B
 T.Button {
     id: root
 
-    icon.color: root._textColor
     icon.name: ""
 
     leftPadding: !_round ? 20 : 0
@@ -14,11 +13,6 @@ T.Button {
 
     hoverEnabled: enabled
 
-    property color _textColor: order === 1 ? (
-                                   B.Theme.palette.text.label_dark
-                               ) : (
-                                   B.Theme.palette.text.label
-                               )
     property real _textOpacity: root.down || root.hovered || !root.enabled ? B.Theme.highlight_hover_opacity : 1
     property bool _round: root.text.length === 0
 
@@ -55,15 +49,14 @@ T.Button {
             Layout.alignment: Qt.AlignCenter
             visible: isValid
             name: root.icon.name
-            color: root.icon.color
+            //color: root.icon.color
             opacity: root._textOpacity
+            dark: order === 1
         }
 
-        Text {
+        B.ButtonText {
             text: root.text
-            Layout.alignment: Qt.AlignCenter
-            color: root._textColor
-            font: B.Theme.text.button
+            dark: order === 1
             opacity: root._textOpacity
         }
     }

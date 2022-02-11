@@ -279,7 +279,6 @@ ListView {
 
                             B.Icon {
                                 name: listItem.leading?.name ?? "";
-                                color: B.Theme.palette.text.label
                                 size: root.compact ? 20 : 24
                             }
                         }
@@ -306,38 +305,28 @@ ListView {
                         Layout.fillHeight: true
                         Layout.fillWidth: true
 
-                        Text {
+                        B.OverlineText {
                             visible: parent.visible && listItem.overline
                             text: listItem.overline
                             verticalAlignment: Text.AlignVCenter
                             Layout.fillWidth: true
-                            maximumLineCount: 1
-                            elide: Text.ElideRight
-                            font: B.Theme.text.overline
-                            color: B.Theme.palette.text.overline
+                            lines: 1
                         }
 
-                        Text {
+                        B.BodyText {
                             visible: parent.visible
                             text: listItem.name
                             verticalAlignment: Text.AlignVCenter
                             Layout.fillWidth: true
-                            maximumLineCount: 1
-                            elide: Text.ElideRight
-                            font: B.Theme.text.body
-                            color: B.Theme.palette.text.body
+                            lines: 1
                         }
 
-                        Text {
+                        B.CaptionText {
                             visible: parent.visible && listItem.caption
                             text: listItem.caption
                             verticalAlignment: Text.AlignVCenter
                             Layout.fillWidth: true
-                            wrapMode: Text.Wrap
-                            maximumLineCount: 2
-                            elide: Text.ElideRight
-                            font: B.Theme.text.caption
-                            color: B.Theme.palette.text.label
+                            lines: 2
                         }
                     }
 
@@ -368,10 +357,8 @@ ListView {
                         Component {
                             id: trailingCaption
 
-                            Text {
+                            B.CaptionText {
                                 text: listItem.trailing?.text ?? "";
-                                font: B.Theme.text.caption
-                                color: B.Theme.palette.text.label
                             }
                         }
 
@@ -380,7 +367,6 @@ ListView {
 
                             B.Icon {
                                 name: listItem.trailing?.name ?? "";
-                                color: B.Theme.palette.text.label
                                 size: root.compact ? 20 : 24
                             }
                         }

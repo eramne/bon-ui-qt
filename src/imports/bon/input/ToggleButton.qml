@@ -11,33 +11,15 @@ T.AbstractButton {
     implicitHeight: Math.max(implicitBackgroundHeight + topInset + bottomInset,
                              implicitContentHeight + topPadding + bottomPadding)
 
-    icon.color: _textColor
     icon.name: ""
 
     hoverEnabled: enabled
     checkable: true
 
-    property color _textColor: checked ? (
-                                   B.Theme.palette.text.label_dark
-                               ) : (
-                                   B.Theme.palette.text.label
-                               )
-    property real _textOpacity: root.down || root.hovered || !root.enabled ? B.Theme.highlight_hover_opacity : 1
-
     width: 40
     height: 40
     opacity: !root.enabled ? B.Theme.disabled_opacity : 1
     layer.enabled: !root.enabled
-
-
-
-
-    Behavior on _textOpacity {
-        NumberAnimation {
-            duration: B.Theme.animations.basic.duration
-            easing.type: B.Theme.animations.basic.type
-        }
-    }
 
     B.Elevation {
         anchors.fill: background
@@ -53,8 +35,15 @@ T.AbstractButton {
             anchors.centerIn: parent
             visible: isValid
             name: root.icon.name
-            color: root.icon.color
-            opacity: _textOpacity
+            dark: root.checked
+            opacity: root.down || root.hovered || !root.enabled ? B.Theme.highlight_hover_opacity : 1
+
+            Behavior on opacity {
+                NumberAnimation {
+                    duration: B.Theme.animations.basic.duration
+                    easing.type: B.Theme.animations.basic.type
+                }
+            }
         }
     }
 

@@ -55,14 +55,13 @@ T.Tumbler {
                 }
             }
 
-            contentItem: Text {
+            contentItem: B.BodyText {
                 visible: parent.visible
                 text: item.modelData
                 anchors.fill: parent
                 verticalAlignment: Text.AlignVCenter
                 horizontalAlignment: Text.AlignHCenter
-                font: B.Theme.text.body
-                color: root.currentIndex === item.index ? B.Theme.palette.text.body_dark : B.Theme.palette.text.body
+                dark: root.currentIndex === item.index
             }
         }
     }
