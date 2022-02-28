@@ -28,14 +28,16 @@ B.Pane {
 
         ColumnLayout {
             Layout.fillWidth: true
-            Layout.margins: 20
-            spacing: 20
 
             RowLayout {
                 id: headerRow
                 visible: root.header || root.headerAvatar || root.headerIcon || root.subheader
                 spacing: 15
                 Layout.fillWidth: true
+                Layout.topMargin: 10
+                Layout.bottomMargin: 10
+                Layout.leftMargin: 20
+                Layout.rightMargin: 20
 
                 B.Icon {
                     visible: root.headerIcon
@@ -49,7 +51,7 @@ B.Pane {
                 }
 
                 ColumnLayout {
-                    spacing: 5
+                    spacing: 0
                     Layout.fillHeight: true
                     Layout.fillWidth: true
 
@@ -83,11 +85,10 @@ B.Pane {
             }
 
             Item {
+                id: mediaContainer
                 implicitHeight: mediaRow.implicitHeight
                 visible: root.media.length > 0
                 Layout.fillWidth: true
-                Layout.leftMargin: -20
-                Layout.topMargin: -20
 
                 RowLayout {
                     id: mediaRow
@@ -101,6 +102,7 @@ B.Pane {
                     anchors.top: parent.top
                     anchors.right: parent.right
                     anchors.topMargin: 20
+                    anchors.rightMargin: 20
                     onReleased: {
                         root.menu.parent = menuButtonMedia;
                         root.menu.open()
@@ -110,70 +112,77 @@ B.Pane {
                 }
             }
 
-            RowLayout {
-                visible: root.overline || root.title || root.subtitle
+            ColumnLayout {
+                Layout.fillWidth: true
+                Layout.margins: 20
+                Layout.topMargin: headerRow.visible && !mediaContainer.visible ? 0 : 20
                 spacing: 10
 
-                ColumnLayout {
+                RowLayout {
+                    visible: root.overline || root.title || root.subtitle
+                    spacing: 10
+
+                    ColumnLayout {
+                        Layout.fillWidth: true
+                        spacing: 0
+
+                        B.OverlineText {
+                            visible: root.overline
+                            text: root.overline
+                            Layout.fillWidth: true
+                            lines: 1
+                        }
+
+                        B.HeadingText {
+                            visible: root.title
+                            text: root.title
+                            Layout.fillWidth: true
+                        }
+
+                        B.SubheadingText {
+                            visible: root.subtitle
+                            text: root.subtitle
+                            Layout.fillWidth: true
+                        }
+                    }
+
+                    B.Button {
+                        id: menuButtonHeadline
+                        visible: parent.visible && root.menu && root.media.length === 0 && !headerRow.visible
+                        Layout.alignment: Qt.AlignTop
+                        onReleased: {
+                            root.menu.parent = menuButtonHeadline;
+                            root.menu.open()
+                        }
+                        icon.name: "more_horiz"
+                        order: 3
+                    }
+                }
+
+                B.BodyText {
+                    visible: root.description
+                    text: root.description
                     Layout.fillWidth: true
-                    spacing: 10
-
-                    B.OverlineText {
-                        visible: root.overline
-                        text: root.overline
-                        Layout.fillWidth: true
-                        lines: 1
-                    }
-
-                    B.HeadingText {
-                        visible: root.title
-                        text: root.title
-                        Layout.fillWidth: true
-                    }
-
-                    B.SubheadingText {
-                        visible: root.subtitle
-                        text: root.subtitle
-                        Layout.fillWidth: true
-                    }
                 }
 
-                B.Button {
-                    id: menuButtonHeadline
-                    visible: parent.visible && root.menu && root.media.length === 0 && !headerRow.visible
-                    Layout.alignment: Qt.AlignTop
-                    onReleased: {
-                        root.menu.parent = menuButtonHeadline;
-                        root.menu.open()
+                Item {
+                    Layout.fillWidth: true
+                    height: childrenRect.height
+                    visible: root.leftActions.length + root.rightActions.length > 0
+
+                    RowLayout {
+                        spacing: 10
+                        children: root.leftActions
+                        height: Math.max(implicitHeight, parent.height)
+                        anchors.left: parent.left
                     }
-                    icon.name: "more_horiz"
-                    order: 3
-                }
-            }
 
-            B.BodyText {
-                visible: root.description
-                text: root.description
-                Layout.fillWidth: true
-            }
-
-            Item {
-                Layout.fillWidth: true
-                height: childrenRect.height
-                visible: root.leftActions.length + root.rightActions.length > 0
-
-                RowLayout {
-                    spacing: 10
-                    children: root.leftActions
-                    height: Math.max(implicitHeight, parent.height)
-                    anchors.left: parent.left
-                }
-
-                RowLayout {
-                    spacing: 10
-                    children: root.rightActions
-                    height: Math.max(implicitHeight, parent.height)
-                    anchors.right: parent.right
+                    RowLayout {
+                        spacing: 10
+                        children: root.rightActions
+                        height: Math.max(implicitHeight, parent.height)
+                        anchors.right: parent.right
+                    }
                 }
             }
         }

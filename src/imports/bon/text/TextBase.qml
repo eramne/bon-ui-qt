@@ -11,4 +11,6 @@ Text {
     property bool md: false
     textFormat: md ? Text.MarkdownText : Text.AutoText
     wrapMode: Text.Wrap
+    lineHeightMode: Text.ProportionalHeight
+    verticalAlignment: Text.AlignVCenter
 }

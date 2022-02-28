@@ -254,10 +254,10 @@ ListView {
                     Layout.fillHeight: true
                     Layout.fillWidth: true
 
-                    Layout.leftMargin: root.compact ? 10 : 20
-                    Layout.rightMargin: root.compact ? 10 : 20
-                    Layout.topMargin: root.compact ? 4 : 14
-                    Layout.bottomMargin: root.compact ? 4 : 14
+                    Layout.leftMargin: root.compact ? 10 : 10
+                    Layout.rightMargin: root.compact ? 10 : 10
+                    Layout.topMargin: root.compact ? 0 : 10
+                    Layout.bottomMargin: root.compact ? 0 : 10
 
                     Loader {
                         active: listItem.leading !== undefined
@@ -301,7 +301,6 @@ ListView {
                     }
 
                     ColumnLayout {
-                        spacing: root.compact ? 2 : 5
                         Layout.fillHeight: true
                         Layout.fillWidth: true
 
