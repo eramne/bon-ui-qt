@@ -17,6 +17,8 @@ QtObject {
         property color highlight_1: Qt.alpha(highlight, theme.highlight_hover_opacity)
         property color success: "#369AA0"
         property color error: "#C17E86"
+        property color warning: "#D9B390"
+        property color info: "#6C92DC"
         property color selection_background: accent_1
         property color selection_text: background
         property color elevation: "#986578"

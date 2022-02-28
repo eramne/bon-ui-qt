@@ -18,6 +18,8 @@ T.Pane {
     property real elevation: 4
     property real radius: 8
     property color color: B.Theme.palette.background
+    property color borderColor: "transparent"
+    property real borderWidth: 0
 
     background: Item {
 
@@ -31,6 +33,8 @@ T.Pane {
             anchors.fill: parent
             radius: root.radius
             color: root.color
+            border.color: root.borderColor
+            border.width: root.borderWidth
         }
     }
 }

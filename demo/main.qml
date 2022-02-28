@@ -1528,10 +1528,63 @@ Window {
                         }
                     }
 
-                    Rectangle {
-                        width: 100
-                        height: 1000
-                        color: "transparent"
+                    B.Divider {
+                        width: parent.width
+                        leftInset: -parent.leftPadding
+                        name: "Alerts"
+                    }
+
+                    B.Alert {
+                        icon: "error"
+                        title: "Couldn't sign in"
+                        description: "Please check your internet connection and try again."
+                        Component.onCompleted: show()
+                    }
+
+                    B.Alert {
+                        id: alert1
+                        icon: "error"
+                        title: "Couldn't sign in"
+                        description: "Please check your internet connection and try again."
+                        variant: B.Alert.Variant.Error
+                        Component.onCompleted: show()
+                        actions: [
+                            B.Button {
+                                text: "Dismiss"
+                                order: 3
+                                onClicked: {
+                                    alert1.hide();
+                                }
+                            },
+                            B.Button {
+                                text: "Retry"
+                                order: 3
+                            }
+                        ]
+                    }
+
+                    B.Alert {
+                        icon: "warning"
+                        title: "Your subscription is about to expire"
+                        description: "Please renew your subscription or download your data."
+                        variant: B.Alert.Variant.Warning
+                        Component.onCompleted: show()
+                    }
+
+                    B.Alert {
+                        icon: "check_circle"
+                        title: "Successfully registered"
+                        description: "Welcome to <site>"
+                        variant: B.Alert.Variant.Success
+                        Component.onCompleted: show()
+                    }
+
+                    B.Alert {
+                        icon: "info"
+                        title: "Update available"
+                        description: "The update will be installed on the next launch."
+                        variant: B.Alert.Variant.Info
+                        Component.onCompleted: show()
                     }
                 }
             }
