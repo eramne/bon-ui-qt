@@ -87,7 +87,7 @@ T.Slider {
 
         B.ToolTip {
             visible: root.pressed && root.enabled
-            text: root.value.toFixed(2)
+            text: snapMode !== Slider.NoSnap ? root.value : root.value.toFixed(2)
         }
 
         Behavior on color {
