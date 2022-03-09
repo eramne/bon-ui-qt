@@ -22,6 +22,7 @@ QtObject {
         property color selection_background: accent_1
         property color selection_text: background
         property color elevation: "#986578"
+        property color modal: Qt.alpha("#C17E86",0.3)
 
         property QtObject text: QtObject {
             property color overline: "#986578"
@@ -153,6 +154,11 @@ QtObject {
         property QtObject progressColor: QtObject {
             property int type: Easing.OutQuad
             property real duration: 300
+        }
+
+        property QtObject dialog: QtObject {
+            property int type: Easing.OutBack
+            property real duration: 200
         }
     }
 }
