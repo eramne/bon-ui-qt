@@ -139,171 +139,175 @@ Window {
                         name: "Progress"
                     }
 
-                    B.ProgressBar {
-                        width: 200
-                        from: 0
-                        to: 1
-                        value: 0
-                        Timer {
-                            interval: 2000; running: true; repeat: true
-                            onTriggered: function () {
-                                interval = 500;
+                B.ProgressBar {
+                    width: 200
+                    from: 0
+                    to: 1
+                    value: 0
+                    Timer {
+                        interval: 2000; running: true; repeat: true
+                        onTriggered: function () {
+                            interval = 500;
+                            if (parent.value >= 1) {
+                                parent.value = 0;
+                            }
+                            if (Math.random() > 0.1) {
+                                parent.state = B.ProgressBar.State.Running
+                                parent.value += Math.random()/5
                                 if (parent.value >= 1) {
-                                    parent.value = 0;
-                                }
-                                if (Math.random() > 0.1) {
-                                    parent.state = B.ProgressBar.State.Running
-                                    parent.value += Math.random()/5
-                                    if (parent.value >= 1) {
-                                        parent.value = 1;
-                                        parent.state = Math.random() > 0.5 ? B.ProgressBar.State.Success : B.ProgressBar.State.Error
-                                        interval = 2000;
-                                    }
-                                } else {
-                                    parent.state = B.ProgressBar.State.Paused
+                                    parent.value = 1;
+                                    parent.state = Math.random() > 0.5 ? B.ProgressBar.State.Success : B.ProgressBar.State.Error
                                     interval = 2000;
                                 }
+                            } else {
+                                parent.state = B.ProgressBar.State.Paused
+                                interval = 2000;
                             }
                         }
                     }
+                }
 
-                    B.ProgressBar {
-                        width: 200
-                        from: 0
-                        to: 1
-                        value: 0
-                        indeterminate: true
-                        state: B.ProgressBar.State.Running
-                        Timer {
-                            interval: 2000; running: true; repeat: true
-                            onTriggered: function () {
-                                if (parent.state === B.ProgressBar.State.Running) {
-                                    var dice = Math.floor(Math.random()*3);
-                                    if (dice == 2) {
-                                        parent.state = B.ProgressBar.State.Success
-                                    } else if (dice == 1) {
-                                        parent.state = B.ProgressBar.State.Error
-                                    } else if (dice == 0) {
-                                        parent.state = B.ProgressBar.State.Paused
-                                    }
-                                    interval = 1000;
-                                } else {
-                                    parent.state = B.ProgressBar.State.Running
-                                    interval = 5000;
-                                }
+                B.ProgressBar {
+                    width: 200
+                    from: 0
+                    to: 1
+                    value: 0
+                    indeterminate: true
+                    state: B.ProgressBar.State.Running
+                    Timer {
+                        interval: 2000; running: true; repeat: true
+                        onTriggered: function () {
+                            interval = 500;
+                            if (parent.value >= 1) {
+                                parent.value = 0;
                             }
-                        }
-                    }
-
-                    B.ProgressCircle {
-                        from: 0
-                        to: 1
-                        value: 0
-                        Timer {
-                            interval: 2000; running: true; repeat: true
-                            onTriggered: function () {
-                                interval = 500;
+                            if (Math.random() > 0.1) {
+                                parent.state = B.ProgressBar.State.Running
+                                parent.value += Math.random()/5
                                 if (parent.value >= 1) {
-                                    parent.value = 0;
+                                    parent.value = 1;
+                                    parent.state = Math.random() > 0.5 ? B.ProgressBar.State.Success : B.ProgressBar.State.Error
+                                    interval = 2000;
                                 }
-                                if (Math.random() > 0.1) {
-                                    parent.state = B.ProgressCircle.State.Running
-                                    parent.value += Math.random()/5
-                                    if (parent.value >= 1) {
-                                        parent.value = 1;
-                                        parent.state = Math.random() > 0.5 ? B.ProgressCircle.State.Success : B.ProgressCircle.State.Error
-                                        interval = 2000;
-                                    }
-                                } else {
+                            } else {
+                                parent.state = B.ProgressBar.State.Paused
+                                interval = 2000;
+                            }
+                        }
+                    }
+                }
+
+                B.ProgressCircle {
+                    from: 0
+                    to: 1
+                    value: 0
+                    Timer {
+                        interval: 2000; running: true; repeat: true
+                        onTriggered: function () {
+                            interval = 500;
+                            if (parent.value >= 1) {
+                                parent.value = 0;
+                            }
+                            if (Math.random() > 0.1) {
+                                parent.state = B.ProgressCircle.State.Running
+                                parent.value += Math.random()/5
+                                if (parent.value >= 1) {
+                                    parent.value = 1;
+                                    parent.state = Math.random() > 0.5 ? B.ProgressCircle.State.Success : B.ProgressCircle.State.Error
+                                    interval = 2000;
+                                }
+                            } else {
+                                parent.state = B.ProgressCircle.State.Paused
+                                interval = 2000;
+                            }
+                        }
+                    }
+                }
+
+                B.ProgressCircle {
+                    from: 0
+                    to: 1
+                    value: 0
+                    indeterminate: true
+                    state: B.ProgressCircle.State.Running
+                    Timer {
+                        interval: 2000; running: true; repeat: true
+                        onTriggered: function () {
+                            interval = 500;
+                            if (parent.value >= 1) {
+                                parent.value = 0;
+                            }
+                            if (Math.random() > 0.1) {
+                                parent.state = B.ProgressBar.State.Running
+                                parent.value += Math.random()/5
+                                if (parent.value >= 1) {
+                                    parent.value = 1;
+                                    parent.state = Math.random() > 0.5 ? B.ProgressBar.State.Success : B.ProgressBar.State.Error
+                                    interval = 2000;
+                                }
+                            } else {
+                                parent.state = B.ProgressBar.State.Paused
+                                interval = 2000;
+                            }
+                        }
+                    }
+                }
+
+                B.ProgressCircle {
+                    from: 0
+                    to: 1
+                    value: 0
+                    small: true
+                    Timer {
+                        interval: 2000; running: true; repeat: true
+                        onTriggered: function () {
+                            interval = 500;
+                            if (parent.value >= 1) {
+                                parent.value = 0;
+                            }
+                            if (Math.random() > 0.1) {
+                                parent.state = B.ProgressCircle.State.Running
+                                parent.value += Math.random()/5
+                                if (parent.value >= 1) {
+                                    parent.value = 1;
+                                    parent.state = Math.random() > 0.5 ? B.ProgressCircle.State.Success : B.ProgressCircle.State.Error
+                                    interval = 2000;
+                                }
+                            } else {
+                                parent.state = B.ProgressCircle.State.Paused
+                                interval = 2000;
+                            }
+                        }
+                    }
+                }
+
+                B.ProgressCircle {
+                    from: 0
+                    to: 1
+                    value: 0
+                    indeterminate: true
+                    state: B.ProgressCircle.State.Running
+                    small: true
+                    Timer {
+                        interval: 2000; running: true; repeat: true
+                        onTriggered: function () {
+                            if (parent.state === B.ProgressCircle.State.Running) {
+                                var dice = Math.floor(Math.random()*3);
+                                if (dice == 2) {
+                                    parent.state = B.ProgressCircle.State.Success
+                                } else if (dice == 1) {
+                                    parent.state = B.ProgressCircle.State.Error
+                                } else if (dice == 0) {
                                     parent.state = B.ProgressCircle.State.Paused
-                                    interval = 2000;
                                 }
+                                interval = 1000;
+                            } else {
+                                parent.state = B.ProgressCircle.State.Running
+                                interval = 5000;
                             }
                         }
                     }
-
-                    B.ProgressCircle {
-                        from: 0
-                        to: 1
-                        value: 0
-                        indeterminate: true
-                        state: B.ProgressCircle.State.Running
-                        Timer {
-                            interval: 2000; running: true; repeat: true
-                            onTriggered: function () {
-                                if (parent.state === B.ProgressCircle.State.Running) {
-                                    var dice = Math.floor(Math.random()*3);
-                                    if (dice == 2) {
-                                        parent.state = B.ProgressCircle.State.Success
-                                    } else if (dice == 1) {
-                                        parent.state = B.ProgressCircle.State.Error
-                                    } else if (dice == 0) {
-                                        parent.state = B.ProgressCircle.State.Paused
-                                    }
-                                    interval = 1000;
-                                } else {
-                                    parent.state = B.ProgressCircle.State.Running
-                                    interval = 5000;
-                                }
-                            }
-                        }
-                    }
-
-                    B.ProgressCircle {
-                        from: 0
-                        to: 1
-                        value: 0
-                        small: true
-                        Timer {
-                            interval: 2000; running: true; repeat: true
-                            onTriggered: function () {
-                                interval = 500;
-                                if (parent.value >= 1) {
-                                    parent.value = 0;
-                                }
-                                if (Math.random() > 0.1) {
-                                    parent.state = B.ProgressCircle.State.Running
-                                    parent.value += Math.random()/5
-                                    if (parent.value >= 1) {
-                                        parent.value = 1;
-                                        parent.state = Math.random() > 0.5 ? B.ProgressCircle.State.Success : B.ProgressCircle.State.Error
-                                        interval = 2000;
-                                    }
-                                } else {
-                                    parent.state = B.ProgressCircle.State.Paused
-                                    interval = 2000;
-                                }
-                            }
-                        }
-                    }
-
-                    B.ProgressCircle {
-                        from: 0
-                        to: 1
-                        value: 0
-                        indeterminate: true
-                        state: B.ProgressCircle.State.Running
-                        small: true
-                        Timer {
-                            interval: 2000; running: true; repeat: true
-                            onTriggered: function () {
-                                if (parent.state === B.ProgressCircle.State.Running) {
-                                    var dice = Math.floor(Math.random()*3);
-                                    if (dice == 2) {
-                                        parent.state = B.ProgressCircle.State.Success
-                                    } else if (dice == 1) {
-                                        parent.state = B.ProgressCircle.State.Error
-                                    } else if (dice == 0) {
-                                        parent.state = B.ProgressCircle.State.Paused
-                                    }
-                                    interval = 1000;
-                                } else {
-                                    parent.state = B.ProgressCircle.State.Running
-                                    interval = 5000;
-                                }
-                            }
-                        }
-                    }
+                }
 
                     B.Divider {
                         width: parent.width
