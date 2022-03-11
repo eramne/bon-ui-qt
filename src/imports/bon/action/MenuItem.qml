@@ -1,6 +1,6 @@
 import QtQuick
-import QtQuick.Controls as C
+import QtQuick.Templates as T
 
-C.Action {
+T.Action {
     property bool showDivider: false
 }

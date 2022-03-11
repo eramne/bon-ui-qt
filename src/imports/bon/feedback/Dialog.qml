@@ -2,7 +2,6 @@ import QtQuick
 import QtQuick.Layouts
 import Qt5Compat.GraphicalEffects
 import QtQuick.Templates as T
-import QtQuick.Controls as C
 import bon as B
 
 T.Popup {
@@ -10,7 +9,7 @@ T.Popup {
     modal: true
     width: 400
     height: contentItem.implicitHeight
-    parent: C.Overlay.overlay
+    parent: T.Overlay.overlay
     x: Math.round((parent.width - width) / 2)
     y: !visible ? parent.height : Math.round((parent.height - height) / 2)
 
@@ -73,7 +72,7 @@ T.Popup {
     }
 
     onVisibleChanged: {
-        C.ApplicationWindow.window.dim = root.visible
+        T.ApplicationWindow.window.dim = root.visible
     }
 
     background: B.Pane {

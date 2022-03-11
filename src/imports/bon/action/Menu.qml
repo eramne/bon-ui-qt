@@ -1,6 +1,5 @@
 import QtQuick
 import QtQuick.Templates as T
-import QtQuick.Controls as C
 import bon as B
 
 B.Dropdown {

@@ -1,5 +1,4 @@
 import QtQuick
-import QtQuick.Controls as C
 import bon as B
 
 Flickable {

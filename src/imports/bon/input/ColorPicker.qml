@@ -1,6 +1,5 @@
 import QtQuick
 import QtQuick.Layouts
-import QtQuick.Controls as C
 import Qt5Compat.GraphicalEffects
 import bon as B
 

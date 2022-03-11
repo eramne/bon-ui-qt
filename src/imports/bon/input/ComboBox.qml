@@ -1,7 +1,6 @@
 import QtQuick
 import QtQuick.Layouts
 import QtQuick.Templates as T
-import QtQml.Models
 import bon as B
 
 B.TextInputBase {

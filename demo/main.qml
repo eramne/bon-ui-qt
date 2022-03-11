@@ -1,5 +1,5 @@
 import QtQuick
-import QtQuick.Controls as C
+import QtQuick.Templates as T
 import QtQuick.Layouts
 import QtQuick.Window
 import bon as B
@@ -13,13 +13,6 @@ B.App {
     StackLayout {
         anchors.fill: parent
         currentIndex: 0
-
-        /*focus: true
-        Keys.onReleased: (event) => {
-                            if (event.key >= Qt.Key_0 && event.key <= Qt.Key_9) {
-                                currentIndex = event.key - Qt.Key_0;
-                            }
-                        }*/
 
         B.OverflowArea {
             id: scrollview
@@ -100,7 +93,7 @@ B.App {
                     value: 25
                     to: 100
                     stepSize: 25
-                    snapMode: C.Slider.SnapAlways
+                    snapMode: B.Slider.SnapAlways
                 }
 
                 B.Slider {
@@ -108,7 +101,7 @@ B.App {
                     value: 25
                     to: 100
                     stepSize: 25
-                    snapMode: C.Slider.SnapAlways
+                    snapMode: B.Slider.SnapAlways
                     enabled: false
                 }
 
@@ -117,7 +110,7 @@ B.App {
                     value: 25
                     to: 100
                     stepSize: 25
-                    snapMode: C.Slider.SnapAlways
+                    snapMode: B.Slider.SnapAlways
                     orientation: Qt.Vertical
                 }
 
@@ -126,7 +119,7 @@ B.App {
                     value: 25
                     to: 100
                     stepSize: 25
-                    snapMode: C.Slider.SnapAlways
+                    snapMode: B.Slider.SnapAlways
                     enabled: false
                     orientation: Qt.Vertical
                 }
@@ -1117,7 +1110,7 @@ B.App {
                         {name: "cat"}
                     ]
 
-                    C.ButtonGroup {
+                    T.ButtonGroup {
                         id: listButtonGroupTest
                         exclusive: true
                     }
@@ -1128,7 +1121,7 @@ B.App {
                         B.RadioButton {
                             //opacity: (parent.parent.parent.index%3)/4+1/4
 
-                            C.ButtonGroup.group: listButtonGroupTest
+                            T.ButtonGroup.group: listButtonGroupTest
                         }
                     }
                 }
