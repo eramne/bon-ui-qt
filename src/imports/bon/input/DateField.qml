@@ -8,7 +8,7 @@ B.TextField {
     property alias endDate: datePopup.endDate
     property alias selectedDate: datePopup.selectedDate
     property alias selectedEndDate: datePopup.selectedEndDate
-    field.text: !selectRange ? datePopup.selectedDate.toLocaleDateString(Qt.locale(), Locale.ShortFormat) : datePopup.selectedDate.toLocaleDateString(Qt.locale(), Locale.ShortFormat) + (datePopup.oneDateSelected ? "" : " - " + datePopup.selectedEndDate.toLocaleDateString(Qt.locale(), Locale.ShortFormat))
+    field.text: !selectRange ? datePopup.selectedDate.toLocaleDateString(Qt.locale(), Locale.ShortFormat) : datePopup.selectedDate.toLocaleDateString(Qt.locale(), Locale.ShortFormat) + (datePopup.oneDateSelected ? "" : " - " + datePopup.selectedEndDate.toLocaleDateString(Qt.locale(), Locale.ShortFormat));
     field.readOnly: true
 
     buttonIcon: "today"

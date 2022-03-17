@@ -24,7 +24,7 @@ T.ProgressBar {
         Error
     }
 
-    onStateChanged: {
+    /*onStateChanged: {
         if (root.indeterminate) {
             if (root.state === ProgressBar.State.Running) {
                 rotationTimer.running = true;
@@ -37,7 +37,7 @@ T.ProgressBar {
             rotationTimer.running = false;
             indicator.indeterminateRotatorPosition = 0;
         }
-    }
+    }*/
 
     Component.onCompleted: {
         root.stateChanged();
@@ -58,7 +58,15 @@ T.ProgressBar {
 
             property real indeterminateRotatorPosition: -parent.width
 
-            Timer {
+            NumberAnimation on indeterminateRotatorPosition {
+                running: root.indeterminate
+                loops: Animation.Infinite
+                duration: 2000
+                from: -root.width
+                to: root.width
+            }
+
+            /*Timer {
                 id: rotationTimer
                 interval: 100
                 running: false
@@ -71,7 +79,7 @@ T.ProgressBar {
                         posAnimation.enabled = true;
                     }
                 }
-            }
+            }*/
 
             Behavior on color {
                 ColorAnimation {
@@ -80,13 +88,13 @@ T.ProgressBar {
                 }
             }
 
-            Behavior on indeterminateRotatorPosition {
+            /*Behavior on indeterminateRotatorPosition {
                 id: posAnimation
                 animation: NumberAnimation {
                     duration: B.Theme.animations.progressRotate.duration;
                     easing.type: B.Theme.animations.progressRotate.type;
                 }
-            }
+            }*/
 
             Behavior on width {
                 enabled: !root.indeterminate

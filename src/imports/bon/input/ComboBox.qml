@@ -14,27 +14,13 @@ B.TextInputBase {
     property bool editable: true
     field.readOnly: !editable
 
-    property bool _shouldOpenPopup: true
-
-    Timer {
-        interval: 1
-        running: true
-        repeat: false
-        onTriggered: {
-            root._shouldOpenPopup = false;
-            field.clear();
-            field.insert(0,root.value);
-            root._shouldOpenPopup = true;
-        }
-    }
-
     suffixText: popup.opened && list.highlightedIndex >= 0 ? model[list.highlightedIndex].name : ""
 
     field.onFocusChanged: {
-        if (field.focus && root._shouldOpenPopup) {
+        if (field.focus) {
             popup.open();
         }
-        _updateValue()
+        _updateValue();
     }
 
     onSelectedIndexChanged: {
@@ -49,7 +35,7 @@ B.TextInputBase {
     function _updateValue() {
         selectedIndex = list.currentIndex
         value = list.model[selectedIndex].name
-        field.text = value
+        field.text = value;
     }
 
     field.onEditingFinished: {
@@ -57,9 +43,7 @@ B.TextInputBase {
     }
 
     field.onTextEdited: {
-        if (!popup.opened && root._shouldOpenPopup) {
-            popup.open();
-        }
+        popup.open();
     }
 
     Keys.onPressed: function (event) {
@@ -106,10 +90,8 @@ B.TextInputBase {
                     if (root.popup.opened) {
                         root.popup.close();
                     } else {
-                        if (root._shouldOpenPopup) {
-                            root.popup.open();
-                            root.field.focus = true;
-                        }
+                        root.popup.open();
+                        root.field.focus = true;
                     }
                 }
             }

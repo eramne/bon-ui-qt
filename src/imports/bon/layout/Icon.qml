@@ -11,11 +11,18 @@ Item {
     width: size
     height: size
 
-    Text {
-        anchors.fill: root
-        text: root.name === "blank" ? "" : (B.Utils.icons[root.name] ?? "\u0000")
-        font.family: "Material Icons Round"
-        font.pixelSize: root.size
-        color: root.color
+    Component {
+        id: textComponent
+        Text {
+            anchors.fill: root
+            text: root.name === "blank" ? "" : (B.Utils.icons[root.name] ?? "\u0000")
+            font.family: "Material Icons Round"
+            font.pixelSize: root.size
+            color: root.color
+        }
+    }
+
+    Component.onCompleted: {
+        //textComponent.incubateObject(root);
     }
 }

@@ -17,13 +17,7 @@ B.Dropdown {
     signal finished
     signal canceled
 
-    Timer {
-        interval: 0; running: true; repeat: false
-        onTriggered: editTime = time
-    }
-
     Component.onCompleted: {
-        //editTime = time
         root.closed.connect(finished)
     }
 
@@ -191,6 +185,7 @@ B.Dropdown {
                         width: hourTumbler.width
                         from: root.twentyFourHour ? 0 : 1
                         to: root.twentyFourHour ? 23 : 12
+                        value: hourTumbler.currentIndex
 
                         Component.onCompleted: {
                             hourTumbler.onCurrentIndexChanged.connect(updateValue)
@@ -249,6 +244,7 @@ B.Dropdown {
                         width: minuteTumbler.width
                         from: 0
                         to: 59
+                        value: minuteTumbler.currentIndex
 
                         Component.onCompleted: {
                             minuteTumbler.onCurrentIndexChanged.connect(updateValue)
@@ -300,6 +296,7 @@ B.Dropdown {
                         width: secondsTumbler.width
                         from: 0
                         to: 59
+                        value: secondsTumbler.currentIndex
 
                         Component.onCompleted: {
                             secondsTumbler.onCurrentIndexChanged.connect(updateValue)

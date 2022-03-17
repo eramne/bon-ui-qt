@@ -400,7 +400,7 @@ B.Dropdown {
                         updateVal();
                     }
 
-                    Timer {
+                    /*Timer {
                         interval: 1
                         running: true
                         repeat: false
@@ -408,7 +408,7 @@ B.Dropdown {
                             parent.field.clear();
                             parent.field.insert(0,root.editColor);
                         }
-                    }
+                    }*/
                 }
             }
         }

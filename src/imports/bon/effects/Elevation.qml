@@ -1,5 +1,4 @@
 import QtQuick
-import Qt5Compat.GraphicalEffects
 import bon as B
 
 Item {
@@ -7,16 +6,15 @@ Item {
     property real elevation: 1
     property real radius: 0
 
-    RectangularGlow {
-        width: parent.width
-        height: parent.height
-        x: 0
-        y: 0
+    Rectangle {
+        width: parent.width + glowRadius*2
+        height: parent.height + glowRadius*2
+        x: 0 - glowRadius
+        y: 0 - glowRadius
         color: B.Theme.palette.elevation
-        spread: 0.95
         opacity: 0.1
-        glowRadius: elevation*1/5
-        cornerRadius: root.radius + glowRadius
+        property real glowRadius: elevation*1/5
+        radius: root.radius + glowRadius
         visible: elevation > 0
 
         Behavior on glowRadius {
@@ -27,16 +25,15 @@ Item {
         }
     }
 
-    RectangularGlow {
+    Rectangle {
         color: B.Theme.palette.elevation
-        width: parent.width
-        height: parent.height
-        x: 0
-        y: elevation*(2/5)
-        spread: 0.95
+        width: parent.width + glowRadius*2
+        height: parent.height + glowRadius*2
+        x: 0 - glowRadius
+        y: elevation*(2/5) - glowRadius
         opacity: (-1/(elevation/100 + 1)+1)
-        glowRadius: elevation*2/3
-        cornerRadius: root.radius + glowRadius
+        property real glowRadius: elevation*2/3
+        radius: root.radius + glowRadius
         visible: elevation > 0
 
         Behavior on glowRadius {
@@ -61,16 +58,15 @@ Item {
         }
     }
 
-    RectangularGlow {
+    Rectangle {
         color: B.Theme.palette.elevation
-        width: parent.width
-        height: parent.height
-        x: 0
-        y: elevation
-        spread: 0.95
+        width: parent.width + glowRadius*2
+        height: parent.height + glowRadius*2
+        x: 0 - glowRadius
+        y: elevation - glowRadius
         opacity: 0.05
-        glowRadius: elevation*6/5
-        cornerRadius: root.radius + glowRadius
+        property real glowRadius: elevation*6/5
+        radius: root.radius + glowRadius
         visible: elevation > 0
 
         Behavior on y {

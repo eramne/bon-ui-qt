@@ -4,9 +4,9 @@ import bon as B
 B.TextField {
     id: root
     field.text: !root.twentyFourHour && !root.showSeconds ? timePopup.editTime.toLocaleTimeString(Qt.locale(), "h:mm A") : (
-                root.twentyFourHour && !root.showSeconds ? timePopup.editTime.toLocaleTimeString(Qt.locale(), "H:mm") : (
-                !root.twentyFourHour && root.showSeconds ? timePopup.editTime.toLocaleTimeString(Qt.locale(), "h:mm:ss A") : (
-                timePopup.editTime.toLocaleTimeString(Qt.locale(), "H:mm:ss") )))
+                                                                root.twentyFourHour && !root.showSeconds ? timePopup.editTime.toLocaleTimeString(Qt.locale(), "H:mm") : (
+                                                                !root.twentyFourHour && root.showSeconds ? timePopup.editTime.toLocaleTimeString(Qt.locale(), "h:mm:ss A") : (
+                                                                timePopup.editTime.toLocaleTimeString(Qt.locale(), "H:mm:ss") )));
     field.readOnly: true
 
     property alias time: timePopup.time
@@ -27,5 +27,9 @@ B.TextField {
 
     B.TimePicker {
         id: timePopup
+
+        /*onEditTimeChanged: {
+            root.field.text = getFormattedTimeText();
+        }*/
     }
 }

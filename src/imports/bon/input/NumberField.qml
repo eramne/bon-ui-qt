@@ -17,22 +17,12 @@ B.TextInputBase {
     field.readOnly: !editable
 
     onValueChanged: {
-        field.text = value;
+        field.text = ""+value;
     }
 
     field.onEditingFinished: {
         value = valueFromText(field.text, Qt.locale());
-        field.text = value;
-    }
-
-    Timer {
-        interval: 1
-        running: true
-        repeat: false
-        onTriggered: {
-            field.clear();
-            field.insert(0,value);
-        }
+        field.text = ""+value;
     }
 
     function valueFromText(text, locale) {

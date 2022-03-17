@@ -30,7 +30,7 @@ T.ProgressBar {
         Error
     }
 
-    onStateChanged: {
+    /*onStateChanged: {
         if (root.indeterminate) {
             if (root.state === ProgressCircle.State.Running) {
                 rotationTimer.running = true;
@@ -43,7 +43,7 @@ T.ProgressBar {
             rotationTimer.running = false;
             indicator.indeterminateRotatorPosition = 0;
         }
-    }
+    }*/
 
     Component.onCompleted: {
         root.stateChanged();
@@ -63,7 +63,16 @@ T.ProgressBar {
 
         property real indeterminateRotatorPosition: 0
 
-        Timer {
+        RotationAnimator {
+            target: indicator
+            running: root.visible && root.indeterminate && root.state === ProgressCircle.State.Running
+            from: 0
+            to: 360
+            loops: Animation.Infinite
+            duration: 2000
+        }
+
+        /*Timer {
             id: rotationTimer
             interval: 100
             running: false
@@ -71,15 +80,15 @@ T.ProgressBar {
             onTriggered: function () {
                 indicator.indeterminateRotatorPosition = indicator.indeterminateRotatorPosition + 0.05;
             }
-        }
+        }*/
 
-        Behavior on indeterminateRotatorPosition {
+        /*Behavior on indeterminateRotatorPosition {
             id: posAnimation
             animation: NumberAnimation {
                 duration: B.Theme.animations.progressRotate.duration;
                 easing.type: B.Theme.animations.progressRotate.type;
             }
-        }
+        }*/
 
         Behavior on end {
             enabled: !root.indeterminate

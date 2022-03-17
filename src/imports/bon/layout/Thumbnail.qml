@@ -8,6 +8,7 @@ Rectangle {
     property string source
     property bool _isInCard: parent?.parent?.parent?.parent?.parent?.parent instanceof B.Card;
     property var _card: _isInCard ? parent?.parent?.parent?.parent?.parent?.parent : undefined
+    property bool asynchronous: true
     width: _isInCard ? _card.width : 100
     height: _isInCard ? width*(image.sourceSize.height/image.sourceSize.width) : 56
     implicitHeight: image.height
@@ -20,6 +21,7 @@ Rectangle {
         source: root.source
         visible: false
         mipmap: true
+        asynchronous: root.asynchronous
     }
 
     Rectangle {
