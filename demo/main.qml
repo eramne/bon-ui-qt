@@ -1540,6 +1540,44 @@ B.App {
                         dialog1.open()
                     }
                 }
+
+                B.Divider {
+                    width: parent.width
+                    leftInset: -parent.leftPadding
+                    name: "Toasts/Notifications"
+                }
+
+                B.Toast {
+                    id: toast1
+                    text: "5 files converted successfully"
+                    icon: "check"
+                    variant: B.Toast.Variant.Success
+                }
+
+                B.Toast {
+                    id: toast2
+                    text: "5 files could not be converted"
+                    icon: "error"
+                    variant: B.Toast.Variant.Error
+                    action: B.Button {
+                        order: 3
+                        text: "Retry"
+                    }
+                }
+
+                B.Button {
+                    text: "Show toast"
+                    onClicked: {
+                        toast1.queue()
+                    }
+                }
+
+                B.Button {
+                    text: "Show toast 2"
+                    onClicked: {
+                        toast2.queue()
+                    }
+                }
             }
         }
 

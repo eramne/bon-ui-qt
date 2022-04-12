@@ -49,6 +49,7 @@ ProgressCircle 1.0 feedback/ProgressCircle.qml
 ToolTip 1.0 feedback/ToolTip.qml
 Alert 1.0 feedback/Alert.qml
 Dialog 1.0 feedback/Dialog.qml
+Toast 1.0 feedback/Toast.qml
 
 Blending 1.0 effects/Blending.qml
 BlendingRectangularGlow 1.0 effects/BlendingRectangularGlow.qml

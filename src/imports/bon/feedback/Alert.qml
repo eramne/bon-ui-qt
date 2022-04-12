@@ -63,7 +63,7 @@ B.Pane {
                 B.Icon {
                     Layout.alignment: Qt.AlignRight
                     name: root.icon
-                    color: variant === Alert.Variant.Neutral ? B.Theme.palette.text.label : root.borderColor
+                    color: root.variant === Alert.Variant.Neutral ? B.Theme.palette.text.label : root.borderColor
                 }
             }
 

@@ -23,6 +23,6 @@ Item {
     }
 
     Component.onCompleted: {
-        //textComponent.incubateObject(root);
+        textComponent.incubateObject(root);
     }
 }
