@@ -19,10 +19,7 @@ CheckBox 1.0 input/CheckBox.qml
 Slider 1.0 input/Slider.qml
 Dial 1.0 input/Dial.qml
 ToggleButton 1.0 input/ToggleButton.qml
-InputChip 1.0 input/InputChip.qml
-ChoiceChip 1.0 input/ChoiceChip.qml
-FilterChip 1.0 input/FilterChip.qml
-ActionChip 1.0 input/ActionChip.qml
+Chip 1.0 input/Chip.qml
 TextInputBase 1.0 input/TextInputBase.qml
 TextField 1.0 input/TextField.qml
 TextArea 1.0 input/TextArea.qml
@@ -40,7 +37,6 @@ TimePicker 1.0 input/TimePicker.qml
 ColorField 1.0 input/ColorField.qml
 DateField 1.0 input/DateField.qml
 TimeField 1.0 input/TimeField.qml
-Chip 1.0 input/Chip.qml
 Option 1.0 input/Option.qml
 Choice 1.0 input/Choice.qml
 

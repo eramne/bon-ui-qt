@@ -8,7 +8,7 @@ B.App {
     width: 800
     height: 600
     visible: true
-    title: qsTr("umagos")
+    title: qsTr("bonUI demo application")
 
     StackLayout {
         anchors.fill: parent
@@ -442,14 +442,16 @@ B.App {
                     name: "Chips"
                 }
 
-                B.InputChip {
+                B.Chip {
+                    variant: B.Chip.Type.Input
                     text: "Favorites"
                     onClosed: {
                         visible = false;
                     }
                 }
 
-                B.InputChip {
+                B.Chip {
+                    variant: B.Chip.Type.Input
                     text: "Nature"
                     enabled: false
                     onClosed: {
@@ -457,7 +459,8 @@ B.App {
                     }
                 }
 
-                B.InputChip {
+                B.Chip {
+                    variant: B.Chip.Type.Input
                     text: "Mountains"
                     icon.name: "terrain"
                     onClosed: {
@@ -465,7 +468,8 @@ B.App {
                     }
                 }
 
-                B.InputChip {
+                B.Chip {
+                    variant: B.Chip.Type.Input
                     text: "Portraits"
                     enabled: false
                     icon.name: "portrait"
@@ -474,36 +478,32 @@ B.App {
                     }
                 }
 
-                B.ChoiceChip {
+                B.Chip {
+                    variant: B.Chip.Type.Choice
                     text: "Option 1"
                 }
 
-                B.ChoiceChip {
+                B.Chip {
+                    variant: B.Chip.Type.Choice
                     text: "Option 2"
                     enabled: false
                 }
 
-                B.ChoiceChip {
+                B.Chip {
+                    variant: B.Chip.Type.Choice
                     text: "Option 3"
                     icon.name: "dashboard"
                 }
 
-                B.ChoiceChip {
+                B.Chip {
+                    variant: B.Chip.Type.Choice
                     text: "Option 4"
                     enabled: false
                     icon.name: "dashboard"
                 }
 
-                B.FilterChip {
-                    text: "Favorites"
-                }
-
-                B.FilterChip {
-                    text: "Nature"
-                    enabled: false
-                }
-
-                B.ActionChip {
+                B.Chip {
+                    variant: B.Chip.Type.Action
                     text: "Action 1"
 
                     onClicked: {
@@ -511,7 +511,8 @@ B.App {
                     }
                 }
 
-                B.ActionChip {
+                B.Chip {
+                    variant: B.Chip.Type.Action
                     text: "Action 2"
                     enabled: false
 
@@ -520,7 +521,8 @@ B.App {
                     }
                 }
 
-                B.ActionChip {
+                B.Chip {
+                    variant: B.Chip.Type.Action
                     text: "Action 3"
                     icon.name: "play_arrow"
 
@@ -529,7 +531,8 @@ B.App {
                     }
                 }
 
-                B.ActionChip {
+                B.Chip {
+                    variant: B.Chip.Type.Action
                     text: "Action 4"
                     enabled: false
                     icon.name: "stop"
