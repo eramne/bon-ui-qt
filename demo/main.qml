@@ -445,27 +445,18 @@ B.App {
                 B.Chip {
                     variant: B.Chip.Type.Input
                     text: "Favorites"
-                    onClosed: {
-                        visible = false;
-                    }
                 }
 
                 B.Chip {
                     variant: B.Chip.Type.Input
                     text: "Nature"
                     enabled: false
-                    onClosed: {
-                        visible = false;
-                    }
                 }
 
                 B.Chip {
                     variant: B.Chip.Type.Input
                     text: "Mountains"
                     icon.name: "terrain"
-                    onClosed: {
-                        visible = false;
-                    }
                 }
 
                 B.Chip {
@@ -473,9 +464,6 @@ B.App {
                     text: "Portraits"
                     enabled: false
                     icon.name: "portrait"
-                    onClosed: {
-                        visible = false;
-                    }
                 }
 
                 B.Chip {
@@ -492,14 +480,12 @@ B.App {
                 B.Chip {
                     variant: B.Chip.Type.Choice
                     text: "Option 3"
-                    icon.name: "dashboard"
                 }
 
                 B.Chip {
                     variant: B.Chip.Type.Choice
                     text: "Option 4"
                     enabled: false
-                    icon.name: "dashboard"
                 }
 
                 B.Chip {
@@ -539,6 +525,96 @@ B.App {
 
                     onClicked: {
                         console.log("Running action 4");
+                    }
+                }
+
+                B.Divider {
+                    width: parent.width
+                    leftInset: -parent.leftPadding
+                    name: "Chip Sets"
+                }
+
+                B.ChipSet {
+                    variant: B.Chip.Type.Action
+                    overflow: false
+                    B.Chip {
+                        text: "Run Action 1"
+
+                        onClicked: {
+                            console.log("Running action 1");
+                        }
+                    }
+                    B.Chip {
+                        text: "Run Action 2"
+
+                        onClicked: {
+                            console.log("Running action 2");
+                        }
+                    }
+                    B.Chip {
+                        text: "Run Action 3"
+                        icon.name: "play_arrow"
+
+                        onClicked: {
+                            console.log("Running action 3");
+                        }
+                    }
+                    B.Chip {
+                        text: "Run Action 4"
+                        icon.name: "play_arrow"
+
+                        onClicked: {
+                            console.log("Running action 4");
+                        }
+                    }
+                }
+
+                B.ChipSet {
+                    variant: B.Chip.Type.Input
+                    overflow: true
+                    B.Chip {
+                        text: "John Doe"
+                        icon.name: "face"
+                    }
+                    B.Chip {
+                        text: "Jane Doe"
+                    }
+                    B.Chip {
+                        text: "Joe Q. Public"
+                        icon.name: "face"
+                    }
+                    B.Chip {
+                        text: "Johnny Doe"
+                    }
+                }
+
+                B.ChipSet {
+                    variant: B.Chip.Type.Choice
+                    overflow: false
+                    exclusive: false
+                    B.Chip {
+                        text: "Red"
+                    }
+                    B.Chip {
+                        text: "Green"
+                    }
+                    B.Chip {
+                        text: "Blue"
+                    }
+                }
+
+                B.ChipSet {
+                    variant: B.Chip.Type.Choice
+                    overflow: false
+                    exclusive: true
+                    B.Chip {
+                        text: "Red"
+                    }
+                    B.Chip {
+                        text: "Green"
+                    }
+                    B.Chip {
+                        text: "Blue"
                     }
                 }
 

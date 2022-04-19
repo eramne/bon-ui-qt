@@ -6,20 +6,19 @@ import bon as B
 T.Button {
     id: root
 
-    implicitWidth: Math.max(implicitBackgroundWidth + leftInset + rightInset,
-                                implicitContentWidth + leftPadding + rightPadding)
-    implicitHeight: Math.max(implicitBackgroundHeight + topInset + bottomInset,
-                             implicitContentHeight + topPadding + bottomPadding)
-
     leftPadding: 10
     rightPadding: root.variant === Chip.Type.Input ? 5 : 10
 
-    property int variant: Chip.Type.Choice
+    property int variant: set?.variant ?? Chip.Type.Action
     checkable: root.variant === Chip.Type.Choice
     hoverEnabled: enabled
+    autoExclusive: set?.exclusive ?? false
 
     property real _textOpacity: root.down || root.hovered || !root.enabled ? B.Theme.highlight_hover_opacity : 1
 
+    property var set: parent.parent.parent.parent instanceof B.ChipSet ? parent.parent.parent.parent : undefined
+
+    width: contentItem.implicitWidth + leftPadding + rightPadding
     height: 34
     opacity: !root.enabled ? B.Theme.disabled_opacity : 1
     layer.enabled: !root.enabled
@@ -33,6 +32,10 @@ T.Button {
 
     signal closed()
 
+    onClosed: {
+        visible = false;
+    }
+
     Behavior on _textOpacity {
         NumberAnimation {
             duration: B.Theme.animations.basic.duration
@@ -40,7 +43,7 @@ T.Button {
         }
     }
 
-    Behavior on implicitWidth {
+    Behavior on width {
         enabled: root.variant === Chip.Type.Choice
         NumberAnimation {
             duration: B.Theme.animations.basic.duration
@@ -85,11 +88,11 @@ T.Button {
 
     contentItem: RowLayout {
         anchors.verticalCenter: root.verticalCenter
-        //anchors.centerIn: root
         x: root.leftPadding
         spacing: 5
         height: root.height
         width: Layout.minimumWidth
+        clip: root.variant === Chip.Type.Choice
 
         B.Icon {
             id: icon

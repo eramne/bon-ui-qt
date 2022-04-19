@@ -10,9 +10,14 @@ Flickable {
     clip: true
 
     default property alias children: content.children
+    property bool showScrollBars: true
 
-    B.ScrollBar.vertical: B.ScrollBar { }
-    B.ScrollBar.horizontal: B.ScrollBar { }
+    B.ScrollBar.vertical: B.ScrollBar {
+        policy: root.showScrollBars ? B.ScrollBar.AsNeeded : B.ScrollBar.AlwaysOff
+    }
+    B.ScrollBar.horizontal: B.ScrollBar {
+        policy: root.showScrollBars ? B.ScrollBar.AsNeeded : B.ScrollBar.AlwaysOff
+    }
 
     property real margins: 10
 
