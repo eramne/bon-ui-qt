@@ -21,6 +21,7 @@ Dial 1.0 input/Dial.qml
 ToggleButton 1.0 input/ToggleButton.qml
 Chip 1.0 input/Chip.qml
 ChipSet 1.0 input/ChipSet.qml
+ChipInput 1.0 input/ChipInput.qml
 TextInputBase 1.0 input/TextInputBase.qml
 TextField 1.0 input/TextField.qml
 TextArea 1.0 input/TextArea.qml

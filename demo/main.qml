@@ -621,6 +621,16 @@ B.App {
                 B.Divider {
                     width: parent.width
                     leftInset: -parent.leftPadding
+                    name: "Chip Input"
+                }
+
+                B.ChipInput {
+                    model: combobox1.model
+                }
+
+                B.Divider {
+                    width: parent.width
+                    leftInset: -parent.leftPadding
                     name: "Text Fields"
                 }
 

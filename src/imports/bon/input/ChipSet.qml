@@ -13,6 +13,8 @@ B.OverflowArea {
     property int variant: Chip.Type.Action
     property bool overflow: false
     property bool exclusive: false
+
+    property alias _layout: layout
     
     Flow {
         id: layout
