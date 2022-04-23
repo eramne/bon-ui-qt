@@ -19,6 +19,7 @@ QtObject {
         property color error: "#C17E86"
         property color warning: "#D9B390"
         property color info: "#6C92DC"
+        property color notify: error
         property color selection_background: accent_1
         property color selection_text: background
         property color elevation: "#986578"

@@ -1667,6 +1667,72 @@ B.App {
                         toast2.queue()
                     }
                 }
+
+                B.Divider {
+                    width: parent.width
+                    leftInset: -parent.leftPadding
+                    name: "Tab Button"
+                }
+
+                Rectangle {
+                    width: parent.width - parent.padding*2
+                    height: tabbuttonlayout.implicitHeight
+                    color: B.Theme.palette.accent
+
+                    Flow {
+                        id: tabbuttonlayout
+                        width: parent.width
+                        spacing: 20
+                        padding: 20
+
+                        B.TabButton {
+                            icon.name: "home"
+                            label: "Home"
+                        }
+                        B.TabButton {
+                            active: true
+                            icon.name: "settings"
+                        }
+                        B.TabButton {
+                            icon.name: "folder"
+                        }
+                        B.TabButton {
+                            icon.name: "home"
+                            label: "Home"
+                            notifications: 0
+                        }
+                        B.TabButton {
+                            active: true
+                            icon.name: "settings"
+                            notifications: 0
+                        }
+                        B.TabButton {
+                            icon.name: "folder"
+                            notifications: 0
+                        }
+                        B.TabButton {
+                            icon.name: "folder"
+                            notifications: 1
+                        }
+                        B.TabButton {
+                            icon.name: "home"
+                            label: "Home"
+                            notifications: 4
+                        }
+                        B.TabButton {
+                            icon.name: "folder"
+                            notifications: 19
+                        }
+                        B.TabButton {
+                            icon.name: "folder"
+                            notifications: 3000
+                        }
+                        B.TabButton {
+                            icon.name: "folder"
+                            notifications: 16191
+                        }
+                    }
+                }
             }
         }
 

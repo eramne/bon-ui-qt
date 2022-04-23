@@ -67,6 +67,7 @@ Pane 1.0 layout/Pane.qml
 Card 1.0 layout/Card.qml
 
 ScrollBar 1.0 navigation/ScrollBar.qml
+TabButton 1.0 navigation/TabButton.qml
 
 TextBase 1.0 text/TextBase.qml
 DisplayText 1.0 text/DisplayText.qml
