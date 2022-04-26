@@ -187,79 +187,26 @@ Item {
                                 }
                             }
 
-                            Item {
-                                id: fadeEffect
-                                anchors.fill: root.field
+                            B.OverflowFadeEffect {
+                                target: field
+                                anchors.fill: field
+                                fadeLength: 40
+                                startContainerPos: field.x
+                                endContainerPos: field.x + field.width
+                                startContentPos: field.positionToRectangle(0).x
+                                endContentPos: field.positionToRectangle(field.length).x
+                                orientation: Qt.Horizontal
 
-                                ShaderEffectSource {
-                                    id: fieldSource
-                                    anchors.fill: parent
-                                    sourceItem: root.field
-                                    hideSource: true
-                                    visible: false
+                                function updateDimensions2() {
+                                    startContentPos = field.positionToRectangle(0).x
+                                    endContentPos = field.positionToRectangle(field.length).x
+                                    updateDimensions();
                                 }
 
-                                Item {
-                                    id: gradientMask
-                                    anchors.fill: parent
-
-                                    Item {
-                                        anchors.top: parent.top
-                                        anchors.bottom: parent.bottom
-
-                                        LinearGradient {
-                                            anchors.top: parent.top
-                                            anchors.bottom: parent.bottom
-                                            x: parent.width/2
-                                            width: parent.width/2
-                                            start: Qt.point(width-_fadeLength, 0)
-                                            end: Qt.point(width, 0)
-                                            gradient: Gradient {
-                                                GradientStop { position: 0.0; color: "#FF000000" }
-                                                GradientStop { position: 1.0; color: "#00000000" }
-                                            }
-                                        }
-                                        LinearGradient {
-                                            anchors.top: parent.top
-                                            anchors.bottom: parent.bottom
-                                            x: 0
-                                            width: parent.width/2
-                                            start: Qt.point(0, 0)
-                                            end: Qt.point(_fadeLength, 0)
-                                            gradient: Gradient {
-                                                GradientStop { position: 0.0; color: "#00000000" }
-                                                GradientStop { position: 1.0; color: "#FF000000" }
-                                            }
-                                        }
-                                        Component.onCompleted: {
-                                            field.textChanged.connect(updateDimensions);
-                                            field.cursorPositionChanged.connect(updateDimensions);
-                                            field.widthChanged.connect(updateDimensions);
-                                        }
-
-                                        function updateDimensions() { //i will definitely forget how this works, modelled it in a graph on desmos somewhere
-                                            var textBeginPos = field.positionToRectangle(0).x
-                                            var textEndPos = field.positionToRectangle(field.length).x
-                                            x = Math.min(-textBeginPos-40,0)
-                                            var endX = Math.max((2*field.width)-textEndPos+_fadeLength,field.width)
-                                            width = endX - x
-                                        }
-                                    }
-                                }
-
-                                ShaderEffectSource {
-                                    id: gradientSource
-                                    anchors.fill: gradientMask
-                                    sourceItem: gradientMask
-                                    hideSource: true
-                                    visible: false
-                                }
-
-                                OpacityMask {
-                                    anchors.fill: fieldSource
-                                    source: fieldSource
-                                    maskSource: gradientSource
-                                    visible: true
+                                Component.onCompleted: {
+                                    field.textChanged.connect(updateDimensions2);
+                                    field.cursorPositionChanged.connect(updateDimensions2);
+                                    field.widthChanged.connect(updateDimensions2);
                                 }
                             }
                         }

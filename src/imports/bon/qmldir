@@ -52,6 +52,7 @@ Toast 1.0 feedback/Toast.qml
 Blending 1.0 effects/Blending.qml
 BlendingRectangularGlow 1.0 effects/BlendingRectangularGlow.qml
 Elevation 1.0 effects/Elevation.qml
+OverflowFadeEffect 1.0 effects/OverflowFadeEffect.qml
 
 OverflowArea 1.0 layout/OverflowArea.qml
 Icon 1.0 layout/Icon.qml
