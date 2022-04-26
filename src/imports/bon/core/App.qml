@@ -9,12 +9,34 @@ T.ApplicationWindow {
     color: B.Theme.palette.background
     property bool dim: false
     default property alias contents: content.children
+    property B.NavigationRail navRail
 
     B.Fonts {}
 
     Item {
-        id: content
+        id: mainViewContainer
         anchors.fill: parent
+
+        Item {
+            id: navRailContainer
+            width: 100
+            height: parent.height
+            visible: root.navRail
+            Item {
+                anchors.fill: parent
+                anchors.margins: 20
+                children: [root.navRail]
+            }
+        }
+
+        Item {
+            id: content
+            anchors.top: parent.top
+            anchors.right: parent.right
+            anchors.bottom: parent.bottom
+            anchors.left: root.navRail ? navRailContainer.right : parent.left
+            anchors.margins: 0
+        }
     }
 
     Item {
@@ -25,7 +47,7 @@ T.ApplicationWindow {
             id: blurSource
             anchors.fill: parent
             hideSource: root.dim || opacityAnimation.running
-            sourceItem: content
+            sourceItem: mainViewContainer
             visible: false
         }
 

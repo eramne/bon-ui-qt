@@ -23,6 +23,7 @@ T.Button {
     layer.enabled: !root.enabled
 
     property int order: 1 // 1 = primary, 2 = secondary, 3 or anything else = tertiary
+    property bool enableElevationEffects: true
 
     Behavior on _textOpacity {
         NumberAnimation {
@@ -34,7 +35,7 @@ T.Button {
     B.Elevation {
         anchors.fill: background
         radius: background.radius
-        elevation: order === 1 ? (root.down ? 1 : 2) : 0
+        elevation: root.enableElevationEffects ? order === 1 ? (root.down ? 1 : 2) : 0 : 0
         z: -1
     }
 

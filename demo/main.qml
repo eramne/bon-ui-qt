@@ -10,23 +10,74 @@ B.App {
     visible: true
     title: qsTr("bonUI demo application")
 
+    navRail: B.NavigationRail {
+        showHamburgerButton: true
+        //showTopButton: true
+
+        B.TabButton {
+            icon.name: "folder"
+        }
+
+        B.TabButton {
+            icon.name: "settings"
+        }
+
+        B.TabButton {
+            icon.name: "folder"
+            notifications: 0
+        }
+
+        B.TabButton {
+            icon.name: "settings"
+        }
+
+        B.TabButton {
+            icon.name: "folder"
+            notifications: 6
+        }
+
+        B.TabButton {
+            icon.name: "settings"
+        }
+
+        B.TabButton {
+            icon.name: "settings"
+        }
+
+        B.TabButton {
+            icon.name: "folder"
+            notifications: 0
+        }
+
+        B.TabButton {
+            icon.name: "settings"
+        }
+
+        B.TabButton {
+            icon.name: "folder"
+            notifications: 6
+        }
+
+        B.TabButton {
+            icon.name: "settings"
+        }
+    }
+
     StackLayout {
         anchors.fill: parent
         currentIndex: 0
 
         B.OverflowArea {
             id: scrollview
-            margins: 0
+            margins: 40
 
             Flow {
                 id: flow
-                padding: 40
                 width: scrollview.width - scrollview.leftMargin - scrollview.rightMargin
                 spacing: 20
 
                 B.Divider {
                     width: parent.width
-                    leftInset: -parent.leftPadding
                     name: "Switches"
                 }
 
@@ -40,7 +91,6 @@ B.App {
 
                 B.Divider {
                     width: parent.width
-                    leftInset: -parent.leftPadding
                     name: "Radio Buttons"
                 }
 
@@ -58,7 +108,6 @@ B.App {
 
                 B.Divider {
                     width: parent.width
-                    leftInset: -parent.leftPadding
                     name: "Checkboxes"
                 }
 
@@ -76,7 +125,6 @@ B.App {
 
                 B.Divider {
                     width: parent.width
-                    leftInset: -parent.leftPadding
                     name: "Sliders"
                 }
 
@@ -126,7 +174,6 @@ B.App {
 
                 B.Divider {
                     width: parent.width
-                    leftInset: -parent.leftPadding
                     name: "Progress"
                 }
 
@@ -225,7 +272,6 @@ B.App {
 
                 B.Divider {
                     width: parent.width
-                    leftInset: -parent.leftPadding
                     name: "Dials"
                 }
 
@@ -243,7 +289,6 @@ B.App {
 
                 B.Divider {
                     width: parent.width
-                    leftInset: -parent.leftPadding
                     name: "Buttons"
                 }
 
@@ -438,7 +483,6 @@ B.App {
 
                 B.Divider {
                     width: parent.width
-                    leftInset: -parent.leftPadding
                     name: "Chips"
                 }
 
@@ -530,7 +574,6 @@ B.App {
 
                 B.Divider {
                     width: parent.width
-                    leftInset: -parent.leftPadding
                     name: "Chip Sets"
                 }
 
@@ -620,7 +663,6 @@ B.App {
 
                 B.Divider {
                     width: parent.width
-                    leftInset: -parent.leftPadding
                     name: "Chip Input"
                 }
 
@@ -630,7 +672,6 @@ B.App {
 
                 B.Divider {
                     width: parent.width
-                    leftInset: -parent.leftPadding
                     name: "Text Fields"
                 }
 
@@ -748,7 +789,6 @@ B.App {
 
                 B.Divider {
                     width: parent.width
-                    leftInset: -parent.leftPadding
                     name: "Text Areas"
                 }
 
@@ -790,7 +830,6 @@ B.App {
 
                 B.Divider {
                     width: parent.width
-                    leftInset: -parent.leftPadding
                     name: "Number Fields"
                 }
 
@@ -847,7 +886,6 @@ B.App {
 
                 B.Divider {
                     width: parent.width
-                    leftInset: -parent.leftPadding
                     name: "Combo Boxes"
                 }
 
@@ -902,7 +940,6 @@ B.App {
 
                 B.Divider {
                     width: parent.width
-                    leftInset: -parent.leftPadding
                     name: "Ratings"
                 }
 
@@ -921,7 +958,6 @@ B.App {
 
                 B.Divider {
                     width: parent.width
-                    leftInset: -parent.leftPadding
                     name: "Color Swatches"
                 }
 
@@ -948,7 +984,6 @@ B.App {
 
                 B.Divider {
                     width: parent.width
-                    leftInset: -parent.leftPadding
                     name: "Toggle Buttons"
                 }
 
@@ -970,7 +1005,6 @@ B.App {
 
                 B.Divider {
                     width: parent.width
-                    leftInset: -parent.leftPadding
                     name: "Single Options"
                 }
 
@@ -1000,7 +1034,6 @@ B.App {
 
                 B.Divider {
                     width: parent.width
-                    leftInset: -parent.leftPadding
                     name: "Multiple Choices"
                 }
 
@@ -1039,7 +1072,6 @@ B.App {
 
                 B.Divider {
                     width: parent.width
-                    leftInset: -parent.leftPadding
                     name: "Tumblers"
                 }
 
@@ -1054,7 +1086,6 @@ B.App {
 
                 B.Divider {
                     width: parent.width
-                    leftInset: -parent.leftPadding
                     name: "Pickers"
                 }
 
@@ -1089,7 +1120,6 @@ B.App {
 
                 B.Divider {
                     width: parent.width
-                    leftInset: -parent.leftPadding
                     name: "List"
                 }
 
@@ -1168,7 +1198,6 @@ B.App {
 
                 B.Divider {
                     width: parent.width
-                    leftInset: -parent.leftPadding
                     name: "Menu"
                 }
 
@@ -1305,7 +1334,6 @@ B.App {
 
                 B.Divider {
                     width: parent.width
-                    leftInset: -parent.leftPadding
                     name: "Pane"
                 }
 
@@ -1317,7 +1345,6 @@ B.App {
 
                 B.Divider {
                     width: parent.width
-                    leftInset: -parent.leftPadding
                     name: "Card"
                 }
 
@@ -1497,7 +1524,6 @@ B.App {
 
                 B.Divider {
                     width: parent.width
-                    leftInset: -parent.leftPadding
                     name: "Context Menu"
                 }
 
@@ -1521,7 +1547,6 @@ B.App {
 
                 B.Divider {
                     width: parent.width
-                    leftInset: -parent.leftPadding
                     name: "Tooltip"
                 }
 
@@ -1537,7 +1562,6 @@ B.App {
 
                 B.Divider {
                     width: parent.width
-                    leftInset: -parent.leftPadding
                     name: "Alerts"
                 }
 
@@ -1596,7 +1620,6 @@ B.App {
 
                 B.Divider {
                     width: parent.width
-                    leftInset: -parent.leftPadding
                     name: "Dialogs"
                 }
 
@@ -1632,7 +1655,6 @@ B.App {
 
                 B.Divider {
                     width: parent.width
-                    leftInset: -parent.leftPadding
                     name: "Toasts/Notifications"
                 }
 
@@ -1670,7 +1692,6 @@ B.App {
 
                 B.Divider {
                     width: parent.width
-                    leftInset: -parent.leftPadding
                     name: "Tab Button"
                 }
 
