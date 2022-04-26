@@ -31,6 +31,7 @@ T.AbstractButton {
             height: root.label ? 32 : 50
             color: root.pressed || root.active ? B.Theme.palette.accent_1 : B.Theme.palette.accent
             radius: width
+            Layout.alignment: Qt.AlignHCenter
 
             Behavior on color {
                 ColorAnimation {

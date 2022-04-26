@@ -70,6 +70,7 @@ Card 1.0 layout/Card.qml
 ScrollBar 1.0 navigation/ScrollBar.qml
 TabButton 1.0 navigation/TabButton.qml
 NavigationRail 1.0 navigation/NavigationRail.qml
+Page 1.0 navigation/Page.qml
 
 TextBase 1.0 text/TextBase.qml
 DisplayText 1.0 text/DisplayText.qml

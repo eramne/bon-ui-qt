@@ -5,13 +5,16 @@ import bon as B
 Item {
     id: root
     width: 80
-    height: parent.height
+    height: parent?.height ?? 100
     default property alias tabs: pagesNavColumn.children
+    property alias _tabContainer: pagesNavColumn
 
     property bool showHamburgerButton: false
     property bool showHomeButton: true
     property bool showTopButton: false
     property string topButtonIcon: "edit"
+
+    property alias homeButton: homeButton
 
     signal hamburgerButtonPressed()
     signal homeButtonPressed()
@@ -26,7 +29,7 @@ Item {
         rightPadding: 10
         topPadding: 20
         bottomPadding: 20
-        //clip: true
+        clip: true
 
         contentItem: Item {
 
@@ -51,6 +54,7 @@ Item {
                     }
 
                     B.TabButton {
+                        id: homeButton
                         visible: root.showHomeButton
                         icon.name: "home"
                         Layout.alignment: Qt.AlignHCenter

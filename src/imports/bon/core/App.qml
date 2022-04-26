@@ -8,8 +8,70 @@ T.ApplicationWindow {
     id: root
     color: B.Theme.palette.background
     property bool dim: false
-    default property alias contents: content.children
+    //default property alias contents: content.children
     property B.NavigationRail navRail
+    property B.Page homepage: B.Page {
+        icon: "home"
+        contents: Component {
+            Item {
+
+            }
+        }
+    }
+
+    property list<B.Page> pages
+    property B.Page currentPage: homepage
+
+    onPagesChanged: {
+        if (!navRail) {
+            navRail = navRailComponent.createObject(navRailContainer);
+        }
+        let newTabsList = [];
+        for (let i = 0; i < pages.length; i++) {
+            newTabsList.push(tabButtonComponent.createObject(navRail._tabContainer, {page: pages[i]}));
+        }
+        navRail.tabs = newTabsList;
+    }
+
+    onCurrentPageChanged: {
+        //content.children[0].parent =
+        content.children = [];
+        currentPage.loadPage(content);
+    }
+
+    Component {
+        id: navRailComponent
+
+        B.NavigationRail {
+            Component.onCompleted: {
+                root.onCurrentPageChanged.connect(() => {
+                    homeButton.active = root.currentPage == root.homepage;
+                });
+                homeButton.onReleased.connect(() => {
+                    root.currentPage = root.homepage;
+                });
+            }
+        }
+    }
+
+    Component {
+        id: tabButtonComponent
+
+        B.TabButton {
+            property B.Page page
+            icon.name: page.icon
+            label: page.label
+            Component.onCompleted: {
+                root.onCurrentPageChanged.connect(() => {
+                    active = root.currentPage == page;
+                });
+            }
+
+            onReleased: {
+                root.currentPage = page;
+            }
+        }
+    }
 
     B.Fonts {}
 
@@ -18,11 +80,13 @@ T.ApplicationWindow {
         anchors.fill: parent
 
         Item {
-            id: navRailContainer
+            id: navRailBox
             width: 100
             height: parent.height
-            visible: root.navRail
+            visible: root.pages || root.navRail
+
             Item {
+                id: navRailContainer
                 anchors.fill: parent
                 anchors.margins: 20
                 children: [root.navRail]
@@ -34,8 +98,12 @@ T.ApplicationWindow {
             anchors.top: parent.top
             anchors.right: parent.right
             anchors.bottom: parent.bottom
-            anchors.left: root.navRail ? navRailContainer.right : parent.left
-            anchors.margins: 0
+            anchors.left: root.navRail ? navRailBox.right : parent.left
+            //anchors.margins: 0
+
+            /*onChildrenChanged: {
+                console.log(children);
+            }*/
         }
     }
 
