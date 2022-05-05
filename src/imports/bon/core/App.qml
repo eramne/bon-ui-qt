@@ -8,7 +8,6 @@ T.ApplicationWindow {
     id: root
     color: B.Theme.palette.background
     property bool dim: false
-    //default property alias contents: content.children
     property B.NavigationRail navRail
     property B.Page homepage: B.Page {
         icon: "home"
@@ -46,6 +45,9 @@ T.ApplicationWindow {
             Component.onCompleted: {
                 root.onCurrentPageChanged.connect(() => {
                     homeButton.active = root.currentPage == root.homepage;
+                    if (root.currentPage != root.homepage) {
+                        root.homepage.unloadPage();
+                    }
                 });
                 homeButton.onReleased.connect(() => {
                     root.currentPage = root.homepage;
@@ -64,6 +66,9 @@ T.ApplicationWindow {
             Component.onCompleted: {
                 root.onCurrentPageChanged.connect(() => {
                     active = root.currentPage == page;
+                    if (root.currentPage != page) {
+                        page.unloadPage();
+                    }
                 });
             }
 
@@ -100,10 +105,6 @@ T.ApplicationWindow {
             anchors.bottom: parent.bottom
             anchors.left: root.navRail ? navRailBox.right : parent.left
             //anchors.margins: 0
-
-            /*onChildrenChanged: {
-                console.log(children);
-            }*/
         }
     }
 

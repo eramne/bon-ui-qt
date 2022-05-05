@@ -9,14 +9,12 @@ Item {
     default property alias tabs: pagesNavColumn.children
     property alias _tabContainer: pagesNavColumn
 
-    property bool showHamburgerButton: false
     property bool showHomeButton: true
     property bool showTopButton: false
     property string topButtonIcon: "edit"
 
     property alias homeButton: homeButton
 
-    signal hamburgerButtonPressed()
     signal homeButtonPressed()
     signal topButtonPressed()
 
@@ -41,17 +39,6 @@ Item {
                     spacing: 0
                     Layout.fillWidth: true
                     Layout.alignment: Qt.AlignHCenter | Qt.AlignTop
-
-                    B.Button {
-                        visible: root.showHamburgerButton
-                        order: 1
-                        enableElevationEffects: false
-                        icon.name: "menu"
-                        Layout.alignment: Qt.AlignHCenter
-                        Component.onCompleted: {
-                            onReleased.connect(root.hamburgerButtonPressed);
-                        }
-                    }
 
                     B.TabButton {
                         id: homeButton
