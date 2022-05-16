@@ -21,7 +21,7 @@ B.TextInputBase {
 
             B.SmallIconButton {
                 id: iconButton
-                offIcon: root.buttonIcon
+                icon.name: root.buttonIcon
 
                 Component.onCompleted: {
                     onClicked.connect(root.iconClicked)

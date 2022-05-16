@@ -84,7 +84,7 @@ B.TextInputBase {
 
             B.SmallIconButton {
                 id: iconButton
-                offIcon: "expand_more"
+                icon.name: "expand_more"
 
                 onReleased: {
                     if (root.popup.opened) {

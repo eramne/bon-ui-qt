@@ -12,7 +12,7 @@ B.App {
 
     homepage: B.Page {
 
-        //icon: "article"
+        //icon.name: "article"
         contents: Component {
             Item {
                 B.HeadingText {
@@ -25,7 +25,7 @@ B.App {
 
     pages: [
         B.Page {
-            icon: "toggle_on"
+            icon.name: "toggle_on"
             label: "Controls"
             contents: Component {
                 B.OverflowArea {
@@ -379,23 +379,21 @@ B.App {
                         }
 
                         B.SmallIconButton {
-                            offIcon: "star"
+                            icon.name: "star"
                         }
 
                         B.SmallIconButton {
-                            offIcon: "star"
+                            icon.name: "star"
                             enabled: false
                         }
 
                         B.SmallIconButton {
-                            offIcon: "star_border"
-                            onIcon: "star"
+                            icon.name: checked ? "star" : "star_border"
                             checkable: true
                         }
 
                         B.SmallIconButton {
-                            offIcon: "star_border"
-                            onIcon: "star"
+                            icon.name: checked ? "star" : "star_border"
                             checkable: true
                             enabled: false
                         }
@@ -1527,25 +1525,25 @@ B.App {
                         }
 
                         B.Alert {
-                            icon: "error"
+                            icon.name: "error"
                             title: "Couldn't sign in"
                             description: "Please check your internet connection and try again."
-                            Component.onCompleted: show()
+                            Component.onCompleted: open()
                         }
 
                         B.Alert {
                             id: alert1
-                            icon: "error"
+                            icon.name: "error"
                             title: "Couldn't sign in"
                             description: "Please check your internet connection and try again."
                             variant: B.Alert.Variant.Error
-                            Component.onCompleted: show()
+                            Component.onCompleted: open()
                             actions: [
                                 B.Button {
                                     text: "Dismiss"
                                     order: 3
                                     onClicked: {
-                                        alert1.hide();
+                                        alert1.close();
                                     }
                                 },
                                 B.Button {
@@ -1556,27 +1554,27 @@ B.App {
                         }
 
                         B.Alert {
-                            icon: "warning"
+                            icon.name: "warning"
                             title: "Your subscription is about to expire"
                             description: "Please renew your subscription or download your data."
                             variant: B.Alert.Variant.Warning
-                            Component.onCompleted: show()
+                            Component.onCompleted: open()
                         }
 
                         B.Alert {
-                            icon: "check_circle"
+                            icon.name: "check_circle"
                             title: "Successfully registered"
                             description: "Welcome to <site>"
                             variant: B.Alert.Variant.Success
-                            Component.onCompleted: show()
+                            Component.onCompleted: open()
                         }
 
                         B.Alert {
-                            icon: "info"
+                            icon.name: "info"
                             title: "Update available"
                             description: "The update will be installed on the next launch."
                             variant: B.Alert.Variant.Info
-                            Component.onCompleted: show()
+                            Component.onCompleted: open()
                         }
 
                         B.Divider {
@@ -1586,7 +1584,7 @@ B.App {
 
                         B.Dialog {
                             id: dialog1
-                            icon: "warning"
+                            icon.name: "warning"
                             title: "Discard draft?"
                             description: "All changes will be lost."
                             actions: [
@@ -1622,14 +1620,14 @@ B.App {
                         B.Toast {
                             id: toast1
                             text: "5 files converted successfully"
-                            icon: "check"
+                            icon.name: "check"
                             variant: B.Toast.Variant.Success
                         }
 
                         B.Toast {
                             id: toast2
                             text: "5 files could not be converted"
-                            icon: "error"
+                            icon.name: "error"
                             variant: B.Toast.Variant.Error
                             action: B.Button {
                                 order: 3
@@ -1720,7 +1718,7 @@ B.App {
             }
         },
         B.Page {
-            icon: "text_fields"
+            icon.name: "text_fields"
             label: "Text"
             contents: Component {
                 B.OverflowArea {
@@ -1789,7 +1787,7 @@ B.App {
             }
         },
         B.Page {
-            icon: "gradient"
+            icon.name: "gradient"
             label: "Elevation"
             contents: Component {
                 B.OverflowArea {

@@ -3,7 +3,7 @@ import bon as B
 
 QtObject {
     id: root
-    property string icon: "article"
+    property B.Iconprop icon: B.Iconprop { name: "article" }
     property string label: ""
     property int notifications: -1
     property Component contents: Component { Item {} }

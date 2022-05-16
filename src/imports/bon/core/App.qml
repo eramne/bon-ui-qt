@@ -10,7 +10,7 @@ T.ApplicationWindow {
     property bool dim: false
     property B.NavigationRail navRail
     property B.Page homepage: B.Page {
-        icon: "home"
+        icon.name: "home"
         contents: Component {
             Item {
 
@@ -61,7 +61,7 @@ T.ApplicationWindow {
 
         B.TabButton {
             property B.Page page
-            icon.name: page.icon
+            icon.name: page.icon.name
             label: page.label
             Component.onCompleted: {
                 root.onCurrentPageChanged.connect(() => {

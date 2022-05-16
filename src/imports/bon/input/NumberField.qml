@@ -79,7 +79,7 @@ B.TextInputBase {
 
             B.SmallIconButton {
                 visible: parent.visible
-                offIcon: "keyboard_arrow_up"
+                icon.name: "keyboard_arrow_up"
                 autoRepeat: true
 
                 onReleased: {
@@ -89,7 +89,7 @@ B.TextInputBase {
 
             B.SmallIconButton {
                 visible: parent.visible
-                offIcon: "keyboard_arrow_down"
+                icon.name: "keyboard_arrow_down"
                 autoRepeat: true
 
                 onReleased: {

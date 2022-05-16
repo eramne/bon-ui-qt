@@ -112,7 +112,7 @@ T.Button {
 
         B.SmallIconButton {
             visible: root.variant === Chip.Type.Input
-            offIcon: "cancel"
+            icon.name: "cancel"
             Component.onCompleted: {
                 onClicked.connect(root.closed)
             }

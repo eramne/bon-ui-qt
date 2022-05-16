@@ -14,7 +14,7 @@ T.Popup {
 
     required property string text
     property B.Button action
-    property string icon: ""
+    property B.Iconprop icon: B.Iconprop {}
     property int variant: Toast.Variant.Neutral
     property bool _shown: false
     property bool _awaiting: false
@@ -112,8 +112,8 @@ T.Popup {
 
                     B.Icon {
                         Layout.alignment: Qt.AlignRight
-                        name: root.icon
-                        visible: root.icon
+                        name: root.icon.name
+                        visible: root.icon.name
                         color: root.variant === Toast.Variant.Neutral ? B.Theme.palette.text.label : root.background.borderColor
                     }
 

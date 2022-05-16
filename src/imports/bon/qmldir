@@ -1,7 +1,6 @@
 module bon
 
 App 1.0 core/App.qml
-Fonts 1.0 core/Fonts.qml
 singleton Theme 1.0 core/Theme.qml
 singleton Utils 1.0 core/Utils.qml
 SelectionModel 1.0 core/SelectionModel.qml
@@ -55,7 +54,6 @@ Elevation 1.0 effects/Elevation.qml
 OverflowFadeEffect 1.0 effects/OverflowFadeEffect.qml
 
 OverflowArea 1.0 layout/OverflowArea.qml
-Icon 1.0 layout/Icon.qml
 Avatar 1.0 layout/Avatar.qml
 Thumbnail 1.0 layout/Thumbnail.qml
 Divider 1.0 layout/Divider.qml
@@ -72,6 +70,9 @@ TabButton 1.0 navigation/TabButton.qml
 NavigationRail 1.0 navigation/NavigationRail.qml
 Page 1.0 navigation/Page.qml
 
+Fonts 1.0 text/Fonts.qml
+Icon 1.0 text/Icon.qml
+Iconprop 1.0 text/Iconprop.qml
 TextBase 1.0 text/TextBase.qml
 DisplayText 1.0 text/DisplayText.qml
 Display2Text 1.0 text/Display2Text.qml

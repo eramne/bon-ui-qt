@@ -3,7 +3,7 @@ import QtQuick
 import "../lib/BigEval.min.js" as BigEval
 
 QtObject {
-    property var icons: loadIcons(Qt.resolvedUrl("../fonts/mdicons/MaterialIconsRound.codepoints"));
+    property var icons: loadIcons(Qt.resolvedUrl("../assets/fonts/mdicons/MaterialIconsRound.codepoints"));
 
     function loadIcons(url) {
         var request = new XMLHttpRequest();

@@ -13,7 +13,9 @@ B.Pane {
     required property string title
     required property string description
     property list<B.Button> actions
-    property string icon: ""
+    //property string icon: ""
+    property B.Iconprop icon: B.Iconprop {}
+
     property int variant: Alert.Variant.Neutral
 
     borderWidth: variant !== Alert.Variant.Neutral ? 2 : 0
@@ -22,10 +24,10 @@ B.Pane {
                      variant === Alert.Variant.Warning ? B.Theme.palette.warning :
                      variant === Alert.Variant.Error ? B.Theme.palette.error : "transparent"
 
-    function show() {
+    function open() {
         root.visible = true;
     }
-    function hide() {
+    function close() {
         root.visible = false;
     }
 
@@ -62,7 +64,7 @@ B.Pane {
 
                 B.Icon {
                     Layout.alignment: Qt.AlignRight
-                    name: root.icon
+                    name: root.icon.name
                     color: root.variant === Alert.Variant.Neutral ? B.Theme.palette.text.label : root.borderColor
                 }
             }

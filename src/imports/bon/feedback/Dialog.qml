@@ -16,7 +16,7 @@ T.Popup {
     required property string title
     required property string description
     required property list<B.Button> actions
-    property string icon: ""
+    property B.Iconprop icon: B.Iconprop {}
 
     Behavior on y {
         animation: NumberAnimation {
@@ -49,7 +49,7 @@ T.Popup {
 
                 B.Icon {
                     Layout.alignment: Qt.AlignRight
-                    name: root.icon
+                    name: root.icon.name
                     color: B.Theme.palette.text.label
                 }
             }
