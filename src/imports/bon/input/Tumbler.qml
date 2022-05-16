@@ -11,8 +11,8 @@ T.Tumbler {
     implicitHeight: Math.max(implicitBackgroundHeight + topInset + bottomInset,
                              implicitContentHeight + topPadding + bottomPadding)
 
-    width: orientation == Qt.Vertical ? 40 : (visibleItemCount * 40) + 80
-    height: orientation == Qt.Vertical ? (visibleItemCount * 40) + 80 : 40
+    width: orientation === Qt.Vertical ? 40 : (visibleItemCount * 40) + 80
+    height: orientation === Qt.Vertical ? (visibleItemCount * 40) + 80 : 40
 
     visibleItemCount: 5
 
@@ -69,10 +69,10 @@ T.Tumbler {
     contentItem: GridLayout {
         anchors.fill: parent
 
-        flow: root.orientation == Qt.Vertical ? GridLayout.TopToBottom : GridLayout.LeftToRight
+        flow: root.orientation === Qt.Vertical ? GridLayout.TopToBottom : GridLayout.LeftToRight
 
         B.Button {
-            icon.name: root.orientation == Qt.Vertical ? "keyboard_arrow_up" : "keyboard_arrow_left"
+            icon.name: root.orientation === Qt.Vertical ? "keyboard_arrow_up" : "keyboard_arrow_left"
             Layout.preferredWidth: 40
             Layout.preferredHeight: 40
             order: 3
@@ -105,12 +105,12 @@ T.Tumbler {
                 preferredHighlightEnd: 0.5
 
                 path: Path {
-                    startX: root.orientation == Qt.Vertical ? pathView.width / 2 : 0
-                    startY: root.orientation == Qt.Vertical ? 0 : pathView.height/2
+                    startX: root.orientation === Qt.Vertical ? pathView.width / 2 : 0
+                    startY: root.orientation === Qt.Vertical ? 0 : pathView.height/2
 
                     PathLine {
-                        x: root.orientation == Qt.Vertical ? pathView.width / 2 : pathView.width
-                        y: root.orientation == Qt.Vertical ? pathView.height : pathView.height/2
+                        x: root.orientation === Qt.Vertical ? pathView.width / 2 : pathView.width
+                        y: root.orientation === Qt.Vertical ? pathView.height : pathView.height/2
                     }
                 }
 
@@ -119,7 +119,7 @@ T.Tumbler {
         }
 
         B.Button {
-            icon.name: root.orientation == Qt.Vertical ? "keyboard_arrow_down" : "keyboard_arrow_right"
+            icon.name: root.orientation === Qt.Vertical ? "keyboard_arrow_down" : "keyboard_arrow_right"
             Layout.preferredWidth: 40
             Layout.preferredHeight: 40
             order: 3

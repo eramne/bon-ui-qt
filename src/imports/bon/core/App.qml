@@ -44,7 +44,7 @@ T.ApplicationWindow {
         B.NavigationRail {
             Component.onCompleted: {
                 root.onCurrentPageChanged.connect(() => {
-                    homeButton.active = root.currentPage == root.homepage;
+                    homeButton.active = root.currentPage === root.homepage;
                     if (root.currentPage != root.homepage) {
                         root.homepage.unloadPage();
                     }
@@ -65,7 +65,7 @@ T.ApplicationWindow {
             label: page.label
             Component.onCompleted: {
                 root.onCurrentPageChanged.connect(() => {
-                    active = root.currentPage == page;
+                    active = root.currentPage === page;
                     if (root.currentPage != page) {
                         page.unloadPage();
                     }

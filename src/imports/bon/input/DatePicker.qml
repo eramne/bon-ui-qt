@@ -18,7 +18,7 @@ B.Dropdown {
     property date selectedDate: date
     property date selectedEndDate: endDate
     property date _lastClickedDate: date
-    property bool oneDateSelected: selectedDate.getDate() == selectedEndDate.getDate() && selectedDate.getMonth() == selectedEndDate.getMonth() && selectedDate.getFullYear() == selectedEndDate.getFullYear()
+    property bool oneDateSelected: selectedDate.getDate() === selectedEndDate.getDate() && selectedDate.getMonth() === selectedEndDate.getMonth() && selectedDate.getFullYear() === selectedEndDate.getFullYear()
 
     property bool selectRange: false
 
@@ -169,14 +169,14 @@ B.Dropdown {
                             tmpDate.setDate((index + 1) - (7+tmpDate.getDay()-Qt.locale().firstDayOfWeek)%7)
                             return tmpDate
                         }
-                        property bool isSelectedDate: root.selectedDate.getDate() == date.getDate() && root.selectedDate.getMonth() == date.getMonth() && root.selectedDate.getFullYear() == date.getFullYear()
-                        property bool isSelectedEndDate: root.selectedEndDate.getDate() == date.getDate() && root.selectedEndDate.getMonth() == date.getMonth() && root.selectedEndDate.getFullYear() == date.getFullYear()
+                        property bool isSelectedDate: root.selectedDate.getDate() === date.getDate() && root.selectedDate.getMonth() === date.getMonth() && root.selectedDate.getFullYear() === date.getFullYear()
+                        property bool isSelectedEndDate: root.selectedEndDate.getDate() === date.getDate() && root.selectedEndDate.getMonth() === date.getMonth() && root.selectedEndDate.getFullYear() === date.getFullYear()
                         property bool isAtLeft: date.getDay() === Qt.locale().firstDayOfWeek
                         property bool isAtRight: date.getDay() === (Qt.locale().firstDayOfWeek + 6)%7
 
                         text: date.getDate()
-                        today: root.now.getDate() == date.getDate() && root.now.getMonth() == date.getMonth() && root.now.getFullYear() == date.getFullYear()
-                        enabled: date.getMonth() == root._visibleMonth && date.getFullYear() == root._visibleYear
+                        today: root.now.getDate() === date.getDate() && root.now.getMonth() === date.getMonth() && root.now.getFullYear() === date.getFullYear()
+                        enabled: date.getMonth() === root._visibleMonth && date.getFullYear() === root._visibleYear
 
                         checkable: false
                         checked: isSelectedDate || isSelectedEndDate

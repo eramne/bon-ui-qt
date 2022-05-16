@@ -12,7 +12,7 @@ T.ScrollBar {
 
     padding: 4
     visible: root.policy !== T.ScrollBar.AlwaysOff && (root.policy === T.ScrollBar.AsNeeded ? root.size < 1 : true)
-    minimumSize: orientation == Qt.Horizontal ? height / width : width / height
+    minimumSize: orientation === Qt.Horizontal ? height / width : width / height
 
     opacity: root.active ? 1 : 0.0
     layer.enabled: opacity < 1

@@ -25,7 +25,7 @@ T.RadioButton {
         anchors.fill: indicator
         radius: indicator.radius
         elevation: root.enabled ? (
-                       root.effectiveState == 0 ? (
+                       root.effectiveState === 0 ? (
                            !root.down ? 1 : 0
                        ) : (
                            !root.down ? 2 : 1
@@ -61,20 +61,20 @@ T.RadioButton {
             id: icon
             x: (parent.width - width) / 2
             y: (parent.height - height) / 2
-            width: root.effectiveState == 1 && !root.hovered && !root.down ? 8
-                       : (root.effectiveState == -1 && (root.hovered || root.down) ? 8
-                       : (root.effectiveState == -1 ? 12
-                       : (root.effectiveState == 0 && !root.hovered && !root.down) ? 16 : 12)
+            width: root.effectiveState === 1 && !root.hovered && !root.down ? 8
+                       : (root.effectiveState === -1 && (root.hovered || root.down) ? 8
+                       : (root.effectiveState === -1 ? 12
+                       : (root.effectiveState === 0 && !root.hovered && !root.down) ? 16 : 12)
                    )
-            height: root.effectiveState == 1 && !root.hovered && !root.down ? 8
-                        : (root.effectiveState == -1 && (root.hovered || root.down) ? 8
-                        : (root.effectiveState == -1 ? 4
-                        : (root.effectiveState == 0 && !root.hovered && !root.down) ? 16 : 12)
+            height: root.effectiveState === 1 && !root.hovered && !root.down ? 8
+                        : (root.effectiveState === -1 && (root.hovered || root.down) ? 8
+                        : (root.effectiveState === -1 ? 4
+                        : (root.effectiveState === 0 && !root.hovered && !root.down) ? 16 : 12)
                     )
             radius: 8
-            color: (root.effectiveState == 1 || root.effectiveState == -1) && (!root.hovered && !root.down) ? (
+            color: (root.effectiveState === 1 || root.effectiveState === -1) && (!root.hovered && !root.down) ? (
                        B.Theme.palette.highlight
-                   ) : root.effectiveState == -1 || (root.effectiveState == 1 && (!root.hovered && !root.down)) ? (
+                   ) : root.effectiveState === -1 || (root.effectiveState === 1 && (!root.hovered && !root.down)) ? (
                        B.Theme.palette.highlight_1
                    ) : B.Theme.palette.background
 

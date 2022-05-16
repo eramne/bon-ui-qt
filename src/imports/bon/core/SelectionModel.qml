@@ -30,7 +30,7 @@ QtObject {
             currentIndex = index
             break
         case SelectionModel.SelectionType.Range:
-            if (currentIndex == -1) {
+            if (currentIndex === -1) {
                 selectedIndices = [index]
             } else {
                 selectedIndices = []
@@ -40,7 +40,7 @@ QtObject {
             }
             break
         case SelectionModel.SelectionType.AddRange:
-            if (currentIndex == -1) {
+            if (currentIndex === -1) {
                 selectedIndices.push(index)
             } else {
                 for (let j = Math.min(currentIndex, index); j <= Math.max(currentIndex, index); j++) {

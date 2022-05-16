@@ -22,5 +22,6 @@ B.OverflowArea {
         width: root.overflow ? childrenRect.implicitWidth : root.width
         //height: root.overflow ? implicitHeight : implicitHeight
         children: root.chips
+        property alias set: root
     }
 }

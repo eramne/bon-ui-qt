@@ -133,7 +133,7 @@ B.App {
                             orientation: Qt.Vertical
                         }
 
-                        B.Divider {
+                        /*B.Divider {
                             width: parent.width
                             name: "Progress"
                         }
@@ -229,7 +229,7 @@ B.App {
                             indeterminate: true
                             state: B.ProgressCircle.State.Running
                             small: true
-                        }
+                        }*/
 
                         B.Divider {
                             width: parent.width

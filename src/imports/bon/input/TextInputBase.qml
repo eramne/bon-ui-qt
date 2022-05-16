@@ -174,16 +174,8 @@ Item {
                                 enabled: root.enabled
                                 hoverEnabled: root.enabled
 
-                                /*onTextChanged: {
-                                    console.log(field.width, field.height, field.parent.width, field.parent.parent.width, field.parent.parent.parent.width, field.parent.parent.parent.parent.width, field.parent.parent.parent.parent.parent.width, field.parent.parent.parent.parent.parent.parent.width, field.parent.parent.parent.parent.parent.parent.parent.width, field.text);
-                                }*/
-
                                 Component.onCompleted: {
-                                    //console.log(field.width, field.height, field.parent.width, field.parent.height, field.text);
                                     select(0,0);
-                                    /*field.onTextChanged.connect(function () {
-                                        console.log(field.text, field.width, field.height, field.parent.width, field.parent.height);
-                                    });*/
                                 }
                             }
 

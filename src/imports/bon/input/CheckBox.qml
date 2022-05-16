@@ -16,9 +16,9 @@ T.CheckBox {
     onClicked: function () {
         mixed = false;
     }
-    property color _iconColor: (root.effectiveState == 1 || root.effectiveState == -1) && (!root.hovered && !root.down) ? (
+    property color _iconColor: (root.effectiveState === 1 || root.effectiveState === -1) && (!root.hovered && !root.down) ? (
                                     B.Theme.palette.highlight
-                                ) : (root.effectiveState == 1 || root.effectiveState == -1) ? (
+                                ) : (root.effectiveState === 1 || root.effectiveState === -1) ? (
                                     B.Theme.palette.highlight_1
                                 ) : (!root.hovered && !root.down) ? B.Theme.palette.background : (
                                     root.down ? B.Theme.palette.background_2 : B.Theme.palette.background_1
@@ -34,7 +34,7 @@ T.CheckBox {
         anchors.fill: indicator
         radius: indicator.radius
         elevation: root.enabled ? (
-                       root.effectiveState == 0 ? (
+                       root.effectiveState === 0 ? (
                            !root.down ? 1 : 0
                        ) : (
                            !root.down ? 2 : 1
@@ -59,8 +59,8 @@ T.CheckBox {
                    root.down ? B.Theme.palette.accent : B.Theme.palette.accent_1
                )
 
-        border.width: root.effectiveState == 0 ? 2 : 0
-        border.color: root.effectiveState == 0 ? (
+        border.width: root.effectiveState === 0 ? 2 : 0
+        border.color: root.effectiveState === 0 ? (
                           root.down ? B.Theme.palette.background_2 : B.Theme.palette.background_1
                       ) : "#00000000"
 
@@ -96,9 +96,9 @@ T.CheckBox {
                 id: icon
                 strokeColor: Qt.alpha(root._iconColor,1)
                 strokeWidth: root.effectiveState == 1  ? 3
-                                 : (root.effectiveState == -1 && (root.hovered || root.down) ? 3
-                                 : (root.effectiveState == -1 ? 4
-                                 : (root.effectiveState == 0 && !root.hovered && !root.down) ? 0 : 2)
+                                 : (root.effectiveState === -1 && (root.hovered || root.down) ? 3
+                                 : (root.effectiveState === -1 ? 4
+                                 : (root.effectiveState === 0 && !root.hovered && !root.down) ? 0 : 2)
                              )
                 fillColor: "transparent"
                 joinStyle: ShapePath.RoundJoin

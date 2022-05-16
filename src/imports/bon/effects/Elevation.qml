@@ -6,6 +6,13 @@ Item {
     property real elevation: 1
     property real radius: 0
 
+    Behavior on elevation {
+        NumberAnimation {
+            duration: B.Theme.animations.basic.duration
+            easing.type: B.Theme.animations.basic.type
+        }
+    }
+
     Rectangle {
         width: parent.width + glowRadius*2
         height: parent.height + glowRadius*2
@@ -16,13 +23,6 @@ Item {
         property real glowRadius: elevation*1/5
         radius: root.radius + glowRadius
         visible: elevation > 0
-
-        Behavior on glowRadius {
-            NumberAnimation {
-                duration: B.Theme.animations.basic.duration
-                easing.type: B.Theme.animations.basic.type
-            }
-        }
     }
 
     Rectangle {
@@ -35,27 +35,6 @@ Item {
         property real glowRadius: elevation*2/3
         radius: root.radius + glowRadius
         visible: elevation > 0
-
-        Behavior on glowRadius {
-            NumberAnimation {
-                duration: B.Theme.animations.basic.duration
-                easing.type: B.Theme.animations.basic.type
-            }
-        }
-
-        Behavior on opacity {
-            NumberAnimation {
-                duration: B.Theme.animations.basic.duration
-                easing.type: B.Theme.animations.basic.type
-            }
-        }
-
-        Behavior on y {
-            NumberAnimation {
-                duration: B.Theme.animations.basic.duration
-                easing.type: B.Theme.animations.basic.type
-            }
-        }
     }
 
     Rectangle {
@@ -68,19 +47,5 @@ Item {
         property real glowRadius: elevation*6/5
         radius: root.radius + glowRadius
         visible: elevation > 0
-
-        Behavior on y {
-            NumberAnimation {
-                duration: B.Theme.animations.basic.duration
-                easing.type: B.Theme.animations.basic.type
-            }
-        }
-
-        Behavior on glowRadius {
-            NumberAnimation {
-                duration: B.Theme.animations.basic.duration
-                easing.type: B.Theme.animations.basic.type
-            }
-        }
     }
 }

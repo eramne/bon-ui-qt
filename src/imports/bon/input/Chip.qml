@@ -16,7 +16,7 @@ T.Button {
 
     property real _textOpacity: root.down || root.hovered || !root.enabled ? B.Theme.highlight_hover_opacity : 1
 
-    property var set: parent.parent.parent.parent instanceof B.ChipSet ? parent.parent.parent.parent : undefined
+    property var set: parent?.set ?? undefined
 
     width: contentItem.implicitWidth + leftPadding + rightPadding
     height: 34
@@ -98,7 +98,7 @@ T.Button {
             id: icon
             Layout.alignment: Qt.AlignCenter
             dark: root.checked
-            visible: root.variant === Chip.Type.Choice ? (checked ? true : false) : isValid
+            visible: root.variant === Chip.Type.Choice ? (root.checked ? true : false) : isValid
             name: root.variant === Chip.Type.Choice ? "check" : root.icon.name
             opacity: root._textOpacity
         }
