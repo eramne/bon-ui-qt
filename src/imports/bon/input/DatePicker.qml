@@ -72,7 +72,7 @@ B.Dropdown {
                 B.Button {
                     Layout.preferredWidth: 40
                     Layout.preferredHeight: 40
-                    order: 3
+                    order: B.Button.Order.Tertiary
                     icon.name: "close"
                     onClicked: {
                         root.canceled()
@@ -82,7 +82,7 @@ B.Dropdown {
                 B.Button {
                     Layout.preferredWidth: 40
                     Layout.preferredHeight: 40
-                    order: 2
+                    order: B.Button.Order.Secondary
                     icon.name: "done"
 
                     onClicked: {
@@ -104,7 +104,7 @@ B.Dropdown {
                 B.Button {
                     Layout.preferredWidth: 40
                     Layout.preferredHeight: 40
-                    order: 3
+                    order: B.Button.Order.Tertiary
                     icon.name: "navigate_before"
 
                     onReleased: {
@@ -119,7 +119,7 @@ B.Dropdown {
                 B.Button {
                     Layout.preferredWidth: 40
                     Layout.preferredHeight: 40
-                    order: 3
+                    order: B.Button.Order.Tertiary
                     icon.name: "navigate_next"
 
                     onReleased: {

@@ -254,106 +254,106 @@ B.App {
                         }
 
                         B.Button {
-                            order: 1
+                            order: B.Button.Order.Primary
                             text: "Click me"
                         }
 
                         B.Button {
-                            order: 1
-                            text: "Click me"
-                            enabled: false
-                        }
-
-                        B.Button {
-                            order: 2
-                            text: "Click me"
-                        }
-
-                        B.Button {
-                            order: 2
+                            order: B.Button.Order.Primary
                             text: "Click me"
                             enabled: false
                         }
 
                         B.Button {
-                            order: 3
+                            order: B.Button.Order.Secondary
                             text: "Click me"
                         }
 
                         B.Button {
-                            order: 3
+                            order: B.Button.Order.Secondary
                             text: "Click me"
                             enabled: false
                         }
 
                         B.Button {
-                            order: 1
+                            order: B.Button.Order.Tertiary
+                            text: "Click me"
+                        }
+
+                        B.Button {
+                            order: B.Button.Order.Tertiary
+                            text: "Click me"
+                            enabled: false
+                        }
+
+                        B.Button {
+                            order: B.Button.Order.Primary
                             icon.name: "settings"
                             text: "Click me"
                         }
 
                         B.Button {
-                            order: 1
-                            icon.name: "settings"
-                            text: "Click me"
-                            enabled: false
-                        }
-
-                        B.Button {
-                            order: 2
-                            icon.name: "settings"
-                            text: "Click me"
-                        }
-
-                        B.Button {
-                            order: 2
+                            order: B.Button.Order.Primary
                             icon.name: "settings"
                             text: "Click me"
                             enabled: false
                         }
 
                         B.Button {
-                            order: 3
+                            order: B.Button.Order.Secondary
                             icon.name: "settings"
                             text: "Click me"
                         }
 
                         B.Button {
-                            order: 3
+                            order: B.Button.Order.Secondary
                             icon.name: "settings"
                             text: "Click me"
                             enabled: false
                         }
 
                         B.Button {
-                            order: 1
+                            order: B.Button.Order.Tertiary
+                            icon.name: "settings"
+                            text: "Click me"
+                        }
+
+                        B.Button {
+                            order: B.Button.Order.Tertiary
+                            icon.name: "settings"
+                            text: "Click me"
+                            enabled: false
+                        }
+
+                        B.Button {
+                            order: B.Button.Order.Primary
                             icon.name: "settings"
                         }
 
                         B.Button {
-                            order: 1
+                            order: B.Button.Order.Primary
                             icon.name: "settings"
                             enabled: false
                         }
 
                         B.Button {
-                            order: 2
+                            order: B.Button.Order.Secondary
                             icon.name: "settings"
                         }
 
                         B.Button {
-                            order: 2
+                            order: B.Button.Order.Secondary
                             icon.name: "settings"
                             enabled: false
                         }
 
                         B.Button {
-                            order: 3
+                            order: B.Button.Order.Tertiary
                             icon.name: "settings"
                         }
 
                         B.Button {
-                            order: 3
+                            order: B.Button.Order.Tertiary
                             icon.name: "settings"
                             enabled: false
                         }
@@ -1162,7 +1162,7 @@ B.App {
 
                         B.Button {
                             icon.name: "more_vert"
-                            order: 2
+                            order: B.Button.Order.Secondary
                             onReleased: menu1.open()
 
                             B.Menu {
@@ -1325,12 +1325,12 @@ B.App {
                             description: "Lorem ipsum dolor sit amet"
                             rightActions: [
                                 B.Button {
-                                    order: 1
+                                    order: B.Button.Order.Primary
                                     text: "Action"
                                 },
 
                                 B.Button {
-                                    order: 3
+                                    order: B.Button.Order.Tertiary
                                     text: "Action"
                                 }
                             ]
@@ -1342,12 +1342,12 @@ B.App {
                             description: "Lorem ipsum dolor sit amet"
                             leftActions: [
                                 B.Button {
-                                    order: 1
+                                    order: B.Button.Order.Primary
                                     text: "Action"
                                 },
 
                                 B.Button {
-                                    order: 3
+                                    order: B.Button.Order.Tertiary
                                     text: "Action"
                                 }
                             ]
@@ -1359,12 +1359,12 @@ B.App {
                             description: "Lorem ipsum dolor sit amet"
                             leftActions: [
                                 B.Button {
-                                    order: 1
+                                    order: B.Button.Order.Primary
                                     text: "Action"
                                 },
 
                                 B.Button {
-                                    order: 3
+                                    order: B.Button.Order.Tertiary
                                     text: "Action"
                                 }
                             ]
@@ -1372,17 +1372,17 @@ B.App {
                                 B.Button {
                                     icon.name: checked ? "favorite" : "favorite_border"
                                     checkable: true
-                                    order: 3
+                                    order: B.Button.Order.Tertiary
                                 },
 
                                 B.Button {
                                     icon.name: "chat_bubble_outline"
-                                    order: 3
+                                    order: B.Button.Order.Tertiary
                                 },
 
                                 B.Button {
                                     icon.name: "share"
-                                    order: 3
+                                    order: B.Button.Order.Tertiary
                                 }
                             ]
                         }
@@ -1541,14 +1541,14 @@ B.App {
                             actions: [
                                 B.Button {
                                     text: "Dismiss"
-                                    order: 3
+                                    order: B.Button.Order.Tertiary
                                     onClicked: {
                                         alert1.close();
                                     }
                                 },
                                 B.Button {
                                     text: "Retry"
-                                    order: 3
+                                    order: B.Button.Order.Tertiary
                                 }
                             ]
                         }
@@ -1590,14 +1590,14 @@ B.App {
                             actions: [
                                 B.Button {
                                     text: "Cancel"
-                                    order: 2
+                                    order: B.Button.Order.Secondary
                                     onClicked: {
                                         dialog1.close();
                                     }
                                 },
                                 B.Button {
                                     text: "Delete"
-                                    order: 1
+                                    order: B.Button.Order.Primary
                                     onClicked: {
                                         dialog1.close();
                                     }
@@ -1630,7 +1630,7 @@ B.App {
                             icon.name: "error"
                             variant: B.Toast.Variant.Error
                             action: B.Button {
-                                order: 3
+                                order: B.Button.Order.Tertiary
                                 text: "Retry"
                             }
                         }

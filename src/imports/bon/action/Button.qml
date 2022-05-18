@@ -22,8 +22,14 @@ T.Button {
     opacity: !root.enabled ? B.Theme.disabled_opacity : 1
     layer.enabled: !root.enabled
 
-    property int order: 1 // 1 = primary, 2 = secondary, 3 or anything else = tertiary
+    property int order: Button.Order.Primary // 1 = primary, 2 = secondary, 3 or anything else = tertiary
     property bool enableElevationEffects: true
+
+    enum Order {
+        Primary,
+        Secondary,
+        Tertiary
+    }
 
     Behavior on _textOpacity {
         NumberAnimation {
@@ -35,7 +41,7 @@ T.Button {
     B.Elevation {
         anchors.fill: background
         radius: background.radius
-        elevation: root.enableElevationEffects ? order === 1 ? (root.down ? 1 : 2) : 0 : 0
+        elevation: root.enableElevationEffects ? order === Button.Order.Primary ? (root.down ? 1 : 2) : 0 : 0
         z: -1
     }
 
@@ -52,19 +58,19 @@ T.Button {
             name: root.icon.name
             //color: root.icon.color
             opacity: root._textOpacity
-            dark: order === 1
+            dark: order === Button.Order.Primary
         }
 
         B.ButtonText {
             text: root.text
-            dark: order === 1
+            dark: order === Button.Order.Primary
             opacity: root._textOpacity
         }
     }
 
     background: Rectangle {
         anchors.fill: root
-        color: order === 1 ? (
+        color: order === Button.Order.Primary ? (
                    root.down ? B.Theme.palette.accent_1 : B.Theme.palette.accent
                ) : (
                    root.down ? B.Theme.palette.background_2 : (
@@ -73,7 +79,7 @@ T.Button {
                )
         radius: !root._round ? 8 : Math.max(width, height)/2
         border.color: B.Theme.palette.background_1
-        border.width: order === 2 && !root.down && !root.hovered ? 2 : 0
+        border.width: order === Button.Order.Secondary && !root.down && !root.hovered ? 2 : 0
 
         Behavior on border.width {
             NumberAnimation {

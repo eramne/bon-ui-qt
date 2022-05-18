@@ -75,7 +75,7 @@ T.Tumbler {
             icon.name: root.orientation === Qt.Vertical ? "keyboard_arrow_up" : "keyboard_arrow_left"
             Layout.preferredWidth: 40
             Layout.preferredHeight: 40
-            order: 3
+            order: B.Button.Order.Tertiary
             onReleased: {
                 pathView.decrementCurrentIndex()
             }
@@ -122,7 +122,7 @@ T.Tumbler {
             icon.name: root.orientation === Qt.Vertical ? "keyboard_arrow_down" : "keyboard_arrow_right"
             Layout.preferredWidth: 40
             Layout.preferredHeight: 40
-            order: 3
+            order: B.Button.Order.Tertiary
             onReleased: {
                 pathView.incrementCurrentIndex()
             }

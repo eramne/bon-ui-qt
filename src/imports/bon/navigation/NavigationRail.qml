@@ -53,7 +53,7 @@ Item {
 
                 B.Button {
                     visible: root.showTopButton
-                    order: 3
+                    order: B.Button.Order.Tertiary
                     icon.name: root.topButtonIcon
                     width: parent.width
                     Component.onCompleted: {

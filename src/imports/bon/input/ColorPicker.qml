@@ -52,7 +52,7 @@ B.Dropdown {
                 B.Button {
                     Layout.preferredWidth: 40
                     Layout.preferredHeight: 40
-                    order: 3
+                    order: B.Button.Order.Tertiary
                     icon.name: "close"
                     onClicked: {
                         root.canceled();
@@ -62,7 +62,7 @@ B.Dropdown {
                 B.Button {
                     Layout.preferredWidth: 40
                     Layout.preferredHeight: 40
-                    order: 2
+                    order: B.Button.Order.Secondary
                     icon.name: "done"
 
                     onClicked: {

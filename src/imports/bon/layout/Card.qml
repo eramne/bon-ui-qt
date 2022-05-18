@@ -80,7 +80,7 @@ B.Pane {
                         root.menu.open()
                     }
                     icon.name: "more_horiz"
-                    order: 3
+                    order: B.Button.Order.Tertiary
                 }
             }
 
@@ -108,7 +108,7 @@ B.Pane {
                         root.menu.open()
                     }
                     icon.name: "more_horiz"
-                    order: 3
+                    order: B.Button.Order.Tertiary
                 }
             }
 
@@ -155,7 +155,7 @@ B.Pane {
                             root.menu.open()
                         }
                         icon.name: "more_horiz"
-                        order: 3
+                        order: B.Button.Order.Tertiary
                     }
                 }
 
