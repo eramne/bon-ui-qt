@@ -11,7 +11,7 @@ B.Dropdown {
 
     targetWidth: list.width
     targetHeight: list.height
-    property real overlap: -10
+    //property real overlap: -10
 
     property alias list: list
 
@@ -140,7 +140,7 @@ B.Dropdown {
                 root._activeSubMenu.parent = itemAtIndex(index)
                 root._activeSubMenu._parentMenu = root
                 root._activeSubMenu.autoAdjustPositionAroundTarget = false
-                root._activeSubMenu.x = root.width - root.overlap
+                root._activeSubMenu.x = root.width + root.margins
                 root._activeSubMenu.y = -topMargin
                 root._activeSubMenu.open()
                 if (keyboard) {

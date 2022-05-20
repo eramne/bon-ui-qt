@@ -1,3 +1,8 @@
+/*
+  Specifically for the DatePicker and DateField. Only to be used internally in this library, in
+  controls like those.
+  */
+
 import QtQuick
 import QtQuick.Layouts
 import QtQuick.Templates as T

@@ -8,12 +8,9 @@ T.AbstractButton {
 
     hoverEnabled: enabled
     visible: icon.isValid
-    //checkable: false
 
     property bool dark: false
     icon.name: ""
-    //property string offIcon: ""
-    //property string onIcon: offIcon
 
     width: 24
     height: 24
@@ -26,7 +23,7 @@ T.AbstractButton {
             id: icon
             anchors.centerIn: parent
             visible: isValid
-            name: root.icon.name //root.checked ? root.onIcon : root.offIcon
+            name: root.icon.name
             dark: root.dark
             opacity: root.down || root.hovered || !root.enabled ? B.Theme.highlight_hover_opacity : 1
 
