@@ -4,7 +4,7 @@
 
 [/action/](/src/imports/bon/action/README.md) - Controls for executing actions or triggering events, such as Buttons and Menus.
 
-[/core/](/src/imports/bon/core/README.md) - Basic utility and framework classes, like the App window, the font loader, the app theme, and other utilities.
+[/core/](/src/imports/bon/core/README.md) - Basic utility and framework classes, like the App window, the app theme, and other utilities.
 
 [/effects/](/src/imports/bon/effects/README.md) - Graphical effects, such as elevation/shadows or color gradients.
 

@@ -1,7 +1,6 @@
 import QtQuick
 import QtQuick.Templates as T
 import QtQuick.Layouts
-import QtQuick.Window
 import bon as B
 
 B.App {
@@ -1824,57 +1823,4 @@ B.App {
             }
         }
     ]
-
-    /*navRail: B.NavigationRail {
-        showHamburgerButton: true
-        //showTopButton: true
-
-        B.TabButton {
-            icon.name: "folder"
-        }
-
-        B.TabButton {
-            icon.name: "settings"
-        }
-
-        B.TabButton {
-            icon.name: "folder"
-            notifications: 0
-        }
-
-        B.TabButton {
-            icon.name: "settings"
-        }
-
-        B.TabButton {
-            icon.name: "folder"
-            notifications: 6
-        }
-
-        B.TabButton {
-            icon.name: "settings"
-        }
-
-        B.TabButton {
-            icon.name: "settings"
-        }
-
-        B.TabButton {
-            icon.name: "folder"
-            notifications: 0
-        }
-
-        B.TabButton {
-            icon.name: "settings"
-        }
-
-        B.TabButton {
-            icon.name: "folder"
-            notifications: 6
-        }
-
-        B.TabButton {
-            icon.name: "settings"
-        }
-    }*/
 }

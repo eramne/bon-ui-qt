@@ -72,7 +72,7 @@ T.Popup {
     }
 
     onVisibleChanged: {
-        T.ApplicationWindow.window.dim = root.visible
+        B.App.window.dim = root.visible
     }
 
     background: B.Pane {

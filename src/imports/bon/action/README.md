@@ -26,11 +26,19 @@ Used to execute an action. Can have a label, an icon, or both. When used with on
 
 ### Properties
 
-**`enableElevationEffects`** *(bool)* - whether or not to show a shadow under the button. True by default.
+**`enableElevationEffects`** : **bool** - whether or not to show a shadow under the button. True by default.
 
-**`order`** *(int)* - `Button.Order.Primary` uses the accent color for the button's fill and stands out the most, `Button.Order.Secondary` has a border, and `Button.Order.Tertiary` only has the icon/label without a visible border or background. Primary by default.
+**`order`** : **Button.Order** - Changes the appearance of the button by level of importance. See the `Button.Order` enum. `Button.Order.Primary` by default.
 
-**[All inherited properties on doc.qt.io](https://doc.qt.io/qt-6/qml-qtquick-controls2-button-members.html)**
+### Enums
+
+**`Order`** - Represents a level of contrast or importance. See `Button.order`.
+
+- *`Button.Order.Primary`* - Uses the accent color for the button's fill and stands out the most.
+- *`Button.Order.Secondary`* - Uses the background color a border around the button.
+- *`Button.Order.Tertiary`* - Uses the background color, only has the icon/label without a border.
+
+**[All inherited members on doc.qt.io](https://doc.qt.io/qt-6/qml-qtquick-controls2-button-members.html)**
 
 ### Examples
 
@@ -63,9 +71,9 @@ Creates a [Menu](#menu) that will open on a right-click inside the item's dimens
 
 ### Properties
 
-**`actions`** *(default list\<[MenuItem](link needed), [Menu](#menu)]\>)* - A list of actions or submenus for the menu to be created with. Same as `Menu.actions`.
+**`actions`** : **default list\<[MenuItem](link needed), [Menu](#menu)\>** - A list of actions or submenus for the menu to be created with. Same as `Menu.actions`.
 
-**[All inherited properties on doc.qt.io](https://doc.qt.io/qt-6/qml-qtquick-item-members.html)**
+**[All inherited members on doc.qt.io](https://doc.qt.io/qt-6/qml-qtquick-item-members.html)**
 
 ### Examples
 
@@ -103,15 +111,15 @@ A popup menu which shows a list of actions or submenus, such as with the common 
 
 ### Properties
 
-**`actions`** *(default list\<[MenuItem](link needed), [Menu](#menu)]\>)* - A list of actions or submenus for the menu to be created with.
+**`actions`** : **default list\<[MenuItem](link needed), [Menu](#menu)\>** - A list of actions or submenus for the menu to be created with.
 
-**`list`** *([List](link needed))* - An alias to the list view containing the menu's items.
+**`list`** : **[List](link needed)** - An alias to the list view containing the menu's items.
 
-**`showDivider`** *(bool)* - Whether or not to show a divider above this item in the parent menu, if it is a submenu. Ignore for root menus. False by default.
+**`showDivider`** : **bool** - Whether or not to show a divider above this item in the parent menu, if it is a submenu. Ignore for root menus. False by default.
 
-**`title`** *(string)* - The menu's name. Required for sub-menus, ignore for root menus. Shows as the text of the list item in the parent menu, if it is a submenu.
+**`title`** : **string** - The menu's name. Required for sub-menus, ignore for root menus. Shows as the text of the list item in the parent menu, if it is a submenu.
 
-**[All inherited properties](link needed)**
+**[All inherited members](link needed)**
 
 ### Examples
 
@@ -162,9 +170,9 @@ An executable action shown as an item in a [Menu](#menu). Displays an icon and/o
 
 ### Properties
 
-**`showDivider`** *(bool)* - Whether or not to show a divider above this item in its menu. False by default.
+**`showDivider`** : **bool** - Whether or not to show a divider above this item in its menu. False by default.
 
-**[All inherited properties on doc.qt.io](https://doc.qt.io/qt-6/qml-qtquick-controls2-action-members.html)**
+**[All inherited members on doc.qt.io](https://doc.qt.io/qt-6/qml-qtquick-controls2-action-members.html)**
 
 ### Examples
 
@@ -216,9 +224,9 @@ A smaller, round, simpler variant of [Button](#button). Doesn't have elevation e
 
 ### Properties
 
-**`dark`** *(bool)* - whether the button's background color is light or dark.
+**`dark`** : **bool** - whether the button's background color is light or dark.
 
-**[All inherited properties on doc.qt.io](https://doc.qt.io/qt-6/qml-qtquick-controls2-abstractbutton-members.html)**
+**[All inherited members on doc.qt.io](https://doc.qt.io/qt-6/qml-qtquick-controls2-abstractbutton-members.html)**
 
 ### Examples
 
@@ -239,4 +247,3 @@ B.SmallIconButton {
     }
 }
 ```
-

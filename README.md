@@ -1,3 +1,3 @@
-# bon-ui-qt
+# bonUI-QT
 
 [See documentation](/src/imports/bon/README.md)
