@@ -17,3 +17,7 @@
 [/navigation/](/src/imports/bon/navigation/README.md) - Controls for page navigation, such as the navigation rail or scrollbar.
 
 [/text/](/src/imports/bon/text/README.md) - QML types for loading fonts and icons, and for different text styles like heading, body, label, etc.
+
+---
+
+[/core/Theme.qml](/src/imports/bon/core/THEME.md) - A singleton providing constants for theme and appearance values such as colors, fonts, animations, and other values.

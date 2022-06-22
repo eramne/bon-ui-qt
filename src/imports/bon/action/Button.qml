@@ -22,7 +22,7 @@ T.Button {
     opacity: !root.enabled ? B.Theme.disabled_opacity : 1
     layer.enabled: !root.enabled
 
-    property int order: Button.Order.Primary // 1 = primary, 2 = secondary, 3 or anything else = tertiary
+    property int order: Button.Order.Primary
     property bool enableElevationEffects: true
 
     enum Order {

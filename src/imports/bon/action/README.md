@@ -26,9 +26,9 @@ Used to execute an action. Can have a label, an icon, or both. When used with on
 
 ### Properties
 
-**`enableElevationEffects`** : **bool** - whether or not to show a shadow under the button. True by default.
+**`enableElevationEffects`** : **[bool](https://doc.qt.io/qt-6/qml-bool.html)** - whether or not to show a shadow under the button. `true` by default.
 
-**`order`** : **Button.Order** - Changes the appearance of the button by level of importance. See the `Button.Order` enum. `Button.Order.Primary` by default.
+**`order`** : **[Button.Order](#enums)** - Changes the appearance of the button by level of importance. See the `Button.Order` enum. `Button.Order.Primary` by default.
 
 ### Enums
 
@@ -63,6 +63,8 @@ B.Button {
 }
 ```
 
+---
+
 ## ContextMenu
 
 Inherits: [QtQuick.Item](https://doc.qt.io/qt-6/qml-qtquick-item.html)
@@ -71,7 +73,7 @@ Creates a [Menu](#menu) that will open on a right-click inside the item's dimens
 
 ### Properties
 
-**`actions`** : **default list\<[MenuItem](link needed), [Menu](#menu)\>** - A list of actions or submenus for the menu to be created with. Same as `Menu.actions`.
+**`actions`** : **default [list](https://doc.qt.io/qt-6/qml-list.html)\<[MenuItem](#menuitem), [Menu](#menu)\>** - A list of actions or submenus for the menu to be created with. Same as `Menu.actions`.
 
 **[All inherited members on doc.qt.io](https://doc.qt.io/qt-6/qml-qtquick-item-members.html)**
 
@@ -103,6 +105,8 @@ B.Pane { //Will show a standard Cut/Copy/Paste menu on right click anywhere in t
 }
 ```
 
+---
+
 ## Menu
 
 Inherits: [B.Dropdown](link needed)
@@ -111,13 +115,13 @@ A popup menu which shows a list of actions or submenus, such as with the common 
 
 ### Properties
 
-**`actions`** : **default list\<[MenuItem](link needed), [Menu](#menu)\>** - A list of actions or submenus for the menu to be created with.
+**`actions`** : **default [list](https://doc.qt.io/qt-6/qml-list.html)\<[MenuItem](#menuitem), [Menu](#menu)\>** - A list of actions or submenus for the menu to be created with.
 
 **`list`** : **[List](link needed)** - An alias to the list view containing the menu's items.
 
-**`showDivider`** : **bool** - Whether or not to show a divider above this item in the parent menu, if it is a submenu. Ignore for root menus. False by default.
+**`showDivider`** : **[bool](https://doc.qt.io/qt-6/qml-bool.html)** - Whether or not to show a divider above this item in the parent menu, if it is a submenu. Ignore for root menus. `false` by default.
 
-**`title`** : **string** - The menu's name. Required for sub-menus, ignore for root menus. Shows as the text of the list item in the parent menu, if it is a submenu.
+**`title`** : **[string](https://doc.qt.io/qt-6/qml-string.html)** - The menu's name. Required for sub-menus, ignore for root menus. Shows as the text of the list item in the parent menu, if it is a submenu.
 
 **[All inherited members](link needed)**
 
@@ -162,6 +166,8 @@ B.Menu {
 }
 ```
 
+---
+
 ## MenuItem
 
 Inherits: [QtQuick.Controls.Action](https://doc.qt.io/qt-6/qml-qtquick-controls2-action.html)
@@ -170,7 +176,7 @@ An executable action shown as an item in a [Menu](#menu). Displays an icon and/o
 
 ### Properties
 
-**`showDivider`** : **bool** - Whether or not to show a divider above this item in its menu. False by default.
+**`showDivider`** : **[bool](https://doc.qt.io/qt-6/qml-bool.html)** - Whether or not to show a divider above this item in its menu. `false` by default.
 
 **[All inherited members on doc.qt.io](https://doc.qt.io/qt-6/qml-qtquick-controls2-action-members.html)**
 
@@ -214,6 +220,8 @@ B.Menu {
 }
 ```
 
+---
+
 ## SmallIconButton
 
 Inherits: [QtQuick.Controls.AbstractButton](https://doc.qt.io/qt-6/qml-qtquick-controls2-abstractbutton.html)
@@ -224,7 +232,7 @@ A smaller, round, simpler variant of [Button](#button). Doesn't have elevation e
 
 ### Properties
 
-**`dark`** : **bool** - whether the button's background color is light or dark.
+**`dark`** : **[bool](https://doc.qt.io/qt-6/qml-bool.html)** - Whether the button's background color is light (if `false`) or dark (if `true`). `false` (light) by default.
 
 **[All inherited members on doc.qt.io](https://doc.qt.io/qt-6/qml-qtquick-controls2-abstractbutton-members.html)**
 

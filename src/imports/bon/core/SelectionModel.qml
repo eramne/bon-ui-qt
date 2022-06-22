@@ -5,11 +5,11 @@ QtObject {
     id: root
 
     enum SelectionType {
-        Clear, //clears the entire selection (e.g. clicking on the background to deselect everything)
-        One, //clears selection and selects the specified index (e.g. clicking without modifiers)
-        Range, //clears selection and selects everything from the current index until the specified index (e.g. shift clicking)
-        AddRange, //adds everything from the current index until the specified index to the selection (e.g. shift+ctrl clicking)
-        Toggle //toggles the selection at the current index (e.g. control-clicking)
+        Clear,
+        One,
+        Range,
+        AddRange,
+        Toggle
     }
 
     property var selectedIndices: []

@@ -19,9 +19,9 @@ QtObject {
         property color error: "#C17E86"
         property color warning: "#D9B390"
         property color info: "#6C92DC"
-        property color notify: error
+        property color notify: "#C17E86"
         property color selection_background: accent_1
-        property color selection_text: background
+        property color selection_text: highlight_1
         property color elevation: "#986578"
         property color modal: Qt.alpha("#C17E86",0.3)
 
@@ -43,7 +43,7 @@ QtObject {
                     property color dark_hover: "#D1B4B4"
                 }
 
-                property QtObject caption: QtObject {
+                property QtObject label: QtObject {
                     property color light: "#369AA0"
                     property color light_hover: "#2A7C87"
                     property color dark: "#D1B4B4"
@@ -132,7 +132,7 @@ QtObject {
             'family': 'Quicksand',
             'pixelSize': 18,
             'weight': Font.Bold,
-            'letterSpacing': -0.5,
+            'letterSpacing': -0.5
         })
     }
 
@@ -145,11 +145,6 @@ QtObject {
         property QtObject progressStep: QtObject {
             property int type: Easing.Linear
             property real duration: 800
-        }
-
-        property QtObject progressRotate: QtObject {
-            property int type: Easing.Linear
-            property real duration: 100
         }
 
         property QtObject progressColor: QtObject {

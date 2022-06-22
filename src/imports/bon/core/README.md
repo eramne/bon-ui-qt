@@ -6,6 +6,10 @@ QML types:
 
 [App](#app)
 
+[SelectionModel](#selectionmodel)
+
+[Theme](#theme)
+
 ---
 
 ## App
@@ -18,38 +22,36 @@ The main window of the app, containing the navigation bar, pages, popups, and ev
 
 **`currentPage`** : **[Page](link needed)** - Contains the currently visible & active page. Set to the `homepage` by default, and can be set to another page for that page to be loaded and shown. This property is also used when an item in the `navRail` is clicked in order to load and show its associated page.
 
-**`dim`** : **bool** - Whether to blur & dim the app window. Used by modal popups. False by default.
+**`dim`** : **[bool](https://doc.qt.io/qt-6/qml-bool.html)** - Whether to blur & dim the app window. Used by modal popups. `false` by default.
 
 **`homepage`** : **[Page](link needed)** - The main page that will be shown first when the app is started. Is accessible by the home button when the `navRail` is visible. Contains an empty item by default.
 
 **`navRail`** : **[NavigationRail](link needed)** - The window's main navigation sidebar/rail, created automatically when `pages` is set. If `pages` is empty, it will not be visible.
 
-**`pages`** : **list\<[Page](link needed)\>** - A list of the app's main [Pages](link needed) that will show as tabs in the `navRail` to be navigated between and used.
+**`pages`** : **[list](https://doc.qt.io/qt-6/qml-list.html)\<[Page](link needed)\>** - A list of the app's main [Pages](link needed) that will show as tabs in the `navRail` to be navigated between and used.
 
 **[All inherited members on doc.qt.io](https://doc.qt.io/qt-6/qml-qtquick-controls2-applicationwindow-members.html)**
 
 ### Examples
 
 ```qml
-import QtQuick
-import QtQuick.Templates as T
-import QtQuick.Layouts
-import bon as B
+import QtQuick;
+import QtQuick.Templates as T;
+import QtQuick.Layouts;
+import bon as B;
 
 B.App {
-    width: 800
-    height: 600
-    visible: true
-    title: qsTr("bonUI demo application")
+    width: 800;
+    height: 600;
+    visible: true;
+    title: qsTr("bonUI demo application");
 
     homepage: B.Page {
-
-        //icon.name: "article"
         contents: Component {
             Item {
                 B.HeadingText {
-                    anchors.centerIn: parent
-                    text: "Homepage"
+                    anchors.centerIn: parent;
+                    text: "Homepage";
                 }
             }
         }
@@ -57,15 +59,15 @@ B.App {
 
     pages: [
         B.Page {
-            icon.name: "toggle_on"
-            label: "Controls"
+            icon.name: "toggle_on";
+            label: "Controls";
             contents: Component {
                 B.OverflowArea {
                     /* ... */
                 }
             }
         }
-    ]
+    ];
 }
 ```
 
@@ -75,13 +77,15 @@ import QtQuick.Templates as T;
 import bon as B;
 
 T.Popup {
-    id: root
+    id: root;
 
     onVisibleChanged: {
-        B.App.window.dim = root.visible
+        B.App.window.dim = root.visible;
     }
 }
 ```
+
+---
 
 ## SelectionModel
 
@@ -91,15 +95,15 @@ A data model providing methods for selections with different modes/actions, like
 
 ### Properties
 
-**`currentIndex`** : **int** - The currently active index. (Should be used by a list view to refer to or set the active element.)
+**`currentIndex`** : **[int](https://doc.qt.io/qt-6/qml-int.html)** - The currently active index. (Should be used by a list view to refer to or set the active element.)
 
-**`selectedIndices`** : **Array\<int\>** - An array of all the indices that are selected. (Can be used by a list view to alter the appearance of highlighted items, although `isSelected` would be preferable.)
+**`selectedIndices`** : **[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)\<[int](https://doc.qt.io/qt-6/qml-int.html)\>** - An array of all the indices that are selected. (Can be used by a list view to alter the appearance of highlighted items, although `isSelected` would be preferable.)
 
 ### Functions
 
-**bool** **`isSelected`**(*int* `index`) - returns whether or not the specified `index` is included in `selectedIndices` or not. (Should be used by a list view to alter the appearance of highlighted items.)
+**[bool](https://doc.qt.io/qt-6/qml-bool.html)** **`isSelected`**(**[int](https://doc.qt.io/qt-6/qml-int.html)** `index`) - returns whether or not the specified `index` is included in `selectedIndices` or not. (Should be used by a list view to alter the appearance of highlighted items.)
 
-**`select`**(*int* `index`, *SelectionModel.SelectionType* `mode` = SelectionModel.SelectionType.One) - Adds or removes items from `selectedIndices` depending on the index and action/mode specified. The behavior of each action is described in `SelectionModel.SelectionType`.
+**`select`**(**[int](https://doc.qt.io/qt-6/qml-int.html)** `index`, **[SelectionModel.SelectionType](#enums)** `mode` = *SelectionModel.SelectionType.One*) - Adds or removes items from `selectedIndices` depending on the index and action/mode specified. The behavior of each action is described in `SelectionModel.SelectionType`.
 
 ### Enums
 
@@ -115,37 +119,94 @@ A data model providing methods for selections with different modes/actions, like
 
 ### Examples
 
-```
-import QtQuick
-import QtQuick.Templates as T
-import bon as B
+```qml
+import QtQuick;
+import QtQuick.Templates as T;
+import bon as B;
 
 ListView {
     property bool shiftDown: /* ... */
     property bool ctrlDown: /* ... */
 
     B.SelectionModel {
-        id: selectionModel
+        id: selectionModel;
     }
 
     delegate: T.ItemDelegate {
-        id: listItem
-        required property int index
+        id: listItem;
+        required property int index;
 
         onReleased: {
             if (!root.ctrlDown && !root.shiftDown) {
-                selectionModel.select(index)
+                selectionModel.select(index);
             } else if (!root.ctrlDown && root.shiftDown) {
-                selectionModel.select(index, B.SelectionModel.SelectionType.Range)
+                selectionModel.select(index, B.SelectionModel.SelectionType.Range);
             } else if (root.ctrlDown && !root.shiftDown) {
-                selectionModel.select(index, B.SelectionModel.SelectionType.Toggle)
+                selectionModel.select(index, B.SelectionModel.SelectionType.Toggle);
             } else if (root.ctrlDown && root.shiftDown) {
-                selectionModel.select(index, B.SelectionModel.SelectionType.AddRange)
+                selectionModel.select(index, B.SelectionModel.SelectionType.AddRange);
             }
         }
 
         background: Rectangle {
-            color: selectionModel.isSelected(listItem.index) ? B.Theme.palette.background_2 : B.Theme.palette.background
+            color: selectionModel.isSelected(listItem.index) ? B.Theme.palette.background_2 : B.Theme.palette.background;
+        }
+    }
+}
+```
+
+---
+
+## Theme
+
+Inherits: [QtQuick.QtObject](https://doc.qt.io/qt-6/qml-qtqml-qtobject.html)
+
+A singleton providing constants for theme and appearance values such as colors, fonts, animations, and other values.
+
+### Properties
+
+> **[Full Theme.qml member documentation](/src/imports/bon/core/THEME.md)**
+
+. . .
+
+**[All inherited members on doc.qt.io](https://doc.qt.io/qt-6/qml-qtqml-qtobject.html)**
+
+### Examples
+
+```qml
+import QtQuick;
+import QtQuick.Templates as T;
+import bon as B;
+
+T.Button {
+    id: root;
+    property int order: B.Button.Order.Primary;
+
+    background: Rectangle {
+        anchors.fill: root;
+        color: order === Button.Order.Primary ? (
+                   root.down ? B.Theme.palette.accent_1 : B.Theme.palette.accent
+               ) : (
+                   root.down ? B.Theme.palette.background_2 : (
+                       root.hovered ? B.Theme.palette.background_1 : B.Theme.palette.background
+                   )
+               );
+        radius: Math.max(width, height)/2;
+        border.color: B.Theme.palette.background_1;
+        border.width: order === Button.Order.Secondary && !root.down && !root.hovered ? 2 : 0;
+
+        Behavior on border.width {
+            NumberAnimation {
+                duration: B.Theme.animations.basic.duration;
+                easing.type: B.Theme.animations.basic.type;
+            }
+        }
+
+        Behavior on color {
+            ColorAnimation {
+                duration: B.Theme.animations.basic.duration;
+                easing.type: B.Theme.animations.basic.type;
+            }
         }
     }
 }
