@@ -14,7 +14,11 @@ T.Popup {
 
     required property string text
     property B.Button action
-    property B.Iconprop icon: B.Iconprop {}
+    property B.Iconprop icon: B.Iconprop {
+        name: variant === Toast.Variant.Info ? "info" :
+                  variant === Toast.Variant.Success ? "check_circle" :
+                  variant === Toast.Variant.Error ? "error" : "blank"
+    }
     property int variant: Toast.Variant.Neutral
     property bool _shown: false
     property bool _awaiting: false

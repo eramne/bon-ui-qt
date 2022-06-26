@@ -28,7 +28,7 @@ Used to execute an action. Can have a label, an icon, or both. When used with on
 
 **`enableElevationEffects`** : **[bool](https://doc.qt.io/qt-6/qml-bool.html)** - whether or not to show a shadow under the button. `true` by default.
 
-**`order`** : **[Button.Order](#enums)** - Changes the appearance of the button by level of importance. See the `Button.Order` enum. `Button.Order.Primary` by default.
+**`order`** : **Button.Order** - Changes the appearance of the button by level of importance. See the `Button.Order` enum. `Button.Order.Primary` by default.
 
 ### Enums
 
@@ -109,7 +109,7 @@ B.Pane { //Will show a standard Cut/Copy/Paste menu on right click anywhere in t
 
 ## Menu
 
-Inherits: [B.Dropdown](link needed)
+Inherits: [bon.Dropdown](link needed)
 
 A popup menu which shows a list of actions or submenus, such as with the common right-click menu or in a desktop top menu bar.
 

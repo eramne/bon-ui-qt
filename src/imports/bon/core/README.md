@@ -103,7 +103,7 @@ A data model providing methods for selections with different modes/actions, like
 
 **[bool](https://doc.qt.io/qt-6/qml-bool.html)** **`isSelected`**(**[int](https://doc.qt.io/qt-6/qml-int.html)** `index`) - returns whether or not the specified `index` is included in `selectedIndices` or not. (Should be used by a list view to alter the appearance of highlighted items.)
 
-**`select`**(**[int](https://doc.qt.io/qt-6/qml-int.html)** `index`, **[SelectionModel.SelectionType](#enums)** `mode` = *SelectionModel.SelectionType.One*) - Adds or removes items from `selectedIndices` depending on the index and action/mode specified. The behavior of each action is described in `SelectionModel.SelectionType`.
+**`select`**(**[int](https://doc.qt.io/qt-6/qml-int.html)** `index`, **SelectionModel.SelectionType** `mode` = *SelectionModel.SelectionType.One*) - Adds or removes items from `selectedIndices` depending on the index and action/mode specified. The behavior of each action is described in `SelectionModel.SelectionType`.
 
 ### Enums
 

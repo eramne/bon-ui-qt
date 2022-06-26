@@ -6,7 +6,6 @@ QML types:
 
 [Elevation](#elevation)
 
-
 ---
 
 ## Elevation
@@ -48,5 +47,3 @@ T.Pane {
     }
 }
 ```
-
----

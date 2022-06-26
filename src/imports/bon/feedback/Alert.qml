@@ -13,8 +13,12 @@ B.Pane {
     required property string title
     required property string description
     property list<B.Button> actions
-    //property string icon: ""
-    property B.Iconprop icon: B.Iconprop {}
+    property B.Iconprop icon: B.Iconprop {
+        name: variant === Alert.Variant.Info ? "info" :
+                  variant === Alert.Variant.Success ? "check_circle" :
+                  variant === Alert.Variant.Warning ? "warning" :
+                  variant === Alert.Variant.Error ? "error" : "blank"
+    }
 
     property int variant: Alert.Variant.Neutral
 

@@ -163,17 +163,6 @@ B.App {
                             value: 0
                             indeterminate: true
                             state: B.ProgressBar.State.Running
-                            Timer {
-                                interval: 500;
-                                running: true;
-                                repeat: true
-                                onTriggered: function () {
-                                    parent.value += Math.random()/5
-                                    if (parent.value >= 1) {
-                                        parent.value = 0;
-                                    }
-                                }
-                            }
                         }
 
                         B.ProgressCircle {
@@ -1524,15 +1513,13 @@ B.App {
                         }
 
                         B.Alert {
-                            icon.name: "error"
-                            title: "Couldn't sign in"
-                            description: "Please check your internet connection and try again."
+                            title: "Sign in"
+                            description: "Enter your email address and password."
                             Component.onCompleted: open()
                         }
 
                         B.Alert {
                             id: alert1
-                            icon.name: "error"
                             title: "Couldn't sign in"
                             description: "Please check your internet connection and try again."
                             variant: B.Alert.Variant.Error
@@ -1553,7 +1540,6 @@ B.App {
                         }
 
                         B.Alert {
-                            icon.name: "warning"
                             title: "Your subscription is about to expire"
                             description: "Please renew your subscription or download your data."
                             variant: B.Alert.Variant.Warning
@@ -1561,7 +1547,6 @@ B.App {
                         }
 
                         B.Alert {
-                            icon.name: "check_circle"
                             title: "Successfully registered"
                             description: "Welcome to <site>"
                             variant: B.Alert.Variant.Success
@@ -1569,7 +1554,6 @@ B.App {
                         }
 
                         B.Alert {
-                            icon.name: "info"
                             title: "Update available"
                             description: "The update will be installed on the next launch."
                             variant: B.Alert.Variant.Info
