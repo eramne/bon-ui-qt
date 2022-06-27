@@ -10,7 +10,13 @@ T.RadioButton {
 
     property bool mixed: false
     hoverEnabled: enabled
-    property int effectiveState: mixed ? -1 : root.checked //0 = off, 1 = on, -1 = mixed
+    property int effectiveState: mixed ? RadioButton.State.Mixed : (root.checked ? RadioButton.State.On : RadioButton.State.Off)
+
+    enum State {
+        Off,
+        On,
+        Mixed
+    }
 
     onClicked: function () {
         mixed = false;
@@ -25,7 +31,7 @@ T.RadioButton {
         anchors.fill: indicator
         radius: indicator.radius
         elevation: root.enabled ? (
-                       root.effectiveState === 0 ? (
+                       root.effectiveState === RadioButton.State.Off ? (
                            !root.down ? 1 : 0
                        ) : (
                            !root.down ? 2 : 1
@@ -42,9 +48,9 @@ T.RadioButton {
         y: root.topPadding + (root.availableHeight - height) / 2
 
         radius: Math.max(width, height)
-        color: root.effectiveState === 0 ? (
+        color: root.effectiveState === RadioButton.State.Off ? (
                    root.down ? B.Theme.palette.background_2 : B.Theme.palette.background_1
-               ) : root.effectiveState === 1  ? (
+               ) : root.effectiveState === RadioButton.State.On  ? (
                    root.down ? B.Theme.palette.accent_1 : B.Theme.palette.accent
                ) : (
                    root.down ? B.Theme.palette.accent : B.Theme.palette.accent_1
@@ -61,20 +67,20 @@ T.RadioButton {
             id: icon
             x: (parent.width - width) / 2
             y: (parent.height - height) / 2
-            width: root.effectiveState === 1 && !root.hovered && !root.down ? 8
-                       : (root.effectiveState === -1 && (root.hovered || root.down) ? 8
-                       : (root.effectiveState === -1 ? 12
-                       : (root.effectiveState === 0 && !root.hovered && !root.down) ? 16 : 12)
+            width: root.effectiveState === RadioButton.State.On && !root.hovered && !root.down ? 8
+                       : (root.effectiveState === RadioButton.State.Mixed && (root.hovered || root.down) ? 8
+                       : (root.effectiveState === RadioButton.State.Mixed ? 12
+                       : (root.effectiveState === RadioButton.State.Off && !root.hovered && !root.down) ? 16 : 12)
                    )
-            height: root.effectiveState === 1 && !root.hovered && !root.down ? 8
-                        : (root.effectiveState === -1 && (root.hovered || root.down) ? 8
-                        : (root.effectiveState === -1 ? 4
-                        : (root.effectiveState === 0 && !root.hovered && !root.down) ? 16 : 12)
+            height: root.effectiveState === RadioButton.State.On && !root.hovered && !root.down ? 8
+                        : (root.effectiveState === RadioButton.State.Mixed && (root.hovered || root.down) ? 8
+                        : (root.effectiveState === RadioButton.State.Mixed ? 4
+                        : (root.effectiveState === RadioButton.State.Off && !root.hovered && !root.down) ? 16 : 12)
                     )
             radius: 8
-            color: (root.effectiveState === 1 || root.effectiveState === -1) && (!root.hovered && !root.down) ? (
+            color: (root.effectiveState === RadioButton.State.On || root.effectiveState === RadioButton.State.Mixed) && (!root.hovered && !root.down) ? (
                        B.Theme.palette.highlight
-                   ) : root.effectiveState === -1 || (root.effectiveState === 1 && (!root.hovered && !root.down)) ? (
+                   ) : root.effectiveState === RadioButton.State.Mixed || (root.effectiveState === RadioButton.State.On && (!root.hovered && !root.down)) ? (
                        B.Theme.palette.highlight_1
                    ) : B.Theme.palette.background
 

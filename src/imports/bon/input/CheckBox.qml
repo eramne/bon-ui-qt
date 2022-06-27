@@ -11,14 +11,20 @@ T.CheckBox {
 
     property bool mixed: false
     hoverEnabled: enabled
-    property int effectiveState: mixed ? -1 : root.checked //0 = off, 1 = on, -1 = mixed
+    property int effectiveState: mixed ? CheckBox.State.Mixed : (root.checked ? CheckBox.State.On : CheckBox.State.Off)
+
+    enum State {
+        Off,
+        On,
+        Mixed
+    }
 
     onClicked: function () {
         mixed = false;
     }
-    property color _iconColor: (root.effectiveState === 1 || root.effectiveState === -1) && (!root.hovered && !root.down) ? (
+    property color _iconColor: (root.effectiveState === CheckBox.State.On || root.effectiveState === CheckBox.State.Mixed) && (!root.hovered && !root.down) ? (
                                     B.Theme.palette.highlight
-                                ) : (root.effectiveState === 1 || root.effectiveState === -1) ? (
+                                ) : (root.effectiveState === CheckBox.State.On || root.effectiveState === CheckBox.State.Mixed) ? (
                                     B.Theme.palette.highlight_1
                                 ) : (!root.hovered && !root.down) ? B.Theme.palette.background : (
                                     root.down ? B.Theme.palette.background_2 : B.Theme.palette.background_1
@@ -34,7 +40,7 @@ T.CheckBox {
         anchors.fill: indicator
         radius: indicator.radius
         elevation: root.enabled ? (
-                       root.effectiveState === 0 ? (
+                       root.effectiveState === CheckBox.State.Off ? (
                            !root.down ? 1 : 0
                        ) : (
                            !root.down ? 2 : 1
@@ -51,16 +57,16 @@ T.CheckBox {
         y: root.topPadding + (root.availableHeight - height) / 2
 
         radius: 4
-        color: root.effectiveState === 0 ? (
+        color: root.effectiveState === CheckBox.State.Off ? (
                    B.Theme.palette.background
-               ) : root.effectiveState === 1  ? (
+               ) : root.effectiveState === CheckBox.State.On ? (
                    root.down ? B.Theme.palette.accent_1 : B.Theme.palette.accent
                ) : (
                    root.down ? B.Theme.palette.accent : B.Theme.palette.accent_1
                )
 
-        border.width: root.effectiveState === 0 ? 2 : 0
-        border.color: root.effectiveState === 0 ? (
+        border.width: root.effectiveState === CheckBox.State.Off ? 2 : 0
+        border.color: root.effectiveState === CheckBox.State.Off ? (
                           root.down ? B.Theme.palette.background_2 : B.Theme.palette.background_1
                       ) : "#00000000"
 
@@ -95,10 +101,10 @@ T.CheckBox {
             ShapePath {
                 id: icon
                 strokeColor: Qt.alpha(root._iconColor,1)
-                strokeWidth: root.effectiveState == 1  ? 3
-                                 : (root.effectiveState === -1 && (root.hovered || root.down) ? 3
-                                 : (root.effectiveState === -1 ? 4
-                                 : (root.effectiveState === 0 && !root.hovered && !root.down) ? 0 : 2)
+                strokeWidth: root.effectiveState === CheckBox.State.On ? 3
+                                 : (root.effectiveState === CheckBox.State.Mixed && (root.hovered || root.down) ? 3
+                                 : (root.effectiveState === CheckBox.State.Mixed ? 4
+                                 : (root.effectiveState === CheckBox.State.Off && !root.hovered && !root.down) ? 0 : 2)
                              )
                 fillColor: "transparent"
                 joinStyle: ShapePath.RoundJoin
