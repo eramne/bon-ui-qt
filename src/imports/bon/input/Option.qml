@@ -23,11 +23,7 @@ T.AbstractButton {
         }
     }
 
-    onClicked: {
-        if (enabled) { toggle() }
-    }
-
-    onDoubleClicked: {
+    onReleased: {
         if (enabled) { toggle() }
     }
 

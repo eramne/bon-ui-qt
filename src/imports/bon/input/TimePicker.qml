@@ -11,8 +11,8 @@ B.Dropdown {
     property bool twentyFourHour: false
     property bool showSeconds: false
 
-    property date time: new Date()
-    property date editTime: time
+    property date currentTime: new Date()
+    property date editTime: currentTime
 
     signal finished
     signal canceled
@@ -22,10 +22,10 @@ B.Dropdown {
     }
 
     onFinished: {
-        time = editTime
+        currentTime = editTime
     }
     onCanceled: {
-        editTime = time
+        editTime = currentTime
         root.close()
     }
 

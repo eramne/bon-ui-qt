@@ -5,11 +5,7 @@ import bon as B
 T.RadioButton {
     id: root
 
-    implicitWidth: indicator.width + leftPadding + rightPadding
-    implicitHeight: indicator.height + topPadding + bottomPadding
-
     property bool mixed: false
-    hoverEnabled: enabled
     property int effectiveState: mixed ? RadioButton.State.Mixed : (root.checked ? RadioButton.State.On : RadioButton.State.Off)
 
     enum State {
@@ -18,7 +14,11 @@ T.RadioButton {
         Mixed
     }
 
-    onClicked: function () {
+    implicitWidth: indicator.width + leftPadding + rightPadding
+    implicitHeight: indicator.height + topPadding + bottomPadding
+    hoverEnabled: enabled
+
+    onReleased: {
         mixed = false;
     }
 

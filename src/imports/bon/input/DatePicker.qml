@@ -13,12 +13,12 @@ B.Dropdown {
     property int _visibleMonth: now.getMonth()
     property int _visibleYear: now.getFullYear()
 
-    property date date: now
-    property date endDate: date
-    property date selectedDate: date
-    property date selectedEndDate: endDate
-    property date _lastClickedDate: date
-    property bool oneDateSelected: selectedDate.getDate() === selectedEndDate.getDate() && selectedDate.getMonth() === selectedEndDate.getMonth() && selectedDate.getFullYear() === selectedEndDate.getFullYear()
+    property date currentDate: now
+    property date currentEndDate: currentDate
+    property date editDate: currentDate
+    property date editEndDate: currentEndDate
+    property date _lastClickedDate: currentDate
+    property bool oneDateSelected: editDate.getDate() === editEndDate.getDate() && editDate.getMonth() === editEndDate.getMonth() && editDate.getFullYear() === editEndDate.getFullYear()
 
     property bool selectRange: false
 
@@ -26,18 +26,18 @@ B.Dropdown {
     signal canceled
 
     Component.onCompleted: {
-        selectedDate = date
-        selectedEndDate = endDate
+        editDate = currentDate
+        editEndDate = currentEndDate
         root.closed.connect(finished)
     }
 
     onFinished: {
-        date = selectedDate
-        endDate = selectedEndDate
+        currentDate = editDate
+        currentEndDate = editEndDate
     }
     onCanceled: {
-        selectedDate = date
-        selectedEndDate = endDate
+        editDate = currentDate
+        editEndDate = currentEndDate
         root.close()
     }
 
@@ -169,8 +169,8 @@ B.Dropdown {
                             tmpDate.setDate((index + 1) - (7+tmpDate.getDay()-Qt.locale().firstDayOfWeek)%7)
                             return tmpDate
                         }
-                        property bool isSelectedDate: root.selectedDate.getDate() === date.getDate() && root.selectedDate.getMonth() === date.getMonth() && root.selectedDate.getFullYear() === date.getFullYear()
-                        property bool isSelectedEndDate: root.selectedEndDate.getDate() === date.getDate() && root.selectedEndDate.getMonth() === date.getMonth() && root.selectedEndDate.getFullYear() === date.getFullYear()
+                        property bool isEditDate: root.editDate.getDate() === date.getDate() && root.editDate.getMonth() === date.getMonth() && root.editDate.getFullYear() === date.getFullYear()
+                        property bool isEditEndDate: root.editEndDate.getDate() === date.getDate() && root.editEndDate.getMonth() === date.getMonth() && root.editEndDate.getFullYear() === date.getFullYear()
                         property bool isAtLeft: date.getDay() === Qt.locale().firstDayOfWeek
                         property bool isAtRight: date.getDay() === (Qt.locale().firstDayOfWeek + 6)%7
 
@@ -179,32 +179,32 @@ B.Dropdown {
                         enabled: date.getMonth() === root._visibleMonth && date.getFullYear() === root._visibleYear
 
                         checkable: false
-                        checked: isSelectedDate || isSelectedEndDate
-                        rangeSelected: root.selectRange && date.getTime() > root.selectedDate.getTime() && date.getTime() < root.selectedEndDate.getTime()
+                        checked: isEditDate || isEditEndDate
+                        rangeSelected: root.selectRange && date.getTime() > root.editDate.getTime() && date.getTime() < root.editEndDate.getTime()
 
                         Rectangle {
                             anchors.fill: parent
                             color: B.Theme.palette.accent_1
                             visible: (parent.rangeSelected || (
-                                         (parent.isSelectedDate || parent.isSelectedEndDate) && !root.oneDateSelected
+                                         (parent.isEditDate || parent.isEditEndDate) && !root.oneDateSelected
                                      )) && parent.enabled
                             z: parent.parent.z-1
-                            anchors.leftMargin: parent.isSelectedDate ? parent.width/2 : -buttonGrid.columnSpacing - (parent.isAtLeft ? overflowArea.leftMargin : 0)
-                            anchors.rightMargin: parent.isSelectedEndDate ? parent.width/2 : -buttonGrid.columnSpacing  - (parent.isAtRight ? overflowArea.leftMargin : 0)
+                            anchors.leftMargin: parent.isEditDate ? parent.width/2 : -buttonGrid.columnSpacing - (parent.isAtLeft ? overflowArea.leftMargin : 0)
+                            anchors.rightMargin: parent.isEditEndDate ? parent.width/2 : -buttonGrid.columnSpacing  - (parent.isAtRight ? overflowArea.leftMargin : 0)
                         }
 
                         onReleased: {
                             if (!root.shiftDown || !root.selectRange) {
-                                root.selectedDate = date
-                                root.selectedEndDate = root.selectedDate
-                                root._lastClickedDate = root.selectedDate
+                                root.editDate = date
+                                root.editEndDate = root.editDate
+                                root._lastClickedDate = root.editDate
                             } else {
                                 if (date.getTime() > root._lastClickedDate.getTime()) {
-                                    root.selectedDate = root._lastClickedDate
-                                    root.selectedEndDate = date
+                                    root.editDate = root._lastClickedDate
+                                    root.editEndDate = date
                                 } else {
-                                    root.selectedDate = date
-                                    root.selectedEndDate = root._lastClickedDate
+                                    root.editDate = date
+                                    root.editEndDate = root._lastClickedDate
                                 }
                             }
                         }
@@ -235,11 +235,11 @@ B.Dropdown {
                                         var pressedDate = parent.date
                                         var hoveredDate = hoveredItem.date
                                         if (hoveredDate.getTime() > pressedDate.getTime()) {
-                                            root.selectedDate = pressedDate
-                                            root.selectedEndDate = hoveredDate
+                                            root.editDate = pressedDate
+                                            root.editEndDate = hoveredDate
                                         } else {
-                                            root.selectedDate = hoveredDate
-                                            root.selectedEndDate = pressedDate
+                                            root.editDate = hoveredDate
+                                            root.editEndDate = pressedDate
                                         }
                                         root._lastClickedDate = pressedDate
                                     }

@@ -9,8 +9,8 @@ B.OverflowArea {
     margins: 0
     showScrollBars: false
 
-    default property list<Item> chips
-    property int variant: Chip.Type.Action
+    default property list<B.Chip> chips
+    property int variant: Chip.Variant.Action
     property bool overflow: false
     property bool exclusive: false
 

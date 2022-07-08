@@ -12,7 +12,6 @@ B.TextInputBase {
     property real stepSize: 1
     property bool wrap: false
     property bool editable: true
-    property string displayText: field.displayText
 
     field.readOnly: !editable
 

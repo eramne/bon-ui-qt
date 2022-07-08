@@ -7,24 +7,14 @@ T.Button {
     id: root
 
     leftPadding: 10
-    rightPadding: root.variant === Chip.Type.Input ? 5 : 10
+    rightPadding: root.variant === Chip.Variant.Input ? 5 : 10
 
-    property int variant: set?.variant ?? Chip.Type.Action
-    checkable: root.variant === Chip.Type.Choice
+    property int variant: set?.variant ?? Chip.Variant.Action
+    checkable: root.variant === Chip.Variant.Choice
     hoverEnabled: enabled
-    autoExclusive: set?.exclusive ?? false
+    autoExclusive: set?.exclusive ?? false;
 
-    property real _textOpacity: root.down || root.hovered || !root.enabled ? B.Theme.highlight_hover_opacity : 1
-
-    property var set: parent?.set ?? undefined
-
-    width: contentItem.implicitWidth + leftPadding + rightPadding
-    height: 34
-    opacity: !root.enabled ? B.Theme.disabled_opacity : 1
-    layer.enabled: !root.enabled
-    icon.name: root.variant === Chip.Type.Choice ? (checked ? "check" : "") : ""
-
-    enum Type {
+    enum Variant {
         Action,
         Choice,
         Input
@@ -36,6 +26,16 @@ T.Button {
         visible = false;
     }
 
+    property real _textOpacity: root.down || root.hovered || !root.enabled ? B.Theme.highlight_hover_opacity : 1
+
+    property var set: parent?.set ?? undefined
+
+    width: contentItem.implicitWidth + leftPadding + rightPadding
+    height: 34
+    opacity: !root.enabled ? B.Theme.disabled_opacity : 1
+    layer.enabled: !root.enabled
+    icon.name: root.variant === Chip.Variant.Choice ? (checked ? "check" : "") : ""
+
     Behavior on _textOpacity {
         NumberAnimation {
             duration: B.Theme.animations.basic.duration
@@ -44,7 +44,7 @@ T.Button {
     }
 
     Behavior on width {
-        enabled: root.variant === Chip.Type.Choice
+        enabled: root.variant === Chip.Variant.Choice
         NumberAnimation {
             duration: B.Theme.animations.basic.duration
             easing.type: B.Theme.animations.basic.type
@@ -92,14 +92,14 @@ T.Button {
         spacing: 5
         height: root.height
         width: Layout.minimumWidth
-        clip: root.variant === Chip.Type.Choice
+        clip: root.variant === Chip.Variant.Choice
 
         B.Icon {
             id: icon
             Layout.alignment: Qt.AlignCenter
             dark: root.checked
-            visible: root.variant === Chip.Type.Choice ? (root.checked ? true : false) : isValid
-            name: root.variant === Chip.Type.Choice ? "check" : root.icon.name
+            visible: root.variant === Chip.Variant.Choice ? (root.checked ? true : false) : isValid
+            name: root.variant === Chip.Variant.Choice ? "check" : root.icon.name
             opacity: root._textOpacity
         }
 
@@ -111,7 +111,7 @@ T.Button {
         }
 
         B.SmallIconButton {
-            visible: root.variant === Chip.Type.Input
+            visible: root.variant === Chip.Variant.Input
             icon.name: "cancel"
             Component.onCompleted: {
                 onClicked.connect(root.closed)

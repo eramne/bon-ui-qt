@@ -19,7 +19,7 @@ Item {
         }
         return index;
     }
-    property int pressed: {
+    property bool pressed: {
         for (var i = 0; i < group.buttons.length; i++) {
             var button = group.buttons[i];
             if (button.pressed) {
@@ -28,7 +28,7 @@ Item {
         }
         return false;
     }
-    property int hovered: {
+    property bool hovered: {
         for (var i = 0; i < group.buttons.length; i++) {
             var button = group.buttons[i];
             if (button.hovered) {

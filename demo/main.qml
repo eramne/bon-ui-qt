@@ -434,53 +434,53 @@ B.App {
                         }
 
                         B.Chip {
-                            variant: B.Chip.Type.Input
+                            variant: B.Chip.Variant.Input
                             text: "Favorites"
                         }
 
                         B.Chip {
-                            variant: B.Chip.Type.Input
+                            variant: B.Chip.Variant.Input
                             text: "Nature"
                             enabled: false
                         }
 
                         B.Chip {
-                            variant: B.Chip.Type.Input
+                            variant: B.Chip.Variant.Input
                             text: "Mountains"
                             icon.name: "terrain"
                         }
 
                         B.Chip {
-                            variant: B.Chip.Type.Input
+                            variant: B.Chip.Variant.Input
                             text: "Portraits"
                             enabled: false
                             icon.name: "portrait"
                         }
 
                         B.Chip {
-                            variant: B.Chip.Type.Choice
+                            variant: B.Chip.Variant.Choice
                             text: "Option 1"
                         }
 
                         B.Chip {
-                            variant: B.Chip.Type.Choice
+                            variant: B.Chip.Variant.Choice
                             text: "Option 2"
                             enabled: false
                         }
 
                         B.Chip {
-                            variant: B.Chip.Type.Choice
+                            variant: B.Chip.Variant.Choice
                             text: "Option 3"
                         }
 
                         B.Chip {
-                            variant: B.Chip.Type.Choice
+                            variant: B.Chip.Variant.Choice
                             text: "Option 4"
                             enabled: false
                         }
 
                         B.Chip {
-                            variant: B.Chip.Type.Action
+                            variant: B.Chip.Variant.Action
                             text: "Action 1"
 
                             onClicked: {
@@ -489,7 +489,7 @@ B.App {
                         }
 
                         B.Chip {
-                            variant: B.Chip.Type.Action
+                            variant: B.Chip.Variant.Action
                             text: "Action 2"
                             enabled: false
 
@@ -499,7 +499,7 @@ B.App {
                         }
 
                         B.Chip {
-                            variant: B.Chip.Type.Action
+                            variant: B.Chip.Variant.Action
                             text: "Action 3"
                             icon.name: "play_arrow"
 
@@ -509,7 +509,7 @@ B.App {
                         }
 
                         B.Chip {
-                            variant: B.Chip.Type.Action
+                            variant: B.Chip.Variant.Action
                             text: "Action 4"
                             enabled: false
                             icon.name: "stop"
@@ -525,7 +525,7 @@ B.App {
                         }
 
                         B.ChipSet {
-                            variant: B.Chip.Type.Action
+                            variant: B.Chip.Variant.Action
                             overflow: false
                             B.Chip {
                                 text: "Run Action 1"
@@ -560,7 +560,7 @@ B.App {
                         }
 
                         B.ChipSet {
-                            variant: B.Chip.Type.Input
+                            variant: B.Chip.Variant.Input
                             overflow: true
                             B.Chip {
                                 text: "John Doe"
@@ -579,7 +579,7 @@ B.App {
                         }
 
                         B.ChipSet {
-                            variant: B.Chip.Type.Choice
+                            variant: B.Chip.Variant.Choice
                             overflow: false
                             exclusive: false
                             B.Chip {
@@ -594,7 +594,7 @@ B.App {
                         }
 
                         B.ChipSet {
-                            variant: B.Chip.Type.Choice
+                            variant: B.Chip.Variant.Choice
                             overflow: false
                             exclusive: true
                             B.Chip {
@@ -659,23 +659,7 @@ B.App {
                         }
 
                         B.TextField {
-                            field.placeholderText: "Enter an amount"
-                            field.validator: DoubleValidator {}
-                            buttonIcon: field.length > 0 ? "cancel" : ""
-                            showStatus: true
-                            onIconClicked: {
-                                field.text = "";
-                            }
-                        }
-
-                        B.TextField {
                             field.placeholderText: "Enter name"
-                            leadingIcon: "face"
-                        }
-
-                        B.TextField {
-                            field.placeholderText: "Enter name"
-                            enabled: false
                             leadingIcon: "face"
                         }
 
@@ -686,7 +670,7 @@ B.App {
 
                         B.TextField {
                             field.placeholderText: "john.doe"
-                            suffixText: "@gmail.com"
+                            suffixText: "@example.com"
                         }
 
                         B.TextField {
@@ -714,7 +698,7 @@ B.App {
 
                         B.TextField {
                             labelText: "Email address*"
-                            field.placeholderText: "jon.doe@gmail.com"
+                            field.placeholderText: "jon.doe@example.com"
                             helpText: "*Required"
                         }
 

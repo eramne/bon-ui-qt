@@ -10,7 +10,7 @@ QML types:
 
 ## Elevation
 
-Inherits: [QtQuick.Controls.Item](https://doc.qt.io/qt-6/qml-qtquick-item.html)
+Inherits: [QtQuick.Item](https://doc.qt.io/qt-6/qml-qtquick-item.html)
 
 Used to create a shadow under an object, filling a rounded rectangular or circular shape.
 

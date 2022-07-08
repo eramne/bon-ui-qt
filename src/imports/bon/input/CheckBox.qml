@@ -6,11 +6,7 @@ import bon as B
 T.CheckBox {
     id: root
 
-    implicitWidth: indicator.width + leftPadding + rightPadding
-    implicitHeight: indicator.height + topPadding + bottomPadding
-
     property bool mixed: false
-    hoverEnabled: enabled
     property int effectiveState: mixed ? CheckBox.State.Mixed : (root.checked ? CheckBox.State.On : CheckBox.State.Off)
 
     enum State {
@@ -19,9 +15,14 @@ T.CheckBox {
         Mixed
     }
 
-    onClicked: function () {
+    implicitWidth: indicator.width + leftPadding + rightPadding
+    implicitHeight: indicator.height + topPadding + bottomPadding
+    hoverEnabled: enabled
+
+    onReleased: {
         mixed = false;
     }
+
     property color _iconColor: (root.effectiveState === CheckBox.State.On || root.effectiveState === CheckBox.State.Mixed) && (!root.hovered && !root.down) ? (
                                     B.Theme.palette.highlight
                                 ) : (root.effectiveState === CheckBox.State.On || root.effectiveState === CheckBox.State.Mixed) ? (

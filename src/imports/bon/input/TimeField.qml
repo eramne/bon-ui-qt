@@ -9,7 +9,7 @@ B.TextField {
                                                                 timePopup.editTime.toLocaleTimeString(Qt.locale(), "H:mm:ss") )));
     field.readOnly: true
 
-    property alias time: timePopup.time
+    property alias currentTime: timePopup.currentTime
     property alias editTime: timePopup.editTime
     property alias twentyFourHour: timePopup.twentyFourHour
     property alias showSeconds: timePopup.showSeconds

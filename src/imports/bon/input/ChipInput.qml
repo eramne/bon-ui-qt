@@ -40,7 +40,7 @@ Item {
 
         B.ChipSet {
             id: chipset
-            variant: B.Chip.Type.Input
+            variant: B.Chip.Variant.Input
             width: parent.width - parent.padding*2
             overflow: false
         }
@@ -49,7 +49,7 @@ Item {
             id: chipComponent
 
             Chip {
-                variant: B.Chip.Type.Input
+                variant: B.Chip.Variant.Input
 
                 onClosed: {
                     let indexToRemove = root.selection.findIndex((element) => { return element.name === text });

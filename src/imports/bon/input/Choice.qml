@@ -7,7 +7,6 @@ T.Control {
     default property alias options: list.children
     property bool exclusive: false
     property alias group: buttonGroup
-    property T.AbstractButton checkedButton: buttonGroup.checkedButton
     height: list.implicitHeight
     padding: 10
 
