@@ -26,7 +26,6 @@ B.App {
         B.Page {
             icon.name: "toggle_on"
             label: "Controls"
-            notifications: 19
             contents: Component {
                 B.OverflowArea {
                     id: scrollview

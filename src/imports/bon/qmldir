@@ -64,6 +64,8 @@ singleton ListLeading 1.0 layout/ListLeading.qml
 singleton ListTrailing 1.0 layout/ListTrailing.qml
 Pane 1.0 layout/Pane.qml
 Card 1.0 layout/Card.qml
+Icon 1.0 layout/Icon.qml
+Iconprop 1.0 layout/Iconprop.qml
 
 ScrollBar 1.0 navigation/ScrollBar.qml
 TabButton 1.0 navigation/TabButton.qml
@@ -71,8 +73,6 @@ NavigationRail 1.0 navigation/NavigationRail.qml
 Page 1.0 navigation/Page.qml
 
 Fonts 1.0 text/Fonts.qml
-Icon 1.0 text/Icon.qml
-Iconprop 1.0 text/Iconprop.qml
 TextBase 1.0 text/TextBase.qml
 DisplayText 1.0 text/DisplayText.qml
 Display2Text 1.0 text/Display2Text.qml

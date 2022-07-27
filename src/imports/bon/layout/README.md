@@ -12,6 +12,8 @@ QML types:
 
 [Dropdown](#dropdown)
 
+[Icon](#icon)
+
 [List](#list)
 
 [listelement](#listelement)
@@ -241,6 +243,38 @@ B.Dropdown {
             parent.height = height + parent.topPadding + parent.bottomPadding;
         }
     }
+}
+```
+
+---
+
+## Icon
+
+Inherits: [QtQuick.Item](https://doc.qt.io/qt-6/qml-qtquick-item.html)
+
+For a small square icon, specified by an ID and loaded from the Material Icons font.
+
+### Properties
+
+**`size`** : **[real](https://doc.qt.io/qt-6/qml-real.html)** - The width and height of the icon. `24.0` by default.
+
+**`name`** : **[string](https://doc.qt.io/qt-6/qml-string.html)** - The ID of the icon. Setting to `"blank"` will render an empty space. See the [Material Icons](https://www.material.io/icons) page to find the IDs of each icon.
+
+**`dark`** : **[bool](https://doc.qt.io/qt-6/qml-bool.html)** - If the icon is shown over a dark background, and the icon should choose a lighter color contrasting to that. Does not do anything if `color` is set to something other than the default. `false` by default.
+
+**`isValid`** : **[bool](https://doc.qt.io/qt-6/qml-bool.html)** - If the icon's `name` is either "blank" or a valid ID.
+
+**`color`** : **[color](https://doc.qt.io/qt-6/qml-color.html)** - The color of the icon. Set to `B.Theme.palette.text.label` if `dark` is false, otherwise `Theme.palette.text.label_dark` by default.
+
+### Examples
+
+```qml
+import QtQuick;
+import bon as B;
+
+B.Icon {
+    name: "settings";
+    dark: true;
 }
 ```
 

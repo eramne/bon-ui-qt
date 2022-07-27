@@ -8,6 +8,7 @@ Item {
     property bool dark: false
     property color color: !dark ? B.Theme.palette.text.label : B.Theme.palette.text.label_dark
     property bool isValid: name === "blank" || (B.Utils.icons[root.name] ?? "").length > 0
+    visible: isValid
     width: size
     height: size
 
