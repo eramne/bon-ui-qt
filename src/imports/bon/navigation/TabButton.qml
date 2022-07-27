@@ -63,7 +63,7 @@ T.AbstractButton {
                     anchors.baseline: parent.baseline
                     height: 16
                     visible: root.notifications >= 1
-                    dark: true
+                    color: B.Theme.palette.text.notify
                     text: root.notifications > _maxNotificationCount ? _maxNotificationCount + "+" : root.notifications
                 }
             }

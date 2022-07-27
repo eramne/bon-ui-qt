@@ -4,16 +4,18 @@ import QtQuick
 QtObject {
     id: theme
 
+    property bool dark: false
+
     property real disabled_opacity: 0.3
     property real highlight_hover_opacity: 0.8
 
     property QtObject palette: QtObject {
-        property color background: "#FEFBFA"
-        property color background_1: "#E0CDCA"
-        property color background_2: "#D1B4B4"
-        property color accent: "#0A2E45"
-        property color accent_1: "#23607A"
-        property color highlight: "#FFFFFF"
+        property color background: !dark ? "#FEFBFA" : "#0A2E45"
+        property color background_1: !dark ? "#E0CDCA" : "#23607A"
+        property color background_2: !dark ? "#D1B4B4" : "#2A7C87"
+        property color accent: !dark ? "#0A2E45" : "#FEFBFA"
+        property color accent_1: !dark ? "#23607A" : "#E0CDCA"
+        property color highlight: !dark ? "#FFFFFF" : "#0A2E45"
         property color highlight_1: Qt.alpha(highlight, theme.highlight_hover_opacity)
         property color success: "#369AA0"
         property color error: "#C17E86"
@@ -22,32 +24,33 @@ QtObject {
         property color notify: "#C17E86"
         property color selection_background: accent_1
         property color selection_text: highlight_1
-        property color elevation: "#986578"
-        property color modal: Qt.alpha("#C17E86",0.3)
+        property color elevation: !dark ? "#986578" : "#7AC9CE"
+        property color modal: Qt.alpha(!dark ? "#C17E86" : "#369AA0", 0.3)
 
         property QtObject text: QtObject {
-            property color overline: "#986578"
-            property color overline_dark: "#7AC9CE"
-            property color heading: "#0A2E45"
-            property color heading_dark: "#FEFBFA"
-            property color body: "#061732"
-            property color body_dark: "#FFFFFF"
-            property color label: "#23607A"
-            property color label_dark: "#F4EDEB"
+            property color overline: !dark ? "#986578" : "#7AC9CE"
+            property color overline_dark: !dark ? "#7AC9CE" : "#986578"
+            property color heading: !dark ? "#0A2E45" : "#FEFBFA"
+            property color heading_dark: !dark ? "#FEFBFA" : "#0A2E45"
+            property color body: !dark ? "#061732" : "#FFFFFF"
+            property color body_dark: !dark ? "#FFFFFF" : "#061732"
+            property color label: !dark ? "#23607A" : "#F4EDEB"
+            property color label_dark: !dark ? "#F4EDEB" : "#23607A"
+            property color notify: "#F4EDEB"
 
             property QtObject link: QtObject {
                 property QtObject body: QtObject {
-                    property color light: "#2A7C87"
-                    property color light_hover: "#1D5C75"
-                    property color dark: "#E0CDCA"
-                    property color dark_hover: "#D1B4B4"
+                    property color light: !theme.dark ? "#2A7C87" : "#E0CDCA"
+                    property color light_hover: !theme.dark ? "#1D5C75" : "#D1B4B4"
+                    property color dark: !theme.dark ? "#E0CDCA" : "#2A7C87"
+                    property color dark_hover: !theme.dark ? "#D1B4B4" : "#1D5C75"
                 }
 
                 property QtObject label: QtObject {
-                    property color light: "#369AA0"
-                    property color light_hover: "#2A7C87"
-                    property color dark: "#D1B4B4"
-                    property color dark_hover: "#E0CDCA"
+                    property color light: !theme.dark ? "#369AA0" : "#D1B4B4"
+                    property color light_hover: !theme.dark ? "#2A7C87" : "#E0CDCA"
+                    property color dark: !theme.dark ? "#D1B4B4" : "#369AA0"
+                    property color dark_hover: !theme.dark ? "#E0CDCA" : "#2A7C87"
                 }
             }
         }
