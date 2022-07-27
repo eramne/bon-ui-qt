@@ -4,7 +4,9 @@ import Qt5Compat.GraphicalEffects
 Thumbnail {
     id: root
 
-    width: 40
-    height: 40
+    property real size: 40
+
+    width: size
+    height: size
     radius: Math.max(width, height)/2
 }

@@ -20,8 +20,6 @@ Used to create a shadow under an object, filling a rounded rectangular or circul
 
 **`radius`** : **[real](https://doc.qt.io/qt-6/qml-real.html)** - The corner radius used to draw a rounded rectangle. `0` by default.
 
-**[All inherited members on doc.qt.io](https://doc.qt.io/qt-6/qml-qtquick-item.html)**
-
 ### Examples
 
 ```qml

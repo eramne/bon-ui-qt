@@ -72,8 +72,6 @@ Used to allow the user to pick from a set of options. Unlike `RadioButton`, it i
 - *`CheckBox.State.Off`* - The control is off.
 - *`CheckBox.State.Mixed`* - The control is in a mixed state, e.g. if in a tree view in which some of the children items are checked and some are unchecked.
 
-**[All inherited members on doc.qt.io](https://doc.qt.io/qt-6/qml-qtquick-controls2-checkbox.html)**
-
 ### Examples
 
 ```qml
@@ -115,8 +113,6 @@ A multi-purpose control shown in groups, appearing similarly to a `Button`, but 
 - *`Chip.Variant.Action`* - Presents itself as a clickable button, can be pressed to execute an option.
 - *`Chip.Variant.Choice`* - Presents itself as a toggleable button, can be used in a `ChipSet` to provide a set of choices, and can be set as exclusive or not, to function similarly to a `CheckBox` set or `RadioButton` set. Has a check icon on the left and turns a different color when checked, similar to a `CheckBox`.
 - *`Chip.Variant.Input`* - Presents itself as an item with a close button on the right which hides the chip. Can be used for selections or filters with a `ChipInput` element, which utilizes a `ComboBox` to add input chips which can be removed from the selection with the close button.
-
-**[All inherited members on doc.qt.io](https://doc.qt.io/qt-6/qml-qtquick-controls2-button.html)**
 
 ### Examples
 
@@ -190,11 +186,9 @@ To input a selection of various choices specified by the `model` property, in wh
 
 ### Properties
 
-**`model`** : **[list](https://doc.qt.io/qt-6/qml-list.html)\<[ListElement](link needed)\>** - A list model of the options from which the user can select.
+**`model`** : **[list](https://doc.qt.io/qt-6/qml-list.html)\<[listelement](link needed)\>** - A list model of the options from which the user can select.
 
-**`selection`** : **[list](https://doc.qt.io/qt-6/qml-list.html)\<[ListElement](link needed)\>** - A list of items from the `model` that have been selected by the user.
-
-**[All inherited members on doc.qt.io](https://doc.qt.io/qt-6/qml-qtquick-item.html)**
+**`selection`** : **[list](https://doc.qt.io/qt-6/qml-list.html)\<[listelement](link needed)\>** - A list of items from the `model` that have been selected by the user.
 
 ### Examples
 
@@ -233,8 +227,6 @@ For a set of multiple chips shown side by side. A `Chip` should always be joined
 **`overflow`** : **[bool](https://doc.qt.io/qt-6/qml-bool.html)** - Whether the chip set should be horizontally scrollable in a fixed-height container or if it should wrap the chips in a container with varying height. `false` by default.
 
 **`variant`** : **Chip.Variant** - How the chips will appear and function. See the `Chip.variant` property.
-
-**[All inherited members](link needed)**
 
 ### Examples
 
@@ -277,8 +269,6 @@ For a multiple-choice form selection, displaying a list of `Option` items, using
 **`group`** : **[ButtonGroup](https://doc.qt.io/qt-6/qml-qtquick-controls2-buttongroup.html)** - A reference to the control's internal `ButtonGroup` item.
 
 **`options`** : **[default list](https://doc.qt.io/qt-6/qml-list.html)\<[Option](#link needed)\>** - A list of options to select from, shown with a label and either a radio button or check box.
-
-**[All inherited members on doc.qt.io](https://doc.qt.io/qt-6/qml-qtquick-controls2-control.html)**
 
 ### Examples
 
@@ -328,8 +318,6 @@ For inputting a color. Displays a color swatch which opens a popup with a color 
 
 **`editColor`** : **[color](https://doc.qt.io/qt-6/qml-color.html)** - The temporary color that is being changed as the popup is still open. Resets to the `currentColor` if canceled.
 
-**[All inherited members](link needed)**
-
 ### Examples
 
 ```qml
@@ -355,8 +343,6 @@ For choosing a color from a set like a radio button, e.g. choosing from a palett
 ### Properties
 
 **`color`** : **[color](https://doc.qt.io/qt-6/qml-color.html)** - The color that is displayed on the button. If transparent, will show a checkerboard background behind it.
-
-**[All inherited members on doc.qt.io](https://doc.qt.io/qt-6/qml-qtquick-controls2-radiobutton.html)**
 
 ### Examples
 
@@ -396,11 +382,11 @@ For inputting one plain text option from a set. Allows picking from a dropdown l
 
 **`maxPopupHeight`** : **[real](https://doc.qt.io/qt-6/qml-real.html)** - For the maximum height of the dropdown list. Its height will be set to the height of the list's contents if small enough, otherwise will be set to this value and be scrollable. `300.0` by default.
 
-**`selectedIndex`** : ***`selectedIndex`** : **[int](https://doc.qt.io/qt-6/qml-int.html)** - The index of the item currently selected by the user.*[int](https://doc.qt.io/qt-6/qml-int.html)** - The index of the item currently selected by the user.
+**`model`** : **[list](https://doc.qt.io/qt-6/qml-list.html)\<[listelement](link needed)\>** - A list model of the options from which the user can select.
+
+**`selectedIndex`** : **[int](https://doc.qt.io/qt-6/qml-int.html)** - The index of the item currently selected by the user.
 
 **`value`** : **[readonly string](https://doc.qt.io/qt-6/qml-string.html)** - The item currently selected by the user.
-
-**[All inherited members](link needed)**
 
 ### Examples
 
@@ -441,8 +427,6 @@ For inputting a date or a date range. Shows a grid of date buttons, and two arro
 
 **`selectRange`** : **[bool](https://doc.qt.io/qt-6/qml-bool.html)** - If the picker should be to select a range of dates, otherwise just a single date. `false` by default.
 
-**[All inherited members](link needed)**
-
 ### Examples
 
 ```qml
@@ -471,8 +455,6 @@ Used to allow the user to choose a numerical value from a sliding circle. Also s
 ### Properties
 
 **`showValue`** : **[bool](https://doc.qt.io/qt-6/qml-bool.html)** - Whether the value of the dial should be shown in a circle around the dial, a dotted line if snapping is on or a solid line otherwise. `false` by default.
-
-**[All inherited members on doc.qt.io](https://doc.qt.io/qt-6/qml-qtquick-controls2-dial.html)**
 
 ### Examples
 
@@ -516,8 +498,6 @@ For inputting a number. May have increment/decrement icons. A math expression ca
 **`value`** : **[real](https://doc.qt.io/qt-6/qml-real.html)** - The number entered by the user.
 
 **`wrap`** : **[bool](https://doc.qt.io/qt-6/qml-bool.html)** - If values set outside of the `from` - `to` range should wrap around to the opposite end of the range, e.g. with a `from` of 1 and a `to` of 100 and a `stepSize` of 1, if the increment button is pressed at 100, the value will wrap around to `1`. Set to `false` by default.
-
-**[All inherited members](link needed)**
 
 ### Examples
 
@@ -563,8 +543,6 @@ For a single multiple-choice option, for use inside of a `Choice` item, using ei
 **`exclusive`** : **[bool](https://doc.qt.io/qt-6/qml-bool.html)** - Whether or not only one option can be chosen at a time, and show radio buttons rather than check boxes. `false` by default.
 
 **`name`** : **[required string](https://doc.qt.io/qt-6/qml-string.html)** - The text that should be shown beside the toggle button.
-
-**[All inherited members on doc.qt.io](https://doc.qt.io/qt-6/qml-qtquick-controls2-abstractbutton.html)**
 
 ### Examples
 
@@ -622,8 +600,6 @@ Used to allow the user to pick from a set of options. Unlike `CheckBox`, it is m
 - *`RadioButton.State.Off`* - The control is off.
 - *`RadioButton.State.Mixed`* - The control is in a mixed state, e.g. if in a tree view in which some of the children items are checked and some are unchecked.
 
-**[All inherited members on doc.qt.io](https://doc.qt.io/qt-6/qml-qtquick-controls2-radiobutton.html)**
-
 ### Examples
 
 ```qml
@@ -663,8 +639,6 @@ To either input an integer rating or to display an average rating.
 
 **`pressed`** : **[bool](https://doc.qt.io/qt-6/qml-bool.html)** - If the control is being pressed by the mouse.
 
-**[All inherited members on doc.qt.io](https://doc.qt.io/qt-6/qml-qtquick-item.html)**
-
 ### Examples
 
 ```qml
@@ -690,8 +664,6 @@ B.Rating {
 Inherits: [QtQuick.Controls.Slider](https://doc.qt.io/qt-6/qml-qtquick-controls2-slider.html)
 
 Used to allow the user to choose a numerical value from a sliding bar. Shows a tooltip which displays the value of the slider when pressed. Also see [Dial](link needed).
-
-**[All inherited members on doc.qt.io](https://doc.qt.io/qt-6/qml-qtquick-controls2-slider.html)**
 
 ### Examples
 
@@ -731,8 +703,6 @@ Inherits: [QtQuick.Controls.Switch](https://doc.qt.io/qt-6/qml-qtquick-controls2
 
 A simple control which can be toggled on or off.
 
-**[All inherited members on doc.qt.io](https://doc.qt.io/qt-6/qml-qtquick-controls2-switch.html)**
-
 ### Examples
 
 ```qml
@@ -769,8 +739,6 @@ For inputting a string of text that can span multiple lines. Use the `area`'s `t
 **`showCharacterCount`** : **[bool](https://doc.qt.io/qt-6/qml-bool.html)** - If a tiny caption should be shown in the bottom-right of the control displaying the length of the text entered. `false` by default.
 
 **`wordWrap`** : **[bool](https://doc.qt.io/qt-6/qml-bool.html)** - If the text should wrap around when a line gets too long, otherwise will be horizontally scrollable when a line gets long. `false` by default.
-
-**[All inherited members on doc.qt.io](https://doc.qt.io/qt-6/qml-qtquick-item.html)**
 
 ### Examples
 
@@ -815,8 +783,6 @@ For inputting a single-line string of text. Use the `field`'s `text` property to
 ### Properties
 
 **`buttonIcon`** : **[string](https://doc.qt.io/qt-6/qml-string.html)** - The name of an icon that may show to the right of the entered text inside of the field. The `iconClicked` signal and the `onIconClicked` signal handler can be used to do something when this button is pressed.
-
-**[All inherited members](link needed)**
 
 ### Examples
 
@@ -927,8 +893,6 @@ A base class for text input fields, with features like labels, character counts,
 **`iconClicked`**() - Emitted when an icon button is clicked in certain types that inherit `TextInputBase`.
 > **Note:** The corresponding handler is `onIconClicked`.
 
-**[All inherited members on doc.qt.io](https://doc.qt.io/qt-6/qml-qtquick-item.html)**
-
 ---
 
 ## TimeField
@@ -946,8 +910,6 @@ For inputting a time, optionally with seconds, 12 hour or 24 hour. Shows two or 
 **`showSeconds`** : **[bool](https://doc.qt.io/qt-6/qml-bool.html)** - If an extra tumbler for selecting seconds should be shown. `false` by default.
 
 **`twentyFourHour`** : **[bool](https://doc.qt.io/qt-6/qml-bool.html)** - If the hour tumbler should show 24 hours, otherwise 12 hours with an AM/PM choice. `false` by default.
-
-**[All inherited members](link needed)**
 
 ### Examples
 
@@ -978,8 +940,6 @@ B.TimeField {
 Inherits: [QtQuick.Controls.AbstractButton](https://doc.qt.io/qt-6/qml-qtquick-controls2-abstractbutton.html)
 
 For a simple square button with an icon (no label) that can be toggled on and off. Also see [ToggleButtonGroup](link needed).
-
-**[All inherited members on doc.qt.io](https://doc.qt.io/qt-6/qml-qtquick-controls2-abstractbutton.html)**
 
 ### Examples
 
@@ -1017,8 +977,6 @@ A set of `ToggleButton` controls, shown side-by-side in a container with rounded
 
 **`buttons`** : **[default list](https://doc.qt.io/qt-6/qml-list.html)\<[ToggleButton](#link needed)\>** - A list of `ToggleButton` controls that will be shown.
 
-**[All inherited members on doc.qt.io](https://doc.qt.io/qt-6/qml-qtquick-item.html)**
-
 ---
 
 ## Tumbler
@@ -1030,8 +988,6 @@ A wheel-like control in which you can choose a number either by dragging to spin
 ### Properties
 
 **`orientation`** : **orientation** - If the tumbler should be `Qt.Horizontal` or `Qt.Vertical`. Set to `Qt.Vertical` by default.
-
-**[All inherited members on doc.qt.io](https://doc.qt.io/qt-6/qml-qtquick-controls2-tumbler.html)**
 
 ### Examples
 

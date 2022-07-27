@@ -29,7 +29,7 @@ ListView {
 
     property int _firstVisibleIndex: {
         for (var i = 0; i < model.length; i++) {
-            if (root.filter(model[i].name) && (model[i]?.enabled ?? true)) {
+            if (root.filter(model[i]) && (model[i]?.enabled ?? true)) {
                 return i;
             }
         }
@@ -48,20 +48,18 @@ ListView {
     B.ScrollBar.vertical: B.ScrollBar { }
     B.ScrollBar.horizontal: B.ScrollBar { }
 
-    property real margins: 10
-
-    leftMargin: margins
-    topMargin: margins
-    rightMargin: margins
-    bottomMargin: margins
+    leftMargin: 10
+    topMargin: 10
+    rightMargin: 10
+    bottomMargin: 10
 
     maximumFlickVelocity: 4000
 
     width: 200
     height: 200
 
-    function filter(name) {
-        return true
+    function filter(item) {
+        return true;
     }
 
     property bool shiftDown: false
@@ -101,7 +99,7 @@ ListView {
                     tmpIndex++;
                 }
                 tmpStopCounter++;
-            } while ((tmpIndex < 0 || !(root.filter(model[tmpIndex].name) && (model[tmpIndex]?.enabled ?? true))) && tmpStopCounter < model.length);
+            } while ((tmpIndex < 0 || !(root.filter(model[tmpIndex]) && (model[tmpIndex]?.enabled ?? true))) && tmpStopCounter < model.length);
             selectionModel.currentIndex = tmpIndex;
             root.positionViewAtIndex(tmpIndex, ListView.Contain);
         }
@@ -118,7 +116,7 @@ ListView {
                     tmpIndex--;
                 }
                 tmpStopCounter++;
-            } while ((tmpIndex < 0 || !(root.filter(model[tmpIndex].name) && (model[tmpIndex]?.enabled ?? true))) && tmpStopCounter < model.length);
+            } while ((tmpIndex < 0 || !(root.filter(model[tmpIndex]) && (model[tmpIndex]?.enabled ?? true))) && tmpStopCounter < model.length);
             selectionModel.currentIndex = tmpIndex;
             root.positionViewAtIndex(tmpIndex, ListView.Contain);
         }
@@ -143,7 +141,7 @@ ListView {
         property string sectionName: model[index].sectionName ?? "";
         enabled: model[index].enabled ?? true;
         required property int index
-        visible: root.filter(name)
+        visible: root.filter(model[index])
 
         property real _itemImplicitWidth: itemRow.implicitWidth + itemRow.Layout.leftMargin + itemRow.Layout.rightMargin
 

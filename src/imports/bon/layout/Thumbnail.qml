@@ -5,7 +5,7 @@ import bon as B
 Rectangle {
     id: root
 
-    property string source
+    property url source
     property bool _isInCard: parent?.parent?.parent?.parent?.parent?.parent instanceof B.Card;
     property var _card: _isInCard ? parent?.parent?.parent?.parent?.parent?.parent : undefined
     property bool asynchronous: true

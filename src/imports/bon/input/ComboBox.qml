@@ -118,11 +118,11 @@ B.TextInputBase {
             compact: true
             selectionMode: B.List.SelectionMode.Single
 
-            function filter(name) {
+            function filter(item) {
                 if (root.field.displayText.trim().toLowerCase() === root.value.trim().toLowerCase() || !root.popup.opened) {
                     return true;
                 } else {
-                    return name.trim().toLowerCase().startsWith(root.field.displayText.trim().toLowerCase());
+                    return item.name.trim().toLowerCase().startsWith(root.field.displayText.trim().toLowerCase());
                 }
             }
 

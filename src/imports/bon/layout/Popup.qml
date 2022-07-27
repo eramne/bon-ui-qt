@@ -24,20 +24,20 @@ T.Popup {
             var windowWidth = parent.Window.width;
             var windowHeight = parent.Window.height;
             if (pos.x < windowPos.x + leftMargin) {
-                return false;
+                return true;
             }
             if (pos.x > windowPos.x + windowWidth - rightMargin) {
-                return false;
+                return true;
             }
             if (pos.y < windowPos.y + topMargin) {
-                return false;
+                return true;
             }
             if (pos.y > windowPos.y + windowHeight - bottomMargin) {
-                return false;
+                return true;
             }
-            return true;
-        } else {
             return false;
+        } else {
+            return true;
         }
     }
 

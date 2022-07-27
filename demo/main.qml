@@ -1361,11 +1361,9 @@ B.App {
 
                         B.Card {
                             width: 300
-                            media: [
-                                B.Thumbnail {
-                                    source: "https://picography.co/wp-content/uploads/2017/12/xmas-bokeh-lights-768x525.jpg"
-                                }
-                            ]
+                            media: B.Thumbnail {
+                                source: "https://picography.co/wp-content/uploads/2017/12/xmas-bokeh-lights-768x525.jpg"
+                            }
                             overline: "tech"
                             title: "Lorem Ipsum"
                             subtitle: "by John Doe"
@@ -1388,11 +1386,9 @@ B.App {
                                 }
                             }
 
-                            media: [
-                                B.Thumbnail {
-                                    source: "https://picography.co/wp-content/uploads/2017/12/xmas-bokeh-lights-768x525.jpg"
-                                }
-                            ]
+                            media: B.Thumbnail {
+                                source: "https://picography.co/wp-content/uploads/2017/12/xmas-bokeh-lights-768x525.jpg"
+                            }
                             overline: "tech"
                             title: "Lorem Ipsum"
                             subtitle: "by John Doe"
@@ -1448,7 +1444,7 @@ B.App {
                         B.Card {
                             width: 400
                             header: "eramne"
-                            subheader: "1:12 PM, 1/28/2021"
+                            subheader: "1:12 PM, 1/28/2022"
                             headerAvatar: "https://pbs.twimg.com/profile_images/1479243521727115265/7X85etcr_400x400.png"
                             description: "hello how are you today"
                         }

@@ -30,8 +30,6 @@ The main window of the app, containing the navigation bar, pages, popups, and ev
 
 **`pages`** : **[list](https://doc.qt.io/qt-6/qml-list.html)\<[Page](link needed)\>** - A list of the app's main [Pages](link needed) that will show as tabs in the `navRail` to be navigated between and used.
 
-**[All inherited members on doc.qt.io](https://doc.qt.io/qt-6/qml-qtquick-controls2-applicationwindow-members.html)**
-
 ### Examples
 
 ```qml
@@ -115,8 +113,6 @@ A data model providing methods for selections with different modes/actions, like
 - *`SelectionModel.SelectionType.AddRange`* - Add everything from the `currentIndex` until the specified index to the selection. (e.g. ctrl+shift clicking to add a range to the selection.)
 - *`SelectionModel.SelectionType.Toggle`* - Toggle the selection at the specified index. (e.g. control-clicking to toggle a single item.)
 
-**[All inherited members on doc.qt.io](https://doc.qt.io/qt-6/qml-qtqml-qtobject.html)**
-
 ### Examples
 
 ```qml
@@ -159,55 +155,4 @@ ListView {
 
 ## Theme
 
-Inherits: [QtQuick.QtObject](https://doc.qt.io/qt-6/qml-qtqml-qtobject.html)
-
-A singleton providing constants for theme and appearance values such as colors, fonts, animations, and other values.
-
-### Properties
-
-> **[Full Theme.qml member documentation](/src/imports/bon/core/THEME.md)**
-
-. . .
-
-**[All inherited members on doc.qt.io](https://doc.qt.io/qt-6/qml-qtqml-qtobject.html)**
-
-### Examples
-
-```qml
-import QtQuick;
-import QtQuick.Templates as T;
-import bon as B;
-
-T.Button {
-    id: root;
-    property int order: B.Button.Order.Primary;
-
-    background: Rectangle {
-        anchors.fill: root;
-        color: order === Button.Order.Primary ? (
-                   root.down ? B.Theme.palette.accent_1 : B.Theme.palette.accent
-               ) : (
-                   root.down ? B.Theme.palette.background_2 : (
-                       root.hovered ? B.Theme.palette.background_1 : B.Theme.palette.background
-                   )
-               );
-        radius: Math.max(width, height)/2;
-        border.color: B.Theme.palette.background_1;
-        border.width: order === Button.Order.Secondary && !root.down && !root.hovered ? 2 : 0;
-
-        Behavior on border.width {
-            NumberAnimation {
-                duration: B.Theme.animations.basic.duration;
-                easing.type: B.Theme.animations.basic.type;
-            }
-        }
-
-        Behavior on color {
-            ColorAnimation {
-                duration: B.Theme.animations.basic.duration;
-                easing.type: B.Theme.animations.basic.type;
-            }
-        }
-    }
-}
-```
+> **[Full Theme.qml documentation](/src/imports/bon/core/THEME.md)**

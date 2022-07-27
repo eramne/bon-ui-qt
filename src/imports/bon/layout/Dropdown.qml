@@ -15,7 +15,7 @@ B.Popup {
 
     function _updatePopupPos() {
         if (autoAdjustPositionAroundTarget) {
-            y = Qt.binding(function () {return outOfBounds(x, (target?.height??0) + 10 + height) ? (target?.height??0) + 10 : -height - 10;})
+            y = Qt.binding(function () {return !outOfBounds(x, (target?.height??0) + 10 + height) ? (target?.height??0) + 10 : -height - 10;})
         }
     }
     Component.onCompleted: {

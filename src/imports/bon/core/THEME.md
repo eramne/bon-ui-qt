@@ -1,5 +1,7 @@
 # Theme
 
+Inherits: [QtQuick.QtObject](https://doc.qt.io/qt-6/qml-qtqml-qtobject.html)
+
 A singleton providing constants for theme and appearance values such as colors, fonts, animations, and other values.
 
 ---
@@ -289,3 +291,44 @@ A singleton providing constants for theme and appearance values such as colors, 
 >> **`type`** : **[Easing](https://doc.qt.io/qt-6/qml-qtquick-propertyanimation.html#easing-prop)** - The type of easing curve to be used. `Easing.OutBack` by default.
 >>
 >> **`duration`** : **[real](https://doc.qt.io/qt-6/qml-real.html)** - The duration of the animation. `200` by default.
+
+### Examples
+
+```qml
+import QtQuick;
+import QtQuick.Templates as T;
+import bon as B;
+
+T.Button {
+    id: root;
+    property int order: B.Button.Order.Primary;
+
+    background: Rectangle {
+        anchors.fill: root;
+        color: order === Button.Order.Primary ? (
+                   root.down ? B.Theme.palette.accent_1 : B.Theme.palette.accent
+               ) : (
+                   root.down ? B.Theme.palette.background_2 : (
+                       root.hovered ? B.Theme.palette.background_1 : B.Theme.palette.background
+                   )
+               );
+        radius: Math.max(width, height)/2;
+        border.color: B.Theme.palette.background_1;
+        border.width: order === Button.Order.Secondary && !root.down && !root.hovered ? 2 : 0;
+
+        Behavior on border.width {
+            NumberAnimation {
+                duration: B.Theme.animations.basic.duration;
+                easing.type: B.Theme.animations.basic.type;
+            }
+        }
+
+        Behavior on color {
+            ColorAnimation {
+                duration: B.Theme.animations.basic.duration;
+                easing.type: B.Theme.animations.basic.type;
+            }
+        }
+    }
+}
+```
