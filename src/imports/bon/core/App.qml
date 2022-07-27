@@ -33,7 +33,6 @@ T.ApplicationWindow {
     }
 
     onCurrentPageChanged: {
-        //content.children[0].parent =
         content.children = [];
         currentPage.loadPage(content);
     }
@@ -63,6 +62,7 @@ T.ApplicationWindow {
             property B.Page page
             icon.name: page.icon.name
             label: page.label
+            notifications: page.notifications
             Component.onCompleted: {
                 root.onCurrentPageChanged.connect(() => {
                     active = root.currentPage === page;

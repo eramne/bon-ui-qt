@@ -487,7 +487,28 @@ import bon as B;
 B.Pane {
 
     B.Button {
-        text: "Click me!"
+        text: "Click me!";
+    }
+}
+```
+
+```qml
+import QtQuick;
+import bon as B;
+
+B.Pane {
+    anchors.fill: parent;
+    radius: 8;
+    color: B.Theme.palette.accent;
+    elevation: 4;
+    leftPadding: 10;
+    rightPadding: 10;
+    topPadding: 20;
+    bottomPadding: 20;
+    clip: true;
+
+    contentItem: Item {
+        /* contents */
     }
 }
 ```

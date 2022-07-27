@@ -42,7 +42,7 @@ B.App {
     width: 800;
     height: 600;
     visible: true;
-    title: qsTr("bonUI demo application");
+    title: "bonUI demo application";
 
     homepage: B.Page {
         contents: Component {

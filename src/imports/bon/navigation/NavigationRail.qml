@@ -66,9 +66,10 @@ Item {
                 id: overflowArea
                 anchors.left: parent.left
                 anchors.right: parent.right
-                height: Math.min(parent.height - topNavSection.height - 10, pagesNavColumn.implicitHeight)
-                y: Math.max(topNavSection.y + topNavSection.height + 10, parent.height/2-height/2)
+                height: Math.min(parent.height - topNavSection.height - 10, pagesNavColumn.implicitHeight) + 10
+                y: Math.max(topNavSection.y + topNavSection.height + 10, parent.height/2-height/2) - 5
                 margins: 0
+                topMargin: 10
                 showScrollBars: false
 
                 Column {

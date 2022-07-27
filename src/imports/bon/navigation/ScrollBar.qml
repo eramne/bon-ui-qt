@@ -24,7 +24,6 @@ T.ScrollBar {
         }
     }
 
-
     B.Elevation {
         anchors.fill: contentItem
         radius: contentItem.radius
