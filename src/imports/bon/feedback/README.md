@@ -20,7 +20,7 @@ QML types:
 
 ## Alert
 
-Inherits: [bon.Pane](link needed)
+Inherits: [bon.Pane](/src/imports/bon/layout/README.md#pane)
 
 A non-modal alert/message, embedded in a page rather than in a popup, displaying information or requesting an action to be taken.
 

@@ -22,13 +22,13 @@ For a vertical bar at the left of an application window to allow navigation betw
 
 ### Properties
 
-**`homeButton`** : **[TabButton](#link needed)** - A reference to the home button shown at the top of the bar.
+**`homeButton`** : **[TabButton](#tabbutton)** - A reference to the home button shown at the top of the bar.
 
 **`showHomeButton`** : **[bool](https://doc.qt.io/qt-6/qml-bool.html)** - If a button should be shown at the top to return to the home page. `true` by default.
 
 **`showTopButton`** : **[bool](https://doc.qt.io/qt-6/qml-bool.html)** - If a button should be shown at the top with a custom icon and action. `false` by default.
 
-**`tabs`** : **[default list](https://doc.qt.io/qt-6/qml-list.html)\<[TabButton](#link needed)\>** - A list of `TabButton` controls that will be shown to allow access to each page.
+**`tabs`** : **[default list](https://doc.qt.io/qt-6/qml-list.html)\<[TabButton](#tabbutton)\>** - A list of `TabButton` controls that will be shown to allow access to each page.
 
 **`topButtonIcon`** : **[string](https://doc.qt.io/qt-6/qml-string.html)** - If `showTopButton` is true, specifies the icon which the top button will use.
 

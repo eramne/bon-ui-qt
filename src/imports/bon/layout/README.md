@@ -34,7 +34,7 @@ QML types:
 
 ## Avatar
 
-Inherits: [bon.Thumbnail](link needed)
+Inherits: [bon.Thumbnail](#thumbnail)
 
 For a small circular image, e.g. a user's profile picture.
 
@@ -62,7 +62,7 @@ B.Avatar {
 
 ## Card
 
-Inherits: [bon.Pane](link needed)
+Inherits: [bon.Pane](#pane)
 
 For a rectangular item with a title and description, an image or other media, a menu, a header, or buttons, for example for posts, feeds, suggestions, etc.
 
@@ -80,7 +80,7 @@ For a rectangular item with a title and description, an image or other media, a 
 
 **`media`** : **[Item](https://doc.qt.io/qt-6/qml-qtquick-item.html)** - An image or media item to be shown at the top of the card, spanning the full width.
 
-**`menu`** : **[Menu](link needed)** - A popup menu to be shown by a button with three dots in the top-right corner of the card.
+**`menu`** : **[Menu](/src/imports/bon/action/README.md#menu)** - A popup menu to be shown by a button with three dots in the top-right corner of the card.
 
 **`overline`** : **[string](https://doc.qt.io/qt-6/qml-string.html)** - A short category or label directly above the title.
 
@@ -212,7 +212,9 @@ B.Divider {
 
 ## Dropdown
 
-Inherits: [bon.Popup](link needed)
+Inherits: [bon.Popup](#popup)
+
+Inherited by: [bon.Menu](/src/imports/bon/action/README.md#menu)
 
 A popup that follows a `target` item, either above or below it depending on how much space is available on either side.
 
@@ -292,7 +294,7 @@ For an interactive list view based on a data model.
 
 **`currentIndex`** : **[int](https://doc.qt.io/qt-6/qml-int.html)** - The currently active index.
 
-**`model`** : **[list](https://doc.qt.io/qt-6/qml-list.html)\<[listelement](link needed)\>** - A list of the items to be displayed.
+**`model`** : **[list](https://doc.qt.io/qt-6/qml-list.html)\<[listelement](#listelement)\>** - A list of the items to be displayed.
 
 **`selectedIndices`** : **[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)\<[int](https://doc.qt.io/qt-6/qml-int.html)\>** - An array of all the indices that are selected.
 
@@ -305,7 +307,7 @@ For an interactive list view based on a data model.
 
 ### Functions
 
-**[bool](https://doc.qt.io/qt-6/qml-bool.html)** **`filter`**(**[listelement](link needed)** `item`) - Reassign to set a filter function to hide certain items based on their data, for example, only showing items which names start with "S". Used in combo boxes to add a "searching" functionality. Set to a function that always returns `true` by default, meaning no items get filtered out.
+**[bool](https://doc.qt.io/qt-6/qml-bool.html)** **`filter`**(**[listelement](#listelement)** `item`) - Reassign to set a filter function to hide certain items based on their data, for example, only showing items which names start with "S". Used in combo boxes to add a "searching" functionality. Set to a function that always returns `true` by default, meaning no items get filtered out.
 
 ### Enums
 
@@ -467,6 +469,8 @@ B.List {
 
 Inherits: [QtQuick.Flickable](https://doc.qt.io/qt-6/qml-qtquick-flickable.html)
 
+Inherited by: [bon.ChipSet](/src/imports/bon/input/README.md#chipset)
+
 An area in which its contents can be scrolled through if larger than the area itself.
 
 ### Properties
@@ -497,6 +501,8 @@ B.OverflowArea {
 ## Pane
 
 Inherits: [QtQuick.Controls.Pane](https://doc.qt.io/qt-6/qml-qtquick-controls2-pane.html)
+
+Inherited by: [bon.Alert](/src/imports/bon/feedback/README.md#alert), [bon.Card](#card)
 
 A rectangular container with a background and optional shadow or border.
 
@@ -553,6 +559,8 @@ B.Pane {
 
 Inherits: [QtQuick.Controls.Popup](https://doc.qt.io/qt-6/qml-qtquick-controls2-popup.html)
 
+Inherited by: [bon.Dropdown](#dropdown)
+
 A pane shown above the rest of the app, positioned relative to the whole window.
 
 ### Properties
@@ -574,6 +582,8 @@ A pane shown above the rest of the app, positioned relative to the whole window.
 ## Thumbnail
 
 Inherits: [QtQuick.Rectangle](https://doc.qt.io/qt-6/qml-qtquick-rectangle.html)
+
+Inherited by: [bon.Avatar](#avatar)
 
 For a small rounded rectangular image.
 

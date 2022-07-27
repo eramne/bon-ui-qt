@@ -20,15 +20,15 @@ The main window of the app, containing the navigation bar, pages, popups, and ev
 
 ### Properties
 
-**`currentPage`** : **[Page](link needed)** - Contains the currently visible & active page. Set to the `homepage` by default, and can be set to another page for that page to be loaded and shown. This property is also used when an item in the `navRail` is clicked in order to load and show its associated page.
+**`currentPage`** : **[Page](/src/imports/bon/navigation/README.md#page)** - Contains the currently visible & active page. Set to the `homepage` by default, and can be set to another page for that page to be loaded and shown. This property is also used when an item in the `navRail` is clicked in order to load and show its associated page.
 
 **`dim`** : **[bool](https://doc.qt.io/qt-6/qml-bool.html)** - Whether to blur & dim the app window. Used by modal popups. `false` by default.
 
-**`homepage`** : **[Page](link needed)** - The main page that will be shown first when the app is started. Is accessible by the home button when the `navRail` is visible. Contains an empty item by default.
+**`homepage`** : **[Page](/src/imports/bon/navigation/README.md#page)** - The main page that will be shown first when the app is started. Is accessible by the home button when the `navRail` is visible. Contains an empty item by default.
 
-**`navRail`** : **[NavigationRail](link needed)** - The window's main navigation sidebar/rail, created automatically when `pages` is set. If `pages` is empty, it will not be visible.
+**`navRail`** : **[NavigationRail](/src/imports/bon/navigation/README.md#navigationrail)** - The window's main navigation sidebar/rail, created automatically when `pages` is set. If `pages` is empty, it will not be visible.
 
-**`pages`** : **[list](https://doc.qt.io/qt-6/qml-list.html)\<[Page](link needed)\>** - A list of the app's main [Pages](link needed) that will show as tabs in the `navRail` to be navigated between and used.
+**`pages`** : **[list](https://doc.qt.io/qt-6/qml-list.html)\<[Page](/src/imports/bon/navigation/README.md#page)\>** - A list of the app's main [Page](/src/imports/bon/navigation/README.md#page)s that will show as tabs in the `navRail` to be navigated between and used.
 
 ### Examples
 

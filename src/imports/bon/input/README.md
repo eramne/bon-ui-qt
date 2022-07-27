@@ -56,7 +56,7 @@ QML types:
 
 Inherits: [QtQuick.Controls.CheckBox](https://doc.qt.io/qt-6/qml-qtquick-controls2-checkbox.html)
 
-Used to allow the user to pick from a set of options. Unlike `RadioButton`, it is not mutually-exclusive, meaning multiple options can be picked at once. Also see [RadioButton](link needed).
+Used to allow the user to pick from a set of options. Unlike `RadioButton`, it is not mutually-exclusive, meaning multiple options can be picked at once. Also see [RadioButton](#radiobutton).
 
 ### Properties
 
@@ -95,7 +95,7 @@ B.CheckBox {mixed: true; enabled: false}
 
 Inherits: [QtQuick.Controls.Button](https://doc.qt.io/qt-6/qml-qtquick-controls2-button.html)
 
-A multi-purpose control shown in groups, appearing similarly to a `Button`, but with more varying functions, to be used with other chips as a selection, a choice, or a set of actions. Also see [ChipSet](link needed) and [ChipInput](link needed).
+A multi-purpose control shown in groups, appearing similarly to a `Button`, but with more varying functions, to be used with other chips as a selection, a choice, or a set of actions. Also see [ChipSet](#chipset) and [ChipInput](#chipinput).
 
 ### Properties
 
@@ -182,13 +182,13 @@ B.ChipSet {
 
 Inherits: [QtQuick.Item](https://doc.qt.io/qt-6/qml-qtquick-item.html)
 
-To input a selection of various choices specified by the `model` property, in which choices can be added and removed. Utilizes a `ComboBox` to add input chips which can be removed from the selection with its close button. Also see [ComboBox](link needed), [Chip](link needed), and [ChipSet](link needed).
+To input a selection of various choices specified by the `model` property, in which choices can be added and removed. Utilizes a `ComboBox` to add input chips which can be removed from the selection with its close button. Also see [ComboBox](#combobox), [Chip](#chip), and [ChipSet](#chipset).
 
 ### Properties
 
-**`model`** : **[list](https://doc.qt.io/qt-6/qml-list.html)\<[listelement](link needed)\>** - A list model of the options from which the user can select.
+**`model`** : **[list](https://doc.qt.io/qt-6/qml-list.html)\<[listelement](/src/imports/bon/layout/README.md#listelement)\>** - A list model of the options from which the user can select.
 
-**`selection`** : **[list](https://doc.qt.io/qt-6/qml-list.html)\<[listelement](link needed)\>** - A list of items from the `model` that have been selected by the user.
+**`selection`** : **[list](https://doc.qt.io/qt-6/qml-list.html)\<[listelement](/src/imports/bon/layout/README.md#listelement)\>** - A list of items from the `model` that have been selected by the user.
 
 ### Examples
 
@@ -214,7 +214,7 @@ B.ChipInput {
 
 ## ChipSet
 
-Inherits: [bon.OverflowArea](link needed)
+Inherits: [bon.OverflowArea](/src/imports/bon/layout/README.md#overflowarea)
 
 For a set of multiple chips shown side by side. A `Chip` should always be joined with other chips in a `ChipSet`, otherwise its functionality would be better suited by a `Button` or other control.
 
@@ -260,7 +260,7 @@ B.ChipSet {
 
 Inherits: [QtQuick.Controls.Control](https://doc.qt.io/qt-6/qml-qtquick-controls2-control.html)
 
-For a multiple-choice form selection, displaying a list of `Option` items, using either check boxes or radio buttons depending on the `exclusive` property. Also see [Option](link needed).
+For a multiple-choice form selection, displaying a list of `Option` items, using either check boxes or radio buttons depending on the `exclusive` property. Also see [Option](#option).
 
 ### Properties
 
@@ -268,7 +268,7 @@ For a multiple-choice form selection, displaying a list of `Option` items, using
 
 **`group`** : **[ButtonGroup](https://doc.qt.io/qt-6/qml-qtquick-controls2-buttongroup.html)** - A reference to the control's internal `ButtonGroup` item.
 
-**`options`** : **[default list](https://doc.qt.io/qt-6/qml-list.html)\<[Option](#link needed)\>** - A list of options to select from, shown with a label and either a radio button or check box.
+**`options`** : **[default list](https://doc.qt.io/qt-6/qml-list.html)\<[Option](#option)\>** - A list of options to select from, shown with a label and either a radio button or check box.
 
 ### Examples
 
@@ -308,9 +308,9 @@ B.Choice {
 
 ## ColorField
 
-Inherits: [bon.ColorSwatch](link needed)
+Inherits: [bon.ColorSwatch](#colorswatch)
 
-For inputting a color. Displays a color swatch which opens a popup with a color picker when clicked, containing a box controlling the value and saturation, two sliders for the hue and alpha, and a combo box and text fields for setting specific values. Also see [ColorSwatch](link needed).
+For inputting a color. Displays a color swatch which opens a popup with a color picker when clicked, containing a box controlling the value and saturation, two sliders for the hue and alpha, and a combo box and text fields for setting specific values. Also see [ColorSwatch](#colorswatch).
 
 ### Properties
 
@@ -337,6 +337,8 @@ B.ColorField {
 ## ColorSwatch
 
 Inherits: [QtQuick.Controls.RadioButton](https://doc.qt.io/qt-6/qml-qtquick-controls2-radiobutton.html)
+
+Inherited by: [bon.ChipSet](#chipset)
 
 For choosing a color from a set like a radio button, e.g. choosing from a palette, or choosing the color of an item of clothing in an order form.
 
@@ -372,9 +374,9 @@ B.ColorSwatch {
 
 ## ComboBox
 
-Inherits: [bon.TextInputBase](link needed)
+Inherits: [bon.TextInputBase](#textinputbase)
 
-For inputting one plain text option from a set. Allows picking from a dropdown list or typing into the text box to function like a search bar to filter options. Can also be customized the same way other text fields can. Also see [List](link needed) and [TextInputBase](link needed).
+For inputting one plain text option from a set. Allows picking from a dropdown list or typing into the text box to function like a search bar to filter options. Can also be customized the same way other text fields can. Also see [List](/src/imports/bon/layout/README.md#list) and [TextInputBase](#textinputbase).
 
 ### Properties
 
@@ -382,7 +384,7 @@ For inputting one plain text option from a set. Allows picking from a dropdown l
 
 **`maxPopupHeight`** : **[real](https://doc.qt.io/qt-6/qml-real.html)** - For the maximum height of the dropdown list. Its height will be set to the height of the list's contents if small enough, otherwise will be set to this value and be scrollable. `300.0` by default.
 
-**`model`** : **[list](https://doc.qt.io/qt-6/qml-list.html)\<[listelement](link needed)\>** - A list model of the options from which the user can select.
+**`model`** : **[list](https://doc.qt.io/qt-6/qml-list.html)\<[listelement](/src/imports/bon/layout/README.md#listelement)\>** - A list model of the options from which the user can select.
 
 **`selectedIndex`** : **[int](https://doc.qt.io/qt-6/qml-int.html)** - The index of the item currently selected by the user.
 
@@ -411,7 +413,7 @@ B.ComboBox {
 
 ## DateField
 
-Inherits: [bon.TextField](link needed)
+Inherits: [bon.TextField](#textfield)
 
 For inputting a date or a date range. Shows a grid of date buttons, and two arrow buttons to change the month.
 
@@ -450,7 +452,7 @@ B.DateField {
 
 Inherits: [QtQuick.Controls.Dial](https://doc.qt.io/qt-6/qml-qtquick-controls2-dial.html)
 
-Used to allow the user to choose a numerical value from a sliding circle. Also see [Slider](link needed).
+Used to allow the user to choose a numerical value from a sliding circle. Also see [Slider](#slider).
 
 ### Properties
 
@@ -479,9 +481,9 @@ B.Dial {enabled: false; showValue: true; snapMode: B.Dial.SnapAlways; stepSize: 
 
 ## NumberField
 
-Inherits: [bon.TextInputBase](link needed)
+Inherits: [bon.TextInputBase](#textinputbase)
 
-For inputting a number. May have increment/decrement icons. A math expression can be entered which will set the value of the field to the expression's solution. Also see [TextInputBase](link needed).
+For inputting a number. May have increment/decrement icons. A math expression can be entered which will set the value of the field to the expression's solution. Also see [TextInputBase](#textinputbase).
 
 ### Properties
 
@@ -532,7 +534,7 @@ B.NumberField {
 
 Inherits: [QtQuick.Controls.AbstractButton](https://doc.qt.io/qt-6/qml-qtquick-controls2-abstractbutton.html)
 
-For a single multiple-choice option, for use inside of a `Choice` item, using either a check box or a radio button depending on the `exclusive` property. Also see [Choice](link needed).
+For a single multiple-choice option, for use inside of a `Choice` item, using either a check box or a radio button depending on the `exclusive` property. Also see [Choice](#choice).
 
 ### Properties
 
@@ -584,7 +586,7 @@ B.Choice {
 
 Inherits: [QtQuick.Controls.RadioButton](https://doc.qt.io/qt-6/qml-qtquick-controls2-radiobutton.html)
 
-Used to allow the user to pick from a set of options. Unlike `CheckBox`, it is mutually-exclusive, meaning only one option can be picked at once. Also see [CheckBox](link needed).
+Used to allow the user to pick from a set of options. Unlike `CheckBox`, it is mutually-exclusive, meaning only one option can be picked at once. Also see [CheckBox](#checkbox).
 
 ### Properties
 
@@ -663,7 +665,7 @@ B.Rating {
 
 Inherits: [QtQuick.Controls.Slider](https://doc.qt.io/qt-6/qml-qtquick-controls2-slider.html)
 
-Used to allow the user to choose a numerical value from a sliding bar. Shows a tooltip which displays the value of the slider when pressed. Also see [Dial](link needed).
+Used to allow the user to choose a numerical value from a sliding bar. Shows a tooltip which displays the value of the slider when pressed. Also see [Dial](#dial).
 
 ### Examples
 
@@ -724,7 +726,7 @@ B.Switch {checked: true; enabled: false}
 
 Inherits: [QtQuick.Item](https://doc.qt.io/qt-6/qml-qtquick-item.html)
 
-For inputting a string of text that can span multiple lines. Use the `area`'s `text` property to get the entered text. Also see [TextField](link needed) and [TextInputBase](link needed).
+For inputting a string of text that can span multiple lines. Use the `area`'s `text` property to get the entered text. Also see [TextField](#textfield) and [TextInputBase](#textinputbase).
 
 ### Properties
 
@@ -776,9 +778,11 @@ B.TextArea {
 
 ## TextField
 
-Inherits: [bon.TextInputBase](link needed)
+Inherits: [bon.TextInputBase](#textinputbase)
 
-For inputting a single-line string of text. Use the `field`'s `text` property to get the entered text. May have a button in the right side of the field. Also see [TextInputBase](link needed) and [TextArea](link needed).
+Inherited by: [bon.DateField](#datefield), [bon.TimeField](#timefield)
+
+For inputting a single-line string of text. Use the `field`'s `text` property to get the entered text. May have a button in the right side of the field. Also see [TextInputBase](#textinputbase) and [TextArea](#textarea).
 
 ### Properties
 
@@ -862,7 +866,7 @@ B.TextField {
 
 Inherits: [QtQuick.Item](https://doc.qt.io/qt-6/qml-qtquick-item.html)
 
-Inherited by:
+Inherited by: [bon.ComboBox](#combobox), [bon.NumberField](#numberfield), [bon.TextField](#textfield)
 
 A base class for text input fields, with features like labels, character counts, icons, buttons, validity, etc. Use the `field`'s `text` property to get the entered text.
 
@@ -897,7 +901,7 @@ A base class for text input fields, with features like labels, character counts,
 
 ## TimeField
 
-Inherits: [bon.TextField](link needed)
+Inherits: [bon.TextField](#textfield)
 
 For inputting a time, optionally with seconds, 12 hour or 24 hour. Shows two or three tumblers for hours, minutes, and optionally seconds, an optional AM/PM choice, and text fields to alternatively pick values.
 
@@ -939,7 +943,7 @@ B.TimeField {
 
 Inherits: [QtQuick.Controls.AbstractButton](https://doc.qt.io/qt-6/qml-qtquick-controls2-abstractbutton.html)
 
-For a simple square button with an icon (no label) that can be toggled on and off. Also see [ToggleButtonGroup](link needed).
+For a simple square button with an icon (no label) that can be toggled on and off. Also see [ToggleButtonGroup](#togglebuttongroup).
 
 ### Examples
 
@@ -971,11 +975,11 @@ B.ToggleButtonGroup {
 
 Inherits: [QtQuick.Item](https://doc.qt.io/qt-6/qml-qtquick-item.html)
 
-A set of `ToggleButton` controls, shown side-by-side in a container with rounded edges. Also see [ToggleButton](link needed).
+A set of `ToggleButton` controls, shown side-by-side in a container with rounded edges. Also see [ToggleButton](#togglebutton).
 
 ### Properties
 
-**`buttons`** : **[default list](https://doc.qt.io/qt-6/qml-list.html)\<[ToggleButton](#link needed)\>** - A list of `ToggleButton` controls that will be shown.
+**`buttons`** : **[default list](https://doc.qt.io/qt-6/qml-list.html)\<[ToggleButton](#togglebutton)\>** - A list of `ToggleButton` controls that will be shown.
 
 ---
 
@@ -983,7 +987,7 @@ A set of `ToggleButton` controls, shown side-by-side in a container with rounded
 
 Inherits: [QtQuick.Controls.Tumbler](https://doc.qt.io/qt-6/qml-qtquick-controls2-tumbler.html)
 
-A wheel-like control in which you can choose a number either by dragging to spin the wheel or pressing arrow buttons on either side to increment or decrement the value. Also see [TimeField](link needed).
+A wheel-like control in which you can choose a number either by dragging to spin the wheel or pressing arrow buttons on either side to increment or decrement the value. Also see [TimeField](#timefield).
 
 ### Properties
 

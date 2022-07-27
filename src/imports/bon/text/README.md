@@ -144,6 +144,8 @@ For the subtitle of an article.
 
 Inherits: [QtQuick.Text](https://doc.qt.io/qt-6/qml-qtquick-text.html)
 
+Inherited by: [bon.BodyText](#bodytext), [bon.ButtonText](#buttontext), [bon.CaptionText](#captiontext), [bon.DisplayText](#displaytext), [bon.Display2Text](#display2text), [bon.HeadingText](#headingtext), [bon.LabelText](#labeltext), [bon.OverlineText](#overlinetext), [bon.SectionText](#sectiontext), [bon.Section2Text](#section2text), [bon.Section3Text](#section3text), [bon.SubheadingText](#subheadingtext), [bon.SubtitleText](#subtitletext), [bon.TitleText](#titletext)
+
 The base QML type for other text styles with some set defaults and properties added for convenience.
 
 ### Properties
