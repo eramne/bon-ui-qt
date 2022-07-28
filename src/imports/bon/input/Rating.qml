@@ -11,10 +11,10 @@ Item {
         for (var i = 0; i < group.buttons.length; i++) {
             var button = group.buttons[i];
             if (index < 0 && button.hovered) {
-                index = i;
+                index = group.buttons[i]._index;
             }
             if (button.pressed) {
-                index = i;
+                index = group.buttons[i]._index;
             }
         }
         return index;
@@ -40,17 +40,8 @@ Item {
 
     property int enteredValue: group.checkedButton?._index ?? -1;
     property real displayValue: 0
-
     property bool editable: true
-
-    property real visiblePosition: highlightedIndex > -1 ? highlightedIndex + 1 : (enteredValue >= 0 ? enteredValue + 1 : displayValue)
-
-    Behavior on visiblePosition {
-        animation: NumberAnimation {
-            duration: B.Theme.animations.basic.duration
-            easing.type: B.Theme.animations.basic.type
-        }
-    }
+    property bool _showRatingDisplay: !(root.pressed || root.hovered || enteredValue >= 0)
 
     opacity: !root.enabled ? B.Theme.disabled_opacity : 1
     layer.enabled: !root.enabled
@@ -69,14 +60,42 @@ Item {
             T.RadioButton {
                 T.ButtonGroup.group: group
                 property int _index: index
-                width: indicator.width
-                height: indicator.height
+                width: 24
+                height: 24
                 enabled: root.editable
                 hoverEnabled: root.editable && root.enabled
 
-                indicator: B.Icon {
-                    color: B.Theme.palette.background_1
-                    name: "star_border"
+                indicator: Item {
+                    anchors.fill: parent
+
+                    B.Icon {
+                        anchors.fill: parent
+                        color: B.Theme.palette.background_1
+                        name: "star_border"
+                    }
+
+                    B.Icon {
+                        anchors.fill: parent
+                        color: root.highlightedIndex >= 0 && (root.pressed || root.hovered) ? (
+                                   _index > root.highlightedIndex ?
+                                       Qt.alpha(B.Theme.palette.background_1, 0) :
+                                       root.pressed ?
+                                           B.Theme.palette.background_2 :
+                                           B.Theme.palette.background_1
+                               ) : (
+                                   root.enteredValue >= 0 && _index <= root.enteredValue ?
+                                       B.Theme.palette.accent :
+                                       Qt.alpha(B.Theme.palette.background_1, 0)
+                               )
+                        name: "star"
+
+                        Behavior on color {
+                            ColorAnimation {
+                                duration: B.Theme.animations.basic.duration
+                                easing.type: B.Theme.animations.basic.type
+                            }
+                        }
+                    }
                 }
             }
         }
@@ -84,6 +103,8 @@ Item {
 
     Row {
         id: starMask
+        visible: root._showRatingDisplay
+
         Repeater {
             model: 5
             B.Icon {
@@ -103,23 +124,14 @@ Item {
     Item {
         id: ratingIndicator
         anchors.fill: starMask
+        visible: root._showRatingDisplay
+
         Rectangle {
             anchors.top: parent.top
             anchors.bottom: parent.bottom
             anchors.left: parent.left
-            width: parent.width*(root.visiblePosition/5)
-            color: root.pressed ? B.Theme.palette.background_2 : (
-                       root.hovered ? B.Theme.palette.background_1 : (
-                           enteredValue >= 0 ? B.Theme.palette.accent : B.Theme.palette.accent_1
-                       )
-                   )
-
-            Behavior on color {
-                ColorAnimation {
-                    duration: B.Theme.animations.basic.duration
-                    easing.type: B.Theme.animations.basic.type
-                }
-            }
+            width: parent.width*(root.displayValue/5)
+            color: B.Theme.palette.accent_1
         }
     }
     ShaderEffectSource {
@@ -134,5 +146,6 @@ Item {
         anchors.fill: ratingIndicatorSource
         source: ratingIndicatorSource
         maskSource: starMaskSource
+        visible: root._showRatingDisplay
     }
 }

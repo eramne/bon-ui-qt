@@ -884,6 +884,11 @@ B.App {
                         }
 
                         B.Rating {
+                            editable: true
+                            displayValue: 2.35
+                        }
+
+                        B.Rating {
                             enabled: false
                         }
 
