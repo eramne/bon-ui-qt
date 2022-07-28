@@ -1560,14 +1560,14 @@ B.App {
                                     text: "Cancel"
                                     order: B.Button.Order.Secondary
                                     onClicked: {
-                                        dialog1.close();
+                                        console.log("Cancelled");
                                     }
                                 },
                                 B.Button {
                                     text: "Delete"
                                     order: B.Button.Order.Primary
                                     onClicked: {
-                                        dialog1.close();
+                                        console.log("Deleted");
                                     }
                                 }
                             ]

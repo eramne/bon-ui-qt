@@ -25,6 +25,13 @@ T.Popup {
         }
     }
 
+    T.ButtonGroup {
+        buttons: root.actions
+        onClicked: {
+            root.close();
+        }
+    }
+
     contentItem: ColumnLayout {
         width: root.width
 

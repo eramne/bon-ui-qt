@@ -62,6 +62,13 @@ T.Popup {
         showAnimation.start();
     }
 
+    T.ButtonGroup {
+        buttons: root.action
+        onClicked: {
+            root.T.ApplicationWindow.window.toastContainer.hideToast();
+        }
+    }
+
     NumberAnimation on y {
         id: showAnimation
         from: parent.height+height/2
