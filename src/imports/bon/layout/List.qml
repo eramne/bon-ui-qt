@@ -142,6 +142,7 @@ ListView {
         enabled: model[index].enabled ?? true;
         required property int index
         visible: root.filter(model[index])
+        property alias container: container
 
         property real _itemImplicitWidth: itemRow.implicitWidth + itemRow.Layout.leftMargin + itemRow.Layout.rightMargin
 
@@ -192,34 +193,37 @@ ListView {
             root.itemActivated(listItem.index, listItem)
         }
 
-        background: Rectangle {
-            width: parent.width
-            y: container.y
-            height: container.height
-            radius: 4
-            color: getColor()
-            function getColor() {
-                return listItem.pressed || selectionModel.isSelected(listItem.index) ? B.Theme.palette.background_2 : (
-                           root.hoveredIndex === listItem.index ? B.Theme.palette.background_1 : Qt.alpha(B.Theme.palette.background, 0)
-                       )
-            }
+        background: Item {
 
-            Component.onCompleted: {
-                root._updateSelectionBackgroundColors.connect(function(){
-                    if (listItem?.background?.color) {
-                        listItem.background.color = Qt.binding(function () {return getColor()})
+            Rectangle {
+                width: parent.width
+                y: container.y
+                height: container.height
+                radius: 4
+                color: getColor()
+                function getColor() {
+                    return listItem.pressed || selectionModel.isSelected(listItem.index) ? B.Theme.palette.background_2 : (
+                               root.hoveredIndex === listItem.index ? B.Theme.palette.background_1 : Qt.alpha(B.Theme.palette.background, 0)
+                           )
+                }
+
+                Component.onCompleted: {
+                    root._updateSelectionBackgroundColors.connect(function(){
+                        if (listItem?.background?.color) {
+                            listItem.background.color = Qt.binding(function () {return getColor()})
+                        }
+                    })
+                }
+
+                border.width: root.hoveredIndex !== listItem.index && root.highlightedIndex === listItem.index ? 2 : 0
+                border.color: B.Theme.palette.background_1
+                opacity: 0.3
+
+                Behavior on color {
+                    ColorAnimation {
+                        duration: B.Theme.animations.basic.duration
+                        easing.type: B.Theme.animations.basic.type
                     }
-                })
-            }
-
-            border.width: root.hoveredIndex !== listItem.index && root.highlightedIndex === listItem.index ? 2 : 0
-            border.color: B.Theme.palette.background_1
-            opacity: 0.3
-
-            Behavior on color {
-                ColorAnimation {
-                    duration: B.Theme.animations.basic.duration
-                    easing.type: B.Theme.animations.basic.type
                 }
             }
         }

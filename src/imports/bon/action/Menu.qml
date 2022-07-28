@@ -136,12 +136,13 @@ B.Dropdown {
                 root._activeSubMenu = undefined;
             }
             if (model[index]?.submenu instanceof Menu) {
+                let hoveredItem = itemAtIndex(index);
                 root._activeSubMenu = model[index]?.submenu;
-                root._activeSubMenu.parent = itemAtIndex(index)
+                root._activeSubMenu.parent = hoveredItem
                 root._activeSubMenu._parentMenu = root
                 root._activeSubMenu.autoAdjustPositionAroundTarget = false
                 root._activeSubMenu.x = root.width + root.margins
-                root._activeSubMenu.y = -topMargin
+                root._activeSubMenu.y = -topMargin + hoveredItem.container.y
                 root._activeSubMenu.open()
                 if (keyboard) {
                     root._activeSubMenu.list.currentIndex = root._activeSubMenu.list._firstVisibleIndex
