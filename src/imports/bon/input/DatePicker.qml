@@ -105,12 +105,16 @@ B.Dropdown {
                     Layout.preferredWidth: 40
                     Layout.preferredHeight: 40
                     order: B.Button.Order.Tertiary
-                    icon.name: "navigate_before"
+                    icon.name: !root.shiftDown ? "navigate_before" : "keyboard_double_arrow_left"
 
                     onReleased: {
-                        root._visibleMonth -= 1
-                        if (root._visibleMonth < 0) {
-                            root._visibleMonth = 11
+                        if (!root.shiftDown) {
+                            root._visibleMonth -= 1
+                            if (root._visibleMonth < 0) {
+                                root._visibleMonth = 11
+                                root._visibleYear -= 1
+                            }
+                        } else {
                             root._visibleYear -= 1
                         }
                     }
@@ -120,12 +124,16 @@ B.Dropdown {
                     Layout.preferredWidth: 40
                     Layout.preferredHeight: 40
                     order: B.Button.Order.Tertiary
-                    icon.name: "navigate_next"
+                    icon.name: !root.shiftDown ? "navigate_next" : "keyboard_double_arrow_right"
 
                     onReleased: {
-                        root._visibleMonth += 1
-                        if (root._visibleMonth > 11) {
-                            root._visibleMonth = 0
+                        if (!root.shiftDown) {
+                            root._visibleMonth += 1
+                            if (root._visibleMonth > 11) {
+                                root._visibleMonth = 0
+                                root._visibleYear += 1
+                            }
+                        } else {
                             root._visibleYear += 1
                         }
                     }
@@ -187,24 +195,40 @@ B.Dropdown {
                             color: B.Theme.palette.accent_1
                             visible: (parent.rangeSelected || (
                                          (parent.isEditDate || parent.isEditEndDate) && !root.oneDateSelected
-                                     )) && parent.enabled
+                                     )) //&& parent.enabled
                             z: parent.parent.z-1
                             anchors.leftMargin: parent.isEditDate ? parent.width/2 : -buttonGrid.columnSpacing - (parent.isAtLeft ? overflowArea.leftMargin : 0)
                             anchors.rightMargin: parent.isEditEndDate ? parent.width/2 : -buttonGrid.columnSpacing  - (parent.isAtRight ? overflowArea.leftMargin : 0)
                         }
 
                         onReleased: {
-                            if (!root.shiftDown || !root.selectRange) {
+                            if (!root.selectRange) {
                                 root.editDate = date
-                                root.editEndDate = root.editDate
-                                root._lastClickedDate = root.editDate
+                                root.editEndDate = date
+                                root._lastClickedDate = date
                             } else {
-                                if (date.getTime() > root._lastClickedDate.getTime()) {
-                                    root.editDate = root._lastClickedDate
-                                    root.editEndDate = date
+                                if (!root.shiftDown) {
+                                    if (!root.oneDateSelected || date.getTime() < root.editDate.getTime()) {
+                                        root.editDate = date
+                                        root.editEndDate = date
+                                        root._lastClickedDate = date
+                                    } else {
+                                        if (date.getTime() > root._lastClickedDate.getTime()) {
+                                            root.editDate = root._lastClickedDate
+                                            root.editEndDate = date
+                                        } else {
+                                            root.editDate = date
+                                            root.editEndDate = root._lastClickedDate
+                                        }
+                                    }
                                 } else {
-                                    root.editDate = date
-                                    root.editEndDate = root._lastClickedDate
+                                    if (date.getTime() > root._lastClickedDate.getTime()) {
+                                        root.editDate = root._lastClickedDate
+                                        root.editEndDate = date
+                                    } else {
+                                        root.editDate = date
+                                        root.editEndDate = root._lastClickedDate
+                                    }
                                 }
                             }
                         }

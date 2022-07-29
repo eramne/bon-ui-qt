@@ -25,8 +25,6 @@ T.AbstractButton {
 
     width: 40
     height: 40
-    opacity: !root.enabled ? B.Theme.disabled_opacity : 1
-    layer.enabled: !root.enabled
 
     B.Elevation {
         anchors.fill: background
@@ -43,7 +41,7 @@ T.AbstractButton {
             text: root.text
             anchors.fill: parent
             dark: checked || rangeSelected
-            opacity: root.down || root.hovered || !root.enabled ? B.Theme.highlight_hover_opacity : 1
+            opacity: !root.enabled ? B.Theme.disabled_opacity : (root.down || root.hovered || !root.enabled ? B.Theme.highlight_hover_opacity : 1)
             horizontalAlignment: Text.AlignHCenter
             verticalAlignment: Text.AlignVCenter
 
