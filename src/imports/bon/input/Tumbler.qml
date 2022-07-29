@@ -16,6 +16,10 @@ T.Tumbler {
 
     visibleItemCount: 5
 
+    opacity: !root.enabled ? B.Theme.disabled_opacity : 1
+    layer.enabled: !root.enabled
+    hoverEnabled: root.enabled
+
     property int orientation: Qt.Vertical
 
     delegate: Item {

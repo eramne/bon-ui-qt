@@ -9,6 +9,9 @@ B.OverflowArea {
     margins: 0
     showScrollBars: false
 
+    opacity: !root.enabled ? B.Theme.disabled_opacity : 1
+    layer.enabled: !root.enabled
+
     default property list<B.Chip> chips
     property int variant: Chip.Variant.Action
     property bool overflow: false

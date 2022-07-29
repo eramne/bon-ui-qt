@@ -9,6 +9,9 @@ Item {
     property var model: []
     property var selection: []
 
+    opacity: !root.enabled ? B.Theme.disabled_opacity : 1
+    layer.enabled: !root.enabled
+
     Rectangle {
         anchors.fill: parent
         color: "transparent"

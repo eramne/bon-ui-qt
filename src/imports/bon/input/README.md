@@ -540,8 +540,6 @@ For a single multiple-choice option, for use inside of a `Choice` item, using ei
 
 **`button`** : **[AbstractButton](https://doc.qt.io/qt-6/qml-qtquick-controls2-buttongroup.html)** - A reference to the item's internal button control, either a `CheckBox` or a `RadioButton`.
 
-**`enabled`** : **[bool](https://doc.qt.io/qt-6/qml-bool.html)** - Whether or not the toggle button should be able to be changed or interacted with, otherwise showing as semi-transparent. `true` by default.
-
 **`exclusive`** : **[bool](https://doc.qt.io/qt-6/qml-bool.html)** - Whether or not only one option can be chosen at a time, and show radio buttons rather than check boxes. `false` by default.
 
 **`name`** : **[required string](https://doc.qt.io/qt-6/qml-string.html)** - The text that should be shown beside the toggle button.

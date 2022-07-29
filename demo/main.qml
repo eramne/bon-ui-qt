@@ -608,6 +608,23 @@ B.App {
                             }
                         }
 
+                        B.ChipSet {
+                            variant: B.Chip.Variant.Choice
+                            overflow: false
+                            enabled: false
+                            B.Chip {
+                                text: "Red"
+                                checked: true
+                            }
+                            B.Chip {
+                                text: "Green"
+                            }
+                            B.Chip {
+                                text: "Blue"
+                            }
+                        }
+
+
                         B.Divider {
                             width: parent.width
                             name: "Chip Input"
@@ -615,6 +632,11 @@ B.App {
 
                         B.ChipInput {
                             model: combobox1.model
+                        }
+
+                        B.ChipInput {
+                            model: combobox1.model
+                            enabled: false
                         }
 
                         B.Divider {
@@ -766,6 +788,11 @@ B.App {
 
                         B.NumberField {
                             value: 5
+                            enabled: false
+                        }
+
+                        B.NumberField {
+                            value: 5
                         }
 
                         B.NumberField {
@@ -867,6 +894,11 @@ B.App {
                             model: combobox1.model
                             labelText: "Choose a shape"
                             helpText: "Optional"
+                        }
+
+                        B.ComboBox {
+                            model: combobox1.model
+                            enabled: false
                         }
 
                         B.Divider {
@@ -1006,6 +1038,23 @@ B.App {
                             }
                         }
 
+                        B.Choice {
+                            width: 300
+                            enabled: false
+
+                            B.Option {
+                                name: "Option 1"
+                            }
+
+                            B.Option {
+                                name: "Option 2"
+                            }
+
+                            B.Option {
+                                name: "Option 3"
+                            }
+                        }
+
                         B.Divider {
                             width: parent.width
                             name: "Tumblers"
@@ -1020,6 +1069,11 @@ B.App {
                             model: 60
                         }
 
+                        B.Tumbler {
+                            model: 60
+                            enabled: false
+                        }
+
                         B.Divider {
                             width: parent.width
                             name: "Pickers"
@@ -1027,6 +1081,11 @@ B.App {
 
                         B.ColorField {
                             currentColor: "#e16c88"
+                        }
+
+                        B.ColorField {
+                            currentColor: "#e16c88"
+                            enabled: false
                         }
 
                         B.DateField {
@@ -1037,6 +1096,10 @@ B.App {
                             selectRange: true
                         }
 
+                        B.DateField {
+                            enabled: false
+                        }
+
                         B.TimeField {
 
                         }
@@ -1052,6 +1115,10 @@ B.App {
                         B.TimeField {
                             twentyFourHour: true
                             showSeconds: true
+                        }
+
+                        B.TimeField {
+                            enabled: false
                         }
 
                         B.Divider {
