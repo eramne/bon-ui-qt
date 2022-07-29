@@ -61,7 +61,7 @@ B.Dropdown {
 
             RowLayout {
                 Layout.fillWidth: true
-                Layout.leftMargin: 15
+                Layout.leftMargin: 10
                 spacing: 10
 
                 B.HeadingText {
@@ -93,12 +93,51 @@ B.Dropdown {
 
             RowLayout {
                 Layout.fillWidth: true
-                Layout.leftMargin: 15
+                Layout.leftMargin: 10
                 spacing: 10
 
-                B.SubheadingText {
+                B.ComboBox {
                     Layout.fillWidth: true
-                    text: new Date(root._visibleYear, root._visibleMonth).toLocaleString(Qt.locale(), "MMMM yyyy")
+                    width: 100
+                    model: [
+                        {name: Qt.locale().monthName(0, Locale.ShortFormat)},
+                        {name: Qt.locale().monthName(1, Locale.ShortFormat)},
+                        {name: Qt.locale().monthName(2, Locale.ShortFormat)},
+                        {name: Qt.locale().monthName(3, Locale.ShortFormat)},
+                        {name: Qt.locale().monthName(4, Locale.ShortFormat)},
+                        {name: Qt.locale().monthName(5, Locale.ShortFormat)},
+                        {name: Qt.locale().monthName(6, Locale.ShortFormat)},
+                        {name: Qt.locale().monthName(7, Locale.ShortFormat)},
+                        {name: Qt.locale().monthName(8, Locale.ShortFormat)},
+                        {name: Qt.locale().monthName(9, Locale.ShortFormat)},
+                        {name: Qt.locale().monthName(10, Locale.ShortFormat)},
+                        {name: Qt.locale().monthName(11, Locale.ShortFormat)}
+                    ]
+                    selectedIndex: root._visibleMonth;
+                    onSelectedIndexChanged: {
+                        root._visibleMonth = selectedIndex;
+                    }
+                    Component.onCompleted: {
+                        root.on_visibleMonthChanged.connect(() => {
+                            selectedIndex = root._visibleMonth;
+                            console.log(selectedIndex);
+                        });
+                    }
+                }
+
+                B.NumberField {
+                    width: 75
+                    from: 100
+                    to: 9999
+                    value: root._visibleYear;
+                    onValueChanged: {
+                        root._visibleYear = value;
+                    }
+                    Component.onCompleted: {
+                        root.on_visibleYearChanged.connect(() => {
+                            value = root._visibleYear;
+                        });
+                    }
                 }
 
                 B.Button {
@@ -109,10 +148,11 @@ B.Dropdown {
 
                     onReleased: {
                         if (!root.shiftDown) {
-                            root._visibleMonth -= 1
-                            if (root._visibleMonth < 0) {
+                            if (root._visibleMonth - 1 < 0) {
                                 root._visibleMonth = 11
                                 root._visibleYear -= 1
+                            } else {
+                                root._visibleMonth -= 1
                             }
                         } else {
                             root._visibleYear -= 1
@@ -128,10 +168,11 @@ B.Dropdown {
 
                     onReleased: {
                         if (!root.shiftDown) {
-                            root._visibleMonth += 1
-                            if (root._visibleMonth > 11) {
+                            if (root._visibleMonth + 1 > 11) {
                                 root._visibleMonth = 0
                                 root._visibleYear += 1
+                            } else {
+                                root._visibleMonth += 1
                             }
                         } else {
                             root._visibleYear += 1

@@ -9,7 +9,7 @@ B.TextInputBase {
     property real maxPopupHeight: 300
 
     property string value: list.model[selectedIndex].name
-    property int selectedIndex: 1
+    property int selectedIndex: 0
 
     property bool editable: true
     field.readOnly: !editable
@@ -20,26 +20,34 @@ B.TextInputBase {
         if (field.focus) {
             popup.open();
         }
-        _updateValue();
+        _updateFieldValue();
     }
 
     onSelectedIndexChanged: {
+        _updateListValue();
+    }
+
+    Component.onCompleted: {
+        _updateListValue();
+    }
+
+    function _updateListValue() {
         list.currentIndex = selectedIndex
         list.selectedIndices = [selectedIndex]
-        _updateValue()
+        _updateFieldValue()
         popup.close()
         focus = false
         field.focus = false
     }
 
-    function _updateValue() {
+    function _updateFieldValue() {
         selectedIndex = list.currentIndex
         value = list.model[selectedIndex].name
         field.text = value;
     }
 
     field.onEditingFinished: {
-        _updateValue()
+        _updateFieldValue()
     }
 
     field.onTextEdited: {
@@ -51,10 +59,10 @@ B.TextInputBase {
             if (!popup.visible) {
                 if (list.currentIndex - 1 < 0) {
                     list.currentIndex = list.model.length - 1
-                    _updateValue()
+                    _updateFieldValue()
                 } else {
                     list.currentIndex--
-                    _updateValue()
+                    _updateFieldValue()
                 }
                 event.accepted = true
             }
@@ -63,10 +71,10 @@ B.TextInputBase {
             if (!popup.visible) {
                 if (currentIndex + 1 >= model.length) {
                     list.currentIndex = 0
-                    _updateValue()
+                    _updateFieldValue()
                 } else {
                     list.currentIndex++
-                    _updateValue()
+                    _updateFieldValue()
                 }
                 event.accepted = true
             }
