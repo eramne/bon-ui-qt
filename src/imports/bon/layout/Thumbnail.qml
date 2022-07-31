@@ -22,6 +22,7 @@ Rectangle {
         visible: false
         mipmap: true
         asynchronous: root.asynchronous
+        fillMode: Image.PreserveAspectCrop
     }
 
     Rectangle {

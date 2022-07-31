@@ -294,6 +294,8 @@ For an interactive list view based on a data model.
 
 **`currentIndex`** : **[int](https://doc.qt.io/qt-6/qml-int.html)** - The currently active index.
 
+**`fixedWidth`** : **[bool](https://doc.qt.io/qt-6/qml-bool.html)** - If the list should have a set width and the items should adjust to that, otherwise having a dynamic width that adjusts to the widths of the items. `true` by default.
+
 **`model`** : **[list](https://doc.qt.io/qt-6/qml-list.html)\<[listelement](#listelement)\>** - A list of the items to be displayed.
 
 **`selectedIndices`** : **[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)\<[int](https://doc.qt.io/qt-6/qml-int.html)\>** - An array of all the indices that are selected.
@@ -363,6 +365,15 @@ B.List {
         {name: "the", trailing: B.ListTrailing.icon({name: "arrow_right"})},
     ]
 }
+
+B.List {
+    id: list3
+    width: 400
+    
+    model: [
+        {name: "Action", onActivated: () => {console.log("open action page")}}
+    ]
+}
 ```
 
 ---
@@ -390,6 +401,10 @@ An object containing data to be shown in a list view.
 **`leading`** : **listleading** - Something to be shown to the left of the name, either an icon, avatar or thumbnail. Use the `ListLeading` type's functions to set.
 
 **`trailing`** : **listtrailing** - Something to be shown to the right of the name, either an icon, caption or component. Use the `ListTrailing` type's functions to set.
+
+### Functions
+
+**`onActivated`**() - To be run when this element is clicked.
 
 ---
 

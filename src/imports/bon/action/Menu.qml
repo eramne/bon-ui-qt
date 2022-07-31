@@ -89,6 +89,7 @@ B.Dropdown {
         id: list
         width: Math.min(root.maxWidth, Math.max(200, _contentWidth + leftMargin + rightMargin))
         height: Math.min(root.maxHeight, contentHeight + bottomMargin + topMargin)
+        fixedWidth: false
         leftMargin: 0
         rightMargin: 0
 

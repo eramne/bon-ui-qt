@@ -120,7 +120,6 @@ B.Dropdown {
                     Component.onCompleted: {
                         root.on_visibleMonthChanged.connect(() => {
                             selectedIndex = root._visibleMonth;
-                            console.log(selectedIndex);
                         });
                     }
                 }

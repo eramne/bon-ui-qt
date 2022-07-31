@@ -6,7 +6,6 @@ singleton Utils 1.0 core/Utils.qml
 SelectionModel 1.0 core/SelectionModel.qml
 
 Button 1.0 action/Button.qml
-DateButton 1.0 action/DateButton.qml
 Menu 1.0 action/Menu.qml
 MenuItem 1.0 action/MenuItem.qml
 ContextMenu 1.0 action/ContextMenu.qml
@@ -36,6 +35,7 @@ ColorPicker 1.0 input/ColorPicker.qml
 DatePicker 1.0 input/DatePicker.qml
 TimePicker 1.0 input/TimePicker.qml
 ColorField 1.0 input/ColorField.qml
+DateButton 1.0 input/DateButton.qml
 DateField 1.0 input/DateField.qml
 TimeField 1.0 input/TimeField.qml
 Option 1.0 input/Option.qml

@@ -21,6 +21,8 @@ ListView {
     property alias currentIndex: selectionModel.currentIndex
     property alias selectedIndices: selectionModel.selectedIndices
 
+    property bool fixedWidth: true
+
     onCurrentIndexChanged: {
         if (itemAtIndex(currentIndex)) {
             itemAtIndex(currentIndex).focus = true
@@ -38,7 +40,7 @@ ListView {
 
     signal itemActivated(int index, var item)
 
-    contentWidth: contentItem.childrenRect.width
+    contentWidth: fixedWidth ? width - leftMargin - rightMargin : contentItem.childrenRect.width
     contentHeight: contentItem.childrenRect.height
     boundsBehavior: Flickable.DragOverBounds
     flickableDirection: Flickable.AutoFlickIfNeeded
@@ -130,7 +132,7 @@ ListView {
 
     delegate: T.ItemDelegate {
         id: listItem
-        width: Math.max(implicitWidth, root.width - root.leftMargin - root.rightMargin)
+        width: root.fixedWidth ? root.width - root.leftMargin - root.rightMargin : Math.max(implicitWidth, root.width - root.leftMargin - root.rightMargin)
         height: itemContent.height
         property string name: model[index].name ?? ""
         property string caption: model[index].caption ?? ""
@@ -139,6 +141,7 @@ ListView {
         property var trailing: model[index].trailing ?? undefined;
         property bool showDivider: model[index].showDivider ?? false;
         property string sectionName: model[index].sectionName ?? "";
+        property var onActivated: model[index].onActivated;
         enabled: model[index].enabled ?? true;
         required property int index
         visible: root.filter(model[index])
@@ -190,6 +193,10 @@ ListView {
             }
             root.focus = true
             root._updateSelectionBackgroundColors()
+            if (listItem.onActivated instanceof Function) {
+                listItem.onActivated();
+            }
+
             root.itemActivated(listItem.index, listItem)
         }
 
@@ -230,7 +237,7 @@ ListView {
 
         contentItem: ColumnLayout {
             id: itemContent
-            width: implicitWidth
+            width: root.fixedWidth ? parent.width : implicitWidth
             height: implicitHeight
             visible: parent.visible
 
@@ -244,7 +251,7 @@ ListView {
 
             RowLayout {
                 id: container
-                width: implicitWidth
+                width: root.fixedWidth ? parent.width : implicitWidth
                 height: implicitHeight
                 visible: parent.visible
 
